@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package Modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +20,7 @@ import javax.persistence.Table;
  * @author juana
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "persona")
 public class Persona implements Serializable {
 
@@ -32,9 +35,6 @@ public class Persona implements Serializable {
     private String telefono;
     private String direccion;
     private String email;
-//    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "idPersonal", nullable = false,referencedColumnName = "idPersonal")
-//    private Personal personal;
 
     public Long getIdPersona() {
         return idPersona;
