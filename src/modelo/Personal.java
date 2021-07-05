@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -19,12 +19,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "personal")
-@PrimaryKeyJoinColumn(referencedColumnName = "idPersonal")
+//@PrimaryKeyJoinColumn(referencedColumnName = "idPersonal")
 public class Personal extends Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idPersonal")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column(name = "idPersonal")
     private String usuario;
     private String contrasenia;
     private String rol;

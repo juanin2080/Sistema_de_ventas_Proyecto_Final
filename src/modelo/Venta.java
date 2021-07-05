@@ -35,15 +35,34 @@ public class Venta implements Serializable {
     private Long CedulaCliente;
     private String nombreVendedor;
     private Date fecha;
-   // private String formaPago;
-//    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
-//    @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
-//    private Persona persona;
+    private String formaPago;
+    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
+    private Persona persona;
     @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     @JoinColumn(name = "CodigoFactura",nullable = false,referencedColumnName = "CodigoFactura")
     private DetalleVentas detalleVenta;
 //forma pago
+    
+    public String getFormaPago() {
+        return formaPago;
+    }
 
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public DetalleVentas getDetalleVenta() {
+        return detalleVenta;
+    }
 
 //    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
 //    @JoinColumn(name = "idFormaPago",nullable = false,referencedColumnName = "idFormaPago")
@@ -56,13 +75,13 @@ public class Venta implements Serializable {
 //    public void setfPago(FormaPago fPago) {
 //        this.fPago = fPago;
 //    }
-    
-        
 //    }
-  
 //////
-
 //////////////////////////////
+    public void setDetalleVenta(DetalleVentas detalleVenta) {    
+        this.detalleVenta = detalleVenta;
+    }
+
     public DetalleVentas getDetalleVentas() {
         return detalleVenta;
     }

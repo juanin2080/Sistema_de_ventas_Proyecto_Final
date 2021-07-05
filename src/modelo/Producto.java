@@ -36,7 +36,7 @@ public class Producto implements Serializable {
     private int cantidad;
     
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_proveedor", nullable = false, referencedColumnName = "id_proveedor")
+    @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Proveedor proveedor;
 
     public int getCodigo() {
