@@ -17,7 +17,6 @@ import javax.persistence.Table;
  * @author USUARIO
  */
 @Entity
-@Table(name = "configuracion")
 public class Configuracion implements Serializable {
 
     private static final long serialVersionUID = 1L;

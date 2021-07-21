@@ -6,10 +6,14 @@
 package modelo;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +32,18 @@ public class DetalleCompra implements Serializable {
     private int cantidad;
     private double iva;
     private double precio;
+    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
+    private Proveedor proveedor;
 
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+    
     public Long getCodProducto() {
         return codProducto;
     }
