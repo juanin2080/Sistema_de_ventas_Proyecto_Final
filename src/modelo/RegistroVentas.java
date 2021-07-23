@@ -7,10 +7,13 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +21,7 @@ import javax.persistence.Table;
  * @author USUARIO
  */
 @Entity
+@Table(name = "registroVentas")
 public class RegistroVentas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +31,9 @@ public class RegistroVentas implements Serializable {
     private String valor;
     private Date fecha;
     private String cliente;
-
+    @OneToOne(mappedBy = "registroVentas", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Venta venta;
+    
     public String getValor() {
         return valor;
     }
@@ -59,6 +65,15 @@ public class RegistroVentas implements Serializable {
     public void setIdRVentas(Long idRVentas) {
         this.idRVentas = idRVentas;
     }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+    
 
     @Override
     public int hashCode() {
