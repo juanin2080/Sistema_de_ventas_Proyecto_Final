@@ -21,19 +21,19 @@ import javax.persistence.Table;
  * @author María Castillo
  */
 @Entity
-@Table (name="detalleVenta")
-public class DetalleVentas implements Serializable {
+@Table(name = "factura")
+public class Factura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long CodigoFactura;
-   @Column (length = 10,unique = true)
+    @Column(length = 10, unique = true)
     private Long CodigoProducto;
     private int Cantidad;
     private double iva;
     private double precio;
-    @OneToOne(mappedBy= "detalleVenta", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Venta venta;
 
     public Long getCodigoFactura() {
@@ -84,8 +84,6 @@ public class DetalleVentas implements Serializable {
         this.venta = venta;
     }
 
-
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -96,10 +94,10 @@ public class DetalleVentas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the CodigoFactura fields are not set
-        if (!(object instanceof DetalleVentas)) {
+        if (!(object instanceof Factura)) {
             return false;
         }
-        DetalleVentas other = (DetalleVentas) object;
+        Factura other = (Factura) object;
         if ((this.CodigoFactura == null && other.CodigoFactura != null) || (this.CodigoFactura != null && !this.CodigoFactura.equals(other.CodigoFactura))) {
             return false;
         }
@@ -111,8 +109,7 @@ public class DetalleVentas implements Serializable {
         return "Modelo.Detalle_Venta[ id=" + CodigoFactura + " ]";
     }
 
-    public DetalleVentas() {
+    public Factura() {
     }
-    
-    
+
 }
