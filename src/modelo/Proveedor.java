@@ -34,12 +34,10 @@ public class Proveedor extends Persona implements Serializable {
 //    @Column(name = "idProveedor")
     private int ruc;
     private String empresa;
-
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> listaProductos = new ArrayList<Producto>();
     @OneToOne(mappedBy = "proveedor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DetalleCompra detalleCompra;
-
     public DetalleCompra getDetalleCompra() {
         return detalleCompra;
     }
@@ -47,7 +45,6 @@ public class Proveedor extends Persona implements Serializable {
     public void setDetalleCompra(DetalleCompra detalleCompra) {
         this.detalleCompra = detalleCompra;
     }
-    
 
     public int getRuc() {
         return ruc;
