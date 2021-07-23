@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -24,26 +24,31 @@ import javax.persistence.Table;
  * @author María Castillo
  */
 @Entity
-@Table (name="venta")
+@Table(name = "venta")
 public class Venta implements Serializable {
 
-      private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Codigo;
-    @Column (length = 10,unique = true)
+    @Column(length = 10, unique = true)
     private Long CedulaCliente;
     private String nombreVendedor;
     private Date fecha;
     private String formaPago;
-    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
-    @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;
-    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
-    @JoinColumn(name = "CodigoFactura",nullable = false,referencedColumnName = "CodigoFactura")
-    private DetalleVentas detalleVenta;
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CodigoFactura", nullable = false, referencedColumnName = "CodigoFactura")
+    private Factura factura;
+    //==========================================================================================
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRVentas", nullable = false, referencedColumnName = "idRVentas")
+    private RegistroVentas registroVentas;
+    //==========================================================================================
+
 //forma pago
-    
     public String getFormaPago() {
         return formaPago;
     }
@@ -60,8 +65,8 @@ public class Venta implements Serializable {
         this.persona = persona;
     }
 
-    public DetalleVentas getDetalleVenta() {
-        return detalleVenta;
+    public Factura getDetalleVenta() {
+        return factura;
     }
 
 //    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
@@ -78,16 +83,16 @@ public class Venta implements Serializable {
 //    }
 //////
 //////////////////////////////
-    public void setDetalleVenta(DetalleVentas detalleVenta) {    
-        this.detalleVenta = detalleVenta;
+    public void setDetalleVenta(Factura detalleVenta) {
+        this.factura = detalleVenta;
     }
 
-    public DetalleVentas getDetalleVentas() {
-        return detalleVenta;
+    public Factura getDetalleVentas() {
+        return factura;
     }
 
-    public void setDetalleVentas(DetalleVentas detalleVenta) {
-        this.detalleVenta = detalleVenta;
+    public void setDetalleVentas(Factura detalleVenta) {
+        this.factura = detalleVenta;
     }
 //    
 //    public Persona getPersona() {
@@ -98,7 +103,7 @@ public class Venta implements Serializable {
 //        this.persona = persona;
 //    }
 //    
-    
+
     public Long getCodigo() {
         return Codigo;
     }
@@ -138,7 +143,6 @@ public class Venta implements Serializable {
 //    public void setFormaPago(String formaPago) {
 //        this.formaPago = formaPago;
 //    }
-    
     public Long getId() {
         return Codigo;
     }
@@ -146,6 +150,23 @@ public class Venta implements Serializable {
     public void setId(Long id) {
         this.Codigo = id;
     }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+    public RegistroVentas getRegistroVentas() {
+        return registroVentas;
+    }
+
+    public void setRegistroVentas(RegistroVentas registroVentas) {
+        this.registroVentas = registroVentas;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -174,6 +195,5 @@ public class Venta implements Serializable {
 
     public Venta() {
     }
-    
-    
+
 }
