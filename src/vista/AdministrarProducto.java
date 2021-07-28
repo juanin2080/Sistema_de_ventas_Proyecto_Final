@@ -443,7 +443,10 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        
+        RealizarVenta rv = new RealizarVenta();
+        this.dispose();
+        rv.setVisible(true);
+        rv.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

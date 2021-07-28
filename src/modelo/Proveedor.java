@@ -9,15 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -26,7 +21,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "proveedor")
-//@PrimaryKeyJoinColumn(referencedColumnName = "idProveedor")
 public class Proveedor extends Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +30,7 @@ public class Proveedor extends Persona implements Serializable {
     private List<Producto> listaProductos = new ArrayList<Producto>();
     @OneToOne(mappedBy = "proveedor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DetalleCompra detalleCompra;
+
     public DetalleCompra getDetalleCompra() {
         return detalleCompra;
     }

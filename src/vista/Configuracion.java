@@ -381,7 +381,9 @@ public class Configuracion extends javax.swing.JFrame {
     private void BtnRVentasCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRVentasCMouseClicked
 
         // TODO add your handling code here:
-       
+        AdministrarVentas rv = new AdministrarVentas();
+        rv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnRVentasCMouseClicked
 
     private void btnProvedorCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvedorCMouseClicked

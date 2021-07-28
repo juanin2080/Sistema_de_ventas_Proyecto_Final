@@ -472,7 +472,10 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        
+        AdministrarProducto productos = new AdministrarProducto();
+        dispose();
+        productos.setVisible(true);
+        productos.setLocationRelativeTo(null);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProductosActionPerformed
 

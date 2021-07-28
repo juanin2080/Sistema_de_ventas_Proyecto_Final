@@ -28,14 +28,41 @@ public class Conexion {
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
-
+    
     private static void setup() {
         if (em == null) {
             Conexion.emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
             Conexion.em = Conexion.emf.createEntityManager();
         }
     }
-
+     public Conexion() {
+        this.setup();
+        CN = null;
+    }
+    
+    /**
+     * Establece la conexion con la bd
+     * @return Conexion
+     */
+    public Connection getConnection(){
+        try {
+            Class.forName(DRIVER);
+            CN = DriverManager.getConnection(URL, USER, PASSWORD);                             
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al conectar con la bd", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+        return CN;
+    }
+    
+    public void Close(){
+        try {
+            CN.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al conectar con la bd", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public static EntityManagerFactory getEmf() {
         return emf;
     }
@@ -52,9 +79,7 @@ public class Conexion {
         Conexion.em = em;
     }
 
-    public Conexion() {
-        this.setup();
-    }
+   
 
 //    conexion
     public Connection getConnection() {
