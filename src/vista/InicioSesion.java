@@ -245,7 +245,7 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        RegistrarPersonal registrarPersonal  = new RegistrarPersonal();
+        AdministrarPersonal registrarPersonal  = new AdministrarPersonal();
         dispose();
         registrarPersonal.setVisible(true);
         registrarPersonal.setLocationRelativeTo(null);

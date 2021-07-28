@@ -6,11 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -19,12 +15,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "personal")
-//@PrimaryKeyJoinColumn(referencedColumnName = "idPersonal")
 public class Personal extends Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "idPersonal")
     private String usuario;
     private String contrasenia;
     private String rol;

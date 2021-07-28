@@ -9,12 +9,12 @@ package Vistas;
  *
  * @author USUARIO
  */
-public class RegistroVentas extends javax.swing.JFrame {
+public class AdministrarVentas extends javax.swing.JFrame {
 
     /**
      * Creates new form RegistroVentas
      */
-    public RegistroVentas() {
+    public AdministrarVentas() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -384,7 +384,7 @@ public class RegistroVentas extends javax.swing.JFrame {
 
     private void btnConfiguracionRVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionRVMouseClicked
         // TODO add your handling code here:
-        Configuración config = new Configuración();
+        Configuracion config = new Configuracion();
         config.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfiguracionRVMouseClicked
@@ -424,20 +424,21 @@ public class RegistroVentas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroVentas().setVisible(true);
+                new AdministrarVentas().setVisible(true);
             }
         });
     }

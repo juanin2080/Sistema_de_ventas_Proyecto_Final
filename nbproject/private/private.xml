@@ -2,6 +2,27 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/RegistrarVenta.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/RegistrarProveedor.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Personal.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Producto.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/RegistrarCliente.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/DetalleCompra.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Persona.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/Conexion.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Proveedor.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Factura.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/InicioSesion.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/Producto.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/RegistroVentas.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/Configuración.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/RegistrarPersonal.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/RegistroVentas.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/DetalleVenta.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/RegistrarProducto.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Venta.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/DetalleCompra.java</file>
+        </group>
     </open-files>
 </project-private>
