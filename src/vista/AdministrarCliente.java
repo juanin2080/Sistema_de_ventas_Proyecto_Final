@@ -524,10 +524,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        this.dispose();
-        inicioSesion.setVisible(true);
-        inicioSesion.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed

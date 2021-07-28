@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
+import vista.AdministrarCliente;
+
+import vista.AdministrarVentas;
 import vista.AdministrarCliente;
 
 /**
@@ -636,10 +639,12 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void btnClientesDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesDCMouseClicked
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_btnClientesDCMouseClicked
 
     private void btnVentasDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasDCMouseClicked
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnVentasDCMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
