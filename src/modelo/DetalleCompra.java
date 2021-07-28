@@ -5,6 +5,7 @@
  */
 package modelo;
 
+
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class DetalleCompra implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDCompra;
     private Long codProducto;
     private int cantidad;
@@ -35,6 +36,7 @@ public class DetalleCompra implements Serializable {
     @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
     private Proveedor proveedor;
+    
 
     public Proveedor getProveedor() {
         return proveedor;

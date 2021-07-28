@@ -9,12 +9,12 @@ package vista;
  *
  * @author juana
  */
-public class RegistrarVenta extends javax.swing.JFrame {
+public class RealizarVenta extends javax.swing.JFrame {
 
     /**
      * Creates new form RegistrarPersonal
      */
-    public RegistrarVenta() {
+    public RealizarVenta() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -48,26 +48,6 @@ public class RegistrarVenta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtCedulaCliente = new javax.swing.JTextField();
         txtFechaVenta = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        rSLabelImage3 = new necesario.RSLabelImage();
-        btnMinimizar2 = new rojerusan.RSButtonHover();
-        btnSalir2 = new rojerusan.RSButtonHover();
-        txtUsuario6 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        txtUsuario7 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtUsuario8 = new javax.swing.JTextField();
-        txtUsuario9 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        txtUsuario10 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        txtUsuario11 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtClientes = new RSMaterialComponent.RSTableMetro();
         btnGuardar = new rojerusan.RSButtonHover();
@@ -231,200 +211,6 @@ public class RegistrarVenta extends javax.swing.JFrame {
         });
         jPanel1.add(txtFechaVenta);
         txtFechaVenta.setBounds(140, 430, 220, 30);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(null);
-
-        jPanel4.setBackground(new java.awt.Color(0, 0, 204));
-        jPanel4.setLayout(null);
-
-        jLabel3.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Electrocasa le da la bienvenida a nuestra familia.");
-        jPanel4.add(jLabel3);
-        jLabel3.setBounds(50, 80, 570, 70);
-
-        jLabel11.setFont(new java.awt.Font("Leelawadee UI", 1, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Bienvenido a su segundo hogar.");
-        jPanel4.add(jLabel11);
-        jLabel11.setBounds(50, 10, 570, 70);
-
-        rSLabelImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
-        jPanel4.add(rSLabelImage3);
-        rSLabelImage3.setBounds(650, 30, 190, 100);
-
-        jPanel3.add(jPanel4);
-        jPanel4.setBounds(0, 50, 860, 160);
-
-        btnMinimizar2.setBackground(new java.awt.Color(255, 255, 255));
-        btnMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimize.png"))); // NOI18N
-        btnMinimizar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinimizar2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnMinimizar2);
-        btnMinimizar2.setBounds(790, 10, 30, 30);
-
-        btnSalir2.setBackground(new java.awt.Color(255, 255, 255));
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Exit.png"))); // NOI18N
-        btnSalir2.setColorHover(new java.awt.Color(255, 0, 0));
-        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnSalir2);
-        btnSalir2.setBounds(820, 10, 30, 30);
-
-        txtUsuario6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario6.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario6.setText("Ingresar cédula");
-        txtUsuario6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuario6MouseClicked(evt);
-            }
-        });
-        txtUsuario6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario6ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtUsuario6);
-        txtUsuario6.setBounds(110, 270, 150, 30);
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel12.setText("Ingrese los datos");
-        jPanel3.add(jLabel12);
-        jLabel12.setBounds(20, 220, 250, 30);
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel13.setText("Cédula:");
-        jPanel3.add(jLabel13);
-        jLabel13.setBounds(20, 270, 80, 30);
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel14.setText("Cédula:");
-        jPanel3.add(jLabel14);
-        jLabel14.setBounds(20, 310, 80, 30);
-
-        txtUsuario7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario7.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario7.setText("Ingresar cédula");
-        txtUsuario7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuario7MouseClicked(evt);
-            }
-        });
-        txtUsuario7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtUsuario7);
-        txtUsuario7.setBounds(110, 310, 150, 30);
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel15.setText("Cédula:");
-        jPanel3.add(jLabel15);
-        jLabel15.setBounds(20, 360, 80, 30);
-
-        txtUsuario8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario8.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario8.setText("Ingresar cédula");
-        txtUsuario8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuario8MouseClicked(evt);
-            }
-        });
-        txtUsuario8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario8ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtUsuario8);
-        txtUsuario8.setBounds(110, 360, 150, 30);
-
-        txtUsuario9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario9.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario9.setText("Ingresar cédula");
-        txtUsuario9.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuario9MouseClicked(evt);
-            }
-        });
-        txtUsuario9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario9ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtUsuario9);
-        txtUsuario9.setBounds(110, 360, 150, 30);
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel16.setText("Cédula:");
-        jPanel3.add(jLabel16);
-        jLabel16.setBounds(20, 360, 80, 30);
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel17.setText("Cédula:");
-        jPanel3.add(jLabel17);
-        jLabel17.setBounds(20, 400, 80, 30);
-
-        txtUsuario10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario10.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario10.setText("Ingresar cédula");
-        txtUsuario10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuario10MouseClicked(evt);
-            }
-        });
-        txtUsuario10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario10ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtUsuario10);
-        txtUsuario10.setBounds(110, 400, 150, 30);
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel18.setText("Cédula:");
-        jPanel3.add(jLabel18);
-        jLabel18.setBounds(20, 450, 80, 30);
-
-        txtUsuario11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario11.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario11.setText("Ingresar cédula");
-        txtUsuario11.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuario11MouseClicked(evt);
-            }
-        });
-        txtUsuario11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario11ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtUsuario11);
-        txtUsuario11.setBounds(110, 450, 150, 30);
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(0, 0, 0, 0);
 
         tbtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -675,62 +461,6 @@ public class RegistrarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
-    private void btnMinimizar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMinimizar2ActionPerformed
-
-    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir2ActionPerformed
-
-    private void txtUsuario6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario6MouseClicked
-
-    private void txtUsuario6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario6ActionPerformed
-
-    private void txtUsuario7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario7MouseClicked
-
-    private void txtUsuario7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario7ActionPerformed
-
-    private void txtUsuario8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario8MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario8MouseClicked
-
-    private void txtUsuario8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario8ActionPerformed
-
-    private void txtUsuario9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario9MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario9MouseClicked
-
-    private void txtUsuario9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario9ActionPerformed
-
-    private void txtUsuario10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario10MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario10MouseClicked
-
-    private void txtUsuario10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario10ActionPerformed
-
-    private void txtUsuario11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario11MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario11MouseClicked
-
-    private void txtUsuario11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario11ActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -760,7 +490,7 @@ public class RegistrarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDarDeBaja1ActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        Producto productos = new Producto();
+        AdministrarProducto productos = new AdministrarProducto();
         dispose();
         productos.setVisible(true);
         productos.setLocationRelativeTo(null);
@@ -784,14 +514,30 @@ public class RegistrarVenta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RealizarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RealizarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RealizarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RealizarVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -812,7 +558,7 @@ public class RegistrarVenta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarVenta().setVisible(true);
+                new RealizarVenta().setVisible(true);
             }
         });
     }
@@ -824,30 +570,19 @@ public class RegistrarVenta extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnDarDeBaja1;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
-    private rojerusan.RSButtonHover btnMinimizar2;
     private rojerusan.RSButtonHover btnNuevoCliente;
     private RSMaterialComponent.RSButtonCustomIcon btnProductos;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private rojerusan.RSButtonHover btnSalir2;
     private newscomponents.RSButtonBigIcon_new btnVentas;
     private RSMaterialComponent.RSComboBoxMaterial cbxRol;
     private RSMaterialComponent.RSComboBoxMaterial cbxRol1;
     private RSMaterialComponent.RSComboBoxMaterial cbxRol2;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -855,8 +590,6 @@ public class RegistrarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private necesario.LabelIcon labelIcon10;
     private necesario.LabelIcon labelIcon5;
@@ -868,7 +601,6 @@ public class RegistrarVenta extends javax.swing.JFrame {
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private necesario.RSLabelImage rSLabelImage2;
-    private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
     private rojeru_san.rspanel.RSPanelSlider rSPanelSlider1;
@@ -880,11 +612,5 @@ public class RegistrarVenta extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedulaCliente;
     private javax.swing.JTextField txtCodigoVenta;
     private javax.swing.JTextField txtFechaVenta;
-    private javax.swing.JTextField txtUsuario10;
-    private javax.swing.JTextField txtUsuario11;
-    private javax.swing.JTextField txtUsuario6;
-    private javax.swing.JTextField txtUsuario7;
-    private javax.swing.JTextField txtUsuario8;
-    private javax.swing.JTextField txtUsuario9;
     // End of variables declaration//GEN-END:variables
 }

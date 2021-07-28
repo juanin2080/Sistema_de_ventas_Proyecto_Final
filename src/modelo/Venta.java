@@ -29,7 +29,7 @@ public class Venta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Codigo;
     @Column(length = 10, unique = true)
     private Long CedulaCliente;
