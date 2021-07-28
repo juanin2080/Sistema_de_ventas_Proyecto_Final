@@ -21,15 +21,15 @@ public class controladorDetalleCompra {
         CN = new Conexion();
     }
     
-    public int insertDatos(int cantidad, int codProducto, int iva, double precio){
-        try {
-            
-        } catch (Exception e) {
-            System.err.println("Error al guardar los datos en la bd" + e.getMessage());
-        }
-        return 0;
-        
-    }
+//    public int insertDatos(int cantidad, int codProducto, int iva, double precio){
+//        try {
+//            
+//        } catch (Exception e) {
+//            System.err.println("Error al guardar los datos en la bd" + e.getMessage());
+//        }
+//        return 0;
+//        
+//    }
     
     
 }

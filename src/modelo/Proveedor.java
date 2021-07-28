@@ -32,7 +32,7 @@ public class Proveedor extends Persona implements Serializable {
     private static final long serialVersionUID = 1L;
 //   @GeneratedValue(strategy = GenerationType.AUTO)
 //    @Column(name = "idProveedor")
-    private int ruc;
+    private String ruc;
     private String empresa;
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> listaProductos = new ArrayList<Producto>();
@@ -46,13 +46,15 @@ public class Proveedor extends Persona implements Serializable {
         this.detalleCompra = detalleCompra;
     }
 
-    public int getRuc() {
+    public String getRuc() {
         return ruc;
     }
 
-    public void setRuc(int ruc) {
+    public void setRuc(String ruc) {
         this.ruc = ruc;
     }
+
+ 
 
     public String getEmpresa() {
         return empresa;
