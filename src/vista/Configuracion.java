@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vista;
+
+import vista.AdministrarProducto;
+import vista.AdministrarProveedor;
 
 /**
  *
@@ -95,6 +98,11 @@ public class Configuracion extends javax.swing.JFrame {
                 btnProvedorCMouseClicked(evt);
             }
         });
+        btnProvedorC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProvedorCActionPerformed(evt);
+            }
+        });
 
         BtnProductosC.setBackground(new java.awt.Color(0, 153, 102));
         BtnProductosC.setText("Productos");
@@ -106,6 +114,11 @@ public class Configuracion extends javax.swing.JFrame {
                 BtnProductosCMouseClicked(evt);
             }
         });
+        BtnProductosC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProductosCActionPerformed(evt);
+            }
+        });
 
         BtnRVentasC.setBackground(new java.awt.Color(0, 153, 102));
         BtnRVentasC.setText("RegistroVentas");
@@ -115,6 +128,11 @@ public class Configuracion extends javax.swing.JFrame {
         BtnRVentasC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnRVentasCMouseClicked(evt);
+            }
+        });
+        BtnRVentasC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRVentasCActionPerformed(evt);
             }
         });
 
@@ -384,6 +402,28 @@ public class Configuracion extends javax.swing.JFrame {
         // TODO add your handling code here:
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
+        // TODO add your handling code here:
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProvedorCActionPerformed
+
+    private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
+        // TODO add your handling code here:
+        AdministrarProducto producto = new AdministrarProducto();
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnProductosCActionPerformed
+
+    private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
+        // TODO add your handling code here:
+        AdministrarVentas ventas = new AdministrarVentas();
+        ventas.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_BtnRVentasCActionPerformed
 
     /**
      * @param args the command line arguments

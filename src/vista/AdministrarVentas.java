@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vista;
+
+import vista.AdministrarProducto;
+import vista.AdministrarProveedor;
 
 /**
  *
@@ -93,12 +96,22 @@ public class AdministrarVentas extends javax.swing.JFrame {
                 btnProductosRVMouseClicked(evt);
             }
         });
+        btnProductosRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosRVActionPerformed(evt);
+            }
+        });
 
         btnRegistroVentasRV.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistroVentasRV.setText("RegistroVentas");
         btnRegistroVentasRV.setBgHover(new java.awt.Color(102, 102, 102));
         btnRegistroVentasRV.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
         btnRegistroVentasRV.setSizeIcon(50.0F);
+        btnRegistroVentasRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroVentasRVActionPerformed(evt);
+            }
+        });
 
         btnConfiguracionRV.setBackground(new java.awt.Color(0, 153, 102));
         btnConfiguracionRV.setText("Configuración");
@@ -108,6 +121,11 @@ public class AdministrarVentas extends javax.swing.JFrame {
         btnConfiguracionRV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfiguracionRVMouseClicked(evt);
+            }
+        });
+        btnConfiguracionRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracionRVActionPerformed(evt);
             }
         });
 
@@ -121,6 +139,11 @@ public class AdministrarVentas extends javax.swing.JFrame {
         btnProveedorRV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProveedorRVMouseClicked(evt);
+            }
+        });
+        btnProveedorRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorRVActionPerformed(evt);
             }
         });
 
@@ -406,6 +429,28 @@ public class AdministrarVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnRegistroVentasRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistroVentasRVActionPerformed
+
+    private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfiguracionRVActionPerformed
+
+    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
+        // TODO add your handling code here:
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProveedorRVActionPerformed
+
+    private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
+        // TODO add your handling code here:
+        AdministrarProducto producto = new AdministrarProducto();
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProductosRVActionPerformed
 
     /**
      * @param args the command line arguments

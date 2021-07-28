@@ -291,6 +291,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnProvedorCMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProvedorCActionPerformed"/>
               </Events>
             </Component>
             <Component class="newscomponents.RSButtonBigIcon_new" name="BtnProductosC">
@@ -309,6 +310,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnProductosCMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnProductosCActionPerformed"/>
               </Events>
             </Component>
             <Component class="newscomponents.RSButtonBigIcon_new" name="BtnRVentasC">
@@ -327,6 +329,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnRVentasCMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRVentasCActionPerformed"/>
               </Events>
             </Component>
             <Component class="newscomponents.RSButtonBigIcon_new" name="BtnConfiguracionC">
