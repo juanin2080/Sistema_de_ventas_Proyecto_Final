@@ -5,15 +5,26 @@
  */
 package controlador;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author juana
+ * @author
  */
 public class Conexion {
+
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String USER = "root";
+    private static final String PASSWORD = "12345678";
+    private static final String URL = "jdbc:mysql://localhost:3306/diseñoproyectofinal?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private Connection CN;
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
@@ -45,8 +56,30 @@ public class Conexion {
         this.setup();
     }
 
+//    conexion
+    public Connection getConnection() {
+        try {
+            Class.forName(DRIVER);
+            CN = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al conectar con la bd", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+        return CN;
+    }
+    
+    public void close(){
+        try {
+            CN.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al cerrar la conexion con la base de datos",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+//    ------------------------------
+
     public static void main(String[] args) {
         new Conexion();
 
     }
+
 }

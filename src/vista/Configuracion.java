@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package vista;
+
+import modelo.Proveedor;
+import vista.AdministrarProveedor;
 
 /**
  *
  * @author USUARIO
  */
-public class Configuración extends javax.swing.JFrame {
+public class Configuracion extends javax.swing.JFrame {
 
     /**
      * Creates new form Configuración
      */
-    public Configuración() {
+    public Configuracion() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -95,6 +98,11 @@ public class Configuración extends javax.swing.JFrame {
                 btnProvedorCMouseClicked(evt);
             }
         });
+        btnProvedorC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProvedorCActionPerformed(evt);
+            }
+        });
 
         BtnProductosC.setBackground(new java.awt.Color(0, 153, 102));
         BtnProductosC.setText("Productos");
@@ -104,6 +112,11 @@ public class Configuración extends javax.swing.JFrame {
         BtnProductosC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnProductosCMouseClicked(evt);
+            }
+        });
+        BtnProductosC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProductosCActionPerformed(evt);
             }
         });
 
@@ -117,6 +130,11 @@ public class Configuración extends javax.swing.JFrame {
                 BtnRVentasCMouseClicked(evt);
             }
         });
+        BtnRVentasC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRVentasCActionPerformed(evt);
+            }
+        });
 
         BtnConfiguracionC.setBackground(new java.awt.Color(0, 153, 102));
         BtnConfiguracionC.setText("Configuración");
@@ -124,6 +142,11 @@ public class Configuración extends javax.swing.JFrame {
         BtnConfiguracionC.setBgHover(new java.awt.Color(102, 102, 102));
         BtnConfiguracionC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
         BtnConfiguracionC.setSizeIcon(50.0F);
+        BtnConfiguracionC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConfiguracionCActionPerformed(evt);
+            }
+        });
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
 
@@ -358,17 +381,17 @@ public class Configuración extends javax.swing.JFrame {
     private void BtnRVentasCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRVentasCMouseClicked
 
         // TODO add your handling code here:
-        RegistroVentas rv = new RegistroVentas();
-        rv.setVisible(true);
-        this.dispose();
+       
     }//GEN-LAST:event_BtnRVentasCMouseClicked
 
     private void btnProvedorCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvedorCMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnProvedorCMouseClicked
 
     private void BtnProductosCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProductosCMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_BtnProductosCMouseClicked
 
     private void btnActualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCActionPerformed
@@ -384,6 +407,24 @@ public class Configuración extends javax.swing.JFrame {
         // TODO add your handling code here:
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnProvedorCActionPerformed
+
+    private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnRVentasCActionPerformed
+
+    private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnProductosCActionPerformed
+
+    private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnConfiguracionCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,20 +443,21 @@ public class Configuración extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Configuración.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Configuración.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Configuración.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Configuración.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Configuración().setVisible(true);
+                new Configuracion().setVisible(true);
             }
         });
     }

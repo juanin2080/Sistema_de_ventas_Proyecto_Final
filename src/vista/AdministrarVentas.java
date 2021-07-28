@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package vista;
 
 /**
  *
  * @author USUARIO
  */
-public class RegistroVentas extends javax.swing.JFrame {
+public class AdministrarVentas extends javax.swing.JFrame {
 
     /**
      * Creates new form RegistroVentas
      */
-    public RegistroVentas() {
+    public AdministrarVentas() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -93,12 +93,22 @@ public class RegistroVentas extends javax.swing.JFrame {
                 btnProductosRVMouseClicked(evt);
             }
         });
+        btnProductosRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosRVActionPerformed(evt);
+            }
+        });
 
         btnRegistroVentasRV.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistroVentasRV.setText("RegistroVentas");
         btnRegistroVentasRV.setBgHover(new java.awt.Color(102, 102, 102));
         btnRegistroVentasRV.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
         btnRegistroVentasRV.setSizeIcon(50.0F);
+        btnRegistroVentasRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroVentasRVActionPerformed(evt);
+            }
+        });
 
         btnConfiguracionRV.setBackground(new java.awt.Color(0, 153, 102));
         btnConfiguracionRV.setText("Configuración");
@@ -108,6 +118,11 @@ public class RegistroVentas extends javax.swing.JFrame {
         btnConfiguracionRV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfiguracionRVMouseClicked(evt);
+            }
+        });
+        btnConfiguracionRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracionRVActionPerformed(evt);
             }
         });
 
@@ -121,6 +136,11 @@ public class RegistroVentas extends javax.swing.JFrame {
         btnProveedorRV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProveedorRVMouseClicked(evt);
+            }
+        });
+        btnProveedorRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorRVActionPerformed(evt);
             }
         });
 
@@ -384,7 +404,7 @@ public class RegistroVentas extends javax.swing.JFrame {
 
     private void btnConfiguracionRVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionRVMouseClicked
         // TODO add your handling code here:
-        Configuración config = new Configuración();
+        Configuracion config = new Configuracion();
         config.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfiguracionRVMouseClicked
@@ -407,6 +427,24 @@ public class RegistroVentas extends javax.swing.JFrame {
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
     }//GEN-LAST:event_formMouseDragged
 
+    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_btnProveedorRVActionPerformed
+
+    private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnProductosRVActionPerformed
+
+    private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnConfiguracionRVActionPerformed
+
+    private void btnRegistroVentasRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistroVentasRVActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,20 +462,21 @@ public class RegistroVentas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroVentas().setVisible(true);
+                new AdministrarVentas().setVisible(true);
             }
         });
     }

@@ -2,18 +2,16 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Sistema_de_Ventas_Proyecto_FinalPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>modelo.Persona</class>
-    <class>modelo.Configuracion</class>
     <class>modelo.DetalleCompra</class>
-    <class>modelo.FormaPago</class>
+    <class>modelo.Factura</class>
+    <class>modelo.Persona</class>
     <class>modelo.Personal</class>
     <class>modelo.Producto</class>
     <class>modelo.Proveedor</class>
     <class>modelo.RegistroVentas</class>
     <class>modelo.Venta</class>
-    <class>modelo.Factura</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/diseño-cristian?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/diseñoproyectofinal?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="12345678"/>
