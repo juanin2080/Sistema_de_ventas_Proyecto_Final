@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.controladorRegistroProveedor;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author juana
@@ -17,6 +20,19 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     public AdministrarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        tablaProveedor = new DefaultTableModel();
+        tablaProveedor.addColumn("Cédula");
+        tablaProveedor.addColumn("Nombres");
+        tablaProveedor.addColumn("Apellidos");
+        tablaProveedor.addColumn("Email");
+        tablaProveedor.addColumn("Telefono");
+        tablaProveedor.addColumn("Dirección");
+        tablaProveedor.addColumn("Ruc");
+        tablaProveedor.addColumn("Empresa");
+        this.tbtProveedor.setModel(tablaProveedor);
+
+        CP = new controladorRegistroProveedor();
     }
 
     /**
@@ -62,16 +78,15 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         labelIcon10 = new necesario.LabelIcon();
         rSLabelImage2 = new necesario.RSLabelImage();
-        jLabel22 = new javax.swing.JLabel();
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         txtRuc = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         btnRegresar = new RSMaterialComponent.RSButtonCustomIcon();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -139,6 +154,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         btnProveedor.setText("Proveedor");
         btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
         btnProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnProveedor);
         btnProveedor.setBounds(240, 20, 140, 130);
 
@@ -409,12 +429,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(rSLabelImage2);
         rSLabelImage2.setBounds(10, 10, 50, 40);
 
-        jLabel22.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Electrocasa le da la bienvenida a nuestra familia.");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(50, 80, 570, 70);
-
         rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel1.add(rSLabelHora1);
@@ -430,12 +444,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jLabel23.setText("ELECTROCASA");
         jPanel1.add(jLabel23);
         jLabel23.setBounds(70, 10, 190, 30);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Registre un proveedor.");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 220, 420, 50);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(102, 102, 102));
@@ -494,6 +502,12 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(btnRegresar);
         btnRegresar.setBounds(260, 10, 200, 40);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Registre un proveedor.");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(10, 230, 420, 50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -517,7 +531,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-        
+
     }//GEN-LAST:event_txtCedulaMouseClicked
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -525,7 +539,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void txtNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombresMouseClicked
-        
+
     }//GEN-LAST:event_txtNombresMouseClicked
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
@@ -533,7 +547,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombresActionPerformed
 
     private void txtEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmpresaMouseClicked
-        
+
     }//GEN-LAST:event_txtEmpresaMouseClicked
 
     private void txtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpresaActionPerformed
@@ -541,7 +555,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmpresaActionPerformed
 
     private void txtApellidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosMouseClicked
-        
+
     }//GEN-LAST:event_txtApellidosMouseClicked
 
     private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
@@ -549,7 +563,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidosActionPerformed
 
     private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
-        
+
     }//GEN-LAST:event_txtEmailMouseClicked
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -557,7 +571,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-        
+
     }//GEN-LAST:event_txtTelefonoMouseClicked
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -566,6 +580,31 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        String[] info = new String[8];
+        info[0] = txtCedula.getText();
+        info[1] = txtNombres.getText();
+        info[2] = txtApellidos.getText();
+        info[3] = txtEmail.getText();
+        info[4] = txtTelefono.getText();
+        info[5] = txtDireccion.getText();
+        info[6] = txtRuc.getText();
+        info[7] = txtEmpresa.getText();
+
+        tablaProveedor.addRow(info);
+
+        txtCedula.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtEmail.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtRuc.setText("");
+        txtEmpresa.setText("");
+
+        String empresa = txtEmpresa.getText();
+        int ruc = Integer.parseInt(txtRuc.getText());
+
+        CP.insertDatos(empresa, ruc);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
@@ -605,21 +644,37 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         // TODO add your handling code here:
+        RegistrarProducto rp = new RegistrarProducto();
+        this.dispose();
+        rp.setVisible(true);
+        rp.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnProductosActionPerformed
-
-    private void btnRegistroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroVentasActionPerformed
 
     private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
         // TODO add your handling code here:
+        Configuracion conf = new Configuracion();
+        this.dispose();
+        conf.setVisible(true);
+        conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
+
+    private void btnRegistroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasActionPerformed
+        // TODO add your handling code here:
+        AdministrarVentas rv = new AdministrarVentas();
+        this.dispose();
+        rv.setVisible(true);
+        rv.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistroVentasActionPerformed
+
+    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -687,7 +742,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

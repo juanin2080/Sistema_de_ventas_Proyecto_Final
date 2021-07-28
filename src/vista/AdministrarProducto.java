@@ -431,10 +431,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoProductoMouseClicked
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        DetalleVenta detalle = new DetalleVenta();
-        dispose();
-        detalle.setVisible(true);
-        detalle.setLocationRelativeTo(null);  
+         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnComprarActionPerformed
 

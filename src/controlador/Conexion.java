@@ -5,6 +5,7 @@
  */
 package controlador;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 /**
  *
- * @author juana
+ * @author
  */
 public class Conexion {
     

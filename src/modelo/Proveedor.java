@@ -30,8 +30,6 @@ import javax.persistence.Table;
 public class Proveedor extends Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-//   @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "idProveedor")
     private String ruc;
     private String empresa;
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -54,6 +52,7 @@ public class Proveedor extends Persona implements Serializable {
         this.ruc = ruc;
     }
 
+    
     public String getEmpresa() {
         return empresa;
     }

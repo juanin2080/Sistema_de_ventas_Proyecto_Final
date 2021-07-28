@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="RSMaterialComponent.RSButtonMaterialOne" name="rSButtonMaterialOne1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="rSButtonMaterialOne1"/>
-      </Properties>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="undecorated" type="boolean" value="true"/>
@@ -226,6 +219,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnClientesDCMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesDCActionPerformed"/>
               </Events>
             </Component>
             <Component class="newscomponents.RSButtonBigIcon_new" name="btnVentasDC">
@@ -250,6 +244,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVentasDCMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVentasDCActionPerformed"/>
               </Events>
             </Component>
             <Component class="rojeru_san.rslabel.RSLabelImage" name="rSLabelImage4">

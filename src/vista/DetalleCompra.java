@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import vista.AdministrarVentas;
+import vista.AdministrarCliente;
+
 /**
  *
  * @author USUARIO
@@ -28,7 +31,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rSButtonMaterialOne1 = new RSMaterialComponent.RSButtonMaterialOne();
         jPanel1 = new javax.swing.JPanel();
         rSLabelImage3 = new rojeru_san.rslabel.RSLabelImage();
         rSLabelHora2 = new rojeru_san.rsdate.RSLabelHora();
@@ -76,8 +78,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         btnMinimizarDC = new RSMaterialComponent.RSButtonIconDos();
         btnRegresarDC = new newscomponents.RSButtonIcon_new();
 
-        rSButtonMaterialOne1.setText("rSButtonMaterialOne1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -116,6 +116,11 @@ public class DetalleCompra extends javax.swing.JFrame {
                 btnClientesDCMouseClicked(evt);
             }
         });
+        btnClientesDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesDCActionPerformed(evt);
+            }
+        });
 
         btnVentasDC.setBackground(new java.awt.Color(0, 153, 102));
         btnVentasDC.setText("Ventas");
@@ -127,6 +132,11 @@ public class DetalleCompra extends javax.swing.JFrame {
         btnVentasDC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVentasDCMouseClicked(evt);
+            }
+        });
+        btnVentasDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasDCActionPerformed(evt);
             }
         });
 
@@ -624,10 +634,12 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void btnClientesDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesDCMouseClicked
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_btnClientesDCMouseClicked
 
     private void btnVentasDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasDCMouseClicked
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnVentasDCMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -675,6 +687,15 @@ public class DetalleCompra extends javax.swing.JFrame {
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void btnVentasDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasDCActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnVentasDCActionPerformed
+
+    private void btnClientesDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesDCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientesDCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,7 +766,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jlblTotalPago;
     private necesario.LabelIcon labelIcon1;
     private necesario.LabelIcon labelIcon2;
-    private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora2;
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;

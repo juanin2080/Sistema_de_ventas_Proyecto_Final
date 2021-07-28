@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package vista;
 
 import vista.AdministrarProducto;
 
@@ -138,6 +138,11 @@ public class AdministrarVentas extends javax.swing.JFrame {
         btnProveedorRV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProveedorRVMouseClicked(evt);
+            }
+        });
+        btnProveedorRV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorRVActionPerformed(evt);
             }
         });
 

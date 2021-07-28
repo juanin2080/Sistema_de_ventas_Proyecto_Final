@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package vista;
+
+import modelo.Proveedor;
+import vista.AdministrarProveedor;
 
 /**
  *
@@ -385,10 +388,12 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void btnProvedorCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvedorCMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnProvedorCMouseClicked
 
     private void BtnProductosCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProductosCMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_BtnProductosCMouseClicked
 
     private void btnActualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCActionPerformed
