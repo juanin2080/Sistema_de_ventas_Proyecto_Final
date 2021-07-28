@@ -5,7 +5,7 @@
  */
 package vista;
 
-import Vistas.AdministrarVentas;
+import vista.AdministrarVentas;
 
 /**
  *
@@ -109,11 +109,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnVentas.setText("Ventas");
         btnVentas.setBgHover(new java.awt.Color(102, 102, 102));
         btnVentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.MONETIZATION_ON);
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnVentas);
         btnVentas.setBounds(720, 20, 130, 130);
 
@@ -617,13 +612,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolActionPerformed
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-    RegistrarCliente cliente = new RegistrarCliente();
-     dispose();
-        cliente.setVisible(true);
-        cliente.setLocationRelativeTo(null);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClientesActionPerformed
+                                         
 
     private void txtUsuario9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario9ActionPerformed
         // TODO add your handling code here:
@@ -654,26 +643,26 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuario6ActionPerformed
 
     private void txtUsuario6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario6MouseClicked
-        // TODO add your handling code here:
+
+// TODO add your handling code here:
     }//GEN-LAST:event_txtUsuario6MouseClicked
 
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+     AdministrarCliente cliente = new AdministrarCliente();
+     dispose();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {                                          
         AdministrarVentas ventas = new AdministrarVentas();
         this.dispose();
         ventas.setVisible(true);
         ventas.setLocationRelativeTo(null);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVentasActionPerformed
-
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnClientesActionPerformed
-
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVentasActionPerformed
+    }                                         
 
     /**
      * @param args the command line arguments

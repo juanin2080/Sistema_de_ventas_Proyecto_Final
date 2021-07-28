@@ -445,6 +445,10 @@ public class AdministrarVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfiguracionRVActionPerformed
 
+    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProveedorRVActionPerformed
+
     /**
      * @param args the command line arguments
      */

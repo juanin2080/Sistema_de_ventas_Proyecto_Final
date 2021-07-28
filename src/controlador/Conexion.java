@@ -68,11 +68,11 @@ public class Conexion {
         return CN;
     }
     
-//    public void close(){
-//        try {
-//            CN.close();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al cerrar la conexion con la base de datos",JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
+    public void close(){
+        try {
+            CN.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al cerrar la conexion con la base de datos",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
