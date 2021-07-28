@@ -5,7 +5,7 @@
  */
 package vista;
 
-import Vistas.AdministrarVentas;
+import Vista.AdministrarVentas;
 
 /**
  *

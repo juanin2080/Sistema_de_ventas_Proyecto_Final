@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vista;
+
+import vista.AdministrarCliente;
 
 /**
  *
@@ -113,6 +115,11 @@ public class DetalleCompra extends javax.swing.JFrame {
                 btnClientesDCMouseClicked(evt);
             }
         });
+        btnClientesDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesDCActionPerformed(evt);
+            }
+        });
 
         btnVentasDC.setBackground(new java.awt.Color(0, 153, 102));
         btnVentasDC.setText("Ventas");
@@ -124,6 +131,11 @@ public class DetalleCompra extends javax.swing.JFrame {
         btnVentasDC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVentasDCMouseClicked(evt);
+            }
+        });
+        btnVentasDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasDCActionPerformed(evt);
             }
         });
 
@@ -675,6 +687,20 @@ public class DetalleCompra extends javax.swing.JFrame {
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void btnClientesDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesDCActionPerformed
+        // TODO add your handling code here:
+        AdministrarCliente cliente= new AdministrarCliente();
+        cliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnClientesDCActionPerformed
+
+    private void btnVentasDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasDCActionPerformed
+        // TODO add your handling code here:
+        AdministrarVentas ventas = new AdministrarVentas();
+        ventas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVentasDCActionPerformed
 
     /**
      * @param args the command line arguments

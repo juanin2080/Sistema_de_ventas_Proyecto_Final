@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vista;
+
+import vista.AdministrarProducto;
+import vista.AdministrarProveedor;
 
 /**
  *
@@ -95,6 +98,11 @@ public class Configuracion extends javax.swing.JFrame {
                 btnProvedorCMouseClicked(evt);
             }
         });
+        btnProvedorC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProvedorCActionPerformed(evt);
+            }
+        });
 
         BtnProductosC.setBackground(new java.awt.Color(0, 153, 102));
         BtnProductosC.setText("Productos");
@@ -104,6 +112,11 @@ public class Configuracion extends javax.swing.JFrame {
         BtnProductosC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnProductosCMouseClicked(evt);
+            }
+        });
+        BtnProductosC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProductosCActionPerformed(evt);
             }
         });
 
@@ -117,6 +130,11 @@ public class Configuracion extends javax.swing.JFrame {
                 BtnRVentasCMouseClicked(evt);
             }
         });
+        BtnRVentasC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRVentasCActionPerformed(evt);
+            }
+        });
 
         BtnConfiguracionC.setBackground(new java.awt.Color(0, 153, 102));
         BtnConfiguracionC.setText("Configuración");
@@ -124,6 +142,11 @@ public class Configuracion extends javax.swing.JFrame {
         BtnConfiguracionC.setBgHover(new java.awt.Color(102, 102, 102));
         BtnConfiguracionC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
         BtnConfiguracionC.setSizeIcon(50.0F);
+        BtnConfiguracionC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConfiguracionCActionPerformed(evt);
+            }
+        });
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
 
@@ -384,6 +407,32 @@ public class Configuracion extends javax.swing.JFrame {
         // TODO add your handling code here:
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
+        // TODO add your handling code here:
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProvedorCActionPerformed
+
+    private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
+        // TODO add your handling code here:
+        AdministrarProducto producto = new AdministrarProducto();
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnProductosCActionPerformed
+
+    private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
+        // TODO add your handling code here:
+        AdministrarVentas ventas = new AdministrarVentas();
+        ventas.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_BtnRVentasCActionPerformed
+
+    private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnConfiguracionCActionPerformed
 
     /**
      * @param args the command line arguments
