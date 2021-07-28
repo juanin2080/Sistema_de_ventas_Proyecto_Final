@@ -47,6 +47,8 @@ public class Proveedor extends Persona implements Serializable {
         this.ruc = ruc;
     }
 
+ 
+
     public String getEmpresa() {
         return empresa;
     }
