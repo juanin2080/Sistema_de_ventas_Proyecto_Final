@@ -5,7 +5,7 @@
  */
 package vista;
 
-import Vistas.AdministrarVentas;
+import vista.AdministrarVentas;
 
 /**
  *
@@ -111,11 +111,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBgHover(new java.awt.Color(102, 102, 102));
         btnClientes.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CONTACTS);
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnClientes);
         btnClientes.setBounds(510, 20, 130, 130);
 
@@ -452,9 +447,9 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario7ActionPerformed
+    }                                           
 
     private void txtUsuario7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario7MouseClicked
         // TODO add your handling code here:
@@ -477,13 +472,13 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {                                             
         AdministrarProducto productos = new AdministrarProducto();
         dispose();
         productos.setVisible(true);
         productos.setLocationRelativeTo(null);
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVentasActionPerformed
+    }                                         
 
     /**
      * @param args the command line arguments
