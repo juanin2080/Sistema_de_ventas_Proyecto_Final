@@ -702,7 +702,7 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void btnVentasDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasDCActionPerformed
         // TODO add your handling code here:
-        AdministrarVentas ventas = new AdministrarVentas();
+        RealizarVenta ventas = new RealizarVenta();
         ventas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVentasDCActionPerformed

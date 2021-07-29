@@ -18,11 +18,11 @@ public class controladorRegistroProveedor {
     private final String SQL_INSERT = "INSERT INTO proveedor(EMPRESA, RUC) values (?, ?)";
     private PreparedStatement PS;
 
-    private final Conexion CN;
+    private final ConexionBD CN;
 
     public controladorRegistroProveedor() {
         PS = null;
-        CN = new Conexion();
+        CN = new ConexionBD();
     }
 
     public int insertDatos(String empresa, int ruc) {

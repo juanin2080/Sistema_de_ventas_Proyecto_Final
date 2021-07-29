@@ -5,7 +5,7 @@
  */
 package vista;
 
-import Vistas.AdministrarVentas;
+import vista.AdministrarVentas;
 
 /**
  *
@@ -695,7 +695,7 @@ public class DetalleVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarVentaActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-                RegistrarCliente cliente = new RegistrarCliente();
+        AdministrarCliente cliente = new AdministrarCliente();
         dispose();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
@@ -703,7 +703,7 @@ public class DetalleVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        AdministrarVentas ventas = new AdministrarVentas();
+        RealizarVenta ventas = new RealizarVenta();
         dispose();
         ventas.setVisible(true);
         ventas.setLocationRelativeTo(null);
