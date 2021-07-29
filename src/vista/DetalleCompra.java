@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
+import vista.AdministrarCliente;
+
+import vista.AdministrarVentas;
 import vista.AdministrarCliente;
 
 /**
@@ -30,7 +33,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rSButtonMaterialOne1 = new RSMaterialComponent.RSButtonMaterialOne();
         jPanel1 = new javax.swing.JPanel();
         rSLabelImage3 = new rojeru_san.rslabel.RSLabelImage();
         rSLabelHora2 = new rojeru_san.rsdate.RSLabelHora();
@@ -77,8 +79,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         btnSalirDC = new RSMaterialComponent.RSButtonIconDos();
         btnMinimizarDC = new RSMaterialComponent.RSButtonIconDos();
         btnRegresarDC = new newscomponents.RSButtonIcon_new();
-
-        rSButtonMaterialOne1.setText("rSButtonMaterialOne1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -153,17 +153,20 @@ public class DetalleCompra extends javax.swing.JFrame {
                 .addComponent(btnClientesDC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(btnVentasDC, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(rSLabelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addGap(88, 88, 88)
+                .addComponent(rSLabelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnVentasDC, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                    .addComponent(btnClientesDC, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(rSLabelImage4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnVentasDC, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                        .addComponent(btnClientesDC, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(rSLabelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -636,10 +639,12 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void btnClientesDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesDCMouseClicked
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_btnClientesDCMouseClicked
 
     private void btnVentasDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasDCMouseClicked
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnVentasDCMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -771,7 +776,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jlblTotalPago;
     private necesario.LabelIcon labelIcon1;
     private necesario.LabelIcon labelIcon2;
-    private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora2;
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;

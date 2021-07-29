@@ -5,6 +5,8 @@
  */
 package vista;
 
+import Vistas.AdministrarVentas;
+
 /**
  *
  * @author juana
@@ -28,13 +30,6 @@ public class RealizarVenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rSTableMetroBeanInfo1 = new rojerusan.RSTableMetroBeanInfo();
-        roboto1 = new rojerusan.complementos.Roboto();
-        roboto2 = new rojerusan.complementos.Roboto();
-        rSFotoSquareBeanInfo1 = new rojerusan.RSFotoSquareBeanInfo();
-        rSFotoSquareResizeBeanInfo1 = new rojerusan.RSFotoSquareResizeBeanInfo();
-        rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
-        btnDarDeBaja1 = new rojerusan.RSButtonHover();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         rSLabelImage4 = new necesario.RSLabelImage();
@@ -61,7 +56,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         labelIcon10 = new necesario.LabelIcon();
         rSLabelImage2 = new necesario.RSLabelImage();
-        jLabel22 = new javax.swing.JLabel();
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
@@ -71,22 +65,9 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        rSScrollPane1 = new necesario.RSScrollPane();
-        rSPanelSlider1 = new rojeru_san.rspanel.RSPanelSlider();
         cbxRol = new RSMaterialComponent.RSComboBoxMaterial();
         cbxRol1 = new RSMaterialComponent.RSComboBoxMaterial();
         cbxRol2 = new RSMaterialComponent.RSComboBoxMaterial();
-
-        rSLabelTextIcon1.setText("rSLabelTextIcon1");
-
-        btnDarDeBaja1.setBackground(new java.awt.Color(255, 0, 0));
-        btnDarDeBaja1.setText("Dar de baja");
-        btnDarDeBaja1.setColorHover(new java.awt.Color(102, 102, 102));
-        btnDarDeBaja1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBaja1ActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -118,6 +99,11 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnVentas.setText("Ventas");
         btnVentas.setBgHover(new java.awt.Color(102, 102, 102));
         btnVentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.MONETIZATION_ON);
+        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnVentas);
         btnVentas.setBounds(720, 20, 130, 130);
 
@@ -125,6 +111,11 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBgHover(new java.awt.Color(102, 102, 102));
         btnClientes.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CONTACTS);
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnClientes);
         btnClientes.setBounds(510, 20, 130, 130);
 
@@ -332,12 +323,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         jPanel1.add(rSLabelImage2);
         rSLabelImage2.setBounds(10, 10, 50, 40);
 
-        jLabel22.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Electrocasa le da la bienvenida a nuestra familia.");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(50, 80, 570, 70);
-
         rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel1.add(rSLabelHora1);
@@ -389,15 +374,16 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel7.setText("Código:");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(20, 310, 80, 30);
-        jPanel1.add(rSScrollPane1);
-        rSScrollPane1.setBounds(130, 190, 0, 0);
-        jPanel1.add(rSPanelSlider1);
-        rSPanelSlider1.setBounds(150, 210, 70, 0);
 
         cbxRol.setForeground(new java.awt.Color(102, 102, 102));
         cbxRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Efectivo", "Tarjeta de credito" }));
         cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxRolActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxRol);
         cbxRol.setBounds(140, 470, 220, 40);
 
@@ -412,6 +398,11 @@ public class RealizarVenta extends javax.swing.JFrame {
         cbxRol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jose Perez", "Ana Suarez" }));
         cbxRol2.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxRol2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxRol2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxRol2);
         cbxRol2.setBounds(140, 390, 220, 40);
 
@@ -463,31 +454,28 @@ public class RealizarVenta extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_txtUsuario7ActionPerformed
 
-    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
+    private void txtUsuario7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario7MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+    }//GEN-LAST:event_txtUsuario7MouseClicked
 
-    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
+    private void txtUsuario6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDarDeBajaActionPerformed
+    }//GEN-LAST:event_txtUsuario6ActionPerformed
 
-    private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
+    private void txtUsuario6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario6MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoClienteActionPerformed
+    }//GEN-LAST:event_txtUsuario6MouseClicked
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+        AdministrarVentas ventas = new AdministrarVentas();
+        this.dispose();
+        ventas.setVisible(true);
+        ventas.setLocationRelativeTo(null);
 
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
-
-    private void btnDarDeBaja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBaja1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDarDeBaja1ActionPerformed
+    }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         AdministrarProducto productos = new AdministrarProducto();
@@ -495,7 +483,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         productos.setVisible(true);
         productos.setLocationRelativeTo(null);
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProductosActionPerformed
+    }//GEN-LAST:event_btnVentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -567,7 +555,6 @@ public class RealizarVenta extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnActualizarDatos;
     private newscomponents.RSButtonBigIcon_new btnClientes;
     private rojerusan.RSButtonHover btnDarDeBaja;
-    private rojerusan.RSButtonHover btnDarDeBaja1;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoCliente;
@@ -581,7 +568,6 @@ public class RealizarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -596,18 +582,10 @@ public class RealizarVenta extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon6;
     private necesario.LabelIcon labelIcon7;
     private javax.swing.JLabel lblNombreVendedor;
-    private rojerusan.RSFotoSquareBeanInfo rSFotoSquareBeanInfo1;
-    private rojerusan.RSFotoSquareResizeBeanInfo rSFotoSquareResizeBeanInfo1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
-    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private rojeru_san.rspanel.RSPanelSlider rSPanelSlider1;
-    private necesario.RSScrollPane rSScrollPane1;
-    private rojerusan.RSTableMetroBeanInfo rSTableMetroBeanInfo1;
-    private rojerusan.complementos.Roboto roboto1;
-    private rojerusan.complementos.Roboto roboto2;
     private RSMaterialComponent.RSTableMetro tbtClientes;
     private javax.swing.JTextField txtCedulaCliente;
     private javax.swing.JTextField txtCodigoVenta;

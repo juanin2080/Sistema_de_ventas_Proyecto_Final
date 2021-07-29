@@ -93,6 +93,11 @@ public class RegistrarProducto extends javax.swing.JFrame {
         btnConfiguración.setText("Configuración");
         btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
         btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
+        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguraciónActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnConfiguración);
         btnConfiguración.setBounds(770, 10, 150, 140);
 
@@ -100,6 +105,11 @@ public class RegistrarProducto extends javax.swing.JFrame {
         btnProductos.setText("Productos");
         btnProductos.setBgHover(new java.awt.Color(102, 102, 102));
         btnProductos.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP);
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnProductos);
         btnProductos.setBounds(400, 10, 160, 140);
 
@@ -119,6 +129,11 @@ public class RegistrarProducto extends javax.swing.JFrame {
         btnProveedor.setText("Proveedor");
         btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
         btnProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnProveedor);
         btnProveedor.setBounds(240, 10, 140, 140);
 
@@ -126,6 +141,11 @@ public class RegistrarProducto extends javax.swing.JFrame {
         btnRegistroVentas.setText("Registro Ventas");
         btnRegistroVentas.setBgHover(new java.awt.Color(102, 102, 102));
         btnRegistroVentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        btnRegistroVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroVentasActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnRegistroVentas);
         btnRegistroVentas.setBounds(580, 10, 170, 140);
 
@@ -519,6 +539,35 @@ public class RegistrarProducto extends javax.swing.JFrame {
        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
+        // TODO add your handling code here:
+        AdministrarProveedor rp= new AdministrarProveedor();
+        rp.setVisible(true);
+        this.dispose();
+        rp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnProveedorActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnRegistroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasActionPerformed
+        // TODO add your handling code here:
+        AdministrarVentas rv = new AdministrarVentas();
+        this.dispose();
+        rv.setVisible(true);
+        rv.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistroVentasActionPerformed
+
+    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
+        // TODO add your handling code here:
+        Configuracion conf = new Configuracion();
+        this.dispose();
+        conf.setVisible(true);
+        conf.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     /**
      * @param args the command line arguments

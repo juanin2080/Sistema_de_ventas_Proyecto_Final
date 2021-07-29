@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
-import vista.AdministrarProducto;
+import modelo.Proveedor;
 import vista.AdministrarProveedor;
 
 /**
@@ -142,6 +142,11 @@ public class Configuracion extends javax.swing.JFrame {
         BtnConfiguracionC.setBgHover(new java.awt.Color(102, 102, 102));
         BtnConfiguracionC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
         BtnConfiguracionC.setSizeIcon(50.0F);
+        BtnConfiguracionC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConfiguracionCActionPerformed(evt);
+            }
+        });
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
 
@@ -383,10 +388,12 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void btnProvedorCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvedorCMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnProvedorCMouseClicked
 
     private void BtnProductosCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProductosCMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_BtnProductosCMouseClicked
 
     private void btnActualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCActionPerformed
@@ -424,6 +431,10 @@ public class Configuracion extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_BtnRVentasCActionPerformed
+
+    private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnConfiguracionCActionPerformed
 
     /**
      * @param args the command line arguments
