@@ -449,7 +449,7 @@ public class AdministrarVentas extends javax.swing.JFrame {
 
     private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
         // TODO add your handling code here:
-        AdministrarProducto producto = new AdministrarProducto();
+        RegistrarProducto producto = new RegistrarProducto();
         producto.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProductosRVActionPerformed

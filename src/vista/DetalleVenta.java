@@ -703,7 +703,7 @@ public class DetalleVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        AdministrarVentas ventas = new AdministrarVentas();
+        RealizarVenta ventas = new RealizarVenta();
         dispose();
         ventas.setVisible(true);
         ventas.setLocationRelativeTo(null);

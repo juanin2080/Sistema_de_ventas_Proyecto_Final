@@ -419,7 +419,7 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
         // TODO add your handling code here:
-        AdministrarProducto producto = new AdministrarProducto();
+        RegistrarProducto producto = new RegistrarProducto();
         producto.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnProductosCActionPerformed

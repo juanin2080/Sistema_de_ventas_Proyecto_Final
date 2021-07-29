@@ -42,7 +42,7 @@ public class ConexionBD {
         return CN;
     }
 
-    public void Close() {
+    public void close() {
         try {
             CN.close();
         } catch (SQLException ex) {

@@ -225,11 +225,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar.setText("Guardar");
         btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnGuardar);
         btnGuardar.setBounds(600, 570, 130, 30);
 
@@ -246,11 +241,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
         btnActualizarDatos.setColorHover(new java.awt.Color(102, 102, 102));
-        btnActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarDatosActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnActualizarDatos);
         btnActualizarDatos.setBounds(870, 570, 180, 30);
 
@@ -262,22 +252,12 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
         btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
-        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBajaActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnDarDeBaja);
         btnDarDeBaja.setBounds(600, 620, 130, 30);
 
         btnNuevoCliente.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoCliente.setText("Nuevo cliente");
         btnNuevoCliente.setColorHover(new java.awt.Color(102, 102, 102));
-        btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoClienteActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnNuevoCliente);
         btnNuevoCliente.setBounds(870, 620, 180, 30);
 
@@ -374,11 +354,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         cbxRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Efectivo", "Tarjeta de credito" }));
         cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxRol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxRolActionPerformed(evt);
-            }
-        });
         jPanel1.add(cbxRol);
         cbxRol.setBounds(140, 470, 220, 40);
 
@@ -393,11 +368,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         cbxRol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jose Perez", "Ana Suarez" }));
         cbxRol2.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxRol2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxRol2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(cbxRol2);
         cbxRol2.setBounds(140, 390, 220, 40);
 
@@ -424,7 +394,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void txtCodigoVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoVentaMouseClicked
-        
+
     }//GEN-LAST:event_txtCodigoVentaMouseClicked
 
     private void txtCodigoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoVentaActionPerformed
@@ -432,7 +402,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoVentaActionPerformed
 
     private void txtCedulaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaClienteMouseClicked
-        
+
     }//GEN-LAST:event_txtCedulaClienteMouseClicked
 
     private void txtCedulaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaClienteActionPerformed
@@ -440,7 +410,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaClienteActionPerformed
 
     private void txtFechaVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaVentaMouseClicked
-        
+
     }//GEN-LAST:event_txtFechaVentaMouseClicked
 
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
@@ -464,15 +434,30 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuario6MouseClicked
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        AdministrarVentas ventas = new AdministrarVentas();
+        RealizarVenta ventas = new RealizarVenta();
         this.dispose();
         ventas.setVisible(true);
         ventas.setLocationRelativeTo(null);
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        AdministrarCliente cliente = new AdministrarCliente();
+        dispose();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {
         AdministrarProducto productos = new AdministrarProducto();
         dispose();
         productos.setVisible(true);

@@ -532,10 +532,10 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        AdministrarVentas registroVentas = new AdministrarVentas();
+        RealizarVenta realizarVenta = new RealizarVenta();
         this.dispose();
-        registroVentas.setVisible(true);
-        registroVentas.setLocationRelativeTo(null);
+        realizarVenta.setVisible(true);
+        realizarVenta.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnVentasActionPerformed
 
     /**
