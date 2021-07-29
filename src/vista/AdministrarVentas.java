@@ -436,6 +436,9 @@ public class AdministrarVentas extends javax.swing.JFrame {
 
     private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
         // TODO add your handling code here:
+        Configuracion config = new Configuracion();
+        config.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConfiguracionRVActionPerformed
 
     private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
