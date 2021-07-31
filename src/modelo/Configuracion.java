@@ -5,29 +5,37 @@
  */
 package modelo;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  *
  * @author USUARIO
  */
-@Entity
-public class Configuracion implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Configuracion {
     private Long idConfig;
     private String nombre;
     private int ruc;
     private String direccion;
     private String teléfono;
     private String lema;
+
+    public Configuracion() {
+    }
+
+    public Configuracion(Long idConfig, String nombre, int ruc, String direccion, String teléfono, String lema) {
+        this.idConfig = idConfig;
+        this.nombre = nombre;
+        this.ruc = ruc;
+        this.direccion = direccion;
+        this.teléfono = teléfono;
+        this.lema = lema;
+    }
+
+    public Long getIdConfig() {
+        return idConfig;
+    }
+
+    public void setIdConfig(Long idConfig) {
+        this.idConfig = idConfig;
+    }
 
     public String getNombre() {
         return nombre;
@@ -69,37 +77,4 @@ public class Configuracion implements Serializable {
         this.lema = lema;
     }
 
-    public Long getIdConfig() {
-        return idConfig;
-    }
-
-    public void setIdConfig(Long idConfig) {
-        this.idConfig = idConfig;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idConfig != null ? idConfig.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the idConfig fields are not set
-        if (!(object instanceof Configuracion)) {
-            return false;
-        }
-        Configuracion other = (Configuracion) object;
-        if ((this.idConfig == null && other.idConfig != null) || (this.idConfig != null && !this.idConfig.equals(other.idConfig))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "modelo.configuracion[ id=" + idConfig + " ]";
-    }
-    
 }
