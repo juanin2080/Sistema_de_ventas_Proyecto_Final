@@ -26,12 +26,12 @@ import javax.persistence.Table;
  * @author USUARIO
  */
 @Entity
-@Table(name = "compra")
+@Table(name = "Compra")
 public class Compra implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCompra;
     private String nroCompra;
     private Date fecha;
@@ -39,10 +39,6 @@ public class Compra implements Serializable {
     private String fPago;
     private double subtotal;
     private double total;
-     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DetalleCompra> listaCompra = new ArrayList<DetalleCompra>();
-    
-    
     public String getNroCompra() {
         return nroCompra;
     }
@@ -75,8 +71,6 @@ public class Compra implements Serializable {
         this.fPago = fPago;
     }
 
-
-
     public double getSubtotal() {
         return subtotal;
     }
@@ -92,19 +86,6 @@ public class Compra implements Serializable {
     public void setTotal(double total) {
         this.total = total;
     }
-
-    public List<DetalleCompra> getListaCompra() {
-        return listaCompra;
-    }
-
-    public void setListaCompra(List<DetalleCompra> listaCompra) {
-        this.listaCompra = listaCompra;
-    }
-
-
-    
-            
-
     public Long getIdCompra() {
         return idCompra;
     }
@@ -137,5 +118,5 @@ public class Compra implements Serializable {
     public String toString() {
         return "modelo.Compra[ id=" + idCompra + " ]";
     }
-    
+
 }
