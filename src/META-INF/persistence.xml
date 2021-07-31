@@ -9,6 +9,9 @@
     <class>modelo.Persona</class>
     <class>modelo.Proveedor</class>
     <class>modelo.Rol</class>
+    <class>modelo.DetalleCompra</class>
+    <class>modelo.DetalleFactura</class>
+    <class>modelo.Producto</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/SistemaVentasProyectoFinal?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
