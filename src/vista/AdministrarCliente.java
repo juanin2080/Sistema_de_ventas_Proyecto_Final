@@ -5,6 +5,8 @@
  */
 package vista;
 
+import vista.AdministrarVentas;
+
 /**
  *
  * @author juana
@@ -450,7 +452,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-        
+
     }//GEN-LAST:event_txtCedulaMouseClicked
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -458,7 +460,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void txtNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombresMouseClicked
-        
+
     }//GEN-LAST:event_txtNombresMouseClicked
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
@@ -466,7 +468,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombresActionPerformed
 
     private void txtDireccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMouseClicked
-        
+
     }//GEN-LAST:event_txtDireccionMouseClicked
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
@@ -474,7 +476,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void txtApellidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosMouseClicked
-        
+
     }//GEN-LAST:event_txtApellidosMouseClicked
 
     private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
@@ -482,7 +484,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidosActionPerformed
 
     private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
-        
+
     }//GEN-LAST:event_txtEmailMouseClicked
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -490,7 +492,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-        
+
     }//GEN-LAST:event_txtTelefonoMouseClicked
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -526,17 +528,14 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-       
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        AdministrarVentas registroVentas = new AdministrarVentas();
+        RealizarVenta realizarVenta = new RealizarVenta();
         this.dispose();
-        registroVentas.setVisible(true);
-        registroVentas.setLocationRelativeTo(null);
-        
-// TODO add your handling code here:
+        realizarVenta.setVisible(true);
+        realizarVenta.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnVentasActionPerformed
 
     /**

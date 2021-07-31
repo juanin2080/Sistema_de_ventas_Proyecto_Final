@@ -409,21 +409,31 @@ public class Configuracion extends javax.swing.JFrame {
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
     }//GEN-LAST:event_formMouseDragged
 
-    private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
+    private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnConfiguracionCActionPerformed
-
-    private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnRVentasCActionPerformed
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProvedorCActionPerformed
 
     private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
         // TODO add your handling code here:
+        RegistrarProducto producto = new RegistrarProducto();
+        producto.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnProductosCActionPerformed
 
-    private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
+    private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProvedorCActionPerformed
+        AdministrarVentas ventas = new AdministrarVentas();
+        ventas.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_BtnRVentasCActionPerformed
+
+    private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnConfiguracionCActionPerformed
 
     /**
      * @param args the command line arguments

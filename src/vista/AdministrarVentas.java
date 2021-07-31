@@ -426,24 +426,33 @@ public class AdministrarVentas extends javax.swing.JFrame {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
-        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
+        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
     private void btnRegistroVentasRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasRVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistroVentasRVActionPerformed
 
+    private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
+        Configuracion config = new Configuracion();
+        config.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnConfiguracionRVActionPerformed
+
+    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
+        // TODO add your handling code here:
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProveedorRVActionPerformed
+
     private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
         // TODO add your handling code here:
+        RegistrarProducto producto = new RegistrarProducto();
+        producto.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnProductosRVActionPerformed
-
-    private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
-        Configuracion conf = new Configuracion();
-         dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConfiguracionRVActionPerformed
 
     private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
         // TODO add your handling code here:
