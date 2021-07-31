@@ -15,8 +15,12 @@ import javax.persistence.Persistence;
  */ 
 public class Conexion {
  
-   private static EntityManagerFactory emf;
+  private static EntityManagerFactory emf;
     private static EntityManager em;
+
+    private static void setup() {
+        if (em == null) {
+            Conexion.emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
             Conexion.em = Conexion.emf.createEntityManager();
         }
     }

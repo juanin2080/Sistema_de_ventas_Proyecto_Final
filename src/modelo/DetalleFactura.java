@@ -29,10 +29,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DetalleFactura")
 public class DetalleFactura implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalleFactura;
     @Column(length = 10, unique = true)
     private int cantidad;
@@ -49,13 +48,6 @@ public class DetalleFactura implements Serializable {
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
-    
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDetalleFactura;
-    private int cantidad;
-    private double precioUnitario;
-    private double precioTotal;
-
     @OneToMany(mappedBy = "DetalleFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> listaProducto = new ArrayList<Producto>();
 
@@ -98,16 +90,6 @@ public class DetalleFactura implements Serializable {
     public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
-    
-
-    public Long getIdDetalleFactura() {
-        return idDetalleFactura;
-    }
-
-    public void setIdDetalleFactura(Long idDetalleFactura) {
-        this.idDetalleFactura = idDetalleFactura;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
