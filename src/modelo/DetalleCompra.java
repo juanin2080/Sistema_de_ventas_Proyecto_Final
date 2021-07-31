@@ -36,31 +36,12 @@ public class DetalleCompra implements Serializable {
     private Long idDCompra;
     private Long codProducto;
     private int cantidad;
-    private double iva;
-    private double precio;
+    private double precioUnitario;
+    private double precioTotal;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
     private Compra compra;
-//    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
-//    @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
-//    private Proveedor proveedor;
-//
-//    public List<Compra> getListaCompra() {
-//        return listaCompra;
-//    }
-//
-//    public void setListaCompra(List<Compra> listaCompra) {
-//        this.listaCompra = listaCompra;
-//    }
-//    
-//
-//    public Proveedor getProveedor() {
-//        return proveedor;
-//    }
-//
-//    public void setProveedor(Proveedor proveedor) {
-//        this.proveedor = proveedor;
-//    }
+
     
     public Long getCodProducto() {
         return codProducto;
@@ -78,22 +59,31 @@ public class DetalleCompra implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public double getIva() {
-        return iva;
+    public double getPrecioUnitario() {
+        return precioUnitario;
     }
 
-    public void setIva(double iva) {
-        this.iva = iva;
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioTotal() {
+        return precioTotal;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+
+    
     public Long getIdDCompra() {
         return idDCompra;
     }
