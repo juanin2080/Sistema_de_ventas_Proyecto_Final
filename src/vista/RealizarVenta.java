@@ -106,11 +106,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBgHover(new java.awt.Color(102, 102, 102));
         btnClientes.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CONTACTS);
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnClientes);
         btnClientes.setBounds(510, 20, 130, 130);
 
@@ -417,7 +412,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
     }                                                  
 

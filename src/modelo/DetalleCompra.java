@@ -14,7 +14,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+//import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -38,6 +42,34 @@ public class DetalleCompra implements Serializable {
 
     public List<Producto> getListaProducto() {
         return listaProducto;
+    private double iva;
+    private double precio;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
+    private Compra compra;
+//    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+//    @JoinColumn(name = "idPersona",nullable = false,referencedColumnName = "idPersona")
+//    private Proveedor proveedor;
+//
+//    public List<Compra> getListaCompra() {
+//        return listaCompra;
+//    }
+//
+//    public void setListaCompra(List<Compra> listaCompra) {
+//        this.listaCompra = listaCompra;
+//    }
+//    
+//
+//    public Proveedor getProveedor() {
+//        return proveedor;
+//    }
+//
+//    public void setProveedor(Proveedor proveedor) {
+//        this.proveedor = proveedor;
+//    }
+    
+    public Long getCodProducto() {
+        return codProducto;
     }
 
     public void setListaProducto(List<Producto> listaProducto) {
