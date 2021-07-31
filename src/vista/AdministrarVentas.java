@@ -439,13 +439,7 @@ public class AdministrarVentas extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btnConfiguracionRVActionPerformed
-
-    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
-        // TODO add your handling code here:
-        AdministrarProveedor proveedor = new AdministrarProveedor();
-        proveedor.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnProveedorRVActionPerformed
+                                
 
     private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
         // TODO add your handling code here:
@@ -455,7 +449,11 @@ public class AdministrarVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductosRVActionPerformed
 
     private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
-        // TODO add your handling code here:
+        
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnProveedorRVActionPerformed
 
     /**

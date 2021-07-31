@@ -6,6 +6,8 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -43,6 +46,16 @@ public class Persona implements Serializable {
     private Rol rol;
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cuenta cuenta;
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Factura> listaFactura = new ArrayList<Factura>();
+
+    public List<Factura> getListaFactura() {
+        return listaFactura;
+    }
+
+    public void setListaFactura(List<Factura> listaFactura) {
+        this.listaFactura = listaFactura;
+    }
 
     public Long getIdPersona() {
         return idPersona;
