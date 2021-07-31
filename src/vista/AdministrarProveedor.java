@@ -17,6 +17,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     public AdministrarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -563,7 +564,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed

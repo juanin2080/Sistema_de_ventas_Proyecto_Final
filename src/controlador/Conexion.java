@@ -11,11 +11,11 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author juana
- */
+ * @author
+ */ 
 public class Conexion {
-
-    private static EntityManagerFactory emf;
+ 
+  private static EntityManagerFactory emf;
     private static EntityManager em;
 
     private static void setup() {
@@ -47,6 +47,5 @@ public class Conexion {
 
     public static void main(String[] args) {
         new Conexion();
-
     }
 }

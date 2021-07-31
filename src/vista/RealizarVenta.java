@@ -99,11 +99,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnVentas.setText("Ventas");
         btnVentas.setBgHover(new java.awt.Color(102, 102, 102));
         btnVentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.MONETIZATION_ON);
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnVentas);
         btnVentas.setBounds(720, 20, 130, 130);
 
@@ -111,11 +106,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBgHover(new java.awt.Color(102, 102, 102));
         btnClientes.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CONTACTS);
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnClientes);
         btnClientes.setBounds(510, 20, 130, 130);
 
@@ -422,9 +412,48 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }
+    }                                                  
+
+    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDarDeBajaActionPerformed
+
+    private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoClienteActionPerformed
+
+    private void cbxRol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRol2ActionPerformed
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRol2ActionPerformed
+
+    private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRolActionPerformed
+
+                                         
+
+    private void txtUsuario9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario9ActionPerformed
+
+    private void txtUsuario9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario9MouseClicked
+
+    private void txtUsuario8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario8ActionPerformed
+
+    private void txtUsuario8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario8MouseClicked
+
+    private void txtUsuario7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario7ActionPerformed
 
     private void txtUsuario7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario7MouseClicked
         // TODO add your handling code here:
@@ -446,14 +475,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         AdministrarCliente cliente = new AdministrarCliente();
         dispose();
@@ -462,13 +483,22 @@ public class RealizarVenta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         AdministrarProducto productos = new AdministrarProducto();
         dispose();
         productos.setVisible(true);
         productos.setLocationRelativeTo(null);
-        // TODO add your handling code here:
-    }
+        
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setExtendedState(ICONIFIED);
+
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+            System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
