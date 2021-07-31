@@ -536,6 +536,7 @@ public class AdministrarCliente extends javax.swing.JFrame {
         this.dispose();
         realizarVenta.setVisible(true);
         realizarVenta.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnVentasActionPerformed
 
     /**

@@ -5,7 +5,6 @@
  */
 package modelo;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author USUARIO
+ * @author Usuario
  */
 @Entity
 @Table(name = "DetalleCompra")
@@ -34,7 +33,6 @@ public class DetalleCompra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDCompra;
-    private Long codProducto;
     private int cantidad;
     private double precioUnitario;
     private double precioTotal;
@@ -45,10 +43,14 @@ public class DetalleCompra implements Serializable {
     
     public Long getCodProducto() {
         return codProducto;
+    @OneToMany(mappedBy = "DetalleCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Producto> listaProducto = new ArrayList<Producto>();    
+    public Long getIdDCompra() {
+        return idDCompra;
     }
 
-    public void setCodProducto(Long codProducto) {
-        this.codProducto = codProducto;
+    public void setIdDCompra(Long idDCompra) {
+        this.idDCompra = idDCompra;
     }
 
     public int getCantidad() {
@@ -88,10 +90,25 @@ public class DetalleCompra implements Serializable {
         return idDCompra;
     }
 
-    public void setIdDCompra(Long idDCompra) {
-        this.idDCompra = idDCompra;
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public List<Producto> getListaProducto() {
+        return listaProducto;
+    }
+
+    public void setListaProducto(List<Producto> listaProducto) {
+        this.listaProducto = listaProducto;
+    }
     @Override
     public int hashCode() {
         int hash = 0;

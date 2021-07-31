@@ -7,8 +7,8 @@ package modelo.enums;
 
 /**
  *
- * @author María Castillo
+ * @author juana
  */
-public enum FormaPago {
-    Efectivo, TarjetaDeCredito;
+public enum Roles {
+    Administrador,Vendedor;
 }
