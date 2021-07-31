@@ -5,6 +5,8 @@
  */
 package vista;
 
+import vista.AdministrarVentas;
+
 /**
  *
  * @author juana
@@ -38,12 +40,9 @@ public class DetalleVenta extends javax.swing.JFrame {
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
-        jLabel22 = new javax.swing.JLabel();
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
-        rSScrollPane1 = new necesario.RSScrollPane();
-        rSPanelSlider1 = new rojeru_san.rspanel.RSPanelSlider();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtFactura = new javax.swing.JTextField();
@@ -176,12 +175,6 @@ public class DetalleVenta extends javax.swing.JFrame {
         jPanel1.add(rSLabelImage2);
         rSLabelImage2.setBounds(10, 10, 50, 40);
 
-        jLabel22.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Electrocasa le da la bienvenida a nuestra familia.");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(50, 80, 570, 70);
-
         rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel1.add(rSLabelHora1);
@@ -198,10 +191,6 @@ public class DetalleVenta extends javax.swing.JFrame {
         jLabel23.setText("ELECTROCASA");
         jPanel1.add(jLabel23);
         jLabel23.setBounds(70, 10, 190, 30);
-        jPanel1.add(rSScrollPane1);
-        rSScrollPane1.setBounds(130, 190, 0, 0);
-        jPanel1.add(rSPanelSlider1);
-        rSPanelSlider1.setBounds(150, 210, 70, 0);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -624,18 +613,9 @@ public class DetalleVenta extends javax.swing.JFrame {
         //dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnClientesActionPerformed
 
     private void txtFirmaAutorizadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirmaAutorizadaActionPerformed
         // TODO add your handling code here:
@@ -693,11 +673,6 @@ public class DetalleVenta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtFacturaMouseClicked
 
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnVentasActionPerformed
-
     private void txtTotalPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalPagoActionPerformed
@@ -715,8 +690,30 @@ public class DetalleVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIvaMouseClicked
 
     private void btnCancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVentaActionPerformed
-         // TODO add your handling code here:
+       dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarVentaActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+                AdministrarCliente cliente = new AdministrarCliente();
+        dispose();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+        RealizarVenta ventas = new RealizarVenta();
+        dispose();
+        ventas.setVisible(true);
+        ventas.setLocationRelativeTo(null);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVentasActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -797,7 +794,6 @@ public class DetalleVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -821,8 +817,6 @@ public class DetalleVenta extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private necesario.RSLabelImage rSLabelImage5;
-    private rojeru_san.rspanel.RSPanelSlider rSPanelSlider1;
-    private necesario.RSScrollPane rSScrollPane1;
     private RSMaterialComponent.RSTableMetro tbtClientes;
     private javax.swing.JTextField txtCedulaDVenta;
     private javax.swing.JTextField txtDireccion;

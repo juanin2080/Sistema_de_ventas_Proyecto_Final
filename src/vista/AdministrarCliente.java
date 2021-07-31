@@ -5,6 +5,7 @@
  */
 package vista;
 
+import vista.AdministrarVentas;
 
 /**
  *
@@ -527,7 +528,6 @@ public class AdministrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_btnClientesActionPerformed
 

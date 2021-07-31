@@ -5,6 +5,8 @@
  */
 package vista;
 
+import vista.AdministrarVentas;
+
 /**
  *
  * @author juana
@@ -54,7 +56,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         labelIcon10 = new necesario.LabelIcon();
         rSLabelImage2 = new necesario.RSLabelImage();
-        jLabel22 = new javax.swing.JLabel();
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
@@ -98,11 +99,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnVentas.setText("Ventas");
         btnVentas.setBgHover(new java.awt.Color(102, 102, 102));
         btnVentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.MONETIZATION_ON);
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnVentas);
         btnVentas.setBounds(720, 20, 130, 130);
 
@@ -110,11 +106,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBgHover(new java.awt.Color(102, 102, 102));
         btnClientes.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CONTACTS);
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnClientes);
         btnClientes.setBounds(510, 20, 130, 130);
 
@@ -229,11 +220,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar.setText("Guardar");
         btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnGuardar);
         btnGuardar.setBounds(600, 570, 130, 30);
 
@@ -250,11 +236,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
         btnActualizarDatos.setColorHover(new java.awt.Color(102, 102, 102));
-        btnActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarDatosActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnActualizarDatos);
         btnActualizarDatos.setBounds(870, 570, 180, 30);
 
@@ -266,22 +247,12 @@ public class RealizarVenta extends javax.swing.JFrame {
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
         btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
-        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBajaActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnDarDeBaja);
         btnDarDeBaja.setBounds(600, 620, 130, 30);
 
         btnNuevoCliente.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoCliente.setText("Nuevo cliente");
         btnNuevoCliente.setColorHover(new java.awt.Color(102, 102, 102));
-        btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoClienteActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnNuevoCliente);
         btnNuevoCliente.setBounds(870, 620, 180, 30);
 
@@ -321,12 +292,6 @@ public class RealizarVenta extends javax.swing.JFrame {
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
         rSLabelImage2.setBounds(10, 10, 50, 40);
-
-        jLabel22.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Electrocasa le da la bienvenida a nuestra familia.");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(50, 80, 570, 70);
 
         rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -424,7 +389,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void txtCodigoVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoVentaMouseClicked
-        
+
     }//GEN-LAST:event_txtCodigoVentaMouseClicked
 
     private void txtCodigoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoVentaActionPerformed
@@ -432,7 +397,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoVentaActionPerformed
 
     private void txtCedulaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaClienteMouseClicked
-        
+
     }//GEN-LAST:event_txtCedulaClienteMouseClicked
 
     private void txtCedulaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaClienteActionPerformed
@@ -440,20 +405,16 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaClienteActionPerformed
 
     private void txtFechaVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaVentaMouseClicked
-        
+
     }//GEN-LAST:event_txtFechaVentaMouseClicked
 
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+    }                                                  
 
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
         // TODO add your handling code here:
@@ -463,30 +424,81 @@ public class RealizarVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
+    private void cbxRol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRol2ActionPerformed
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRol2ActionPerformed
 
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
+    private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRolActionPerformed
+
+                                         
+
+    private void txtUsuario9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario9ActionPerformed
+
+    private void txtUsuario9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario9MouseClicked
+
+    private void txtUsuario8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario8ActionPerformed
+
+    private void txtUsuario8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario8MouseClicked
+
+    private void txtUsuario7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario7ActionPerformed
+
+    private void txtUsuario7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario7MouseClicked
+
+    private void txtUsuario6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario6ActionPerformed
+
+    private void txtUsuario6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuario6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuario6MouseClicked
+
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+        RealizarVenta ventas = new RealizarVenta();
+        this.dispose();
+        ventas.setVisible(true);
+        ventas.setLocationRelativeTo(null);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVentasActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        AdministrarCliente cliente = new AdministrarCliente();
+        dispose();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         AdministrarProducto productos = new AdministrarProducto();
         dispose();
         productos.setVisible(true);
         productos.setLocationRelativeTo(null);
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnProductosActionPerformed
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnClientesActionPerformed
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setExtendedState(ICONIFIED);
 
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVentasActionPerformed
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+            System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -571,7 +583,6 @@ public class RealizarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

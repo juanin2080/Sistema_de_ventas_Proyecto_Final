@@ -5,6 +5,8 @@
  */
 package vista;
 
+import vista.AdministrarProducto;
+
 /**
  *
  * @author USUARIO
@@ -424,26 +426,35 @@ public class AdministrarVentas extends javax.swing.JFrame {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
-        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
+        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
-
-    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_btnProveedorRVActionPerformed
-
-    private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnProductosRVActionPerformed
-
-    private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnConfiguracionRVActionPerformed
 
     private void btnRegistroVentasRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasRVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistroVentasRVActionPerformed
+
+    private void btnConfiguracionRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionRVActionPerformed
+        Configuracion config = new Configuracion();
+        config.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnConfiguracionRVActionPerformed
+                                
+
+    private void btnProductosRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosRVActionPerformed
+        // TODO add your handling code here:
+        RegistrarProducto producto = new RegistrarProducto();
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProductosRVActionPerformed
+
+    private void btnProveedorRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorRVActionPerformed
+        
+        AdministrarProveedor proveedor = new AdministrarProveedor();
+        proveedor.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnProveedorRVActionPerformed
 
     /**
      * @param args the command line arguments

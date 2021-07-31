@@ -5,14 +5,11 @@
  */
 package vista;
 
-
 /**
  *
  * @author juana
  */
 public class AdministrarProveedor extends javax.swing.JFrame {
-
- 
 
     /**
      * Creates new form RegistrarPersonal
@@ -568,7 +565,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed

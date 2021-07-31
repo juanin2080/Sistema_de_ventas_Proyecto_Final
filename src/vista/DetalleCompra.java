@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package vista;
+
+import vista.AdministrarCliente;
 
 import vista.AdministrarVentas;
 import vista.AdministrarCliente;
@@ -691,14 +693,19 @@ public class DetalleCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void btnVentasDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasDCActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnVentasDCActionPerformed
-
     private void btnClientesDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesDCActionPerformed
         // TODO add your handling code here:
+        AdministrarCliente cliente= new AdministrarCliente();
+        cliente.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnClientesDCActionPerformed
+
+    private void btnVentasDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasDCActionPerformed
+        // TODO add your handling code here:
+        RealizarVenta ventas = new RealizarVenta();
+        ventas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVentasDCActionPerformed
 
     /**
      * @param args the command line arguments

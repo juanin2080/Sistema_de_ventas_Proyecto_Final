@@ -49,7 +49,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         tbtProducto = new RSMaterialComponent.RSTableMetro();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
-        jLabel22 = new javax.swing.JLabel();
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
@@ -269,12 +268,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jPanel1.add(btnSalir);
         btnSalir.setBounds(1110, 10, 40, 40);
 
-        jLabel22.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Electrocasa le da la bienvenida a nuestra familia.");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(50, 80, 570, 70);
-
         rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel1.add(rSLabelHora1);
@@ -450,6 +443,10 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        RealizarVenta ret = new RealizarVenta();
+        dispose();
+        ret.setVisible(true);
+        ret.setLocationRelativeTo(null); 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -458,8 +455,11 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarVentaActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        AdministrarCliente cliente = new AdministrarCliente();
+        dispose();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
         // TODO add your handling code here:
-       
     }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
@@ -8699,7 +8699,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

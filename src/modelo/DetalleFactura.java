@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,15 +29,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DetalleFactura")
 public class DetalleFactura implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalleFactura;
+    @Column(length = 10, unique = true)
     private int cantidad;
     private double precioUnitario;
     private double precioTotal;
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idFactura", nullable = false, referencedColumnName = "idFactura")
+    private Factura factura;
 
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
     @OneToMany(mappedBy = "DetalleFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> listaProducto = new ArrayList<Producto>();
 
@@ -79,7 +90,6 @@ public class DetalleFactura implements Serializable {
     public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -102,7 +112,7 @@ public class DetalleFactura implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.DetalleFactura[ id=" + idDetalleFactura + " ]";
+        return "modelo.DetalleFacturas[ id=" + idDetalleFactura + " ]";
     }
-
+    
 }

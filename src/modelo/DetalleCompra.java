@@ -14,7 +14,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+//import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -32,16 +36,21 @@ public class DetalleCompra implements Serializable {
     private int cantidad;
     private double precioUnitario;
     private double precioTotal;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
+    private Compra compra;
 
+    
+    public Long getCodProducto() {
+        return codProducto;
     @OneToMany(mappedBy = "DetalleCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Producto> listaProducto = new ArrayList<Producto>();
-
-    public List<Producto> getListaProducto() {
-        return listaProducto;
+    private List<Producto> listaProducto = new ArrayList<Producto>();    
+    public Long getIdDCompra() {
+        return idDCompra;
     }
 
-    public void setListaProducto(List<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
+    public void setIdDCompra(Long idDCompra) {
+        this.idDCompra = idDCompra;
     }
 
     public int getCantidad() {
@@ -52,30 +61,54 @@ public class DetalleCompra implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecioUnitario() {
+    public double getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(Double precioUnitario) {
+    public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 
-    public Double getPrecioTotal() {
+    public double getPrecioTotal() {
         return precioTotal;
     }
 
-    public void setPrecioTotal(Double precioTotal) {
+    public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
 
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+
+    
     public Long getIdDCompra() {
         return idDCompra;
     }
 
-    public void setIdDCompra(Long idDCompra) {
-        this.idDCompra = idDCompra;
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public List<Producto> getListaProducto() {
+        return listaProducto;
+    }
+
+    public void setListaProducto(List<Producto> listaProducto) {
+        this.listaProducto = listaProducto;
+    }
     @Override
     public int hashCode() {
         int hash = 0;
