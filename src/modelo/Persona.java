@@ -6,8 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,27 +28,21 @@ import javax.persistence.Table;
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPersona;
     private String nombres;
-    private String apellidos;
     @Column(length = 10, unique = true)
     private String cedula;
     private String telefono;
     private String direccion;
     private String email;
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Venta> listaVentas = new ArrayList<Venta>();
-
-    public List<Venta> getListaVentas() {
-        return listaVentas;
-    }
-
-    public void setListaVentas(List<Venta> listaVentas) {
-        this.listaVentas = listaVentas;
-    }
+    private Boolean estado;
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Rol rol;
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cuenta cuenta;
 
     public Long getIdPersona() {
         return idPersona;
@@ -66,14 +58,6 @@ public class Persona implements Serializable {
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public String getCedula() {
@@ -107,13 +91,29 @@ public class Persona implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public Long getId() {
-        return idPersona;
+    
+    public Boolean getEstado() {
+        return estado;
     }
 
-    public void setId(Long id) {
-        this.idPersona = id;
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 
     @Override
