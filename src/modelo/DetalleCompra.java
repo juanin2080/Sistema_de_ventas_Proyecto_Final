@@ -40,11 +40,9 @@ public class DetalleCompra implements Serializable {
     @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
     private Compra compra;
 
-    
-    public Long getCodProducto() {
-        return codProducto;
     @OneToMany(mappedBy = "DetalleCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Producto> listaProducto = new ArrayList<Producto>();    
+    private List<Producto> listaProducto = new ArrayList<Producto>(); 
+
     public Long getIdDCompra() {
         return idDCompra;
     }
@@ -85,23 +83,6 @@ public class DetalleCompra implements Serializable {
         this.compra = compra;
     }
 
-    
-    public Long getIdDCompra() {
-        return idDCompra;
-    }
-
-    public void setPrecioUnitario(double precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
-    }
-
     public List<Producto> getListaProducto() {
         return listaProducto;
     }
@@ -109,6 +90,9 @@ public class DetalleCompra implements Serializable {
     public void setListaProducto(List<Producto> listaProducto) {
         this.listaProducto = listaProducto;
     }
+    
+   
+       
     @Override
     public int hashCode() {
         int hash = 0;

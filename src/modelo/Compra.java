@@ -39,6 +39,28 @@ public class Compra implements Serializable {
     private String fPago;
     private double subtotal;
     private double total;
+    private Long external_IDProveedor;
+
+        
+    @OneToMany(mappedBy = "Compra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DetalleCompra> listaDCompra = new ArrayList<DetalleCompra>(); 
+
+    public Long getExternal_IDProveedor() {
+        return external_IDProveedor;
+    }
+
+    public void setExternal_IDProveedor(Long external_IDProveedor) {
+        this.external_IDProveedor = external_IDProveedor;
+    }
+
+    public List<DetalleCompra> getListaDCompra() {
+        return listaDCompra;
+    }
+
+    public void setListaDCompra(List<DetalleCompra> listaDCompra) {
+        this.listaDCompra = listaDCompra;
+    }
+    
     public String getNroCompra() {
         return nroCompra;
     }
