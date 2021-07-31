@@ -5,8 +5,6 @@
  */
 package vista;
 
-import controlador.controladorRegistroProveedor;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,8 +12,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministrarProveedor extends javax.swing.JFrame {
 
-    DefaultTableModel tablaProveedor;
-    private controlador.controladorRegistroProveedor CP;
+ 
 
     /**
      * Creates new form RegistrarPersonal
@@ -24,18 +21,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        tablaProveedor = new DefaultTableModel();
-        tablaProveedor.addColumn("Cédula");
-        tablaProveedor.addColumn("Nombres");
-        tablaProveedor.addColumn("Apellidos");
-        tablaProveedor.addColumn("Email");
-        tablaProveedor.addColumn("Telefono");
-        tablaProveedor.addColumn("Dirección");
-        tablaProveedor.addColumn("Ruc");
-        tablaProveedor.addColumn("Empresa");
-        this.tbtProveedor.setModel(tablaProveedor);
-
-        CP = new controladorRegistroProveedor();
     }
 
     /**
@@ -583,31 +568,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        String[] info = new String[8];
-        info[0] = txtCedula.getText();
-        info[1] = txtNombres.getText();
-        info[2] = txtApellidos.getText();
-        info[3] = txtEmail.getText();
-        info[4] = txtTelefono.getText();
-        info[5] = txtDireccion.getText();
-        info[6] = txtRuc.getText();
-        info[7] = txtEmpresa.getText();
-
-        tablaProveedor.addRow(info);
-
-        txtCedula.setText("");
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtEmail.setText("");
-        txtTelefono.setText("");
-        txtDireccion.setText("");
-        txtRuc.setText("");
-        txtEmpresa.setText("");
-
-        String empresa = txtEmpresa.getText();
-        int ruc = Integer.parseInt(txtRuc.getText());
-
-        CP.insertDatos(empresa, ruc);
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed

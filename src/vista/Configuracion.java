@@ -5,8 +5,7 @@
  */
 package vista;
 
-import modelo.Proveedor;
-import vista.AdministrarProveedor;
+
 
 /**
  *

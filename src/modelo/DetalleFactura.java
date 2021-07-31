@@ -8,12 +8,16 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,18 +26,18 @@ import javax.persistence.Table;
  * @author Usuario
  */
 @Entity
-@Table(name = "DetalleCompra")
-public class DetalleCompra implements Serializable {
+@Table(name = "DetalleFactura")
+public class DetalleFactura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDCompra;
+    private Long idDetalleFactura;
     private int cantidad;
     private double precioUnitario;
     private double precioTotal;
 
-    @OneToMany(mappedBy = "DetalleCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "DetalleFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> listaProducto = new ArrayList<Producto>();
 
     public List<Producto> getListaProducto() {
@@ -44,6 +48,14 @@ public class DetalleCompra implements Serializable {
         this.listaProducto = listaProducto;
     }
 
+    public Long getIdDetalleFactura() {
+        return idDetalleFactura;
+    }
+
+    public void setIdDetalleFactura(Long idDetalleFactura) {
+        this.idDetalleFactura = idDetalleFactura;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
@@ -52,45 +64,37 @@ public class DetalleCompra implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecioUnitario() {
+    public double getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(Double precioUnitario) {
+    public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 
-    public Double getPrecioTotal() {
+    public double getPrecioTotal() {
         return precioTotal;
     }
 
-    public void setPrecioTotal(Double precioTotal) {
+    public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
-    }
-
-    public Long getIdDCompra() {
-        return idDCompra;
-    }
-
-    public void setIdDCompra(Long idDCompra) {
-        this.idDCompra = idDCompra;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idDCompra != null ? idDCompra.hashCode() : 0);
+        hash += (idDetalleFactura != null ? idDetalleFactura.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the idDCompra fields are not set
-        if (!(object instanceof DetalleCompra)) {
+        // TODO: Warning - this method won't work in the case the idDetalleFactura fields are not set
+        if (!(object instanceof DetalleFactura)) {
             return false;
         }
-        DetalleCompra other = (DetalleCompra) object;
-        if ((this.idDCompra == null && other.idDCompra != null) || (this.idDCompra != null && !this.idDCompra.equals(other.idDCompra))) {
+        DetalleFactura other = (DetalleFactura) object;
+        if ((this.idDetalleFactura == null && other.idDetalleFactura != null) || (this.idDetalleFactura != null && !this.idDetalleFactura.equals(other.idDetalleFactura))) {
             return false;
         }
         return true;
@@ -98,7 +102,7 @@ public class DetalleCompra implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.DetalleCompra[ id=" + idDCompra + " ]";
+        return "modelo.DetalleFactura[ id=" + idDetalleFactura + " ]";
     }
 
 }
