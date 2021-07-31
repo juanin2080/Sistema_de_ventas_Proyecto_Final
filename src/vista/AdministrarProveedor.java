@@ -5,8 +5,6 @@
  */
 package vista;
 
-import controlador.controladorRegistroProveedor;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *

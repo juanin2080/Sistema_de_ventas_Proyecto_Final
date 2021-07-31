@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import modelo.enums.FormaPago;
 
 /**
  *
@@ -26,79 +28,100 @@ public class Factura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CodigoFactura;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idFactura;
     @Column(length = 10, unique = true)
-    private Long CodigoProducto;
-    private int Cantidad;
-    private double iva;
-    private double precio;
+    private String nroFactura;
+    private Date fecha;
+    private boolean iva;
+    private double total;
+    private double subtotal;
+    private String formaPago;
+    
     @OneToOne(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Venta venta;
+    private DetalleFactura detalleF;
 
-    public Long getCodigoFactura() {
-        return CodigoFactura;
+    public DetalleFactura getDetalleF() {
+        return detalleF;
     }
 
-    public void setCodigoFactura(Long CodigoFactura) {
-        this.CodigoFactura = CodigoFactura;
+    public void setDetalleF(DetalleFactura detalleF) {
+        this.detalleF = detalleF;
+    }
+    public Long getIdFactura() {
+        return idFactura;
     }
 
-    public Long getCodigoProducto() {
-        return CodigoProducto;
+    public void setIdFactura(Long idFactura) {
+        this.idFactura = idFactura;
     }
 
-    public void setCodigoProducto(Long CodigoProducto) {
-        this.CodigoProducto = CodigoProducto;
+    public String getNroFactura() {
+        return nroFactura;
     }
 
-    public int getCantidad() {
-        return Cantidad;
+    public void setNroFactura(String nroFactura) {
+        this.nroFactura = nroFactura;
     }
 
-    public void setCantidad(int Cantidad) {
-        this.Cantidad = Cantidad;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public double getIva() {
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+
+    public boolean isIva() {
         return iva;
     }
 
-    public void setIva(double iva) {
+    public void setIva(boolean iva) {
         this.iva = iva;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getTotal() {
+        return total;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    public Venta getVenta() {
-        return venta;
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setVenta(Venta venta) {
-        this.venta = venta;
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+
+  
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (CodigoFactura != null ? CodigoFactura.hashCode() : 0);
+        hash += (idFactura != null ? idFactura.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the CodigoFactura fields are not set
+        // TODO: Warning - this method won't work in the case the idFactura fields are not set
         if (!(object instanceof Factura)) {
             return false;
         }
         Factura other = (Factura) object;
-        if ((this.CodigoFactura == null && other.CodigoFactura != null) || (this.CodigoFactura != null && !this.CodigoFactura.equals(other.CodigoFactura))) {
+        if ((this.idFactura == null && other.idFactura != null) || (this.idFactura != null && !this.idFactura.equals(other.idFactura))) {
             return false;
         }
         return true;
@@ -106,10 +129,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Detalle_Venta[ id=" + CodigoFactura + " ]";
+        return "modelo.Facturas[ id=" + idFactura + " ]";
     }
-
-    public Factura() {
-    }
-
+    
 }

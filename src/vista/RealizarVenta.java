@@ -656,7 +656,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        AdministrarVentas ventas = new AdministrarVentas();
+        RealizarVenta ventas = new RealizarVenta();
         this.dispose();
         ventas.setVisible(true);
         ventas.setLocationRelativeTo(null);
