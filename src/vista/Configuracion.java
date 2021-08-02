@@ -5,7 +5,7 @@
  */
 package vista;
 
-import vista.AdministrarProveedor;
+
 
 /**
  *
@@ -380,9 +380,7 @@ public class Configuracion extends javax.swing.JFrame {
     private void BtnRVentasCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRVentasCMouseClicked
 
         // TODO add your handling code here:
-        AdministrarVentas rv = new AdministrarVentas();
-        rv.setVisible(true);
-        this.dispose();
+    
     }//GEN-LAST:event_BtnRVentasCMouseClicked
 
     private void btnProvedorCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvedorCMouseClicked
@@ -411,24 +409,16 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
         // TODO add your handling code here:
-        AdministrarProveedor proveedor = new AdministrarProveedor();
-        proveedor.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_btnProvedorCActionPerformed
 
     private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
-        // TODO add your handling code here:
-        RegistrarProducto producto = new RegistrarProducto();
-        producto.setVisible(true);
-        this.dispose();
+     
     }//GEN-LAST:event_BtnProductosCActionPerformed
 
     private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
         // TODO add your handling code here:
-        AdministrarVentas ventas = new AdministrarVentas();
-        ventas.setVisible(true);
-        this.dispose();
-        
+       
     }//GEN-LAST:event_BtnRVentasCActionPerformed
 
     private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
