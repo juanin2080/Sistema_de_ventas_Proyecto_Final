@@ -34,12 +34,12 @@ public class Rol implements Serializable {
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;
 
-    public Long getId() {
+    public Long getIdRol() {
         return idRol;
     }
 
-    public void setId(Long id) {
-        this.idRol = id;
+    public void setIdRol(Long idRol) {
+        this.idRol = idRol;
     }
 
     public String getRol() {
