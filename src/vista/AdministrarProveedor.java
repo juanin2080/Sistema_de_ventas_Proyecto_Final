@@ -33,27 +33,22 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         rSLabelImage4 = new necesario.RSLabelImage();
         btnConfiguración = new newscomponents.RSButtonBigIcon_new();
-        btnProductos = new newscomponents.RSButtonBigIcon_new();
+        btnProveedor = new newscomponents.RSButtonBigIcon_new();
         lblNombreVendedor = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnProveedor = new newscomponents.RSButtonBigIcon_new();
-        btnRegistroVentas = new newscomponents.RSButtonBigIcon_new();
+        btnPersona = new newscomponents.RSButtonBigIcon_new();
+        btnProductos = new newscomponents.RSButtonBigIcon_new();
         txtCedula = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtNombres = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtEmpresa = new javax.swing.JTextField();
-        txtApellidos = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtProveedor = new RSMaterialComponent.RSTableMetro();
-        btnGuardar = new rojerusan.RSButtonHover();
+        btnBuscar = new rojerusan.RSButtonHover();
         labelIcon5 = new necesario.LabelIcon();
+        labelIcon8 = new necesario.LabelIcon();
+        labelIcon9 = new necesario.LabelIcon();
+        labelIcon11 = new necesario.LabelIcon();
         labelIcon6 = new necesario.LabelIcon();
         btnActualizarDatos = new rojerusan.RSButtonHover();
         labelIcon7 = new necesario.LabelIcon();
@@ -67,11 +62,13 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        txtRuc = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
         btnRegresar = new RSMaterialComponent.RSButtonCustomIcon();
         jLabel4 = new javax.swing.JLabel();
+        txtRuc = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        btnGuardar = new rojerusan.RSButtonHover();
+        labelIcon12 = new necesario.LabelIcon();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -111,17 +108,17 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel2.add(btnConfiguración);
         btnConfiguración.setBounds(720, 20, 130, 130);
 
-        btnProductos.setBackground(new java.awt.Color(0, 153, 102));
-        btnProductos.setText("Productos");
-        btnProductos.setBgHover(new java.awt.Color(102, 102, 102));
-        btnProductos.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP);
-        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+        btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
+        btnProveedor.setText("Proveedores");
+        btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
+        btnProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductosActionPerformed(evt);
+                btnProveedorActionPerformed(evt);
             }
         });
-        jPanel2.add(btnProductos);
-        btnProductos.setBounds(400, 20, 130, 130);
+        jPanel2.add(btnProveedor);
+        btnProveedor.setBounds(400, 20, 130, 130);
 
         lblNombreVendedor.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         lblNombreVendedor.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,29 +132,29 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(70, 30, 90, 40);
 
-        btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
-        btnProveedor.setText("Proveedor");
-        btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
-        btnProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
-        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
+        btnPersona.setBackground(new java.awt.Color(0, 153, 102));
+        btnPersona.setText("Registrar");
+        btnPersona.setBgHover(new java.awt.Color(102, 102, 102));
+        btnPersona.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON_ADD);
+        btnPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProveedorActionPerformed(evt);
+                btnPersonaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(240, 20, 140, 130);
+        jPanel2.add(btnPersona);
+        btnPersona.setBounds(240, 20, 140, 130);
 
-        btnRegistroVentas.setBackground(new java.awt.Color(0, 153, 102));
-        btnRegistroVentas.setText("Registro Ventas");
-        btnRegistroVentas.setBgHover(new java.awt.Color(102, 102, 102));
-        btnRegistroVentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
-        btnRegistroVentas.addActionListener(new java.awt.event.ActionListener() {
+        btnProductos.setBackground(new java.awt.Color(0, 153, 102));
+        btnProductos.setText("Producto");
+        btnProductos.setBgHover(new java.awt.Color(102, 102, 102));
+        btnProductos.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_BASKET);
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroVentasActionPerformed(evt);
+                btnProductosActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistroVentas);
-        btnRegistroVentas.setBounds(550, 20, 150, 130);
+        jPanel2.add(btnProductos);
+        btnProductos.setBounds(550, 20, 150, 130);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -176,7 +173,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtCedula);
-        txtCedula.setBounds(140, 310, 220, 30);
+        txtCedula.setBounds(130, 310, 220, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -184,33 +181,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 310, 80, 30);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Nombres:");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 350, 80, 30);
-
-        txtNombres.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtNombres.setForeground(new java.awt.Color(102, 102, 102));
-        txtNombres.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtNombres.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtNombresMouseClicked(evt);
-            }
-        });
-        txtNombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombresActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtNombres);
-        txtNombres.setBounds(140, 350, 220, 30);
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Empresa");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 590, 80, 30);
+        jLabel7.setBounds(20, 450, 80, 30);
 
         txtEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtEmpresa.setForeground(new java.awt.Color(102, 102, 102));
@@ -226,118 +201,75 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtEmpresa);
-        txtEmpresa.setBounds(140, 590, 220, 30);
-
-        txtApellidos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtApellidos.setForeground(new java.awt.Color(102, 102, 102));
-        txtApellidos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtApellidos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtApellidosMouseClicked(evt);
-            }
-        });
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtApellidos);
-        txtApellidos.setBounds(140, 390, 220, 30);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Apellidos:");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(20, 390, 80, 30);
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Email:");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 430, 80, 30);
-
-        txtEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(102, 102, 102));
-        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtEmailMouseClicked(evt);
-            }
-        });
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtEmail);
-        txtEmail.setBounds(140, 430, 220, 30);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Teléfono:");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(20, 470, 80, 30);
-
-        txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtTelefono.setForeground(new java.awt.Color(102, 102, 102));
-        txtTelefono.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseClicked(evt);
-            }
-        });
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtTelefono);
-        txtTelefono.setBounds(140, 470, 220, 30);
+        txtEmpresa.setBounds(130, 450, 220, 30);
 
         tbtProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombres", "Apellidos", "Email", "Teléfono", "Dirección", "Ruc", "Empresa"
+                "Cédula", "Nombres", "Ruc", "Empresa"
             }
         ));
         tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));
         jScrollPane1.setViewportView(tbtProveedor);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(432, 240, 720, 310);
+        jScrollPane1.setBounds(562, 240, 590, 390);
 
-        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(600, 570, 130, 30);
+        jPanel1.add(btnBuscar);
+        btnBuscar.setBounds(420, 300, 130, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+
+        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+        labelIcon5.add(labelIcon8);
+        labelIcon8.setBounds(20, 530, 30, 30);
+
+        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+
+        labelIcon11.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon11.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+        labelIcon9.add(labelIcon11);
+        labelIcon11.setBounds(20, 530, 30, 30);
+
+        labelIcon5.add(labelIcon9);
+        labelIcon9.setBounds(20, 530, 30, 30);
+
         jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(560, 570, 30, 30);
+        labelIcon5.setBounds(20, 530, 30, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
+        labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(830, 570, 30, 30);
+        labelIcon6.setBounds(380, 300, 30, 30);
 
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
@@ -348,12 +280,12 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(870, 570, 180, 30);
+        btnActualizarDatos.setBounds(300, 530, 180, 30);
 
         labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
         jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(560, 620, 30, 30);
+        labelIcon7.setBounds(20, 600, 30, 30);
 
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
@@ -364,7 +296,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(600, 620, 130, 30);
+        btnDarDeBaja.setBounds(60, 600, 130, 30);
 
         btnNuevoProveedor.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoProveedor.setText("Nuevo proveedor");
@@ -375,7 +307,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoProveedor);
-        btnNuevoProveedor.setBounds(870, 620, 180, 30);
+        btnNuevoProveedor.setBounds(300, 600, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -408,7 +340,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(830, 620, 30, 30);
+        labelIcon10.setBounds(240, 600, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -432,47 +364,25 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel19.setText("Ruc");
+        jLabel19.setText("Nombres");
         jPanel1.add(jLabel19);
-        jLabel19.setBounds(20, 550, 80, 30);
+        jLabel19.setBounds(20, 360, 80, 30);
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel20.setText("Dirección:");
-        jPanel1.add(jLabel20);
-        jLabel20.setBounds(20, 510, 80, 30);
-
-        txtRuc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtRuc.setForeground(new java.awt.Color(102, 102, 102));
-        txtRuc.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtRuc.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNombres.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNombres.setForeground(new java.awt.Color(102, 102, 102));
+        txtNombres.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtNombres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtRucMouseClicked(evt);
+                txtNombresMouseClicked(evt);
             }
         });
-        txtRuc.addActionListener(new java.awt.event.ActionListener() {
+        txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRucActionPerformed(evt);
+                txtNombresActionPerformed(evt);
             }
         });
-        jPanel1.add(txtRuc);
-        txtRuc.setBounds(140, 550, 220, 30);
-
-        txtDireccion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtDireccion.setForeground(new java.awt.Color(102, 102, 102));
-        txtDireccion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtDireccionMouseClicked(evt);
-            }
-        });
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtDireccion);
-        txtDireccion.setBounds(140, 510, 220, 30);
+        jPanel1.add(txtNombres);
+        txtNombres.setBounds(130, 360, 220, 30);
 
         btnRegresar.setBackground(new java.awt.Color(0, 204, 51));
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -492,6 +402,44 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jLabel4.setText("Registre un proveedor.");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(10, 230, 420, 50);
+
+        txtRuc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtRuc.setForeground(new java.awt.Color(102, 102, 102));
+        txtRuc.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtRuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRucMouseClicked(evt);
+            }
+        });
+        txtRuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtRuc);
+        txtRuc.setBounds(130, 410, 220, 30);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel20.setText("Ruc");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(20, 410, 80, 30);
+
+        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar);
+        btnGuardar.setBounds(60, 530, 130, 30);
+
+        labelIcon12.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon12.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
+        jPanel1.add(labelIcon12);
+        labelIcon12.setBounds(240, 530, 30, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -515,69 +463,18 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
 
-    }//GEN-LAST:event_txtCedulaMouseClicked
-
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
-
-    private void txtNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombresMouseClicked
-
-    }//GEN-LAST:event_txtNombresMouseClicked
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
 
-    private void txtEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmpresaMouseClicked
-
-    }//GEN-LAST:event_txtEmpresaMouseClicked
-
-    private void txtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpresaActionPerformed
+    private void txtNombresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombresMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmpresaActionPerformed
-
-    private void txtApellidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosMouseClicked
-
-    }//GEN-LAST:event_txtApellidosMouseClicked
-
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
-
-    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
-
-    }//GEN-LAST:event_txtEmailMouseClicked
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-
-    }//GEN-LAST:event_txtTelefonoMouseClicked
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarDatosActionPerformed
-
-    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDarDeBajaActionPerformed
-
-    private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoProveedorActionPerformed
+    }//GEN-LAST:event_txtNombresMouseClicked
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
@@ -587,6 +484,57 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
+    private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoProveedorActionPerformed
+
+    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDarDeBajaActionPerformed
+
+    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpresaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpresaActionPerformed
+
+    private void txtEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmpresaMouseClicked
+
+    }//GEN-LAST:event_txtEmpresaMouseClicked
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+
+    }//GEN-LAST:event_txtCedulaMouseClicked
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPersonaActionPerformed
+
+    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnProveedorActionPerformed
+
+    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_btnConfiguraciónActionPerformed
+
     private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRucMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucMouseClicked
@@ -595,46 +543,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
 
-    private void txtDireccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMouseClicked
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionMouseClicked
-
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        // TODO add your handling code here:
-        RegistrarProducto rp = new RegistrarProducto();
-        this.dispose();
-        rp.setVisible(true);
-        rp.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnProductosActionPerformed
-
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
-
-    private void btnRegistroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVentasActionPerformed
-        // TODO add your handling code here:
-        AdministrarVentas rv = new AdministrarVentas();
-        this.dispose();
-        rv.setVisible(true);
-        rv.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnRegistroVentasActionPerformed
-
-    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProveedorActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -688,47 +599,44 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
+    private rojerusan.RSButtonHover btnBuscar;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnDarDeBaja;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoProveedor;
+    private newscomponents.RSButtonBigIcon_new btnPersona;
     private newscomponents.RSButtonBigIcon_new btnProductos;
     private newscomponents.RSButtonBigIcon_new btnProveedor;
-    private newscomponents.RSButtonBigIcon_new btnRegistroVentas;
     private RSMaterialComponent.RSButtonCustomIcon btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private necesario.LabelIcon labelIcon10;
+    private necesario.LabelIcon labelIcon11;
+    private necesario.LabelIcon labelIcon12;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
     private necesario.LabelIcon labelIcon7;
+    private necesario.LabelIcon labelIcon8;
+    private necesario.LabelIcon labelIcon9;
     private javax.swing.JLabel lblNombreVendedor;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tbtProveedor;
-    private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtRuc;
-    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
