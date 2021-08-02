@@ -9,12 +9,12 @@ package vista;
  *
  * @author juana
  */
-public class AdministrarPersonal extends javax.swing.JFrame {
+public class AdministrarPersonas extends javax.swing.JFrame {
 
     /**
      * Creates new form RegistrarPersonal
      */
-    public AdministrarPersonal() {
+    public AdministrarPersonas() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -39,17 +39,10 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         txtNombres = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
-        txtApellidos = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtPersonal = new RSMaterialComponent.RSTableMetro();
         btnGuardar = new rojerusan.RSButtonHover();
@@ -67,7 +60,6 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel23 = new javax.swing.JLabel();
-        cbxRol = new RSMaterialComponent.RSComboBoxMaterial();
         jLabel4 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
 
@@ -99,7 +91,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee UI", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Bienvenido a su segundo hogar.");
+        jLabel2.setText("Bienvenido a electrocasa.");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(50, 10, 810, 70);
 
@@ -158,7 +150,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Dirección:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 480, 80, 30);
+        jLabel7.setBounds(20, 440, 80, 30);
 
         txtDireccion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtDireccion.setForeground(new java.awt.Color(102, 102, 102));
@@ -174,35 +166,13 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtDireccion);
-        txtDireccion.setBounds(140, 480, 220, 30);
-
-        txtApellidos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtApellidos.setForeground(new java.awt.Color(102, 102, 102));
-        txtApellidos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtApellidos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtApellidosMouseClicked(evt);
-            }
-        });
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtApellidos);
-        txtApellidos.setBounds(140, 360, 220, 30);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Apellidos:");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(20, 360, 80, 30);
+        txtDireccion.setBounds(140, 440, 220, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Email:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 400, 80, 30);
+        jLabel9.setBounds(20, 360, 80, 30);
 
         txtEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(102, 102, 102));
@@ -218,13 +188,13 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtEmail);
-        txtEmail.setBounds(140, 400, 220, 30);
+        txtEmail.setBounds(140, 360, 220, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Teléfono:");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(20, 440, 80, 30);
+        jLabel10.setBounds(20, 400, 80, 30);
 
         txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(102, 102, 102));
@@ -240,81 +210,33 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtTelefono);
-        txtTelefono.setBounds(140, 440, 220, 30);
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel19.setText("Usuario:");
-        jPanel1.add(jLabel19);
-        jLabel19.setBounds(20, 520, 80, 30);
-
-        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        txtUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuarioMouseClicked(evt);
-            }
-        });
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtUsuario);
-        txtUsuario.setBounds(140, 520, 220, 30);
-
-        txtContrasenia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtContrasenia.setForeground(new java.awt.Color(102, 102, 102));
-        txtContrasenia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtContraseniaMouseClicked(evt);
-            }
-        });
-        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseniaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtContrasenia);
-        txtContrasenia.setBounds(140, 560, 220, 30);
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel20.setText("Rol:");
-        jPanel1.add(jLabel20);
-        jLabel20.setBounds(20, 600, 100, 30);
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel21.setText("Contraseña:");
-        jPanel1.add(jLabel21);
-        jLabel21.setBounds(20, 560, 100, 30);
+        txtTelefono.setBounds(140, 400, 220, 30);
 
         tbtPersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombres", "Apellidos", "Email", "Teléfono", "Dirección", "Usuario", "Rol"
+                "Cédula", "Nombres", "Apellidos", "Email", "Teléfono", "Dirección"
             }
         ));
         tbtPersonal.setBackgoundHead(new java.awt.Color(102, 0, 102));
         jScrollPane1.setViewportView(tbtPersonal);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(402, 240, 750, 310);
+        jScrollPane1.setBounds(452, 240, 700, 330);
 
         btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar.setText("Guardar");
@@ -325,17 +247,17 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(600, 570, 130, 30);
+        btnGuardar.setBounds(60, 500, 130, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(560, 570, 30, 30);
+        labelIcon5.setBounds(20, 500, 30, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(830, 570, 30, 30);
+        labelIcon6.setBounds(210, 500, 30, 30);
 
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
@@ -346,12 +268,12 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(870, 570, 180, 30);
+        btnActualizarDatos.setBounds(250, 500, 180, 30);
 
         labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
         jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(560, 620, 30, 30);
+        labelIcon7.setBounds(20, 540, 30, 30);
 
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
@@ -362,7 +284,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(600, 620, 130, 30);
+        btnDarDeBaja.setBounds(60, 540, 130, 30);
 
         btnNuevoPersonal.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoPersonal.setText("Nuevo personal");
@@ -373,7 +295,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoPersonal);
-        btnNuevoPersonal.setBounds(870, 620, 180, 30);
+        btnNuevoPersonal.setBounds(250, 540, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -406,7 +328,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(830, 620, 30, 30);
+        labelIcon10.setBounds(210, 540, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -434,13 +356,6 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         jPanel1.add(jLabel23);
         jLabel23.setBounds(70, 10, 190, 30);
 
-        cbxRol.setForeground(new java.awt.Color(102, 102, 102));
-        cbxRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Vendedor" }));
-        cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
-        cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(cbxRol);
-        cbxRol.setBounds(140, 600, 220, 40);
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Ingrese los datos");
@@ -466,7 +381,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -504,22 +419,6 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseniaActionPerformed
-
-    private void txtContraseniaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaMouseClicked
-
-    }//GEN-LAST:event_txtContraseniaMouseClicked
-
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
-    private void txtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseClicked
-
-    }//GEN-LAST:event_txtUsuarioMouseClicked
-
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
@@ -535,14 +434,6 @@ public class AdministrarPersonal extends javax.swing.JFrame {
     private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
 
     }//GEN-LAST:event_txtEmailMouseClicked
-
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
-
-    private void txtApellidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosMouseClicked
-
-    }//GEN-LAST:event_txtApellidosMouseClicked
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
         // TODO add your handling code here:
@@ -592,14 +483,18 @@ public class AdministrarPersonal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -608,7 +503,7 @@ public class AdministrarPersonal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministrarPersonal().setVisible(true);
+                new AdministrarPersonas().setVisible(true);
             }
         });
     }
@@ -621,20 +516,15 @@ public class AdministrarPersonal extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnNuevoPersonal;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private RSMaterialComponent.RSComboBoxMaterial cbxRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -648,13 +538,10 @@ public class AdministrarPersonal extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tbtPersonal;
-    private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
