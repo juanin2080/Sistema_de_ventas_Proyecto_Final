@@ -50,7 +50,7 @@ public class ProveedorJpaController implements Serializable {
             em.getTransaction().begin();
             Rol rol = proveedor.getRol();
             if (rol != null) {
-                rol = em.merge(rol);
+                rol = em.getReference(rol.getClass(), rol.getIdRol());
                 proveedor.setRol(rol);
             }
             Cuenta cuenta = proveedor.getCuenta();

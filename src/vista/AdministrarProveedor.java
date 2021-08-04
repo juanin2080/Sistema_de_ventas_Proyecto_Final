@@ -595,11 +595,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
+    }//GEN-LAST:event_txtRucActionPerformed
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRucMouseClicked
 
-    }//GEN-LAST:event_txtCedulaMouseClicked
+    }//GEN-LAST:event_txtRucMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         InicioSesion inicioSesion = new InicioSesion();
@@ -616,7 +616,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
-    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
+    }//GEN-LAST:event_txtNombresMouseClicked
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProveedorActionPerformed
 

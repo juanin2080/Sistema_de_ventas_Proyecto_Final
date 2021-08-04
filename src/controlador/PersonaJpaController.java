@@ -30,7 +30,7 @@ public class PersonaJpaController implements Serializable {
 
     public PersonaJpaController() {
     }
-    
+
     public PersonaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
@@ -50,7 +50,7 @@ public class PersonaJpaController implements Serializable {
             em.getTransaction().begin();
             Rol rol = persona.getRol();
             if (rol != null) {
-                rol = em.merge(rol);
+                rol = em.getReference(rol.getClass(), rol.getIdRol());
                 persona.setRol(rol);
             }
             Cuenta cuenta = persona.getCuenta();
@@ -137,7 +137,7 @@ public class PersonaJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             if (rolNew != null) {
-                rolNew = em.merge(rolNew);
+                rolNew = em.getReference(rolNew.getClass(), rolNew.getIdRol());
                 persona.setRol(rolNew);
             }
             if (cuentaNew != null) {
@@ -289,5 +289,5 @@ public class PersonaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

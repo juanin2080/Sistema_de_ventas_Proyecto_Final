@@ -37,13 +37,34 @@ public class PersonaDAO {
         return mensaje;
     }
 
-    public String actualizarPersona() {
+    public String actualizarPersona(Long id, String nombres, String cedula, String direccion, String telefono, String email, Boolean estado) {
+        try {
+            persona.setIdPersona(id);
+            persona.setNombres(nombres);
+            persona.setCedula(cedula);
+            persona.setDireccion(direccion);
+            persona.setTelefono(telefono);
+            persona.setEmail(email);
+            persona.setEstado(estado);
+            controladorPersona.edit(persona);
+            mensaje = "Persona actualizada con exito";
+        } catch (Exception e) {
+            mensaje = "No se pudo actualizar la persona ";
+            System.out.println(e.getMessage());
+        }
 
-        return null;
+        return mensaje;
+
     }
 
-    public String darDeBajaPersona() {
-
-        return null;
+    public String darDeBajaPersona(Long id) {
+        try {
+            controladorPersona.destroy(id);
+            mensaje = "Persona dada de baja con exito";
+        } catch (Exception e) {
+            mensaje = "Persona no dada de baja con exito";
+            System.out.println(e.getMessage());
+        }
+        return mensaje;
     }
 }
