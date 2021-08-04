@@ -5,15 +5,18 @@
  */
 package vista;
 
+import controlador.DAO.CompraDAO;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USUARIO
  */
 public class CompraProveedor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Compra
-     */
+    private CompraDAO cdao = new CompraDAO();
+    Date fecha = new Date();
     public CompraProveedor() {
         initComponents();
     }
@@ -47,31 +50,33 @@ public class CompraProveedor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        bntBuscarCedula = new rojerusan.RSButtonHover();
-        btnBuscarCodProducto = new rojerusan.RSButtonHover();
-        txtCedula = new javax.swing.JTextField();
-        txtProveedor = new javax.swing.JTextField();
-        txtCodProducto = new javax.swing.JTextField();
+        bntBuscarCedulaCP = new rojerusan.RSButtonHover();
+        btnBuscarCodProductoCP = new rojerusan.RSButtonHover();
+        txtCedulaCP = new javax.swing.JTextField();
+        txtProveedorCP = new javax.swing.JTextField();
+        txtCodProductoCP = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtProveedor = new RSMaterialComponent.RSTableMetro();
         labelIcon5 = new necesario.LabelIcon();
-        btnGuardar1 = new rojerusan.RSButtonHover();
+        btnGuardarCP = new rojerusan.RSButtonHover();
         jlblSubtotal = new javax.swing.JLabel();
         jlblIva = new javax.swing.JLabel();
         jlblTotalPago = new javax.swing.JLabel();
         txtSubtotalCP = new javax.swing.JTextField();
-        txtIvaCP = new javax.swing.JTextField();
         txtTotalPagarCP = new javax.swing.JTextField();
         labelIcon8 = new necesario.LabelIcon();
         labelIcon9 = new necesario.LabelIcon();
         labelIcon14 = new necesario.LabelIcon();
         labelIcon15 = new necesario.LabelIcon();
         lblNroFactura = new javax.swing.JLabel();
-        txtFactura = new javax.swing.JTextField();
+        txtnroFacturaCP = new javax.swing.JTextField();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
+        lblFormaPago = new javax.swing.JLabel();
+        txtFormaPagoCP = new javax.swing.JTextField();
+        checkBoxIVACP = new javax.swing.JCheckBox();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,7 +103,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         rSLabelImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel2.add(rSLabelImage4);
-        rSLabelImage4.setBounds(870, 10, 160, 90);
+        rSLabelImage4.setBounds(870, 10, 140, 80);
 
         btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
         btnConfiguración.setText("Configuración");
@@ -111,7 +116,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(690, 10, 140, 90);
+        btnConfiguración.setBounds(680, 10, 140, 80);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -124,7 +129,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(310, 10, 140, 90);
+        btnProveedor.setBounds(310, 10, 140, 80);
 
         btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistrar.setText("Registrar");
@@ -137,7 +142,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(140, 10, 140, 90);
+        btnRegistrar.setBounds(140, 10, 140, 80);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -150,10 +155,10 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(490, 10, 150, 90);
+        btnProducto.setBounds(490, 10, 140, 80);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 50, 1040, 110);
+        jPanel2.setBounds(0, 40, 1040, 100);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -167,7 +172,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnMinimizar);
-        btnMinimizar.setBounds(960, 10, 40, 40);
+        btnMinimizar.setBounds(960, 0, 40, 40);
 
         btnSalir.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir.setForeground(new java.awt.Color(102, 102, 102));
@@ -181,22 +186,22 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalir);
-        btnSalir.setBounds(990, 10, 40, 40);
+        btnSalir.setBounds(1000, 0, 40, 40);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
-        rSLabelImage2.setBounds(10, 10, 50, 40);
+        rSLabelImage2.setBounds(0, 0, 50, 40);
 
         rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel1.add(rSLabelHora1);
-        rSLabelHora1.setBounds(720, 10, 200, 40);
+        rSLabelHora1.setBounds(730, 10, 200, 20);
 
         jLabel23.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(102, 102, 102));
         jLabel23.setText("ELECTROCASA");
         jPanel1.add(jLabel23);
-        jLabel23.setBounds(70, 10, 190, 30);
+        jLabel23.setBounds(60, 0, 190, 30);
 
         btnRegresar.setBackground(new java.awt.Color(0, 204, 51));
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,114 +224,113 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         rSLabelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel3.setText("Telf: 0939258198");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("ELECTROCASA");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel8.setText("RUC:1198367544001");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel9.setText("Direccion: Loja, Ecuador");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(234, 234, 234))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap())))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(239, 239, 239))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(299, 299, 299)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)))
-                .addContainerGap())
+                .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bntBuscarCedula.setBackground(new java.awt.Color(204, 0, 255));
-        bntBuscarCedula.setText("Buscar");
-        bntBuscarCedula.setColorHover(new java.awt.Color(102, 102, 102));
-        bntBuscarCedula.addActionListener(new java.awt.event.ActionListener() {
+        bntBuscarCedulaCP.setBackground(new java.awt.Color(204, 0, 255));
+        bntBuscarCedulaCP.setText("Buscar");
+        bntBuscarCedulaCP.setColorHover(new java.awt.Color(102, 102, 102));
+        bntBuscarCedulaCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntBuscarCedulaActionPerformed(evt);
+                bntBuscarCedulaCPActionPerformed(evt);
             }
         });
 
-        btnBuscarCodProducto.setBackground(new java.awt.Color(204, 0, 255));
-        btnBuscarCodProducto.setText("Buscar");
-        btnBuscarCodProducto.setColorHover(new java.awt.Color(102, 102, 102));
-        btnBuscarCodProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarCodProductoCP.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarCodProductoCP.setText("Buscar");
+        btnBuscarCodProductoCP.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarCodProductoCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarCodProductoActionPerformed(evt);
+                btnBuscarCodProductoCPActionPerformed(evt);
             }
         });
 
-        txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCedula.setForeground(new java.awt.Color(102, 102, 102));
-        txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCedulaCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCedulaCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtCedulaCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCedulaCP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCedulaMouseClicked(evt);
+                txtCedulaCPMouseClicked(evt);
             }
         });
-        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+        txtCedulaCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaActionPerformed(evt);
+                txtCedulaCPActionPerformed(evt);
             }
         });
 
-        txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtProveedor.setForeground(new java.awt.Color(102, 102, 102));
-        txtProveedor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtProveedorCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtProveedorCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtProveedorCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtProveedorCP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtProveedorMouseClicked(evt);
+                txtProveedorCPMouseClicked(evt);
             }
         });
-        txtProveedor.addActionListener(new java.awt.event.ActionListener() {
+        txtProveedorCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProveedorActionPerformed(evt);
+                txtProveedorCPActionPerformed(evt);
             }
         });
 
-        txtCodProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCodProducto.setForeground(new java.awt.Color(102, 102, 102));
-        txtCodProducto.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCodProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCodProductoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodProductoCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodProductoCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodProductoCP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodProductoMouseClicked(evt);
+                txtCodProductoCPMouseClicked(evt);
             }
         });
-        txtCodProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtCodProductoCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodProductoActionPerformed(evt);
+                txtCodProductoCPActionPerformed(evt);
             }
         });
 
@@ -366,12 +370,12 @@ public class CompraProveedor extends javax.swing.JFrame {
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
 
-        btnGuardar1.setBackground(new java.awt.Color(0, 204, 51));
-        btnGuardar1.setText("Guardar");
-        btnGuardar1.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarCP.setBackground(new java.awt.Color(0, 204, 51));
+        btnGuardarCP.setText("Guardar");
+        btnGuardarCP.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardarCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardar1ActionPerformed(evt);
+                btnGuardarCPActionPerformed(evt);
             }
         });
 
@@ -384,12 +388,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         txtSubtotalCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubtotalCPActionPerformed(evt);
-            }
-        });
-
-        txtIvaCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIvaCPActionPerformed(evt);
             }
         });
 
@@ -413,22 +411,32 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblNroFactura.setForeground(new java.awt.Color(102, 102, 102));
         lblNroFactura.setText("Nro Factura");
 
-        txtFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtFactura.setForeground(new java.awt.Color(102, 102, 102));
-        txtFactura.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtnroFacturaCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtnroFacturaCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtnroFacturaCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtnroFacturaCP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtFacturaMouseClicked(evt);
+                txtnroFacturaCPMouseClicked(evt);
             }
         });
-        txtFactura.addActionListener(new java.awt.event.ActionListener() {
+        txtnroFacturaCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFacturaActionPerformed(evt);
+                txtnroFacturaCPActionPerformed(evt);
             }
         });
 
         rSLabelFecha1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelFecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        lblFormaPago.setText("FormaPago:");
+
+        txtFormaPagoCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFormaPagoCPActionPerformed(evt);
+            }
+        });
+
+        checkBoxIVACP.setText("12%");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -441,17 +449,12 @@ public class CompraProveedor extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(txtCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(labelIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscarCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblNroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -459,95 +462,110 @@ public class CompraProveedor extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bntBuscarCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtnroFacturaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                                .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(220, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jlblIva)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIvaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jlblSubtotal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jlblTotalPago)
+                        .addGap(142, 142, 142)
+                        .addComponent(lblFormaPago)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlblSubtotal)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jlblIva)
+                                .addGap(18, 18, 18)
+                                .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jlblTotalPago)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(116, 116, 116)))
+                                .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(195, 195, 195))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblNroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnroFacturaCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntBuscarCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBuscarCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(31, 31, 31)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFormaPago)
+                            .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlblSubtotal))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtIvaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlblIva))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlblTotalPago))
-                        .addGap(5, 5, 5)
-                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(110, 170, 850, 610);
+        jPanel3.setBounds(100, 150, 850, 550);
 
         rSLabelFecha2.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelFecha2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel1.add(rSLabelFecha2);
-        rSLabelFecha2.setBounds(570, 10, 200, 40);
+        rSLabelFecha2.setBounds(560, 10, 200, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -557,7 +575,9 @@ public class CompraProveedor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -598,57 +618,66 @@ public class CompraProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void bntBuscarCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaActionPerformed
+    private void bntBuscarCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bntBuscarCedulaActionPerformed
+    }//GEN-LAST:event_bntBuscarCedulaCPActionPerformed
 
-    private void btnBuscarCodProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoActionPerformed
+    private void btnBuscarCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarCodProductoActionPerformed
+    }//GEN-LAST:event_btnBuscarCodProductoCPActionPerformed
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+    private void txtCedulaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaCPMouseClicked
 
-    }//GEN-LAST:event_txtCedulaMouseClicked
+    }//GEN-LAST:event_txtCedulaCPMouseClicked
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+    private void txtCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
+    }//GEN-LAST:event_txtCedulaCPActionPerformed
 
-    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
+    private void txtProveedorCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorCPMouseClicked
 
-    }//GEN-LAST:event_txtProveedorMouseClicked
+    }//GEN-LAST:event_txtProveedorCPMouseClicked
 
-    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
+    private void txtProveedorCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorActionPerformed
+    }//GEN-LAST:event_txtProveedorCPActionPerformed
 
-    private void txtCodProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoMouseClicked
+    private void txtCodProductoCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoCPMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodProductoMouseClicked
+    }//GEN-LAST:event_txtCodProductoCPMouseClicked
 
-    private void txtCodProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoActionPerformed
+    private void txtCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodProductoActionPerformed
+    }//GEN-LAST:event_txtCodProductoCPActionPerformed
 
-    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardar1ActionPerformed
-
+    private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
+        String nroCompra = txtnroFacturaCP.getText();
+        boolean iva = checkBoxIVACP.isSelected() ;
+        String fPago = txtFormaPagoCP.getText();
+        double subtotal = Double.parseDouble(txtSubtotalCP.getText()) ;
+        double total = Double.parseDouble(txtTotalPagarCP.getText()) ;            
+        cdao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total);
+    }//GEN-LAST:event_btnGuardarCPActionPerformed
+    private void limiar(){
+        txtnroFacturaCP.setText("");
+        //checkBoxIVA.setSelected(rootPaneCheckingEnabled);
+        txtFormaPagoCP.setText("");
+        txtSubtotalCP.setText("");
+        txtTotalPagarCP.setText("");           
+    }
+    
+    
     private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSubtotalCPActionPerformed
 
-    private void txtIvaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaCPActionPerformed
+    private void txtnroFacturaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroFacturaCPMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIvaCPActionPerformed
+    }//GEN-LAST:event_txtnroFacturaCPMouseClicked
 
-    private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
+    private void txtnroFacturaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnroFacturaCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFacturaMouseClicked
-
-    private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFacturaActionPerformed
+    }//GEN-LAST:event_txtnroFacturaCPActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);       
@@ -657,6 +686,10 @@ public class CompraProveedor extends javax.swing.JFrame {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
+
+    private void txtFormaPagoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaPagoCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFormaPagoCPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -709,16 +742,17 @@ public class CompraProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSButtonHover bntBuscarCedula;
-    private rojerusan.RSButtonHover btnBuscarCodProducto;
+    private rojerusan.RSButtonHover bntBuscarCedulaCP;
+    private rojerusan.RSButtonHover btnBuscarCodProductoCP;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
-    private rojerusan.RSButtonHover btnGuardar1;
+    private rojerusan.RSButtonHover btnGuardarCP;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
     private newscomponents.RSButtonBigIcon_new btnProveedor;
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private RSMaterialComponent.RSButtonCustomIcon btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private javax.swing.JCheckBox checkBoxIVACP;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -739,6 +773,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon9;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblFormaPago;
     private javax.swing.JLabel lblNroFactura;
     private javax.swing.JLabel lblProveedor;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
@@ -748,12 +783,12 @@ public class CompraProveedor extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tbtProveedor;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCodProducto;
-    private javax.swing.JTextField txtFactura;
-    private javax.swing.JTextField txtIvaCP;
-    private javax.swing.JTextField txtProveedor;
+    private javax.swing.JTextField txtCedulaCP;
+    private javax.swing.JTextField txtCodProductoCP;
+    private javax.swing.JTextField txtFormaPagoCP;
+    private javax.swing.JTextField txtProveedorCP;
     private javax.swing.JTextField txtSubtotalCP;
     private javax.swing.JTextField txtTotalPagarCP;
+    private javax.swing.JTextField txtnroFacturaCP;
     // End of variables declaration//GEN-END:variables
 }

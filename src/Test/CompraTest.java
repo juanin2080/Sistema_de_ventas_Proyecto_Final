@@ -16,7 +16,7 @@ public class CompraTest {
     public static void main (String []args){
          CompraDAO cdao = new CompraDAO();
          Date fecha = new Date();
-         //System.out.println( cdao.insertarCompra("5", fecha, true, "Tarjeta de Crédito", 200.00, 400.00));
+        // System.out.println( cdao.insertarCompra("5", fecha, true, "Tarjeta de Crédito", 200.00, 400.00));
          //System.out.println( cdao.actualizarCompra(Long.valueOf(5), "5", fecha, true, "efectivo", 200.00, 400.00));
 //         System.out.println(cdao.eliminarCompra(Long.valueOf(1)));
 //         System.out.println(cdao.eliminarCompra(Long.valueOf(2)));
