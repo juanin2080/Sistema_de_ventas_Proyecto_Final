@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.enums;
+package controlador.DAO;
 
 /**
  *
  * @author juana
  */
-public enum Roles {
-    Administrador,Vendedor,Cliente;
+public class RolDao {
+    
 }

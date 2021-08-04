@@ -6,6 +6,8 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
 
@@ -40,37 +43,28 @@ public class Producto implements Serializable {
     private Boolean estado;
     private String proveedor;
 
-    //======================================================================================
-    //DetalleCompra
-    //======================================================================================
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "idDCompra", nullable = false, referencedColumnName = "idDCompra")
-    private DetalleCompra detalleCompra;
+    @OneToMany(mappedBy = "Producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ArrayList<DetalleFactura> listaDetalleFactura = new ArrayList<DetalleFactura>();
 
-    public DetalleCompra getDetalleCompra() {
-        return detalleCompra;
+    public ArrayList<DetalleFactura> getListaDetalleFactura() {
+        return listaDetalleFactura;
     }
 
-    public void setDetalleCompra(DetalleCompra detalleCompra) {
-        this.detalleCompra = detalleCompra;
+    public void setListaDetalleFactura(ArrayList<DetalleFactura> listaDetalleFactura) {
+        this.listaDetalleFactura = listaDetalleFactura;
     }
 
-    //======================================================================================
-    //DetalleFactura
-    //======================================================================================
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "idDetalleFactura", nullable = false, referencedColumnName = "idDetalleFactura")
-    private DetalleFactura detalleFactura;
+    @OneToMany(mappedBy = "Producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ArrayList<DetalleCompra> listaDetalleCompra = new ArrayList<DetalleCompra>();
 
-    public DetalleFactura getDetalleFactura() {
-        return detalleFactura;
+    public ArrayList<DetalleCompra> getListaDetalleCompra() {
+        return listaDetalleCompra;
     }
 
-    public void setDetalleFactura(DetalleFactura detalleFactura) {
-        this.detalleFactura = detalleFactura;
+    public void setListaDetalleCompra(ArrayList<DetalleCompra> listaDetalleCompra) {
+        this.listaDetalleCompra = listaDetalleCompra;
     }
 
-    //======================================================================================
     public Long getIdProducto() {
         return idProducto;
     }

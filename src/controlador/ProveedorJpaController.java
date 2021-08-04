@@ -12,7 +12,6 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.Rol;
 import modelo.Cuenta;
 import modelo.Factura;
 import java.util.ArrayList;
@@ -48,11 +47,6 @@ public class ProveedorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Rol rol = proveedor.getRol();
-            if (rol != null) {
-                rol = em.getReference(rol.getClass(), rol.getIdRol());
-                proveedor.setRol(rol);
-            }
             Cuenta cuenta = proveedor.getCuenta();
             if (cuenta != null) {
                 cuenta = em.getReference(cuenta.getClass(), cuenta.getIdCuenta());
@@ -65,15 +59,6 @@ public class ProveedorJpaController implements Serializable {
             }
             proveedor.setListaFactura(attachedListaFactura);
             em.persist(proveedor);
-            if (rol != null) {
-                modelo.Persona oldPersonaOfRol = rol.getPersona();
-                if (oldPersonaOfRol != null) {
-                    oldPersonaOfRol.setRol(null);
-                    oldPersonaOfRol = em.merge(oldPersonaOfRol);
-                }
-                rol.setPersona(proveedor);
-                rol = em.merge(rol);
-            }
             if (cuenta != null) {
                 modelo.Persona oldPersonaOfCuenta = cuenta.getPersona();
                 if (oldPersonaOfCuenta != null) {
@@ -214,13 +199,6 @@ public class ProveedorJpaController implements Serializable {
                 throw new NonexistentEntityException("The proveedor with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Rol rolOrphanCheck = proveedor.getRol();
-            if (rolOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Proveedor (" + proveedor + ") cannot be destroyed since the Rol " + rolOrphanCheck + " in its rol field has a non-nullable persona field.");
-            }
             Cuenta cuentaOrphanCheck = proveedor.getCuenta();
             if (cuentaOrphanCheck != null) {
                 if (illegalOrphanMessages == null) {
