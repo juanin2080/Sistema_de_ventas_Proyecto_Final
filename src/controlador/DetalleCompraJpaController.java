@@ -43,8 +43,8 @@ public class DetalleCompraJpaController implements Serializable {
 
 
     public void create(DetalleCompra detalleCompra) {
-        if (detalleCompra.getListaProducto() == null) {
-            detalleCompra.setListaProducto(new ArrayList<Producto>());
+        if (detalleCompra.getListaProductos() == null) {
+            detalleCompra.setListaProductos(new ArrayList<Producto>());
         }
         EntityManager em = null;
         try {
@@ -55,24 +55,24 @@ public class DetalleCompraJpaController implements Serializable {
                 compra = em.getReference(compra.getClass(), compra.getIdCompra());
                 detalleCompra.setCompra(compra);
             }
-            List<Producto> attachedListaProducto = new ArrayList<Producto>();
-            for (Producto listaProductoProductoToAttach : detalleCompra.getListaProducto()) {
-                listaProductoProductoToAttach = em.getReference(listaProductoProductoToAttach.getClass(), listaProductoProductoToAttach.getId_Producto());
-                attachedListaProducto.add(listaProductoProductoToAttach);
+            List<Producto> attachedListaProductos = new ArrayList<Producto>();
+            for (Producto listaProductosProductoToAttach : detalleCompra.getListaProductos()) {
+                listaProductosProductoToAttach = em.getReference(listaProductosProductoToAttach.getClass(), listaProductosProductoToAttach.getIdProducto());
+                attachedListaProductos.add(listaProductosProductoToAttach);
             }
-            detalleCompra.setListaProducto(attachedListaProducto);
+            detalleCompra.setListaProductos(attachedListaProductos);
             em.persist(detalleCompra);
             if (compra != null) {
                 compra.getListaDCompra().add(detalleCompra);
                 compra = em.merge(compra);
             }
-            for (Producto listaProductoProducto : detalleCompra.getListaProducto()) {
-                DetalleCompra oldDetalleCompraOfListaProductoProducto = listaProductoProducto.getDetalleCompra();
-                listaProductoProducto.setDetalleCompra(detalleCompra);
-                listaProductoProducto = em.merge(listaProductoProducto);
-                if (oldDetalleCompraOfListaProductoProducto != null) {
-                    oldDetalleCompraOfListaProductoProducto.getListaProducto().remove(listaProductoProducto);
-                    oldDetalleCompraOfListaProductoProducto = em.merge(oldDetalleCompraOfListaProductoProducto);
+            for (Producto listaProductosProducto : detalleCompra.getListaProductos()) {
+                DetalleCompra oldDetalleCompraOfListaProductosProducto = listaProductosProducto.getDetalleCompra();
+                listaProductosProducto.setDetalleCompra(detalleCompra);
+                listaProductosProducto = em.merge(listaProductosProducto);
+                if (oldDetalleCompraOfListaProductosProducto != null) {
+                    oldDetalleCompraOfListaProductosProducto.getListaProductos().remove(listaProductosProducto);
+                    oldDetalleCompraOfListaProductosProducto = em.merge(oldDetalleCompraOfListaProductosProducto);
                 }
             }
             em.getTransaction().commit();
@@ -91,15 +91,15 @@ public class DetalleCompraJpaController implements Serializable {
             DetalleCompra persistentDetalleCompra = em.find(DetalleCompra.class, detalleCompra.getIdDCompra());
             Compra compraOld = persistentDetalleCompra.getCompra();
             Compra compraNew = detalleCompra.getCompra();
-            List<Producto> listaProductoOld = persistentDetalleCompra.getListaProducto();
-            List<Producto> listaProductoNew = detalleCompra.getListaProducto();
+            List<Producto> listaProductosOld = persistentDetalleCompra.getListaProductos();
+            List<Producto> listaProductosNew = detalleCompra.getListaProductos();
             List<String> illegalOrphanMessages = null;
-            for (Producto listaProductoOldProducto : listaProductoOld) {
-                if (!listaProductoNew.contains(listaProductoOldProducto)) {
+            for (Producto listaProductosOldProducto : listaProductosOld) {
+                if (!listaProductosNew.contains(listaProductosOldProducto)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Producto " + listaProductoOldProducto + " since its detalleCompra field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Producto " + listaProductosOldProducto + " since its detalleCompra field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -109,13 +109,13 @@ public class DetalleCompraJpaController implements Serializable {
                 compraNew = em.getReference(compraNew.getClass(), compraNew.getIdCompra());
                 detalleCompra.setCompra(compraNew);
             }
-            List<Producto> attachedListaProductoNew = new ArrayList<Producto>();
-            for (Producto listaProductoNewProductoToAttach : listaProductoNew) {
-                listaProductoNewProductoToAttach = em.getReference(listaProductoNewProductoToAttach.getClass(), listaProductoNewProductoToAttach.getId_Producto());
-                attachedListaProductoNew.add(listaProductoNewProductoToAttach);
+            List<Producto> attachedListaProductosNew = new ArrayList<Producto>();
+            for (Producto listaProductosNewProductoToAttach : listaProductosNew) {
+                listaProductosNewProductoToAttach = em.getReference(listaProductosNewProductoToAttach.getClass(), listaProductosNewProductoToAttach.getIdProducto());
+                attachedListaProductosNew.add(listaProductosNewProductoToAttach);
             }
-            listaProductoNew = attachedListaProductoNew;
-            detalleCompra.setListaProducto(listaProductoNew);
+            listaProductosNew = attachedListaProductosNew;
+            detalleCompra.setListaProductos(listaProductosNew);
             detalleCompra = em.merge(detalleCompra);
             if (compraOld != null && !compraOld.equals(compraNew)) {
                 compraOld.getListaDCompra().remove(detalleCompra);
@@ -125,14 +125,14 @@ public class DetalleCompraJpaController implements Serializable {
                 compraNew.getListaDCompra().add(detalleCompra);
                 compraNew = em.merge(compraNew);
             }
-            for (Producto listaProductoNewProducto : listaProductoNew) {
-                if (!listaProductoOld.contains(listaProductoNewProducto)) {
-                    DetalleCompra oldDetalleCompraOfListaProductoNewProducto = listaProductoNewProducto.getDetalleCompra();
-                    listaProductoNewProducto.setDetalleCompra(detalleCompra);
-                    listaProductoNewProducto = em.merge(listaProductoNewProducto);
-                    if (oldDetalleCompraOfListaProductoNewProducto != null && !oldDetalleCompraOfListaProductoNewProducto.equals(detalleCompra)) {
-                        oldDetalleCompraOfListaProductoNewProducto.getListaProducto().remove(listaProductoNewProducto);
-                        oldDetalleCompraOfListaProductoNewProducto = em.merge(oldDetalleCompraOfListaProductoNewProducto);
+            for (Producto listaProductosNewProducto : listaProductosNew) {
+                if (!listaProductosOld.contains(listaProductosNewProducto)) {
+                    DetalleCompra oldDetalleCompraOfListaProductosNewProducto = listaProductosNewProducto.getDetalleCompra();
+                    listaProductosNewProducto.setDetalleCompra(detalleCompra);
+                    listaProductosNewProducto = em.merge(listaProductosNewProducto);
+                    if (oldDetalleCompraOfListaProductosNewProducto != null && !oldDetalleCompraOfListaProductosNewProducto.equals(detalleCompra)) {
+                        oldDetalleCompraOfListaProductosNewProducto.getListaProductos().remove(listaProductosNewProducto);
+                        oldDetalleCompraOfListaProductosNewProducto = em.merge(oldDetalleCompraOfListaProductosNewProducto);
                     }
                 }
             }
@@ -166,12 +166,12 @@ public class DetalleCompraJpaController implements Serializable {
                 throw new NonexistentEntityException("The detalleCompra with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<Producto> listaProductoOrphanCheck = detalleCompra.getListaProducto();
-            for (Producto listaProductoOrphanCheckProducto : listaProductoOrphanCheck) {
+            List<Producto> listaProductosOrphanCheck = detalleCompra.getListaProductos();
+            for (Producto listaProductosOrphanCheckProducto : listaProductosOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This DetalleCompra (" + detalleCompra + ") cannot be destroyed since the Producto " + listaProductoOrphanCheckProducto + " in its listaProducto field has a non-nullable detalleCompra field.");
+                illegalOrphanMessages.add("This DetalleCompra (" + detalleCompra + ") cannot be destroyed since the Producto " + listaProductosOrphanCheckProducto + " in its listaProductos field has a non-nullable detalleCompra field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

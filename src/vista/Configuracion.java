@@ -5,8 +5,6 @@
  */
 package vista;
 
-
-
 /**
  *
  * @author USUARIO
@@ -36,11 +34,11 @@ public class Configuracion extends javax.swing.JFrame {
         rSLabelFecha = new rojeru_san.rsdate.RSLabelFecha();
         rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
         jPanel2 = new javax.swing.JPanel();
-        btnProvedorC = new newscomponents.RSButtonBigIcon_new();
-        BtnProductosC = new newscomponents.RSButtonBigIcon_new();
-        BtnRVentasC = new newscomponents.RSButtonBigIcon_new();
-        BtnConfiguracionC = new newscomponents.RSButtonBigIcon_new();
         rSLabelImage2 = new rojeru_san.rslabel.RSLabelImage();
+        btnRegistrar = new newscomponents.RSButtonBigIcon_new();
+        btnProveedor = new newscomponents.RSButtonBigIcon_new();
+        btnProducto = new newscomponents.RSButtonBigIcon_new();
+        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         jLabel2 = new javax.swing.JLabel();
         jLblRuc = new javax.swing.JLabel();
         jLblTelef = new javax.swing.JLabel();
@@ -87,97 +85,79 @@ public class Configuracion extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 204));
 
-        btnProvedorC.setBackground(new java.awt.Color(0, 153, 102));
-        btnProvedorC.setText("Proveedor");
-        btnProvedorC.setBgHover(new java.awt.Color(102, 102, 102));
-        btnProvedorC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
-        btnProvedorC.setSizeIcon(50.0F);
-        btnProvedorC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnProvedorCMouseClicked(evt);
-            }
-        });
-        btnProvedorC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProvedorCActionPerformed(evt);
-            }
-        });
-
-        BtnProductosC.setBackground(new java.awt.Color(0, 153, 102));
-        BtnProductosC.setText("Productos");
-        BtnProductosC.setBgHover(new java.awt.Color(102, 102, 102));
-        BtnProductosC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOP);
-        BtnProductosC.setSizeIcon(50.0F);
-        BtnProductosC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnProductosCMouseClicked(evt);
-            }
-        });
-        BtnProductosC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnProductosCActionPerformed(evt);
-            }
-        });
-
-        BtnRVentasC.setBackground(new java.awt.Color(0, 153, 102));
-        BtnRVentasC.setText("RegistroVentas");
-        BtnRVentasC.setBgHover(new java.awt.Color(102, 102, 102));
-        BtnRVentasC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
-        BtnRVentasC.setSizeIcon(50.0F);
-        BtnRVentasC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnRVentasCMouseClicked(evt);
-            }
-        });
-        BtnRVentasC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRVentasCActionPerformed(evt);
-            }
-        });
-
-        BtnConfiguracionC.setBackground(new java.awt.Color(0, 153, 102));
-        BtnConfiguracionC.setText("Configuración");
-        BtnConfiguracionC.setToolTipText("");
-        BtnConfiguracionC.setBgHover(new java.awt.Color(102, 102, 102));
-        BtnConfiguracionC.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        BtnConfiguracionC.setSizeIcon(50.0F);
-        BtnConfiguracionC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnConfiguracionCActionPerformed(evt);
-            }
-        });
-
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
+
+        btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setBgHover(new java.awt.Color(102, 102, 102));
+        btnRegistrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON_ADD);
+        btnRegistrar.setSizeIcon(50.0F);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
+        btnProveedor.setText("Proveedor");
+        btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
+        btnProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON);
+        btnProveedor.setSizeIcon(50.0F);
+        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorActionPerformed(evt);
+            }
+        });
+
+        btnProducto.setBackground(new java.awt.Color(0, 153, 102));
+        btnProducto.setText("Producto");
+        btnProducto.setBgHover(new java.awt.Color(102, 102, 102));
+        btnProducto.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_BASKET);
+        btnProducto.setSizeIcon(50.0F);
+        btnProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductoActionPerformed(evt);
+            }
+        });
+
+        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
+        btnConfiguración.setText("Configuración");
+        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
+        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
+        btnConfiguración.setSizeIcon(50.0F);
+        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguraciónActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(btnProvedorC, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnConfiguración, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnProductosC, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnRVentasC, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnConfiguracionC, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
                 .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnProvedorC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                        .addComponent(BtnProductosC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(BtnRVentasC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(BtnConfiguracionC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfiguración, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -244,26 +224,23 @@ public class Configuracion extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel1)
-                    .addGap(43, 43, 43)
-                    .addComponent(btnRegresarC, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(37, 37, 37)
-                    .addComponent(rSLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMinimizarConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(btnSalirConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnRegresarC, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(rSLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
+                        .addComponent(btnMinimizarConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSalirConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(229, 229, 229))
@@ -299,7 +276,9 @@ public class Configuracion extends javax.swing.JFrame {
                                 .addComponent(labelIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnActualizarC, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(108, 108, 108))))
+                        .addGap(108, 108, 108)))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +303,7 @@ public class Configuracion extends javax.swing.JFrame {
                                             .addComponent(btnRegresarC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
@@ -353,7 +332,7 @@ public class Configuracion extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,22 +356,6 @@ public class Configuracion extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirConfigActionPerformed
 
-    private void BtnRVentasCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRVentasCMouseClicked
-
-        // TODO add your handling code here:
-    
-    }//GEN-LAST:event_BtnRVentasCMouseClicked
-
-    private void btnProvedorCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvedorCMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnProvedorCMouseClicked
-
-    private void BtnProductosCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProductosCMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_BtnProductosCMouseClicked
-
     private void btnActualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarCActionPerformed
@@ -404,26 +367,28 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
-        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
+        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
-    private void btnProvedorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvedorCActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnProvedorCActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void BtnProductosCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductosCActionPerformed
-     
-    }//GEN-LAST:event_BtnProductosCActionPerformed
-
-    private void BtnRVentasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRVentasCActionPerformed
+    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_BtnRVentasCActionPerformed
+    }//GEN-LAST:event_btnProveedorActionPerformed
 
-    private void BtnConfiguracionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionCActionPerformed
+    private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnConfiguracionCActionPerformed
+    }//GEN-LAST:event_btnProductoActionPerformed
+
+    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
+        // TODO add your handling code here:
+        Configuracion conf = new Configuracion();
+        this.dispose();
+        conf.setVisible(true);
+        conf.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     /**
      * @param args the command line arguments
@@ -452,6 +417,8 @@ public class Configuracion extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -462,12 +429,12 @@ public class Configuracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonBigIcon_new BtnConfiguracionC;
-    private newscomponents.RSButtonBigIcon_new BtnProductosC;
-    private newscomponents.RSButtonBigIcon_new BtnRVentasC;
     private RSMaterialComponent.RSButtonMaterialRipple btnActualizarC;
+    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private RSMaterialComponent.RSButtonIconDos btnMinimizarConfig;
-    private newscomponents.RSButtonBigIcon_new btnProvedorC;
+    private newscomponents.RSButtonBigIcon_new btnProducto;
+    private newscomponents.RSButtonBigIcon_new btnProveedor;
+    private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresarC;
     private RSMaterialComponent.RSButtonIconDos btnSalirConfig;
     private javax.swing.JLabel jLabel1;
