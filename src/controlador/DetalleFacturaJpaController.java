@@ -12,8 +12,8 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.Factura;
 import modelo.Producto;
+import modelo.Factura;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -36,9 +36,6 @@ public class DetalleFacturaJpaController implements Serializable {
     }
 
     public void create(DetalleFactura detalleFactura) throws IllegalOrphanException {
-        if (detalleFactura.getListaProductos() == null) {
-            detalleFactura.setListaProductos(new ArrayList<Producto>());
-        }
         List<String> illegalOrphanMessages = null;
         Factura facturaOrphanCheck = detalleFactura.getFactura();
         if (facturaOrphanCheck != null) {
@@ -57,30 +54,24 @@ public class DetalleFacturaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Producto producto = detalleFactura.getProducto();
+            if (producto != null) {
+                producto = em.getReference(producto.getClass(), producto.getIdProducto());
+                detalleFactura.setProducto(producto);
+            }
             Factura factura = detalleFactura.getFactura();
             if (factura != null) {
                 factura = em.getReference(factura.getClass(), factura.getIdFactura());
                 detalleFactura.setFactura(factura);
             }
-            List<Producto> attachedListaProductos = new ArrayList<Producto>();
-            for (Producto listaProductosProductoToAttach : detalleFactura.getListaProductos()) {
-                listaProductosProductoToAttach = em.getReference(listaProductosProductoToAttach.getClass(), listaProductosProductoToAttach.getIdProducto());
-                attachedListaProductos.add(listaProductosProductoToAttach);
-            }
-            detalleFactura.setListaProductos(attachedListaProductos);
             em.persist(detalleFactura);
+            if (producto != null) {
+                producto.getListaDetalleFactura().add(detalleFactura);
+                producto = em.merge(producto);
+            }
             if (factura != null) {
                 factura.setDetalleF(detalleFactura);
                 factura = em.merge(factura);
-            }
-            for (Producto listaProductosProducto : detalleFactura.getListaProductos()) {
-                DetalleFactura oldDetalleFacturaOfListaProductosProducto = listaProductosProducto.getDetalleFactura();
-                listaProductosProducto.setDetalleFactura(detalleFactura);
-                listaProductosProducto = em.merge(listaProductosProducto);
-                if (oldDetalleFacturaOfListaProductosProducto != null) {
-                    oldDetalleFacturaOfListaProductosProducto.getListaProductos().remove(listaProductosProducto);
-                    oldDetalleFacturaOfListaProductosProducto = em.merge(oldDetalleFacturaOfListaProductosProducto);
-                }
             }
             em.getTransaction().commit();
         } finally {
@@ -96,10 +87,10 @@ public class DetalleFacturaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             DetalleFactura persistentDetalleFactura = em.find(DetalleFactura.class, detalleFactura.getIdDetalleFactura());
+            Producto productoOld = persistentDetalleFactura.getProducto();
+            Producto productoNew = detalleFactura.getProducto();
             Factura facturaOld = persistentDetalleFactura.getFactura();
             Factura facturaNew = detalleFactura.getFactura();
-            List<Producto> listaProductosOld = persistentDetalleFactura.getListaProductos();
-            List<Producto> listaProductosNew = detalleFactura.getListaProductos();
             List<String> illegalOrphanMessages = null;
             if (facturaNew != null && !facturaNew.equals(facturaOld)) {
                 DetalleFactura oldDetalleFOfFactura = facturaNew.getDetalleF();
@@ -110,29 +101,26 @@ public class DetalleFacturaJpaController implements Serializable {
                     illegalOrphanMessages.add("The Factura " + facturaNew + " already has an item of type DetalleFactura whose factura column cannot be null. Please make another selection for the factura field.");
                 }
             }
-            for (Producto listaProductosOldProducto : listaProductosOld) {
-                if (!listaProductosNew.contains(listaProductosOldProducto)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Producto " + listaProductosOldProducto + " since its detalleFactura field is not nullable.");
-                }
-            }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
+            }
+            if (productoNew != null) {
+                productoNew = em.getReference(productoNew.getClass(), productoNew.getIdProducto());
+                detalleFactura.setProducto(productoNew);
             }
             if (facturaNew != null) {
                 facturaNew = em.getReference(facturaNew.getClass(), facturaNew.getIdFactura());
                 detalleFactura.setFactura(facturaNew);
             }
-            List<Producto> attachedListaProductosNew = new ArrayList<Producto>();
-            for (Producto listaProductosNewProductoToAttach : listaProductosNew) {
-                listaProductosNewProductoToAttach = em.getReference(listaProductosNewProductoToAttach.getClass(), listaProductosNewProductoToAttach.getIdProducto());
-                attachedListaProductosNew.add(listaProductosNewProductoToAttach);
-            }
-            listaProductosNew = attachedListaProductosNew;
-            detalleFactura.setListaProductos(listaProductosNew);
             detalleFactura = em.merge(detalleFactura);
+            if (productoOld != null && !productoOld.equals(productoNew)) {
+                productoOld.getListaDetalleFactura().remove(detalleFactura);
+                productoOld = em.merge(productoOld);
+            }
+            if (productoNew != null && !productoNew.equals(productoOld)) {
+                productoNew.getListaDetalleFactura().add(detalleFactura);
+                productoNew = em.merge(productoNew);
+            }
             if (facturaOld != null && !facturaOld.equals(facturaNew)) {
                 facturaOld.setDetalleF(null);
                 facturaOld = em.merge(facturaOld);
@@ -140,17 +128,6 @@ public class DetalleFacturaJpaController implements Serializable {
             if (facturaNew != null && !facturaNew.equals(facturaOld)) {
                 facturaNew.setDetalleF(detalleFactura);
                 facturaNew = em.merge(facturaNew);
-            }
-            for (Producto listaProductosNewProducto : listaProductosNew) {
-                if (!listaProductosOld.contains(listaProductosNewProducto)) {
-                    DetalleFactura oldDetalleFacturaOfListaProductosNewProducto = listaProductosNewProducto.getDetalleFactura();
-                    listaProductosNewProducto.setDetalleFactura(detalleFactura);
-                    listaProductosNewProducto = em.merge(listaProductosNewProducto);
-                    if (oldDetalleFacturaOfListaProductosNewProducto != null && !oldDetalleFacturaOfListaProductosNewProducto.equals(detalleFactura)) {
-                        oldDetalleFacturaOfListaProductosNewProducto.getListaProductos().remove(listaProductosNewProducto);
-                        oldDetalleFacturaOfListaProductosNewProducto = em.merge(oldDetalleFacturaOfListaProductosNewProducto);
-                    }
-                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -169,7 +146,7 @@ public class DetalleFacturaJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -181,16 +158,10 @@ public class DetalleFacturaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The detalleFactura with id " + id + " no longer exists.", enfe);
             }
-            List<String> illegalOrphanMessages = null;
-            List<Producto> listaProductosOrphanCheck = detalleFactura.getListaProductos();
-            for (Producto listaProductosOrphanCheckProducto : listaProductosOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This DetalleFactura (" + detalleFactura + ") cannot be destroyed since the Producto " + listaProductosOrphanCheckProducto + " in its listaProductos field has a non-nullable detalleFactura field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
+            Producto producto = detalleFactura.getProducto();
+            if (producto != null) {
+                producto.getListaDetalleFactura().remove(detalleFactura);
+                producto = em.merge(producto);
             }
             Factura factura = detalleFactura.getFactura();
             if (factura != null) {

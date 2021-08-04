@@ -22,6 +22,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     public AdministrarPersonas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        mostrarTabla();
     }
 
     /**
@@ -35,6 +36,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtEmail.setText("");
         txtNombres.setText("");
         txtTelefono.setText("");
+    }
+
+    private void mostrarTabla() {
+//        pDAO.listarPersonas(tbtPersonal);
     }
 
     @SuppressWarnings("unchecked")
@@ -227,25 +232,18 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
         tbtPersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Cédula", "Nombres", "Apellidos", "Email", "Teléfono", "Dirección"
+
             }
         ));
         tbtPersonal.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        tbtPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtPersonalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtPersonal);
 
         jPanel1.add(jScrollPane1);
@@ -425,13 +423,17 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        // TODO add your handling code here:
+        txtCedula.setEditable(false);
+        pDAO.actualizarPersona(Long.MIN_VALUE, txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
+        limpiarCampos();
+        mostrarTabla();
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), true);
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
         JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
         limpiarCampos();
+        mostrarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -480,6 +482,15 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         inicioSesion.setVisible(true);
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void tbtPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtPersonalMouseClicked
+        int seleccion = tbtPersonal.getSelectedRow();
+        txtCedula.setText(tbtPersonal.getValueAt(seleccion, 0) + "");
+        txtNombres.setText(tbtPersonal.getValueAt(seleccion, 1) + "");
+        txtTelefono.setText(tbtPersonal.getValueAt(seleccion, 2) + "");
+        txtDireccion.setText(tbtPersonal.getValueAt(seleccion, 3) + "");
+        txtEmail.setText(tbtPersonal.getValueAt(seleccion, 4) + "");
+    }//GEN-LAST:event_tbtPersonalMouseClicked
 
     /**
      * @param args the command line arguments
