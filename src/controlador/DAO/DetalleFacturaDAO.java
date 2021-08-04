@@ -5,9 +5,7 @@
  */
 package controlador.DAO;
 
-import controlador.DetalleFacturaJpaController;
-import controlador.FacturaJpaController;
-import controlador.ProductoJpaController;
+
 import java.util.List;
 import static modelo.DetalleCompra_.cantidad;
 //import static modelo.DetalleCompra_.listaProducto;

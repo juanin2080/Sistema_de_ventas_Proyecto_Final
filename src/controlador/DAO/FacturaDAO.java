@@ -5,8 +5,7 @@
  */
 package controlador.DAO;
 
-import controlador.DetalleFacturaJpaController;
-import controlador.FacturaJpaController;
+
 import java.util.Date;
 import static modelo.Compra_.fecha;
 import modelo.DetalleFactura;
