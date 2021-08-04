@@ -18,9 +18,9 @@ public class ProductoDAO {
     private Producto producto = new Producto();
     private String mensaje = "";
 
-    public String insertarProducto(int codigo, String nombre, Double precio, int stock, String marca, String estado, String proveedor) {
+    public String insertarProducto(int codigo, String nombre, Double precio, int stock, String marca, Boolean estado, String proveedor) {
         try {
-            producto.setId_Producto(Long.MIN_VALUE);
+            producto.setIdProducto(Long.MIN_VALUE);
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
             producto.setPrecio(precio);

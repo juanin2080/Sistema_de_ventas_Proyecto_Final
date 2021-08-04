@@ -22,12 +22,15 @@ public class ProveedorDAO {
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Proveedor proveedor = new Proveedor();
+    private Persona persona = new Persona();
     private String mensaje = "";
 
-    public String insertarProveedor(String Empresa, String Ruc ){
+    public String insertarProveedor(String nombre, String Empresa, String Ruc ){
         try {
+            persona.setNombres(nombre);
             proveedor.setEmpresa(Empresa);
             proveedor.setRuc(Ruc);
+            controladorPersona.create(persona);
             controladorProveedor.create(proveedor);
             mensaje="Proveedor registrado con exito";
         } catch (Exception e) {

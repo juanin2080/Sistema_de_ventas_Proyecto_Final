@@ -135,21 +135,6 @@ public class Producto implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public DetalleFactura getDetalleFactura() {
-        return detalleFactura;
-    }
-
-    public void setDetalleFactura(DetalleFactura detalleFactura) {
-        this.detalleFactura = detalleFactura;
-    }
-
-    public DetalleCompra getDetalleCompra() {
-        return detalleCompra;
-    }
-
-    public void setDetalleCompra(DetalleCompra detalleCompra) {
-        this.detalleCompra = detalleCompra;
-    }
 
    
     
