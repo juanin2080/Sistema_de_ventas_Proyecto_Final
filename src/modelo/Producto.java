@@ -47,26 +47,6 @@ public class Producto implements Serializable {
     @JoinColumn(name = "idDCompra", nullable = false, referencedColumnName = "idDCompra")
     private DetalleCompra detalleCompra;
 
-    public DetalleFactura getDetalleFactura() {
-        return detalleFactura;
-    }
-
-    public void setDetalleFactura(DetalleFactura detalleFactura) {
-        this.detalleFactura = detalleFactura;
-    }
-
-    public DetalleCompra getDetalleCompra() {
-        return detalleCompra;
-    }
-
-    public void setDetalleCompra(DetalleCompra detalleCompra) {
-        this.detalleCompra = detalleCompra;
-    }
-
-     
-    
-    
-    
     public Long getId_Producto() {
         return id_Producto;
     }
@@ -131,7 +111,23 @@ public class Producto implements Serializable {
         this.proveedor = proveedor;
     }
 
-    
+    public DetalleFactura getDetalleFactura() {
+        return detalleFactura;
+    }
+
+    public void setDetalleFactura(DetalleFactura detalleFactura) {
+        this.detalleFactura = detalleFactura;
+    }
+
+    public DetalleCompra getDetalleCompra() {
+        return detalleCompra;
+    }
+
+    public void setDetalleCompra(DetalleCompra detalleCompra) {
+        this.detalleCompra = detalleCompra;
+    }
+
+   
     
 
     @Override
