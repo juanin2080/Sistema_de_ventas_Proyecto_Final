@@ -14,8 +14,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -27,35 +25,23 @@ import modelo.enums.FormaPago;
  * @author María Castillo
  */
 @Entity
-
 @Table(name = "factura")
 public class Factura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idFactura;
-    //@Column(length = 10, unique = true)
+    @Column(length = 10, unique = true)
     private String nroFactura;
     private Date fecha;
+    private boolean iva;
     private double total;
     private double subtotal;
     private String formaPago;
-    private boolean iva;
-//   private Long idPersona;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;
-    
-//
-//    public Long getIdPersona() {
-//        return idPersona;
-//    }
-//
-//    public void setIdPersona(Long idPersona) {
-//        this.idPersona = idPersona;
-//    }
-    
     public Persona getPersona() {
         return persona;
     }
