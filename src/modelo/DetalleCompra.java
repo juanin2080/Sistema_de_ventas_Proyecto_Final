@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 //import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 //import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,10 +40,26 @@ public class DetalleCompra implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
     private Compra compra;
-
+    //Lista de productos
+    //=======================================================================================
     @OneToMany(mappedBy = "DetalleCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Producto> listaProducto = new ArrayList<Producto>(); 
+    private List<Producto> listaProductos = new ArrayList<Producto>();
 
+    public List<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    //=======================================================================================
+
+    /*
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idProducto", nullable = false, referencedColumnName = "idProducto")
+    private Producto producto;
+     */
     public Long getIdDCompra() {
         return idDCompra;
     }
@@ -83,16 +100,6 @@ public class DetalleCompra implements Serializable {
         this.compra = compra;
     }
 
-    public List<Producto> getListaProducto() {
-        return listaProducto;
-    }
-
-    public void setListaProducto(List<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
-    }
-    
-   
-       
     @Override
     public int hashCode() {
         int hash = 0;

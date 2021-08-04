@@ -40,8 +40,8 @@ public class DetalleFacturaJpaController implements Serializable {
     }
 
     public void create(DetalleFactura detalleFactura) throws IllegalOrphanException {
-        if (detalleFactura.getListaProducto() == null) {
-            detalleFactura.setListaProducto(new ArrayList<Producto>());
+        if (detalleFactura.getListaProductos() == null) {
+            detalleFactura.setListaProductos(new ArrayList<Producto>());
         }
         List<String> illegalOrphanMessages = null;
         Factura facturaOrphanCheck = detalleFactura.getFactura();
@@ -66,24 +66,24 @@ public class DetalleFacturaJpaController implements Serializable {
                 factura = em.getReference(factura.getClass(), factura.getIdFactura());
                 detalleFactura.setFactura(factura);
             }
-            List<Producto> attachedListaProducto = new ArrayList<Producto>();
-            for (Producto listaProductoProductoToAttach : detalleFactura.getListaProducto()) {
-                listaProductoProductoToAttach = em.getReference(listaProductoProductoToAttach.getClass(), listaProductoProductoToAttach.getId_Producto());
-                attachedListaProducto.add(listaProductoProductoToAttach);
+            List<Producto> attachedListaProductos = new ArrayList<Producto>();
+            for (Producto listaProductosProductoToAttach : detalleFactura.getListaProductos()) {
+                listaProductosProductoToAttach = em.getReference(listaProductosProductoToAttach.getClass(), listaProductosProductoToAttach.getIdProducto());
+                attachedListaProductos.add(listaProductosProductoToAttach);
             }
-            detalleFactura.setListaProducto(attachedListaProducto);
+            detalleFactura.setListaProductos(attachedListaProductos);
             em.persist(detalleFactura);
             if (factura != null) {
                 factura.setDetalleF(detalleFactura);
                 factura = em.merge(factura);
             }
-            for (Producto listaProductoProducto : detalleFactura.getListaProducto()) {
-                DetalleFactura oldDetalleFacturaOfListaProductoProducto = listaProductoProducto.getDetalleFactura();
-                listaProductoProducto.setDetalleFactura(detalleFactura);
-                listaProductoProducto = em.merge(listaProductoProducto);
-                if (oldDetalleFacturaOfListaProductoProducto != null) {
-                    oldDetalleFacturaOfListaProductoProducto.getListaProducto().remove(listaProductoProducto);
-                    oldDetalleFacturaOfListaProductoProducto = em.merge(oldDetalleFacturaOfListaProductoProducto);
+            for (Producto listaProductosProducto : detalleFactura.getListaProductos()) {
+                DetalleFactura oldDetalleFacturaOfListaProductosProducto = listaProductosProducto.getDetalleFactura();
+                listaProductosProducto.setDetalleFactura(detalleFactura);
+                listaProductosProducto = em.merge(listaProductosProducto);
+                if (oldDetalleFacturaOfListaProductosProducto != null) {
+                    oldDetalleFacturaOfListaProductosProducto.getListaProductos().remove(listaProductosProducto);
+                    oldDetalleFacturaOfListaProductosProducto = em.merge(oldDetalleFacturaOfListaProductosProducto);
                 }
             }
             em.getTransaction().commit();
@@ -102,8 +102,8 @@ public class DetalleFacturaJpaController implements Serializable {
             DetalleFactura persistentDetalleFactura = em.find(DetalleFactura.class, detalleFactura.getIdDetalleFactura());
             Factura facturaOld = persistentDetalleFactura.getFactura();
             Factura facturaNew = detalleFactura.getFactura();
-            List<Producto> listaProductoOld = persistentDetalleFactura.getListaProducto();
-            List<Producto> listaProductoNew = detalleFactura.getListaProducto();
+            List<Producto> listaProductosOld = persistentDetalleFactura.getListaProductos();
+            List<Producto> listaProductosNew = detalleFactura.getListaProductos();
             List<String> illegalOrphanMessages = null;
             if (facturaNew != null && !facturaNew.equals(facturaOld)) {
                 DetalleFactura oldDetalleFOfFactura = facturaNew.getDetalleF();
@@ -114,12 +114,12 @@ public class DetalleFacturaJpaController implements Serializable {
                     illegalOrphanMessages.add("The Factura " + facturaNew + " already has an item of type DetalleFactura whose factura column cannot be null. Please make another selection for the factura field.");
                 }
             }
-            for (Producto listaProductoOldProducto : listaProductoOld) {
-                if (!listaProductoNew.contains(listaProductoOldProducto)) {
+            for (Producto listaProductosOldProducto : listaProductosOld) {
+                if (!listaProductosNew.contains(listaProductosOldProducto)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Producto " + listaProductoOldProducto + " since its detalleFactura field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Producto " + listaProductosOldProducto + " since its detalleFactura field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -129,13 +129,13 @@ public class DetalleFacturaJpaController implements Serializable {
                 facturaNew = em.getReference(facturaNew.getClass(), facturaNew.getIdFactura());
                 detalleFactura.setFactura(facturaNew);
             }
-            List<Producto> attachedListaProductoNew = new ArrayList<Producto>();
-            for (Producto listaProductoNewProductoToAttach : listaProductoNew) {
-                listaProductoNewProductoToAttach = em.getReference(listaProductoNewProductoToAttach.getClass(), listaProductoNewProductoToAttach.getId_Producto());
-                attachedListaProductoNew.add(listaProductoNewProductoToAttach);
+            List<Producto> attachedListaProductosNew = new ArrayList<Producto>();
+            for (Producto listaProductosNewProductoToAttach : listaProductosNew) {
+                listaProductosNewProductoToAttach = em.getReference(listaProductosNewProductoToAttach.getClass(), listaProductosNewProductoToAttach.getIdProducto());
+                attachedListaProductosNew.add(listaProductosNewProductoToAttach);
             }
-            listaProductoNew = attachedListaProductoNew;
-            detalleFactura.setListaProducto(listaProductoNew);
+            listaProductosNew = attachedListaProductosNew;
+            detalleFactura.setListaProductos(listaProductosNew);
             detalleFactura = em.merge(detalleFactura);
             if (facturaOld != null && !facturaOld.equals(facturaNew)) {
                 facturaOld.setDetalleF(null);
@@ -145,14 +145,14 @@ public class DetalleFacturaJpaController implements Serializable {
                 facturaNew.setDetalleF(detalleFactura);
                 facturaNew = em.merge(facturaNew);
             }
-            for (Producto listaProductoNewProducto : listaProductoNew) {
-                if (!listaProductoOld.contains(listaProductoNewProducto)) {
-                    DetalleFactura oldDetalleFacturaOfListaProductoNewProducto = listaProductoNewProducto.getDetalleFactura();
-                    listaProductoNewProducto.setDetalleFactura(detalleFactura);
-                    listaProductoNewProducto = em.merge(listaProductoNewProducto);
-                    if (oldDetalleFacturaOfListaProductoNewProducto != null && !oldDetalleFacturaOfListaProductoNewProducto.equals(detalleFactura)) {
-                        oldDetalleFacturaOfListaProductoNewProducto.getListaProducto().remove(listaProductoNewProducto);
-                        oldDetalleFacturaOfListaProductoNewProducto = em.merge(oldDetalleFacturaOfListaProductoNewProducto);
+            for (Producto listaProductosNewProducto : listaProductosNew) {
+                if (!listaProductosOld.contains(listaProductosNewProducto)) {
+                    DetalleFactura oldDetalleFacturaOfListaProductosNewProducto = listaProductosNewProducto.getDetalleFactura();
+                    listaProductosNewProducto.setDetalleFactura(detalleFactura);
+                    listaProductosNewProducto = em.merge(listaProductosNewProducto);
+                    if (oldDetalleFacturaOfListaProductosNewProducto != null && !oldDetalleFacturaOfListaProductosNewProducto.equals(detalleFactura)) {
+                        oldDetalleFacturaOfListaProductosNewProducto.getListaProductos().remove(listaProductosNewProducto);
+                        oldDetalleFacturaOfListaProductosNewProducto = em.merge(oldDetalleFacturaOfListaProductosNewProducto);
                     }
                 }
             }
@@ -186,12 +186,12 @@ public class DetalleFacturaJpaController implements Serializable {
                 throw new NonexistentEntityException("The detalleFactura with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<Producto> listaProductoOrphanCheck = detalleFactura.getListaProducto();
-            for (Producto listaProductoOrphanCheckProducto : listaProductoOrphanCheck) {
+            List<Producto> listaProductosOrphanCheck = detalleFactura.getListaProductos();
+            for (Producto listaProductosOrphanCheckProducto : listaProductosOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This DetalleFactura (" + detalleFactura + ") cannot be destroyed since the Producto " + listaProductoOrphanCheckProducto + " in its listaProducto field has a non-nullable detalleFactura field.");
+                illegalOrphanMessages.add("This DetalleFactura (" + detalleFactura + ") cannot be destroyed since the Producto " + listaProductosOrphanCheckProducto + " in its listaProductos field has a non-nullable detalleFactura field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

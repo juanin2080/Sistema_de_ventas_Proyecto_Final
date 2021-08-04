@@ -78,7 +78,6 @@ public class Factura extends javax.swing.JFrame {
         txttotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -502,13 +501,13 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFacturaActionPerformed
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+    private void txtCedulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaMouseClicked
+    }//GEN-LAST:event_txtCedulMouseClicked
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+    private void txtCedulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
+    }//GEN-LAST:event_txtCedulActionPerformed
 
     private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
         // TODO add your handling code here:

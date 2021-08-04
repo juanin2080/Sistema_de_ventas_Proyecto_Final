@@ -32,6 +32,7 @@ import javax.persistence.Table;
 //@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "DetalleFactura")
 public class DetalleFactura implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,23 +44,26 @@ public class DetalleFactura implements Serializable {
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFactura", nullable = false, referencedColumnName = "idFactura")
     private Factura factura;
+    //Lista de productos
+    //===================================================================================
+    @OneToMany(mappedBy = "DetalleFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Producto> listaProductos = new ArrayList<Producto>();
 
+    public List<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    //===================================================================================
     public Factura getFactura() {
         return factura;
     }
 
     public void setFactura(Factura factura) {
         this.factura = factura;
-    }
-    @OneToMany(mappedBy = "DetalleFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Producto> listaProducto = new ArrayList<Producto>();
-
-    public List<Producto> getListaProducto() {
-        return listaProducto;
-    }
-
-    public void setListaProducto(List<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
     }
 
     public Long getIdDetalleFactura() {
@@ -93,6 +97,7 @@ public class DetalleFactura implements Serializable {
     public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -117,5 +122,5 @@ public class DetalleFactura implements Serializable {
     public String toString() {
         return "modelo.DetalleFacturas[ id=" + idDetalleFactura + " ]";
     }
-    
+
 }

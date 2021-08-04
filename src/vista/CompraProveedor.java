@@ -357,7 +357,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Cantidad", "Marca", "PrecioUnitario", "PrecioTotal"
+                "Codigo", "Stock", "Marca", "PrecioUnitario"
             }
         ));
         tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));
@@ -683,6 +683,20 @@ public class CompraProveedor extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CompraProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

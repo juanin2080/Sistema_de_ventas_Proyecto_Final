@@ -13,9 +13,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -29,31 +30,22 @@ public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id_Producto;
+    private Long idProducto;
     @Column(length = 10, unique = true)
     private int codigo;
     private String nombre;
     private Double precio;
     private int stock;
     private String marca;
-    private String estado;
+    private Boolean estado;
     private String proveedor;
-    
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "idDetalleFactura", nullable = false, referencedColumnName = "idDetalleFactura")
-    private  DetalleFactura detalleFactura;
-    
+
+    //======================================================================================
+    //DetalleCompra
+    //======================================================================================
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idDCompra", nullable = false, referencedColumnName = "idDCompra")
     private DetalleCompra detalleCompra;
-
-    public DetalleFactura getDetalleFactura() {
-        return detalleFactura;
-    }
-
-    public void setDetalleFactura(DetalleFactura detalleFactura) {
-        this.detalleFactura = detalleFactura;
-    }
 
     public DetalleCompra getDetalleCompra() {
         return detalleCompra;
@@ -63,16 +55,28 @@ public class Producto implements Serializable {
         this.detalleCompra = detalleCompra;
     }
 
-     
-    
-    
-    
-    public Long getId_Producto() {
-        return id_Producto;
+    //======================================================================================
+    //DetalleFactura
+    //======================================================================================
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idDetalleFactura", nullable = false, referencedColumnName = "idDetalleFactura")
+    private DetalleFactura detalleFactura;
+
+    public DetalleFactura getDetalleFactura() {
+        return detalleFactura;
     }
 
-    public void setId_Producto(Long id_Producto) {
-        this.id_Producto = id_Producto;
+    public void setDetalleFactura(DetalleFactura detalleFactura) {
+        this.detalleFactura = detalleFactura;
+    }
+
+    //======================================================================================
+    public Long getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
     }
 
     public int getCodigo() {
@@ -115,11 +119,11 @@ public class Producto implements Serializable {
         this.marca = marca;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -131,13 +135,10 @@ public class Producto implements Serializable {
         this.proveedor = proveedor;
     }
 
-    
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id_Producto != null ? id_Producto.hashCode() : 0);
+        hash += (idProducto != null ? idProducto.hashCode() : 0);
         return hash;
     }
 
@@ -148,7 +149,7 @@ public class Producto implements Serializable {
             return false;
         }
         Producto other = (Producto) object;
-        if ((this.id_Producto == null && other.id_Producto != null) || (this.id_Producto != null && !this.id_Producto.equals(other.id_Producto))) {
+        if ((this.idProducto == null && other.idProducto != null) || (this.idProducto != null && !this.idProducto.equals(other.idProducto))) {
             return false;
         }
         return true;
@@ -156,7 +157,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Producto[ id=" + id_Producto + " ]";
+        return "modelo.Producto[ id=" + idProducto + " ]";
     }
 
 }
