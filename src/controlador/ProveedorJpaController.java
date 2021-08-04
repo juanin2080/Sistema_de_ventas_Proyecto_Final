@@ -46,7 +46,7 @@ public class ProveedorJpaController implements Serializable {
             em.getTransaction().begin();
             Rol rol = proveedor.getRol();
             if (rol != null) {
-                rol = em.merge(rol);
+                rol = em.getReference(rol.getClass(), rol.getIdRol());
                 proveedor.setRol(rol);
             }
             Cuenta cuenta = proveedor.getCuenta();
@@ -133,7 +133,7 @@ public class ProveedorJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             if (rolNew != null) {
-                rolNew = em.merge(rolNew);
+                rolNew = em.getReference(rolNew.getClass(), rolNew.getIdRol());
                 proveedor.setRol(rolNew);
             }
             if (cuentaNew != null) {

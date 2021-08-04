@@ -12,10 +12,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.DetalleFactura;
 import modelo.DetalleCompra;
+import modelo.DetalleFactura;
 import modelo.Producto;
 
 /**
@@ -24,10 +25,13 @@ import modelo.Producto;
  */
 public class ProductoJpaController implements Serializable {
 
+    public ProductoJpaController() {
+    }
+
     public ProductoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -38,24 +42,24 @@ public class ProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            DetalleFactura detalleFactura = producto.getDetalleFactura();
-            if (detalleFactura != null) {
-                detalleFactura = em.getReference(detalleFactura.getClass(), detalleFactura.getIdDetalleFactura());
-                producto.setDetalleFactura(detalleFactura);
-            }
             DetalleCompra detalleCompra = producto.getDetalleCompra();
             if (detalleCompra != null) {
                 detalleCompra = em.getReference(detalleCompra.getClass(), detalleCompra.getIdDCompra());
                 producto.setDetalleCompra(detalleCompra);
             }
-            em.persist(producto);
+            DetalleFactura detalleFactura = producto.getDetalleFactura();
             if (detalleFactura != null) {
-                detalleFactura.getListaProducto().add(producto);
-                detalleFactura = em.merge(detalleFactura);
+                detalleFactura = em.getReference(detalleFactura.getClass(), detalleFactura.getIdDetalleFactura());
+                producto.setDetalleFactura(detalleFactura);
             }
+            em.persist(producto);
             if (detalleCompra != null) {
-                detalleCompra.getListaProducto().add(producto);
+                detalleCompra.getListaProductos().add(producto);
                 detalleCompra = em.merge(detalleCompra);
+            }
+            if (detalleFactura != null) {
+                detalleFactura.getListaProductos().add(producto);
+                detalleFactura = em.merge(detalleFactura);
             }
             em.getTransaction().commit();
         } finally {
@@ -70,41 +74,41 @@ public class ProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Producto persistentProducto = em.find(Producto.class, producto.getId_Producto());
-            DetalleFactura detalleFacturaOld = persistentProducto.getDetalleFactura();
-            DetalleFactura detalleFacturaNew = producto.getDetalleFactura();
+            Producto persistentProducto = em.find(Producto.class, producto.getIdProducto());
             DetalleCompra detalleCompraOld = persistentProducto.getDetalleCompra();
             DetalleCompra detalleCompraNew = producto.getDetalleCompra();
-            if (detalleFacturaNew != null) {
-                detalleFacturaNew = em.getReference(detalleFacturaNew.getClass(), detalleFacturaNew.getIdDetalleFactura());
-                producto.setDetalleFactura(detalleFacturaNew);
-            }
+            DetalleFactura detalleFacturaOld = persistentProducto.getDetalleFactura();
+            DetalleFactura detalleFacturaNew = producto.getDetalleFactura();
             if (detalleCompraNew != null) {
                 detalleCompraNew = em.getReference(detalleCompraNew.getClass(), detalleCompraNew.getIdDCompra());
                 producto.setDetalleCompra(detalleCompraNew);
             }
+            if (detalleFacturaNew != null) {
+                detalleFacturaNew = em.getReference(detalleFacturaNew.getClass(), detalleFacturaNew.getIdDetalleFactura());
+                producto.setDetalleFactura(detalleFacturaNew);
+            }
             producto = em.merge(producto);
-            if (detalleFacturaOld != null && !detalleFacturaOld.equals(detalleFacturaNew)) {
-                detalleFacturaOld.getListaProducto().remove(producto);
-                detalleFacturaOld = em.merge(detalleFacturaOld);
-            }
-            if (detalleFacturaNew != null && !detalleFacturaNew.equals(detalleFacturaOld)) {
-                detalleFacturaNew.getListaProducto().add(producto);
-                detalleFacturaNew = em.merge(detalleFacturaNew);
-            }
             if (detalleCompraOld != null && !detalleCompraOld.equals(detalleCompraNew)) {
-                detalleCompraOld.getListaProducto().remove(producto);
+                detalleCompraOld.getListaProductos().remove(producto);
                 detalleCompraOld = em.merge(detalleCompraOld);
             }
             if (detalleCompraNew != null && !detalleCompraNew.equals(detalleCompraOld)) {
-                detalleCompraNew.getListaProducto().add(producto);
+                detalleCompraNew.getListaProductos().add(producto);
                 detalleCompraNew = em.merge(detalleCompraNew);
+            }
+            if (detalleFacturaOld != null && !detalleFacturaOld.equals(detalleFacturaNew)) {
+                detalleFacturaOld.getListaProductos().remove(producto);
+                detalleFacturaOld = em.merge(detalleFacturaOld);
+            }
+            if (detalleFacturaNew != null && !detalleFacturaNew.equals(detalleFacturaOld)) {
+                detalleFacturaNew.getListaProductos().add(producto);
+                detalleFacturaNew = em.merge(detalleFacturaNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = producto.getId_Producto();
+                Long id = producto.getIdProducto();
                 if (findProducto(id) == null) {
                     throw new NonexistentEntityException("The producto with id " + id + " no longer exists.");
                 }
@@ -125,19 +129,19 @@ public class ProductoJpaController implements Serializable {
             Producto producto;
             try {
                 producto = em.getReference(Producto.class, id);
-                producto.getId_Producto();
+                producto.getIdProducto();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
             }
-            DetalleFactura detalleFactura = producto.getDetalleFactura();
-            if (detalleFactura != null) {
-                detalleFactura.getListaProducto().remove(producto);
-                detalleFactura = em.merge(detalleFactura);
-            }
             DetalleCompra detalleCompra = producto.getDetalleCompra();
             if (detalleCompra != null) {
-                detalleCompra.getListaProducto().remove(producto);
+                detalleCompra.getListaProductos().remove(producto);
                 detalleCompra = em.merge(detalleCompra);
+            }
+            DetalleFactura detalleFactura = producto.getDetalleFactura();
+            if (detalleFactura != null) {
+                detalleFactura.getListaProductos().remove(producto);
+                detalleFactura = em.merge(detalleFactura);
             }
             em.remove(producto);
             em.getTransaction().commit();
@@ -193,5 +197,5 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }
