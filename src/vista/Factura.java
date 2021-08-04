@@ -5,6 +5,10 @@
  */
 package vista;
 
+import controlador.DAO.FacturaDAO;
+import java.util.Date;
+import rojeru_san.rsdate.RSLabelFecha;
+
 /**
  *
  * @author María Castillo
@@ -12,10 +16,14 @@ package vista;
 public class Factura extends javax.swing.JFrame {
 
     /**
-     * Creates new form Factura
+     * Creates new form Facturas
      */
+    private  FacturaDAO fac1 = new FacturaDAO(); 
     public Factura() {
         initComponents();
+        this.setTitle("Factura");
+        this.setLocationRelativeTo(null);
+        //this.setResizable(false);
     }
 
     /**
@@ -27,51 +35,47 @@ public class Factura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        rSLabelImage4 = new necesario.RSLabelImage();
-        btnFactura = new newscomponents.RSButtonBigIcon_new();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        rSLabelImage5 = new necesario.RSLabelImage();
         btnDetalleFactura = new newscomponents.RSButtonBigIcon_new();
-        txtNroFactura = new javax.swing.JTextField();
-        txtCliente = new javax.swing.JTextField();
-        txtCodProducto = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbtClientes = new RSMaterialComponent.RSTableMetro();
-        btnGuardar = new rojerusan.RSButtonHover();
+        btnFactura = new newscomponents.RSButtonBigIcon_new();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaFactura = new RSMaterialComponent.RSTableMetro();
+        btnMinimizar1 = new RSMaterialComponent.RSButtonIconDos();
+        btnSalir1 = new RSMaterialComponent.RSButtonIconDos();
+        rSLabelImage3 = new necesario.RSLabelImage();
+        rSLabelHora2 = new rojeru_san.rsdate.RSLabelHora();
+        rSLabelFecha = new rojeru_san.rsdate.RSLabelFecha();
+        jLabel25 = new javax.swing.JLabel();
+        btnRegresar = new newscomponents.RSButtonIcon_new();
+        txtFactura = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        rSLabelFecha3 = new rojeru_san.rsdate.RSLabelFecha();
+        btnBuscarCliente = new rojerusan.RSButtonHover();
+        labelIcon8 = new necesario.LabelIcon();
+        btnBuscarProducto = new rojerusan.RSButtonHover();
+        labelIcon9 = new necesario.LabelIcon();
         labelIcon5 = new necesario.LabelIcon();
-        labelIcon6 = new necesario.LabelIcon();
-        btnActualizarDatos = new rojerusan.RSButtonHover();
+        btnGuardar = new rojerusan.RSButtonHover();
         labelIcon7 = new necesario.LabelIcon();
         btnDarDeBaja = new rojerusan.RSButtonHover();
-        btnNuevoCliente = new rojerusan.RSButtonHover();
-        btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
-        btnSalir = new RSMaterialComponent.RSButtonIconDos();
+        btnNuevaCuenta = new rojerusan.RSButtonHover();
         labelIcon10 = new necesario.LabelIcon();
-        rSLabelImage2 = new necesario.RSLabelImage();
-        rSLabelHora1 = new rojeru_san.rsdate.RSLabelHora();
-        rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        labelIcon8 = new necesario.LabelIcon();
-        labelIcon9 = new necesario.LabelIcon();
-        btnBuscar1 = new rojerusan.RSButtonHover();
-        btnBuscarCliente = new rojerusan.RSButtonHover();
-        txtSubtotal = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        btnBuscarProducto = new rojerusan.RSButtonHover();
-        labelIcon11 = new necesario.LabelIcon();
-        labelIcon12 = new necesario.LabelIcon();
-        btnBuscar3 = new rojerusan.RSButtonHover();
-        jLabel22 = new javax.swing.JLabel();
+        labelIcon6 = new necesario.LabelIcon();
+        btnActualizarDatos = new rojerusan.RSButtonHover();
+        txtsubtotal = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         txtIva = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JTextField();
-        rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
-        btnRegresar1 = new newscomponents.RSButtonIcon_new();
+        jLabel12 = new javax.swing.JLabel();
+        txttotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -86,31 +90,18 @@ public class Factura extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(null);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
-        jPanel2.setAlignmentX(0.0F);
-        jPanel2.setAlignmentY(0.0F);
-        jPanel2.setLayout(null);
+        jPanel4.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel4.setAlignmentX(0.0F);
+        jPanel4.setAlignmentY(0.0F);
+        jPanel4.setLayout(null);
 
-        rSLabelImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
-        jPanel2.add(rSLabelImage4);
-        rSLabelImage4.setBounds(600, 10, 160, 70);
-
-        btnFactura.setBackground(new java.awt.Color(0, 153, 102));
-        btnFactura.setText("Factura");
-        btnFactura.setBgHover(new java.awt.Color(102, 102, 102));
-        btnFactura.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
-        btnFactura.setSizeIcon(30.0F);
-        btnFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFacturaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnFactura);
-        btnFactura.setBounds(380, 10, 100, 70);
+        rSLabelImage5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
+        jPanel4.add(rSLabelImage5);
+        rSLabelImage5.setBounds(600, 10, 160, 70);
 
         btnDetalleFactura.setBackground(new java.awt.Color(0, 153, 102));
         btnDetalleFactura.setText("Detalle Factura");
@@ -122,61 +113,26 @@ public class Factura extends javax.swing.JFrame {
                 btnDetalleFacturaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDetalleFactura);
+        jPanel4.add(btnDetalleFactura);
         btnDetalleFactura.setBounds(140, 10, 140, 70);
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 50, 1160, 90);
-
-        txtNroFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtNroFactura.setForeground(new java.awt.Color(102, 102, 102));
-        txtNroFactura.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtNroFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtNroFacturaMouseClicked(evt);
-            }
-        });
-        txtNroFactura.addActionListener(new java.awt.event.ActionListener() {
+        btnFactura.setBackground(new java.awt.Color(0, 153, 102));
+        btnFactura.setText("Factura");
+        btnFactura.setBgHover(new java.awt.Color(102, 102, 102));
+        btnFactura.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
+        btnFactura.setSizeIcon(30.0F);
+        btnFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNroFacturaActionPerformed(evt);
+                btnFacturaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNroFactura);
-        txtNroFactura.setBounds(150, 190, 170, 30);
+        jPanel4.add(btnFactura);
+        btnFactura.setBounds(400, 10, 100, 70);
 
-        txtCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCliente.setForeground(new java.awt.Color(102, 102, 102));
-        txtCliente.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtClienteMouseClicked(evt);
-            }
-        });
-        txtCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClienteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtCliente);
-        txtCliente.setBounds(150, 220, 170, 30);
+        jPanel3.add(jPanel4);
+        jPanel4.setBounds(0, 50, 1160, 90);
 
-        txtCodProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCodProducto.setForeground(new java.awt.Color(102, 102, 102));
-        txtCodProducto.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCodProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodProductoMouseClicked(evt);
-            }
-        });
-        txtCodProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodProductoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtCodProducto);
-        txtCodProducto.setBounds(150, 250, 170, 30);
-
-        tbtClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tablaFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -191,210 +147,280 @@ public class Factura extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Cantidad", "Marca", "Precio Unitario", "Precio Final"
+                "Cantidad", "Marca", "Precio Unitario", "Precio Finall"
             }
         ));
-        tbtClientes.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane1.setViewportView(tbtClientes);
+        tablaFactura.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane2.setViewportView(tablaFactura);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 320, 670, 170);
+        jPanel3.add(jScrollPane2);
+        jScrollPane2.setBounds(120, 300, 580, 220);
 
-        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(110, 600, 130, 30);
-
-        labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
-        jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(70, 600, 30, 30);
-
-        labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
-        jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(410, 600, 30, 30);
-
-        btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
-        btnActualizarDatos.setText("Actualizar datos");
-        btnActualizarDatos.setColorHover(new java.awt.Color(102, 102, 102));
-        jPanel1.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(450, 600, 180, 30);
-
-        labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(70, 650, 30, 30);
-
-        btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
-        btnDarDeBaja.setText("Dar de baja");
-        btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
-        jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(110, 650, 130, 30);
-
-        btnNuevoCliente.setBackground(new java.awt.Color(0, 102, 51));
-        btnNuevoCliente.setText("Nuevo cliente");
-        btnNuevoCliente.setColorHover(new java.awt.Color(102, 102, 102));
-        jPanel1.add(btnNuevoCliente);
-        btnNuevoCliente.setBounds(450, 650, 180, 30);
-
-        btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
-        btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
-        btnMinimizar.setBackgroundHover(new java.awt.Color(0, 102, 204));
-        btnMinimizar.setForegroundHover(new java.awt.Color(102, 102, 102));
-        btnMinimizar.setForegroundText(new java.awt.Color(102, 102, 102));
-        btnMinimizar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REMOVE);
-        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+        btnMinimizar1.setBackground(new java.awt.Color(255, 255, 255));
+        btnMinimizar1.setForeground(new java.awt.Color(102, 102, 102));
+        btnMinimizar1.setBackgroundHover(new java.awt.Color(0, 102, 204));
+        btnMinimizar1.setForegroundHover(new java.awt.Color(102, 102, 102));
+        btnMinimizar1.setForegroundText(new java.awt.Color(102, 102, 102));
+        btnMinimizar1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REMOVE);
+        btnMinimizar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinimizarActionPerformed(evt);
+                btnMinimizar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar);
-        btnMinimizar.setBounds(700, 0, 40, 40);
+        jPanel3.add(btnMinimizar1);
+        btnMinimizar1.setBounds(700, 0, 40, 40);
 
-        btnSalir.setBackground(new java.awt.Color(255, 255, 255));
-        btnSalir.setForeground(new java.awt.Color(102, 102, 102));
-        btnSalir.setBackgroundHover(new java.awt.Color(255, 0, 0));
-        btnSalir.setForegroundHover(new java.awt.Color(102, 102, 102));
-        btnSalir.setForegroundText(new java.awt.Color(102, 102, 102));
-        btnSalir.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOSE);
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir1.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir1.setForeground(new java.awt.Color(102, 102, 102));
+        btnSalir1.setBackgroundHover(new java.awt.Color(255, 0, 0));
+        btnSalir1.setForegroundHover(new java.awt.Color(102, 102, 102));
+        btnSalir1.setForegroundText(new java.awt.Color(102, 102, 102));
+        btnSalir1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLOSE);
+        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+                btnSalir1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir);
-        btnSalir.setBounds(740, 0, 40, 40);
+        jPanel3.add(btnSalir1);
+        btnSalir1.setBounds(740, 0, 40, 40);
 
-        labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
-        jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(410, 650, 30, 30);
+        rSLabelImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
+        jPanel3.add(rSLabelImage3);
+        rSLabelImage3.setBounds(10, 10, 50, 40);
 
-        rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
-        jPanel1.add(rSLabelImage2);
-        rSLabelImage2.setBounds(10, 10, 50, 40);
+        rSLabelHora2.setForeground(new java.awt.Color(102, 102, 102));
+        rSLabelHora2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel3.add(rSLabelHora2);
+        rSLabelHora2.setBounds(540, 0, 140, 40);
 
-        rSLabelHora1.setForeground(new java.awt.Color(102, 102, 102));
-        rSLabelHora1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel1.add(rSLabelHora1);
-        rSLabelHora1.setBounds(530, 0, 130, 40);
+        rSLabelFecha.setForeground(new java.awt.Color(102, 102, 102));
+        rSLabelFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel3.add(rSLabelFecha);
+        rSLabelFecha.setBounds(410, 170, 110, 30);
 
-        rSLabelFecha1.setForeground(new java.awt.Color(102, 102, 102));
-        rSLabelFecha1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(rSLabelFecha1);
-        rSLabelFecha1.setBounds(410, 190, 110, 30);
+        jLabel25.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel25.setText("ELECTROCASA");
+        jPanel3.add(jLabel25);
+        jLabel25.setBounds(70, 10, 190, 30);
 
-        jLabel23.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel23.setText("ELECTROCASA");
-        jPanel1.add(jLabel23);
-        jLabel23.setBounds(70, 10, 190, 30);
+        btnRegresar.setBackground(new java.awt.Color(0, 204, 51));
+        btnRegresar.setText("Regresar");
+        btnRegresar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REPLAY);
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnRegresar);
+        btnRegresar.setBounds(270, 10, 120, 30);
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel19.setText("Cedula Cliente:");
-        jPanel1.add(jLabel19);
-        jLabel19.setBounds(20, 230, 120, 30);
+        txtFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFactura.setForeground(new java.awt.Color(102, 102, 102));
+        txtFactura.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFacturaMouseClicked(evt);
+            }
+        });
+        txtFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFacturaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtFactura);
+        txtFactura.setBounds(170, 160, 160, 30);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel21.setText("Codigo Producto:");
-        jPanel1.add(jLabel21);
-        jLabel21.setBounds(20, 260, 150, 30);
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Fecha: ");
+        jPanel3.add(jLabel5);
+        jLabel5.setBounds(360, 170, 50, 30);
+
+        txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(102, 102, 102));
+        txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCedulaMouseClicked(evt);
+            }
+        });
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCedula);
+        txtCedula.setBounds(170, 190, 160, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Cédula Cliente:");
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(20, 190, 110, 30);
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodigoMouseClicked(evt);
+            }
+        });
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCodigo);
+        txtCodigo.setBounds(170, 220, 160, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Nro Factura:");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 190, 110, 30);
+        jLabel7.setText("Código Producto:");
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(20, 220, 130, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Ingresar los datos.");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 130, 240, 50);
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Nro Factura:");
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(20, 160, 110, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Fecha:");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(360, 190, 80, 30);
+        jLabel9.setText("Nro Factura:");
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(20, 160, 110, 30);
 
-        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-
-        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        labelIcon8.add(labelIcon9);
-        labelIcon9.setBounds(590, 180, 30, 30);
-
-        btnBuscar1.setBackground(new java.awt.Color(0, 204, 51));
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.setColorHover(new java.awt.Color(102, 102, 102));
-        labelIcon8.add(btnBuscar1);
-        btnBuscar1.setBounds(630, 180, 130, 30);
-
-        jPanel1.add(labelIcon8);
-        labelIcon8.setBounds(350, 230, 30, 20);
+        rSLabelFecha3.setForeground(new java.awt.Color(102, 102, 102));
+        rSLabelFecha3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel3.add(rSLabelFecha3);
+        rSLabelFecha3.setBounds(420, 0, 130, 40);
 
         btnBuscarCliente.setBackground(new java.awt.Color(204, 0, 255));
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.setColorHover(new java.awt.Color(102, 102, 102));
-        jPanel1.add(btnBuscarCliente);
-        btnBuscarCliente.setBounds(390, 230, 90, 20);
-
-        txtSubtotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtSubtotal.setForeground(new java.awt.Color(102, 102, 102));
-        txtSubtotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtSubtotal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtSubtotalMouseClicked(evt);
-            }
-        });
-        txtSubtotal.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSubtotalActionPerformed(evt);
+                btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(txtSubtotal);
-        txtSubtotal.setBounds(640, 510, 80, 18);
+        jPanel3.add(btnBuscarCliente);
+        btnBuscarCliente.setBounds(400, 200, 130, 20);
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel20.setText("Subtotal:");
-        jPanel1.add(jLabel20);
-        jLabel20.setBounds(580, 510, 50, 20);
+        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jPanel3.add(labelIcon8);
+        labelIcon8.setBounds(360, 200, 30, 20);
 
         btnBuscarProducto.setBackground(new java.awt.Color(204, 0, 255));
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setColorHover(new java.awt.Color(102, 102, 102));
-        jPanel1.add(btnBuscarProducto);
-        btnBuscarProducto.setBounds(390, 260, 90, 20);
+        btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProductoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuscarProducto);
+        btnBuscarProducto.setBounds(400, 230, 130, 20);
 
-        labelIcon11.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon11.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jPanel3.add(labelIcon9);
+        labelIcon9.setBounds(360, 230, 30, 20);
 
-        labelIcon12.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon12.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        labelIcon11.add(labelIcon12);
-        labelIcon12.setBounds(590, 180, 30, 30);
+        labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+        jPanel3.add(labelIcon5);
+        labelIcon5.setBounds(90, 650, 30, 30);
 
-        btnBuscar3.setBackground(new java.awt.Color(0, 204, 51));
-        btnBuscar3.setText("Buscar");
-        btnBuscar3.setColorHover(new java.awt.Color(102, 102, 102));
-        labelIcon11.add(btnBuscar3);
-        btnBuscar3.setBounds(630, 180, 130, 30);
+        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnGuardar);
+        btnGuardar.setBounds(130, 650, 130, 30);
 
-        jPanel1.add(labelIcon11);
-        labelIcon11.setBounds(350, 260, 30, 20);
+        labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
+        jPanel3.add(labelIcon7);
+        labelIcon7.setBounds(90, 700, 30, 30);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel22.setText("iva:");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(580, 540, 50, 20);
+        btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
+        btnDarDeBaja.setText("Dar de baja");
+        btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
+        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDarDeBajaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnDarDeBaja);
+        btnDarDeBaja.setBounds(130, 700, 130, 30);
+
+        btnNuevaCuenta.setBackground(new java.awt.Color(0, 102, 51));
+        btnNuevaCuenta.setText("Nueva cuenta");
+        btnNuevaCuenta.setColorHover(new java.awt.Color(102, 102, 102));
+        btnNuevaCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaCuentaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnNuevaCuenta);
+        btnNuevaCuenta.setBounds(400, 700, 180, 30);
+
+        labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        jPanel3.add(labelIcon10);
+        labelIcon10.setBounds(360, 700, 30, 30);
+
+        labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
+        jPanel3.add(labelIcon6);
+        labelIcon6.setBounds(360, 650, 30, 30);
+
+        btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
+        btnActualizarDatos.setText("Actualizar datos");
+        btnActualizarDatos.setColorHover(new java.awt.Color(102, 102, 102));
+        btnActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarDatosActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnActualizarDatos);
+        btnActualizarDatos.setBounds(400, 650, 180, 30);
+
+        txtsubtotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtsubtotal.setForeground(new java.awt.Color(102, 102, 102));
+        txtsubtotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtsubtotal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtsubtotalMouseClicked(evt);
+            }
+        });
+        txtsubtotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsubtotalActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtsubtotal);
+        txtsubtotal.setBounds(470, 530, 120, 30);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Subtotal:");
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(400, 530, 70, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Iva:");
+        jPanel3.add(jLabel11);
+        jLabel11.setBounds(400, 560, 70, 30);
 
         txtIva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtIva.setForeground(new java.awt.Color(102, 102, 102));
@@ -409,104 +435,129 @@ public class Factura extends javax.swing.JFrame {
                 txtIvaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIva);
-        txtIva.setBounds(640, 540, 80, 18);
+        jPanel3.add(txtIva);
+        txtIva.setBounds(470, 560, 120, 30);
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel24.setText("Total:");
-        jPanel1.add(jLabel24);
-        jLabel24.setBounds(580, 570, 50, 20);
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Total:");
+        jPanel3.add(jLabel12);
+        jLabel12.setBounds(400, 590, 70, 30);
 
-        txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtTotal.setForeground(new java.awt.Color(102, 102, 102));
-        txtTotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtTotal.addMouseListener(new java.awt.event.MouseAdapter() {
+        txttotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txttotal.setForeground(new java.awt.Color(102, 102, 102));
+        txttotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txttotal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTotalMouseClicked(evt);
+                txttotalMouseClicked(evt);
             }
         });
-        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+        txttotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalActionPerformed(evt);
+                txttotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTotal);
-        txtTotal.setBounds(640, 570, 80, 18);
-
-        rSLabelFecha2.setForeground(new java.awt.Color(102, 102, 102));
-        rSLabelFecha2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel1.add(rSLabelFecha2);
-        rSLabelFecha2.setBounds(390, 0, 130, 40);
-
-        btnRegresar1.setBackground(new java.awt.Color(0, 204, 51));
-        btnRegresar1.setText("Regresar");
-        btnRegresar1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.REPLAY);
-        btnRegresar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresar1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnRegresar1);
-        btnRegresar1.setBounds(250, 10, 120, 30);
+        jPanel3.add(txttotal);
+        txttotal.setBounds(470, 590, 120, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNroFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNroFacturaMouseClicked
-
-    }//GEN-LAST:event_txtNroFacturaMouseClicked
-
-    private void txtNroFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNroFacturaActionPerformed
+    private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNroFacturaActionPerformed
+    }//GEN-LAST:event_btnDetalleFacturaActionPerformed
 
-    private void txtClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtClienteMouseClicked
-
-    }//GEN-LAST:event_txtClienteMouseClicked
-
-    private void txtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteActionPerformed
+    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtClienteActionPerformed
+    }//GEN-LAST:event_btnFacturaActionPerformed
 
-    private void txtCodProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoMouseClicked
-
-    }//GEN-LAST:event_txtCodProductoMouseClicked
-
-    private void txtCodProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodProductoActionPerformed
-
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+    private void btnMinimizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizar1ActionPerformed
         this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
+    }//GEN-LAST:event_btnMinimizar1ActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_btnSalir1ActionPerformed
 
-    private void txtSubtotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSubtotalMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSubtotalMouseClicked
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
 
-    private void txtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
+
+    }//GEN-LAST:event_txtFacturaMouseClicked
+
+    private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSubtotalActionPerformed
+    }//GEN-LAST:event_txtFacturaActionPerformed
+
+    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaMouseClicked
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoMouseClicked
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarProductoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        RSLabelFecha fecha = rSLabelFecha;
+        String nroFactura =txtFactura.getText();
+        String subtotal = txtsubtotal.getText();
+        String cedulacliente = txtCedula.getText();
+        String codigoproducto = txtCodigo.getText();
+       // String formaPago = txt
+        //fac1.insertarFactura(fecha, formaPago, rootPaneCheckingEnabled, nroFactura, Double.NaN, Double.NaN);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDarDeBajaActionPerformed
+
+    private void btnNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevaCuentaActionPerformed
+
+    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+
+    private void txtsubtotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsubtotalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsubtotalMouseClicked
+
+    private void txtsubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubtotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsubtotalActionPerformed
 
     private void txtIvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIvaMouseClicked
         // TODO add your handling code here:
@@ -516,37 +567,21 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIvaActionPerformed
 
-    private void txtTotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTotalMouseClicked
+    private void txttotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txttotalMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalMouseClicked
+    }//GEN-LAST:event_txttotalMouseClicked
 
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalActionPerformed
-
-    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFacturaActionPerformed
-
-    private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDetalleFacturaActionPerformed
-
-    private void btnRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresar1ActionPerformed
-//        InicioSesion inicioSesion = new InicioSesion();
-//        this.dispose();
-//        inicioSesion.setVisible(true);
-//        inicioSesion.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnRegresar1ActionPerformed
+    }//GEN-LAST:event_txttotalActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
-
         // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
+FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
 
@@ -576,6 +611,9 @@ public class Factura extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -587,50 +625,45 @@ public class Factura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
-    private rojerusan.RSButtonHover btnBuscar1;
-    private rojerusan.RSButtonHover btnBuscar3;
     private rojerusan.RSButtonHover btnBuscarCliente;
     private rojerusan.RSButtonHover btnBuscarProducto;
     private rojerusan.RSButtonHover btnDarDeBaja;
     private newscomponents.RSButtonBigIcon_new btnDetalleFactura;
     private newscomponents.RSButtonBigIcon_new btnFactura;
     private rojerusan.RSButtonHover btnGuardar;
-    private RSMaterialComponent.RSButtonIconDos btnMinimizar;
-    private rojerusan.RSButtonHover btnNuevoCliente;
+    private RSMaterialComponent.RSButtonIconDos btnMinimizar1;
+    private rojerusan.RSButtonHover btnNuevaCuenta;
     private newscomponents.RSButtonIcon_new btnRegresar;
-    private newscomponents.RSButtonIcon_new btnRegresar1;
-    private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel4;
+    private RSMaterialComponent.RSButtonIconDos btnSalir1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane2;
     private necesario.LabelIcon labelIcon10;
-    private necesario.LabelIcon labelIcon11;
-    private necesario.LabelIcon labelIcon12;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
     private necesario.LabelIcon labelIcon7;
     private necesario.LabelIcon labelIcon8;
     private necesario.LabelIcon labelIcon9;
-    private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
-    private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
-    private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
-    private necesario.RSLabelImage rSLabelImage2;
-    private necesario.RSLabelImage rSLabelImage4;
-    private RSMaterialComponent.RSTableMetro tbtClientes;
-    private javax.swing.JTextField txtCliente;
-    private javax.swing.JTextField txtCodProducto;
+    private rojeru_san.rsdate.RSLabelFecha rSLabelFecha;
+    private rojeru_san.rsdate.RSLabelFecha rSLabelFecha3;
+    private rojeru_san.rsdate.RSLabelHora rSLabelHora2;
+    private necesario.RSLabelImage rSLabelImage3;
+    private necesario.RSLabelImage rSLabelImage5;
+    private RSMaterialComponent.RSTableMetro tablaFactura;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtFactura;
     private javax.swing.JTextField txtIva;
-    private javax.swing.JTextField txtNroFactura;
-    private javax.swing.JTextField txtSubtotal;
-    private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtsubtotal;
+    private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,7 @@ package Test;
 
 import controlador.DAO.PersonaDAO;
 
+
 /**
  *
  * @author juana
@@ -14,7 +15,10 @@ import controlador.DAO.PersonaDAO;
 public class PersonaTest {
 
     public static void main(String[] args) {
-//        PersonaDAO pDAO = new PersonaDAO();
-//        System.out.println(pDAO.insertarPersona("Juan Carlos Armijos", "1150329887", "Daniel Alvarez", "0985559155", "juanarmijos@gmail.com", true));
+        
+//     PersonaDAO pDAO = new PersonaDAO();
+//     System.out.println(pDAO.insertarPersona("Rosa perez", "1105309448", "Daniel Alvarez", "0988517478", "juanarmijos@gmail.com", true));
+//        
+
     }
 }

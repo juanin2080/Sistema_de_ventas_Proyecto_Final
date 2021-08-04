@@ -355,10 +355,10 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
         // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
+//        Configuracion conf = new Configuracion();
+//        this.dispose();
+//        conf.setVisible(true);
+//        conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     /**

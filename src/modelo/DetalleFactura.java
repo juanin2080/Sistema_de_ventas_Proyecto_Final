@@ -16,6 +16,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
@@ -27,6 +29,7 @@ import javax.persistence.Table;
  * @author Usuario
  */
 @Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "DetalleFactura")
 public class DetalleFactura implements Serializable {
     private static final long serialVersionUID = 1L;

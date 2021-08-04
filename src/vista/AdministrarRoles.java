@@ -395,10 +395,10 @@ public class AdministrarRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        this.dispose();
-        inicioSesion.setVisible(true);
-        inicioSesion.setLocationRelativeTo(null);
+//        InicioSesion inicioSesion = new InicioSesion();
+//        this.dispose();
+//        inicioSesion.setVisible(true);
+//        inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

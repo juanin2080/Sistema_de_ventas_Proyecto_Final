@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.Factura;
 
 /**
@@ -29,7 +30,11 @@ public class FacturaJpaController implements Serializable {
     public FacturaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
+
+    public FacturaJpaController() {
+    }
+    
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
