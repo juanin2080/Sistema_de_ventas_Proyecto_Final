@@ -357,7 +357,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Cantidad", "Marca", "PrecioUnitario", "PrecioTotal"
+                "Codigo", "Stock", "Marca", "PrecioUnitario"
             }
         ));
         tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));

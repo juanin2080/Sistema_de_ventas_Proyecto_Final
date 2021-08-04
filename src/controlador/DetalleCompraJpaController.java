@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.DetalleCompra;
 
 /**
@@ -26,14 +27,20 @@ import modelo.DetalleCompra;
  */
 public class DetalleCompraJpaController implements Serializable {
 
-    public DetalleCompraJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    
+    public DetalleCompraJpaController() {
     }
-    private EntityManagerFactory emf = null;
+    
+    public DetalleCompraJpaController(EntityManagerFactory emf) {
+        this.emf = emf;  
+    }
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
+
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
 
     public void create(DetalleCompra detalleCompra) {
         if (detalleCompra.getListaProducto() == null) {
