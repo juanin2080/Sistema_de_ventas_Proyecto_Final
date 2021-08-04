@@ -6,7 +6,6 @@
 package Test;
 
 import controlador.DAO.PersonaDAO;
-import controlador.DAO.ProductoDAO;
 import modelo.DetalleCompra;
 
 

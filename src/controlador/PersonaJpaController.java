@@ -12,7 +12,6 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.Rol;
 import modelo.Cuenta;
 import modelo.Factura;
 import java.util.ArrayList;
@@ -48,11 +47,6 @@ public class PersonaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Rol rol = persona.getRol();
-            if (rol != null) {
-                rol = em.getReference(rol.getClass(), rol.getIdRol());
-                persona.setRol(rol);
-            }
             Cuenta cuenta = persona.getCuenta();
             if (cuenta != null) {
                 cuenta = em.getReference(cuenta.getClass(), cuenta.getIdCuenta());
@@ -65,15 +59,6 @@ public class PersonaJpaController implements Serializable {
             }
             persona.setListaFactura(attachedListaFactura);
             em.persist(persona);
-            if (rol != null) {
-                Persona oldPersonaOfRol = rol.getPersona();
-                if (oldPersonaOfRol != null) {
-                    oldPersonaOfRol.setRol(null);
-                    oldPersonaOfRol = em.merge(oldPersonaOfRol);
-                }
-                rol.setPersona(persona);
-                rol = em.merge(rol);
-            }
             if (cuenta != null) {
                 Persona oldPersonaOfCuenta = cuenta.getPersona();
                 if (oldPersonaOfCuenta != null) {
@@ -105,20 +90,16 @@ public class PersonaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Long id = persona.getIdPersona();
+            if (findPersona(id) == null) {
+                throw new NonexistentEntityException("The persona with id " + id + " no longer exists.");
+            }
             Persona persistentPersona = em.find(Persona.class, persona.getIdPersona());
-            Rol rolOld = persistentPersona.getRol();
-            Rol rolNew = persona.getRol();
             Cuenta cuentaOld = persistentPersona.getCuenta();
             Cuenta cuentaNew = persona.getCuenta();
             List<Factura> listaFacturaOld = persistentPersona.getListaFactura();
             List<Factura> listaFacturaNew = persona.getListaFactura();
             List<String> illegalOrphanMessages = null;
-            if (rolOld != null && !rolOld.equals(rolNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Rol " + rolOld + " since its persona field is not nullable.");
-            }
             if (cuentaOld != null && !cuentaOld.equals(cuentaNew)) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
@@ -136,10 +117,6 @@ public class PersonaJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            if (rolNew != null) {
-                rolNew = em.getReference(rolNew.getClass(), rolNew.getIdRol());
-                persona.setRol(rolNew);
-            }
             if (cuentaNew != null) {
                 cuentaNew = em.getReference(cuentaNew.getClass(), cuentaNew.getIdCuenta());
                 persona.setCuenta(cuentaNew);
@@ -152,15 +129,6 @@ public class PersonaJpaController implements Serializable {
             listaFacturaNew = attachedListaFacturaNew;
             persona.setListaFactura(listaFacturaNew);
             persona = em.merge(persona);
-            if (rolNew != null && !rolNew.equals(rolOld)) {
-                Persona oldPersonaOfRol = rolNew.getPersona();
-                if (oldPersonaOfRol != null) {
-                    oldPersonaOfRol.setRol(null);
-                    oldPersonaOfRol = em.merge(oldPersonaOfRol);
-                }
-                rolNew.setPersona(persona);
-                rolNew = em.merge(rolNew);
-            }
             if (cuentaNew != null && !cuentaNew.equals(cuentaOld)) {
                 Persona oldPersonaOfCuenta = cuentaNew.getPersona();
                 if (oldPersonaOfCuenta != null) {
@@ -183,13 +151,6 @@ public class PersonaJpaController implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Long id = persona.getIdPersona();
-                if (findPersona(id) == null) {
-                    throw new NonexistentEntityException("The persona with id " + id + " no longer exists.");
-                }
-            }
             throw ex;
         } finally {
             if (em != null) {
@@ -211,13 +172,6 @@ public class PersonaJpaController implements Serializable {
                 throw new NonexistentEntityException("The persona with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Rol rolOrphanCheck = persona.getRol();
-            if (rolOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Persona (" + persona + ") cannot be destroyed since the Rol " + rolOrphanCheck + " in its rol field has a non-nullable persona field.");
-            }
             Cuenta cuentaOrphanCheck = persona.getCuenta();
             if (cuentaOrphanCheck != null) {
                 if (illegalOrphanMessages == null) {

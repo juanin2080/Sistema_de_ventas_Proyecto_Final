@@ -10,5 +10,5 @@ package modelo.enums;
  * @author juana
  */
 public enum Roles {
-    Administrador,Vendedor;
+    Administrador,Vendedor,Cliente;
 }

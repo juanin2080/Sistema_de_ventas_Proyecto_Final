@@ -40,26 +40,17 @@ public class DetalleCompra implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
     private Compra compra;
-    //Lista de productos
-    //=======================================================================================
-    @OneToMany(mappedBy = "DetalleCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Producto> listaProductos = new ArrayList<Producto>();
-
-    public List<Producto> getListaProductos() {
-        return listaProductos;
-    }
-
-    public void setListaProductos(List<Producto> listaProductos) {
-        this.listaProductos = listaProductos;
-    }
-
-    //=======================================================================================
-
-    /*
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto", nullable = false, referencedColumnName = "idProducto")
     private Producto producto;
-     */
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
     public Long getIdDCompra() {
         return idDCompra;
     }

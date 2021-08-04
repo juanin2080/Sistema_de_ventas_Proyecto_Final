@@ -44,20 +44,18 @@ public class DetalleFactura implements Serializable {
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFactura", nullable = false, referencedColumnName = "idFactura")
     private Factura factura;
-    //Lista de productos
-    //===================================================================================
-    @OneToMany(mappedBy = "DetalleFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Producto> listaProductos = new ArrayList<Producto>();
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idProducto", nullable = false, referencedColumnName = "idProducto")
+    private Producto producto;
 
-    public List<Producto> getListaProductos() {
-        return listaProductos;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setListaProductos(List<Producto> listaProductos) {
-        this.listaProductos = listaProductos;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    //===================================================================================
     public Factura getFactura() {
         return factura;
     }
