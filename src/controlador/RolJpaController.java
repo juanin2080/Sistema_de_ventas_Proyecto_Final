@@ -5,18 +5,15 @@
  */
 package controlador;
 
-import controlador.exceptions.IllegalOrphanException;
 import controlador.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.Persona;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import modelo.Rol;
 
 /**
@@ -34,35 +31,12 @@ public class RolJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Rol rol) throws IllegalOrphanException {
-        List<String> illegalOrphanMessages = null;
-        Persona personaOrphanCheck = rol.getPersona();
-        if (personaOrphanCheck != null) {
-            Rol oldRolOfPersona = personaOrphanCheck.getRol();
-            if (oldRolOfPersona != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Persona " + personaOrphanCheck + " already has an item of type Rol whose persona column cannot be null. Please make another selection for the persona field.");
-            }
-        }
-        if (illegalOrphanMessages != null) {
-            throw new IllegalOrphanException(illegalOrphanMessages);
-        }
+    public void create(Rol rol) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Persona persona = rol.getPersona();
-            if (persona != null) {
-                persona = em.getReference(persona.getClass(), persona.getIdPersona());
-                rol.setPersona(persona);
-            }
             em.persist(rol);
-            if (persona != null) {
-                persona.setRol(rol);
-                persona = em.merge(persona);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -71,40 +45,12 @@ public class RolJpaController implements Serializable {
         }
     }
 
-    public void edit(Rol rol) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Rol rol) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Rol persistentRol = em.find(Rol.class, rol.getIdRol());
-            Persona personaOld = persistentRol.getPersona();
-            Persona personaNew = rol.getPersona();
-            List<String> illegalOrphanMessages = null;
-            if (personaNew != null && !personaNew.equals(personaOld)) {
-                Rol oldRolOfPersona = personaNew.getRol();
-                if (oldRolOfPersona != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Persona " + personaNew + " already has an item of type Rol whose persona column cannot be null. Please make another selection for the persona field.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (personaNew != null) {
-                personaNew = em.getReference(personaNew.getClass(), personaNew.getIdPersona());
-                rol.setPersona(personaNew);
-            }
             rol = em.merge(rol);
-            if (personaOld != null && !personaOld.equals(personaNew)) {
-                personaOld.setRol(null);
-                personaOld = em.merge(personaOld);
-            }
-            if (personaNew != null && !personaNew.equals(personaOld)) {
-                personaNew.setRol(rol);
-                personaNew = em.merge(personaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -133,11 +79,6 @@ public class RolJpaController implements Serializable {
                 rol.getIdRol();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The rol with id " + id + " no longer exists.", enfe);
-            }
-            Persona persona = rol.getPersona();
-            if (persona != null) {
-                persona.setRol(null);
-                persona = em.merge(persona);
             }
             em.remove(rol);
             em.getTransaction().commit();

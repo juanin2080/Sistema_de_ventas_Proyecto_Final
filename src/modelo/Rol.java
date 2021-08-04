@@ -30,8 +30,7 @@ public class Rol implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRol;
     private String rol;
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
+    @OneToOne(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Persona persona;
 
     public Long getIdRol() {
@@ -48,14 +47,6 @@ public class Rol implements Serializable {
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     @Override

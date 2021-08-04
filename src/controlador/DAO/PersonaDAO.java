@@ -6,6 +6,10 @@
 package controlador.DAO;
 
 import controlador.PersonaJpaController;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.Persona;
 
 /**
@@ -18,7 +22,7 @@ public class PersonaDAO {
     private Persona persona = new Persona();
     private String mensaje = "";
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Boolean estado) {
+    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email) {
         try {
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
@@ -26,7 +30,6 @@ public class PersonaDAO {
             persona.setDireccion(direccion);
             persona.setTelefono(telefono);
             persona.setEmail(email);
-            persona.setEstado(estado);
             controladorPersona.create(persona);
             mensaje = "Persona registrada con exito";
         } catch (Exception e) {
@@ -37,7 +40,7 @@ public class PersonaDAO {
         return mensaje;
     }
 
-    public String actualizarPersona(Long id, String nombres, String cedula, String direccion, String telefono, String email, Boolean estado) {
+    public String actualizarPersona(Long id,String cedula, String nombres, String direccion, String telefono, String email) {
         try {
             persona.setIdPersona(id);
             persona.setNombres(nombres);
@@ -45,11 +48,12 @@ public class PersonaDAO {
             persona.setDireccion(direccion);
             persona.setTelefono(telefono);
             persona.setEmail(email);
-            persona.setEstado(estado);
             controladorPersona.edit(persona);
             mensaje = "Persona actualizada con exito";
+            JOptionPane.showMessageDialog(null, "Persona actualizada con exito");
         } catch (Exception e) {
-            mensaje = "No se pudo actualizar la persona ";
+            mensaje = "No se pudo actualizar la persona";
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona");
             System.out.println(e.getMessage());
         }
 
@@ -67,4 +71,22 @@ public class PersonaDAO {
         }
         return mensaje;
     }
+
+    public void listarPersonas(JTable tabla) {
+        DefaultTableModel modelo;
+        String[] titulo = {"Cédula", "Nombres", "Teléfono", "Dirección", "Email"};
+        modelo = new DefaultTableModel(null, titulo);
+        List<Persona> datos = controladorPersona.findPersonaEntities();
+        String[] datosPersona = new String[5];
+        for (Persona persona : datos) {
+            datosPersona[0] = persona.getCedula();
+            datosPersona[1] = persona.getNombres();
+            datosPersona[2] = persona.getTelefono();
+            datosPersona[3] = persona.getDireccion();
+            datosPersona[4] = persona.getEmail();
+            modelo.addRow(datosPersona);
+        }
+        tabla.setModel(modelo);
+    }
+
 }

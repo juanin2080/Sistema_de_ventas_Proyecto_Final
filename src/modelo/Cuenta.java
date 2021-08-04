@@ -30,6 +30,7 @@ public class Cuenta implements Serializable {
     private Long idCuenta;
     private String usuario;
     private String clave;
+    private Boolean estado;
 
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
@@ -59,6 +60,14 @@ public class Cuenta implements Serializable {
         this.clave = clave;
     }
 
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
     public Persona getPersona() {
         return persona;
     }
@@ -66,7 +75,6 @@ public class Cuenta implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-    
 
     @Override
     public int hashCode() {
