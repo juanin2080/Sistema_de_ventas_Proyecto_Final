@@ -5,8 +5,11 @@
  */
 package Test;
 
+import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
-import java.util.Date;
+import controlador.DAO.PersonaDAO;
+import java.util.Date;  
+import modelo.Persona;
 
 /**
  *
@@ -14,20 +17,18 @@ import java.util.Date;
  */
 public class facturaTest {
         public static void main(String[] args) {
-        
-//     PersonaDAO pDAO = new PersonaDAO();
-//     System.out.println(pDAO.insertarPersona("Rosa perez", "1105309448", "Daniel Alvarez", "0988517478", "juanarmijos@gmail.com", true));
 //        
-        FacturaDAO fac1 = new FacturaDAO();
-        Date fecha= new Date();
-    //System.out.println(fac1.actualizarFactura(Long.MIN_VALUE, fecha, "efectivo", true, "0005", Double.valueOf(0.5), Double.valueOf(10.5)));
-
-      System.out.println(fac1.insertarFactura(fecha,"efectivo", true, "2", Double.valueOf(10.5), Double.valueOf(21.5)));
+//        FacturaDAO fac1 = new FacturaDAO();
+//        Date fecha= new Date();
+//        Persona persona= new Persona();
+//        System.out.println(fac1.insertarFactura(fecha, "efectivo", true , "2", 10.00, 20.00, persona)); 
+        //---------
+        //System.out.println(fac1.insertarFactura(fecha,"efectivo", true, "2", Double.valueOf(10.00), Double.valueOf(21.00)));
 
       //  System.out.println(fac1.darDeBajaPersona(Long.MIN_VALUE));
 
 
-//        DetalleFacturaDAO detalleF = new DetalleFacturaDAO();
+//s        DetalleFacturaDAO detalleF = new DetalleFacturaDAO();
 //        System.out.println(detalleF.insertarDetalleFactura(10 , Double.valueOf(10.5), Double.valueOf(21.05)));
     }
 }

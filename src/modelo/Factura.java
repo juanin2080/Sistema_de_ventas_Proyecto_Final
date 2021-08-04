@@ -35,17 +35,18 @@ public class Factura implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFactura;
-    @Column(length = 10, unique = true)
+    //@Column(length = 10, unique = true)
     private String nroFactura;
     private Date fecha;
     private double total;
     private double subtotal;
     private String formaPago;
     private boolean iva;
-   //private Long idPersona;
+//   private Long idPersona;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;
+    
 //
 //    public Long getIdPersona() {
 //        return idPersona;

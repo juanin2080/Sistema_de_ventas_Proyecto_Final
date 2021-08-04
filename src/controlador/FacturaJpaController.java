@@ -92,7 +92,7 @@ public class FacturaJpaController implements Serializable {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("You must retain DetalleFactura " + detalleFOld + " since its factura field is not nullable.");
+                illegalOrphanMessages.add("You must retain DetalleFactura " +  detalleFOld + " since its factura field is not nullable.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
