@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.DAO.ProductoDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juana
@@ -14,6 +17,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarPersonal
      */
+    ProductoDAO pDao = new ProductoDAO();
     public AdministrarProducto() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -42,8 +46,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtStock = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtProducto = new RSMaterialComponent.RSTableMetro();
         btnGuardar = new rojerusan.RSButtonHover();
@@ -194,7 +196,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Proveedor:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 490, 80, 30);
+        jLabel7.setBounds(20, 460, 80, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
@@ -217,28 +219,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         });
         jPanel1.add(txtPrecio);
         txtPrecio.setBounds(140, 360, 220, 30);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Stock:");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(20, 400, 80, 30);
-
-        txtStock.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtStock.setForeground(new java.awt.Color(102, 102, 102));
-        txtStock.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtStock.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtStockMouseClicked(evt);
-            }
-        });
-        txtStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStockActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtStock);
-        txtStock.setBounds(140, 400, 220, 30);
 
         tbtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,17 +255,17 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(60, 560, 130, 30);
+        btnGuardar.setBounds(60, 510, 130, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(20, 560, 30, 30);
+        labelIcon5.setBounds(20, 510, 30, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(210, 560, 30, 30);
+        labelIcon6.setBounds(210, 510, 30, 30);
 
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
@@ -296,12 +276,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(250, 560, 180, 30);
+        btnActualizarDatos.setBounds(250, 510, 180, 30);
 
         labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
         jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(20, 600, 30, 30);
+        labelIcon7.setBounds(20, 550, 30, 30);
 
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
@@ -312,7 +292,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(60, 600, 130, 30);
+        btnDarDeBaja.setBounds(60, 550, 130, 30);
 
         btnNuevoProducto.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoProducto.setText("Nuevo producto");
@@ -323,7 +303,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoProducto);
-        btnNuevoProducto.setBounds(250, 600, 180, 30);
+        btnNuevoProducto.setBounds(250, 550, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -356,7 +336,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(210, 600, 30, 30);
+        labelIcon10.setBounds(210, 550, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -405,7 +385,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Marca:");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(20, 440, 80, 30);
+        jLabel8.setBounds(20, 410, 80, 30);
 
         txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtProveedor.setForeground(new java.awt.Color(102, 102, 102));
@@ -421,7 +401,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtProveedor);
-        txtProveedor.setBounds(140, 490, 220, 30);
+        txtProveedor.setBounds(140, 460, 220, 30);
 
         txtMarca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMarca.setForeground(new java.awt.Color(102, 102, 102));
@@ -437,7 +417,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtMarca);
-        txtMarca.setBounds(140, 440, 220, 30);
+        txtMarca.setBounds(140, 410, 220, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -483,15 +463,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        String mensaje = "";
+            mensaje = pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.parseDouble(txtPrecio.getText()), txtMarca.getText(),txtProveedor.getText());
+            JOptionPane.showMessageDialog(null, mensaje);
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void txtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStockActionPerformed
-
-    private void txtStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtStockMouseClicked
-
-    }//GEN-LAST:event_txtStockMouseClicked
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
@@ -624,7 +601,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
@@ -650,6 +626,5 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProveedor;
-    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

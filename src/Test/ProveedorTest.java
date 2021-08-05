@@ -13,13 +13,14 @@ import controlador.DAO.ProveedorDAO;
  * @author Usuario
  */
 public class ProveedorTest {
- public static void main(String[] args) {
-     ProveedorDAO pDAO = new ProveedorDAO();
+
+    public static void main(String[] args) {
+        ProveedorDAO pDAO = new ProveedorDAO();
 //        System.out.println(pDAO.insertarProveedor("Tía", "2313"));
         //System.out.println(pDAO.eliminar(Long.valueOf(4)));
-        
-        AdministrarProveedor pd= new AdministrarProveedor();
+
+        AdministrarProveedor pd = new AdministrarProveedor();
         pd.setVisible(true);
     }
-     
+
 }

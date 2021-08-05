@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import modelo.Rol;
@@ -22,10 +23,13 @@ import modelo.Rol;
  */
 public class RolJpaController implements Serializable {
 
+    public RolJpaController() {
+    }
+
     public RolJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -50,16 +54,14 @@ public class RolJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Long id = rol.getIdRol();
+            if (findRol(id) == null) {
+                throw new NonexistentEntityException("The rol with id " + id + " no longer exists.");
+            }
             rol = em.merge(rol);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Long id = rol.getIdRol();
-                if (findRol(id) == null) {
-                    throw new NonexistentEntityException("The rol with id " + id + " no longer exists.");
-                }
-            }
+
             throw ex;
         } finally {
             if (em != null) {
@@ -134,5 +136,5 @@ public class RolJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

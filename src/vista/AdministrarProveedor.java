@@ -577,9 +577,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 //        } else {
 //            
 //        }
-        String mensaje = "";
-            mensaje = pdao.insertarProveedor(txtNombres.getText(),txtEmpresa.getText(), txtRuc.getText());
-            JOptionPane.showMessageDialog(null, mensaje);
+//        String mensaje = "";
+//            mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), txtRuc.getText(), txtEmpresa.getText());
+//            JOptionPane.showMessageDialog(null, mensaje);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
