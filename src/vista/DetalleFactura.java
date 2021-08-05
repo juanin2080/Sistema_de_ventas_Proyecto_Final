@@ -87,6 +87,12 @@ public class DetalleFactura extends javax.swing.JFrame {
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel25 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
+        labelIcon14 = new necesario.LabelIcon();
+        btnBuscarCliente = new rojerusan.RSButtonHover();
+        jLabel8 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtFactura = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -519,7 +525,7 @@ public class DetalleFactura extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbtClientes1);
 
         jPanel3.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 220, 700, 330);
+        jScrollPane2.setBounds(30, 360, 700, 190);
 
         btnGuardar1.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar1.setText("Guardar");
@@ -590,6 +596,66 @@ public class DetalleFactura extends javax.swing.JFrame {
         });
         jPanel3.add(btnRegresar);
         btnRegresar.setBounds(270, 10, 120, 30);
+
+        labelIcon14.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jPanel3.add(labelIcon14);
+        labelIcon14.setBounds(410, 170, 30, 30);
+
+        btnBuscarCliente.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuscarCliente);
+        btnBuscarCliente.setBounds(450, 180, 90, 20);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Código Producto:");
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(70, 170, 130, 30);
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodigoMouseClicked(evt);
+            }
+        });
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCodigo);
+        txtCodigo.setBounds(220, 160, 160, 30);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Nro Factura:");
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(70, 210, 110, 30);
+
+        txtFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFactura.setForeground(new java.awt.Color(102, 102, 102));
+        txtFactura.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFacturaMouseClicked(evt);
+            }
+        });
+        txtFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFacturaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtFactura);
+        txtFactura.setBounds(220, 200, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -706,6 +772,26 @@ public class DetalleFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
 
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoMouseClicked
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFacturaMouseClicked
+
+    private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFacturaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -747,6 +833,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnBuscar;
     private rojerusan.RSButtonHover btnBuscar1;
     private rojerusan.RSButtonHover btnBuscar3;
+    private rojerusan.RSButtonHover btnBuscarCliente;
     private rojerusan.RSButtonHover btnBuscarProducto;
     private newscomponents.RSButtonBigIcon_new btnClientes;
     private rojerusan.RSButtonHover btnDarDeBaja;
@@ -761,6 +848,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private RSMaterialComponent.RSButtonIconDos btnSalir;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
     private newscomponents.RSButtonBigIcon_new btnVentas;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -770,6 +858,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -781,6 +870,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon11;
     private necesario.LabelIcon labelIcon12;
     private necesario.LabelIcon labelIcon13;
+    private necesario.LabelIcon labelIcon14;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
     private necesario.LabelIcon labelIcon7;
@@ -798,6 +888,8 @@ public class DetalleFactura extends javax.swing.JFrame {
     private RSMaterialComponent.RSTableMetro tbtClientes1;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCodProducto;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtFactura;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtNroFactura;

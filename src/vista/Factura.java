@@ -61,12 +61,16 @@ public class Factura extends javax.swing.JFrame {
         labelIcon10 = new necesario.LabelIcon();
         labelIcon6 = new necesario.LabelIcon();
         btnActualizarDatos = new rojerusan.RSButtonHover();
-        txtsubtotal = new javax.swing.JTextField();
+        txtFormaPago = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtIva = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txttotal = new javax.swing.JTextField();
+        txtnombreCliente = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtsubtotal1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -137,14 +141,14 @@ public class Factura extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Cantidad", "Marca", "Precio Unitario", "Precio Finall"
+                "Cantidad", "Marca", "Precio Unitario", "Precio Final"
             }
         ));
         tablaFactura.setBackgoundHead(new java.awt.Color(102, 0, 102));
         jScrollPane2.setViewportView(tablaFactura);
 
         jPanel3.add(jScrollPane2);
-        jScrollPane2.setBounds(120, 300, 480, 220);
+        jScrollPane2.setBounds(120, 310, 600, 220);
 
         btnMinimizar1.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar1.setForeground(new java.awt.Color(102, 102, 102));
@@ -219,7 +223,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtFactura);
-        txtFactura.setBounds(170, 160, 160, 30);
+        txtFactura.setBounds(170, 150, 160, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -241,7 +245,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCedul);
-        txtCedul.setBounds(170, 190, 160, 30);
+        txtCedul.setBounds(170, 180, 160, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
@@ -263,13 +267,13 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCodigo);
-        txtCodigo.setBounds(170, 220, 160, 30);
+        txtCodigo.setBounds(170, 250, 160, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Código Producto:");
         jPanel3.add(jLabel7);
-        jLabel7.setBounds(20, 220, 130, 30);
+        jLabel7.setBounds(20, 250, 130, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
@@ -307,12 +311,12 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnBuscarProducto);
-        btnBuscarProducto.setBounds(400, 230, 130, 20);
+        btnBuscarProducto.setBounds(400, 260, 130, 20);
 
         labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
         jPanel3.add(labelIcon9);
-        labelIcon9.setBounds(360, 220, 30, 30);
+        labelIcon9.setBounds(360, 250, 30, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
@@ -378,27 +382,27 @@ public class Factura extends javax.swing.JFrame {
         jPanel3.add(btnActualizarDatos);
         btnActualizarDatos.setBounds(400, 650, 180, 30);
 
-        txtsubtotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtsubtotal.setForeground(new java.awt.Color(102, 102, 102));
-        txtsubtotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtsubtotal.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFormaPago.setForeground(new java.awt.Color(102, 102, 102));
+        txtFormaPago.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtFormaPago.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtsubtotalMouseClicked(evt);
+                txtFormaPagoMouseClicked(evt);
             }
         });
-        txtsubtotal.addActionListener(new java.awt.event.ActionListener() {
+        txtFormaPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsubtotalActionPerformed(evt);
+                txtFormaPagoActionPerformed(evt);
             }
         });
-        jPanel3.add(txtsubtotal);
-        txtsubtotal.setBounds(470, 530, 120, 30);
+        jPanel3.add(txtFormaPago);
+        txtFormaPago.setBounds(230, 530, 120, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Subtotal:");
+        jLabel10.setText("Forma Pago:");
         jPanel3.add(jLabel10);
-        jLabel10.setBounds(400, 530, 70, 30);
+        jLabel10.setBounds(130, 530, 100, 20);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
@@ -444,6 +448,50 @@ public class Factura extends javax.swing.JFrame {
         jPanel3.add(txttotal);
         txttotal.setBounds(470, 590, 120, 30);
 
+        txtnombreCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtnombreCliente.setForeground(new java.awt.Color(102, 102, 102));
+        txtnombreCliente.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtnombreCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtnombreClienteMouseClicked(evt);
+            }
+        });
+        txtnombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreClienteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtnombreCliente);
+        txtnombreCliente.setBounds(170, 210, 160, 30);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText(" Cliente:");
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(20, 220, 110, 30);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setText("Subtotal:");
+        jPanel3.add(jLabel13);
+        jLabel13.setBounds(400, 530, 70, 30);
+
+        txtsubtotal1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtsubtotal1.setForeground(new java.awt.Color(102, 102, 102));
+        txtsubtotal1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtsubtotal1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtsubtotal1MouseClicked(evt);
+            }
+        });
+        txtsubtotal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsubtotal1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtsubtotal1);
+        txtsubtotal1.setBounds(470, 530, 120, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -452,7 +500,7 @@ public class Factura extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
         );
 
         pack();
@@ -526,13 +574,13 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
-    private void txtsubtotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsubtotalMouseClicked
+    private void txtFormaPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFormaPagoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtsubtotalMouseClicked
+    }//GEN-LAST:event_txtFormaPagoMouseClicked
 
-    private void txtsubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubtotalActionPerformed
+    private void txtFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaPagoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtsubtotalActionPerformed
+    }//GEN-LAST:event_txtFormaPagoActionPerformed
 
     private void txtIvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIvaMouseClicked
         // TODO add your handling code here:
@@ -559,6 +607,22 @@ public class Factura extends javax.swing.JFrame {
 FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
+
+    private void txtnombreClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnombreClienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreClienteMouseClicked
+
+    private void txtnombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreClienteActionPerformed
+
+    private void txtsubtotal1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsubtotal1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsubtotal1MouseClicked
+
+    private void txtsubtotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubtotal1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsubtotal1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -617,10 +681,12 @@ FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -640,8 +706,10 @@ FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     private javax.swing.JTextField txtCedul;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtFactura;
+    private javax.swing.JTextField txtFormaPago;
     private javax.swing.JTextField txtIva;
-    private javax.swing.JTextField txtsubtotal;
+    private javax.swing.JTextField txtnombreCliente;
+    private javax.swing.JTextField txtsubtotal1;
     private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }

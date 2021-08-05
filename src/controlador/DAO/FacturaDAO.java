@@ -22,7 +22,7 @@ public class FacturaDAO {
 
     private Factura factura= new Factura();
     private String mensaje = "";
-    public String insertarFactura(Date fecha,String formaPago, Boolean iva,String nroFactura,Double subtotal,  Double total,Persona persona){
+    public String insertarFactura(Date fecha,String formaPago, Boolean iva,String nroFactura,Double subtotal,  Double total, Persona idPersona){
         try{
             factura.setIdFactura(Long.MIN_VALUE);
             factura.setFecha( fecha);
@@ -31,8 +31,7 @@ public class FacturaDAO {
             factura.setSubtotal(subtotal);
             factura.setNroFactura(nroFactura);
             factura.setTotal(total);
-            factura.setPersona(persona);
-            //factura.setIdPersona(Long.MIN_VALUE);
+            factura.setPersona(idPersona);
             Controladorfactura.create(factura);
             mensaje = "Factura registrada con exito";
         }catch (Exception e){
@@ -41,7 +40,7 @@ public class FacturaDAO {
         }
         return mensaje;
     }
-    public String actualizarFactura(Long idFactura, Date fecha,String formaPago, Boolean iva,String nroFactura,Double subtotal,  Double total) {
+    public String actualizarFactura(Long idFactura, Date fecha,String formaPago, Boolean iva,String nroFactura,Double subtotal,  Double total, Persona idPersona) {
         try{
             
             factura.setIdFactura(idFactura);
@@ -51,7 +50,7 @@ public class FacturaDAO {
             factura.setSubtotal(subtotal);
             factura.setNroFactura(nroFactura);
             factura.setTotal(total);
-           // factura.setIdPersona(Long.MIN_VALUE);
+            factura.setPersona(idPersona);
             Controladorfactura.edit(factura);
             mensaje = "Actualizado exitamente";
         }catch (Exception e){

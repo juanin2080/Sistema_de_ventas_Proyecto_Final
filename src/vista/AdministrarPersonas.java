@@ -423,17 +423,17 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        txtCedula.setEditable(false);
-        pDAO.actualizarPersona(Long.MIN_VALUE, txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
-        limpiarCampos();
-        mostrarTabla();
+//        txtCedula.setEditable(false);
+//        pDAO.actualizarPersona(Long.MIN_VALUE, txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
+//        limpiarCampos();
+//        mostrarTabla();
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
-        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
-        limpiarCampos();
-        mostrarTabla();
+//        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
+//        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
+//        limpiarCampos();
+//        mostrarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
