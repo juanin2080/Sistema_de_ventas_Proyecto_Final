@@ -23,15 +23,13 @@ import modelo.Rol;
  */
 public class RolJpaController implements Serializable {
 
- 
+    public RolJpaController() {
+    }
 
     public RolJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
-
-    public RolJpaController() {
-    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();

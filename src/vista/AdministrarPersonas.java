@@ -7,9 +7,10 @@ package vista;
 
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.RolDAO;
+import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.Rol;
-import static modelo.Rol_.idRol;
 
 /**
  *
@@ -20,12 +21,16 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarPersonal
      */
+    private Rol rol = new Rol();
+    private RolDAO rDAO = new RolDAO();
     private PersonaDAO pDAO = new PersonaDAO();
 
     public AdministrarPersonas() {
         initComponents();
         this.setLocationRelativeTo(null);
         mostrarTabla();
+        llenarCbx();
+//        buscarRol();
     }
 
     /**
@@ -42,8 +47,20 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }
 
     private void mostrarTabla() {
-//        pDAO.listarPersonas(tbtPersonal);
+        pDAO.listarPersonas(tbtPersonal);
     }
+
+    public void llenarCbx() {
+        cbxRol.removeAllItems();
+        rDAO.listarComboBox(cbxRol);
+    }
+
+//    public void buscarRol() {
+//        System.out.println(cbxRol.getSelectedItem().toString());
+//        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+//        System.out.println("id rol en persona: " + rol.getIdRol());
+//        System.out.println("rol en persona: " + rol.getRol());
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -83,6 +100,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
+        jLabel20 = new javax.swing.JLabel();
+        cbxRol = new RSMaterialComponent.RSComboBoxMaterial<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -261,17 +280,17 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(60, 500, 130, 30);
+        btnGuardar.setBounds(60, 560, 130, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(20, 500, 30, 30);
+        labelIcon5.setBounds(20, 560, 30, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(210, 500, 30, 30);
+        labelIcon6.setBounds(210, 560, 30, 30);
 
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
@@ -282,12 +301,12 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(250, 500, 180, 30);
+        btnActualizarDatos.setBounds(250, 560, 180, 30);
 
         labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
         jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(20, 540, 30, 30);
+        labelIcon7.setBounds(20, 600, 30, 30);
 
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
@@ -298,7 +317,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(60, 540, 130, 30);
+        btnDarDeBaja.setBounds(60, 600, 130, 30);
 
         btnNuevoPersonal.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoPersonal.setText("Nuevo personal");
@@ -309,7 +328,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoPersonal);
-        btnNuevoPersonal.setBounds(250, 540, 180, 30);
+        btnNuevoPersonal.setBounds(250, 600, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -342,7 +361,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(210, 540, 30, 30);
+        labelIcon10.setBounds(210, 600, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -387,6 +406,18 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jPanel1.add(btnRegresar);
         btnRegresar.setBounds(270, 10, 120, 30);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel20.setText("Rol:");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(20, 490, 100, 30);
+
+        cbxRol.setForeground(new java.awt.Color(102, 102, 102));
+        cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
+        cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(cbxRol);
+        cbxRol.setBounds(140, 490, 220, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -395,7 +426,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
         );
 
         pack();
@@ -433,11 +464,11 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
-//        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), (Rol) idRol);
-//        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
-//        limpiarCampos();
-//        mostrarTabla();
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(),rol);
+        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
+        limpiarCampos();
+        mostrarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -554,9 +585,11 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnNuevoPersonal;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private RSMaterialComponent.RSComboBoxMaterial<Rol> cbxRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;

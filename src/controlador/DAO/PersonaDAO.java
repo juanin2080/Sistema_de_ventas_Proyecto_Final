@@ -7,11 +7,12 @@ package controlador.DAO;
 
 import controlador.PersonaJpaController;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Persona;
-import modelo.Rol;
+import modelo.*;
 
 /**
  *
