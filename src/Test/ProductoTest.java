@@ -15,9 +15,10 @@ import vista.AdministrarProducto;
 public class ProductoTest {
 
     public static void main(String[] args) {
-//        AdministrarProducto vs= new AdministrarProducto();
-//        vs.setVisible(true);
-        ProductoDAO pdao = new ProductoDAO();
-        System.out.println(pdao.dardeBaja(Long.valueOf(1),13, "gaseosa", Double.valueOf(5.5), "Pepsi", "Jose"));
+        AdministrarProducto vs = new AdministrarProducto();
+        vs.setVisible(true);
+//        ProductoDAO pdao = new ProductoDAO();
+//        System.out.println(pdao.insertarProducto(13, "gaseosa", Double.valueOf(5.5), "Pepsi", "Jose"));
+//        pdao.editar(Long.MIN_VALUE, 0, "asd", Double.valueOf(0.5), "asd", "asd");
     }
 }
