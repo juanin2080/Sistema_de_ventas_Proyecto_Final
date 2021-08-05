@@ -355,7 +355,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="labelIcon8" min="-2" pref="30" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="bntBuscarCedulaCP" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <Component id="btnBuscarCedulaCP1" min="-2" pref="82" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtProveedorCP" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -374,44 +374,39 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="labelIcon5" min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnGuardarCP" min="-2" pref="130" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="372" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="lblFormaPago" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtFormaPagoCP" min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                              <Component id="lblFormaPago" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtFormaPagoCP" min="-2" pref="74" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
                               <Component id="jlblSubtotal" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txtSubtotalCP" min="-2" pref="61" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jlblIva" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="checkBoxIVACP" min="-2" pref="61" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="jlblTotalPago" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="labelIcon5" min="-2" pref="30" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnGuardarCP" min="-2" pref="130" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="txtTotalPagarCP" min="-2" pref="61" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jlblIva" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="checkBoxIVACP" min="-2" pref="61" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jlblTotalPago" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtTotalPagarCP" min="-2" pref="61" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="bntCalcularIva" min="-2" pref="93" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -429,10 +424,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnBuscarCedulaCP1" min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="lblCedula" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="txtCedulaCP" min="-2" max="-2" attributes="0"/>
                           <Component id="labelIcon8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="bntBuscarCedulaCP" min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtProveedorCP" min="-2" max="-2" attributes="0"/>
@@ -451,23 +446,37 @@
                       <Component id="jScrollPane1" min="-2" pref="183" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblFormaPago" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtFormaPagoCP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtSubtotalCP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlblSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="checkBoxIVACP" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="jlblIva" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblFormaPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtFormaPagoCP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="txtSubtotalCP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jlblSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="checkBoxIVACP" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
+                                                  <Component id="jlblIva" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              <Component id="bntCalcularIva" min="-2" pref="24" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtTotalPagarCP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlblTotalPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtTotalPagarCP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlblTotalPago" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                              <EmptySpace pref="24" max="32767" attributes="0"/>
                               <Component id="btnGuardarCP" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -585,18 +594,18 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="rojerusan.RSButtonHover" name="bntBuscarCedulaCP">
+            <Component class="rojerusan.RSButtonHover" name="bntCalcularIva">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="0" red="cc" type="rgb"/>
+                  <Color blue="ff" green="99" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="text" type="java.lang.String" value="Calcular"/>
                 <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntBuscarCedulaCPActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntCalcularIvaActionPerformed"/>
               </Events>
             </Component>
             <Component class="rojerusan.RSButtonHover" name="btnBuscarCodProductoCP">
@@ -809,6 +818,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTotalPagarCP">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalPagarCPActionPerformed"/>
+              </Events>
             </Component>
             <Container class="necesario.LabelIcon" name="labelIcon8">
               <Properties>
@@ -934,8 +946,25 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="checkBoxIVACP">
               <Properties>
-                <Property name="text" type="java.lang.String" value="12%"/>
+                <Property name="text" type="java.lang.String" value="14%"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxIVACPActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="rojerusan.RSButtonHover" name="btnBuscarCedulaCP1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="0" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarCedulaCP1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

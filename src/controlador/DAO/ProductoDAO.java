@@ -6,6 +6,11 @@
 package controlador.DAO;
 
 import controlador.ProductoJpaController;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 
 /**
@@ -43,6 +48,26 @@ public class ProductoDAO {
     public String dardeBaja(){
         return null;
     }
-    
-    
+    public void listarProducto(JTable tabla) {
+        DefaultTableModel model ;
+
+        String[] titulo = {"CÓDIGO","NOMBRE","PRECIO","STOCK","MARCA","PROVEEDOR"};
+        model= new DefaultTableModel(null, titulo);
+
+        List<Producto> datos = controladorProducto.findProductoEntities();
+
+        String[] listarProducto = new String[6];
+
+        for (Producto product : datos) {
+            listarProducto[0] = product.getCodigo() + "";
+            listarProducto[1] = product.getNombre();
+            listarProducto[2] = product.getPrecio() + "";
+            listarProducto[3] = product.getStock() + "";
+            listarProducto[4] = product.getMarca();
+            listarProducto[5] = product.getProveedor();
+            model.addRow(listarProducto);
+        }
+        tabla.setModel(model);
+    }
+ 
 }

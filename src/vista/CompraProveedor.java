@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.DAO.CompraDAO;
+import controlador.DAO.ProductoDAO;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -16,9 +17,14 @@ import javax.swing.JOptionPane;
 public class CompraProveedor extends javax.swing.JFrame {
 
     private CompraDAO cdao = new CompraDAO();
+    private ProductoDAO pdao = new ProductoDAO();
     Date fecha = new Date();
+    String subtotal = "";
     public CompraProveedor() {
         initComponents();
+        mostrarTabla("");
+        subtotal = String.valueOf(cdao.calcularSubtotal()) ;
+        txtSubtotalCP.setText(subtotal);
     }
 
     /**
@@ -50,7 +56,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        bntBuscarCedulaCP = new rojerusan.RSButtonHover();
+        bntCalcularIva = new rojerusan.RSButtonHover();
         btnBuscarCodProductoCP = new rojerusan.RSButtonHover();
         txtCedulaCP = new javax.swing.JTextField();
         txtProveedorCP = new javax.swing.JTextField();
@@ -77,6 +83,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblFormaPago = new javax.swing.JLabel();
         txtFormaPagoCP = new javax.swing.JTextField();
         checkBoxIVACP = new javax.swing.JCheckBox();
+        btnBuscarCedulaCP1 = new rojerusan.RSButtonHover();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -274,12 +281,12 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bntBuscarCedulaCP.setBackground(new java.awt.Color(204, 0, 255));
-        bntBuscarCedulaCP.setText("Buscar");
-        bntBuscarCedulaCP.setColorHover(new java.awt.Color(102, 102, 102));
-        bntBuscarCedulaCP.addActionListener(new java.awt.event.ActionListener() {
+        bntCalcularIva.setBackground(new java.awt.Color(102, 153, 255));
+        bntCalcularIva.setText("Calcular");
+        bntCalcularIva.setColorHover(new java.awt.Color(102, 102, 102));
+        bntCalcularIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntBuscarCedulaCPActionPerformed(evt);
+                bntCalcularIvaActionPerformed(evt);
             }
         });
 
@@ -391,6 +398,12 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
 
+        txtTotalPagarCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalPagarCPActionPerformed(evt);
+            }
+        });
+
         labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
 
@@ -436,7 +449,21 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
 
-        checkBoxIVACP.setText("12%");
+        checkBoxIVACP.setText("14%");
+        checkBoxIVACP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxIVACPActionPerformed(evt);
+            }
+        });
+
+        btnBuscarCedulaCP1.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarCedulaCP1.setText("Buscar");
+        btnBuscarCedulaCP1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarCedulaCP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCedulaCP1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -466,7 +493,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnBuscarCedulaCP1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtnroCompraCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -478,35 +505,34 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(372, 372, 372))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(lblFormaPago)
+                .addGap(18, 18, 18)
+                .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(lblFormaPago)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
                         .addComponent(jlblSubtotal)
                         .addGap(18, 18, 18)
                         .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jlblIva)
-                                .addGap(18, 18, 18)
-                                .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jlblTotalPago)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(116, 116, 116)))
-                                .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(195, 195, 195))
+                        .addComponent(jlblIva)
+                        .addGap(18, 18, 18)
+                        .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jlblTotalPago)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bntCalcularIva, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,10 +546,10 @@ public class CompraProveedor extends javax.swing.JFrame {
                     .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscarCedulaCP1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -538,20 +564,28 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFormaPago)
-                            .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblSubtotal))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblIva))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblTotalPago))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblFormaPago)
+                                .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlblSubtotal))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlblIva)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(bntCalcularIva, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlblTotalPago))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -593,7 +627,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -602,7 +636,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
@@ -618,12 +652,13 @@ public class CompraProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void bntBuscarCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bntBuscarCedulaCPActionPerformed
+    private void bntCalcularIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCalcularIvaActionPerformed
+        calcularIva();
+        
+    }//GEN-LAST:event_bntCalcularIvaActionPerformed
 
     private void btnBuscarCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoCPActionPerformed
-        // TODO add your handling code here:
+        mostrarTabla(txtCodProductoCP.getText());
     }//GEN-LAST:event_btnBuscarCodProductoCPActionPerformed
 
     private void txtCedulaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaCPMouseClicked
@@ -652,23 +687,23 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
         String nroCompra = txtnroCompraCP.getText();
-        boolean iva = checkBoxIVACP.isSelected() ;
+        boolean iva = checkBoxIVACP.isSelected();
         String fPago = txtFormaPagoCP.getText();
-        double subtotal = Double.parseDouble(txtSubtotalCP.getText()) ;
-        double total = Double.parseDouble(txtTotalPagarCP.getText()) ;            
+        double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+        double total = Double.parseDouble(txtTotalPagarCP.getText());
         cdao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total);
     }//GEN-LAST:event_btnGuardarCPActionPerformed
-    private void limiar(){
+    private void limiar() {
         txtnroCompraCP.setText("");
         //checkBoxIVA.setSelected(rootPaneCheckingEnabled);
         txtFormaPagoCP.setText("");
         txtSubtotalCP.setText("");
-        txtTotalPagarCP.setText("");           
+        txtTotalPagarCP.setText("");
     }
-    
-    
+
+
     private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
-        // TODO add your handling code here:
+         txtSubtotalCP.setEnabled(false);
     }//GEN-LAST:event_txtSubtotalCPActionPerformed
 
     private void txtnroCompraCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroCompraCPMouseClicked
@@ -680,7 +715,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnroCompraCPActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);       
+        FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -690,6 +725,44 @@ public class CompraProveedor extends javax.swing.JFrame {
     private void txtFormaPagoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaPagoCPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFormaPagoCPActionPerformed
+
+    private void txtTotalPagarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarCPActionPerformed
+            
+    }//GEN-LAST:event_txtTotalPagarCPActionPerformed
+
+    private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkBoxIVACPActionPerformed
+
+    private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarCedulaCP1ActionPerformed
+
+    private void calcularIva() {
+        double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+        boolean iva = checkBoxIVACP.isSelected();
+        double total;
+        double totaliva;
+        double ivaT;
+        double resta;
+        if (iva == true) {
+            ivaT = 1.14;
+            totaliva = subtotal / ivaT;
+            resta = subtotal - totaliva;
+            total = subtotal + resta;
+            double roundDbl = Math.round(total * 100.0) / 100.0;
+            txtTotalPagarCP.setText(String.valueOf(roundDbl));
+
+        } else {
+            total = subtotal;
+            txtTotalPagarCP.setText(String.valueOf(total));
+        }
+    }
+
+    private void mostrarTabla(String codigo) {
+        cdao.listarProducto(tblProductoCP, codigo);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -742,7 +815,8 @@ public class CompraProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSButtonHover bntBuscarCedulaCP;
+    private rojerusan.RSButtonHover bntCalcularIva;
+    private rojerusan.RSButtonHover btnBuscarCedulaCP1;
     private rojerusan.RSButtonHover btnBuscarCodProductoCP;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnGuardarCP;

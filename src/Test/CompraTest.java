@@ -7,6 +7,7 @@ package Test;
 
 import controlador.DAO.CompraDAO;
 import java.util.Date;
+import vista.CompraProveedor;
 
 /**
  *
@@ -22,6 +23,8 @@ public class CompraTest {
 //         System.out.println(cdao.eliminarCompra(Long.valueOf(2)));
 //         System.out.println(cdao.eliminarCompra(Long.valueOf(3)));
 //         System.out.println(cdao.eliminarCompra(Long.valueOf(4)));
+    CompraProveedor cp = new CompraProveedor();
+    cp.setVisible(true);
     }
       
 }
