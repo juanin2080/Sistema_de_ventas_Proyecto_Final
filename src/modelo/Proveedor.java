@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class Proveedor extends Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     private String ruc;
     private String empresa;
     

@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.Proveedor;
+import modelo.Rol;
 
 /**
  *
@@ -26,10 +28,13 @@ import modelo.Proveedor;
  */
 public class ProveedorJpaController implements Serializable {
 
+    public ProveedorJpaController() {
+    }
+
     public ProveedorJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -86,70 +91,94 @@ public class ProveedorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Proveedor persistentProveedor = em.find(Proveedor.class, proveedor.getIdPersona());
-            Cuenta cuentaOld = persistentProveedor.getCuenta();
-            Cuenta cuentaNew = proveedor.getCuenta();
-            List<Factura> listaFacturaOld = persistentProveedor.getListaFactura();
-            List<Factura> listaFacturaNew = proveedor.getListaFactura();
-            List<String> illegalOrphanMessages = null;
-            if (cuentaOld != null && !cuentaOld.equals(cuentaNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Cuenta " + cuentaOld + " since its persona field is not nullable.");
-            }
-            for (Factura listaFacturaOldFactura : listaFacturaOld) {
-                if (!listaFacturaNew.contains(listaFacturaOldFactura)) {
+            Long id = proveedor.getIdPersona();
+            if (findProveedor(id) == null) {
+                throw new NonexistentEntityException("The proveedor with id " + id + " no longer exists.");
+            } else {
+
+                Proveedor persistentProveedor = em.find(Proveedor.class, proveedor.getIdPersona());
+                Rol rolOld = persistentProveedor.getRol();
+                Rol rolNew = proveedor.getRol();
+                Cuenta cuentaOld = persistentProveedor.getCuenta();
+                Cuenta cuentaNew = proveedor.getCuenta();
+                List<Factura> listaFacturaOld = persistentProveedor.getListaFactura();
+                List<Factura> listaFacturaNew = proveedor.getListaFactura();
+                List<String> illegalOrphanMessages = null;
+                if (rolOld != null && !rolOld.equals(rolNew)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Factura " + listaFacturaOldFactura + " since its persona field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Rol " + rolOld + " since its persona field is not nullable.");
                 }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (cuentaNew != null) {
-                cuentaNew = em.getReference(cuentaNew.getClass(), cuentaNew.getIdCuenta());
-                proveedor.setCuenta(cuentaNew);
-            }
-            List<Factura> attachedListaFacturaNew = new ArrayList<Factura>();
-            for (Factura listaFacturaNewFacturaToAttach : listaFacturaNew) {
-                listaFacturaNewFacturaToAttach = em.getReference(listaFacturaNewFacturaToAttach.getClass(), listaFacturaNewFacturaToAttach.getIdFactura());
-                attachedListaFacturaNew.add(listaFacturaNewFacturaToAttach);
-            }
-            listaFacturaNew = attachedListaFacturaNew;
-            proveedor.setListaFactura(listaFacturaNew);
-            proveedor = em.merge(proveedor);
-            if (cuentaNew != null && !cuentaNew.equals(cuentaOld)) {
-                modelo.Persona oldPersonaOfCuenta = cuentaNew.getPersona();
-                if (oldPersonaOfCuenta != null) {
-                    oldPersonaOfCuenta.setCuenta(null);
-                    oldPersonaOfCuenta = em.merge(oldPersonaOfCuenta);
+                if (cuentaOld != null && !cuentaOld.equals(cuentaNew)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Cuenta " + cuentaOld + " since its persona field is not nullable.");
                 }
-                cuentaNew.setPersona(proveedor);
-                cuentaNew = em.merge(cuentaNew);
-            }
-            for (Factura listaFacturaNewFactura : listaFacturaNew) {
-                if (!listaFacturaOld.contains(listaFacturaNewFactura)) {
-                    Proveedor oldPersonaOfListaFacturaNewFactura = (Proveedor) listaFacturaNewFactura.getPersona();
-                    listaFacturaNewFactura.setPersona(proveedor);
-                    listaFacturaNewFactura = em.merge(listaFacturaNewFactura);
-                    if (oldPersonaOfListaFacturaNewFactura != null && !oldPersonaOfListaFacturaNewFactura.equals(proveedor)) {
-                        oldPersonaOfListaFacturaNewFactura.getListaFactura().remove(listaFacturaNewFactura);
-                        oldPersonaOfListaFacturaNewFactura = em.merge(oldPersonaOfListaFacturaNewFactura);
+                for (Factura listaFacturaOldFactura : listaFacturaOld) {
+                    if (!listaFacturaNew.contains(listaFacturaOldFactura)) {
+                        if (illegalOrphanMessages == null) {
+                            illegalOrphanMessages = new ArrayList<String>();
+                        }
+                        illegalOrphanMessages.add("You must retain Factura " + listaFacturaOldFactura + " since its persona field is not nullable.");
                     }
                 }
-            }
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Long id = proveedor.getIdPersona();
-                if (findProveedor(id) == null) {
-                    throw new NonexistentEntityException("The proveedor with id " + id + " no longer exists.");
+                if (illegalOrphanMessages != null) {
+                    throw new IllegalOrphanException(illegalOrphanMessages);
                 }
+                if (rolNew != null) {
+                    rolNew = em.merge(rolNew);
+                    proveedor.setRol(rolNew);
+                }
+                if (cuentaNew != null) {
+                    cuentaNew = em.getReference(cuentaNew.getClass(), cuentaNew.getIdCuenta());
+                    proveedor.setCuenta(cuentaNew);
+                }
+                List<Factura> attachedListaFacturaNew = new ArrayList<Factura>();
+                for (Factura listaFacturaNewFacturaToAttach : listaFacturaNew) {
+                    listaFacturaNewFacturaToAttach = em.getReference(listaFacturaNewFacturaToAttach.getClass(), listaFacturaNewFacturaToAttach.getIdFactura());
+                    attachedListaFacturaNew.add(listaFacturaNewFacturaToAttach);
+                }
+                listaFacturaNew = attachedListaFacturaNew;
+                proveedor.setListaFactura(listaFacturaNew);
+                proveedor = em.merge(proveedor);
+                if (rolNew != null && !rolNew.equals(rolOld)) {
+                    modelo.Persona oldPersonaOfRol = rolNew.getPersona();
+                    if (oldPersonaOfRol != null) {
+                        oldPersonaOfRol.setRol(null);
+                        oldPersonaOfRol = em.merge(oldPersonaOfRol);
+                    }
+                    rolNew.setPersona(proveedor);
+                    rolNew = em.merge(rolNew);
+                }
+                if (cuentaNew != null && !cuentaNew.equals(cuentaOld)) {
+                    modelo.Persona oldPersonaOfCuenta = cuentaNew.getPersona();
+                    if (oldPersonaOfCuenta != null) {
+                        oldPersonaOfCuenta.setCuenta(null);
+                        oldPersonaOfCuenta = em.merge(oldPersonaOfCuenta);
+                    }
+                    cuentaNew.setPersona(proveedor);
+                    cuentaNew = em.merge(cuentaNew);
+                }
+                for (Factura listaFacturaNewFactura : listaFacturaNew) {
+                    if (!listaFacturaOld.contains(listaFacturaNewFactura)) {
+                        Proveedor oldPersonaOfListaFacturaNewFactura = (Proveedor) listaFacturaNewFactura.getPersona();
+                        listaFacturaNewFactura.setPersona(proveedor);
+                        listaFacturaNewFactura = em.merge(listaFacturaNewFactura);
+                        if (oldPersonaOfListaFacturaNewFactura != null && !oldPersonaOfListaFacturaNewFactura.equals(proveedor)) {
+                            oldPersonaOfListaFacturaNewFactura.getListaFactura().remove(listaFacturaNewFactura);
+                            oldPersonaOfListaFacturaNewFactura = em.merge(oldPersonaOfListaFacturaNewFactura);
+                        }
+                    }
+                }
+                em.getTransaction().commit();
             }
+        } catch (Exception ex) {
+//            String msg = ex.getLocalizedMessage();
+//            if (msg == null || msg.length() == 0) {
+//                
+//            }
             throw ex;
         } finally {
             if (em != null) {
@@ -242,5 +271,5 @@ public class ProveedorJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

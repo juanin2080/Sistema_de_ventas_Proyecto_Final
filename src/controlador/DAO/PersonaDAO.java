@@ -11,18 +11,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Persona;
+import modelo.Rol;
 
 /**
  *
  * @author juana
  */
 public class PersonaDAO {
-
-    private PersonaJpaController controladorPersona = new PersonaJpaController();
+private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
     private String mensaje = "";
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email) {
+    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol) {
         try {
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
@@ -30,6 +30,7 @@ public class PersonaDAO {
             persona.setDireccion(direccion);
             persona.setTelefono(telefono);
             persona.setEmail(email);
+            persona.setRol(idRol);
             controladorPersona.create(persona);
             mensaje = "Persona registrada con exito";
         } catch (Exception e) {
@@ -40,7 +41,7 @@ public class PersonaDAO {
         return mensaje;
     }
 
-    public String actualizarPersona(Long id,String cedula, String nombres, String direccion, String telefono, String email) {
+    public String actualizarPersona(Long id, String cedula, String nombres, String direccion, String telefono, String email) {
         try {
             persona.setIdPersona(id);
             persona.setNombres(nombres);
