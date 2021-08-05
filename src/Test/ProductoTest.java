@@ -5,6 +5,7 @@
  */
 package Test;
 
+import controlador.DAO.ProductoDAO;
 import vista.AdministrarProducto;
 
 /**
@@ -12,8 +13,11 @@ import vista.AdministrarProducto;
  * @author Usuario
  */
 public class ProductoTest {
-      public static void main(String[] args) {
-        AdministrarProducto vs= new AdministrarProducto();
-        vs.setVisible(true);
+
+    public static void main(String[] args) {
+//        AdministrarProducto vs= new AdministrarProducto();
+//        vs.setVisible(true);
+        ProductoDAO pdao = new ProductoDAO();
+        System.out.println(pdao.dardeBaja(Long.valueOf(1),13, "gaseosa", Double.valueOf(5.5), "Pepsi", "Jose"));
     }
 }

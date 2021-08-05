@@ -162,7 +162,7 @@ public class ProductoJpaController implements Serializable {
             if (msg == null || msg.length() == 0) {
                 Long id = producto.getIdProducto();
                 if (findProducto(id) == null) {
-                    throw new NonexistentEntityException("The producto with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("El producto con el id: " + id + " no existe.");
                 }
             }
             throw ex;
