@@ -23,8 +23,7 @@ import modelo.Rol;
  */
 public class RolJpaController implements Serializable {
 
-    public RolJpaController() {
-    }
+ 
 
     public RolJpaController(EntityManagerFactory emf) {
         this.emf = emf;

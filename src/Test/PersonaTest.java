@@ -6,12 +6,6 @@
 package Test;
 
 import controlador.DAO.PersonaDAO;
-import controlador.DAO.RolDAO;
-import modelo.DetalleCompra;
-import static modelo.Persona_.rol;
-import modelo.Rol;
-
-
 import controlador.DAO.ProveedorDAO;
 import controlador.DAO.RolDAO;
 import modelo.DetalleCompra;
@@ -27,7 +21,7 @@ public class PersonaTest {
     public static void main(String[] args) {
        PersonaDAO pDAO = new PersonaDAO();
         RolDAO rDAO = new RolDAO();
-//        rDAO.insertarRol("Administrador");
+        rDAO.insertarRol("Administrador");
         Rol rol = new Rol();
         rol.setIdRol(Long.valueOf(1));
         rol.setRol("Administrador");
@@ -56,9 +50,9 @@ public class PersonaTest {
 
         PersonaDAO pDao = new PersonaDAO();
         ProveedorDAO proDAO = new ProveedorDAO();
-        
-        RolDAO rDAO = new RolDAO();
-        Rol rol = new Rol();
+//        
+//        RolDAO rDAO = new RolDAO();
+//        Rol rol = new Rol();
         rol.setIdRol(Long.valueOf(1));
         rol.setRol("Administrador");
         

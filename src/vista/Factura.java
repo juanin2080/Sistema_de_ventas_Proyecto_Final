@@ -5,19 +5,46 @@
  */
 package vista;
 
+import controlador.DAO.FacturaDAO;
+import controlador.DAO.PersonaDAO;
+import controlador.DAO.ProductoDAO;
+import controlador.DAO.RolDAO;
+import controlador.PersonaJpaController;
+import static modelo.Compra_.fecha;
+import static modelo.Persona_.idPersona;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import static modelo.Factura_.formaPago;
+import static modelo.Factura_.nroFactura;
+import modelo.Persona;
+import modelo.Rol;
+
 /**
  *
  * @author María Castillo
  */
 public class Factura extends javax.swing.JFrame {
-
+    private FacturaDAO fac= new FacturaDAO();
+    private ProductoDAO producto= new ProductoDAO();
+    private PersonaDAO pe= new PersonaDAO();            
     /**
-     * Creates new form Facturas
+     * Creates new form Factura
      */
-    public Factura() {
-        initComponents();
-    }
+    Date fecha = new Date();
 
+    public Factura() {
+      
+        initComponents();
+        this.setLocationRelativeTo(null);
+        mostrarTabla();
+    }
+    private void mostrarTabla() {
+      fac.listarProducto(tablaFactura, txtCodigo.getText());
+    }
+   private void mostrarNombreCliente(){
+       fac.listarPersona(txtnombreCliente.getText(), txtCedula.getText());
+     //  fac.listarPersona(txtnombreCliente.getText(), txtCedula.getText());
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,8 +59,8 @@ public class Factura extends javax.swing.JFrame {
         rSLabelImage5 = new necesario.RSLabelImage();
         btnDetalleFactura = new newscomponents.RSButtonBigIcon_new();
         btnFactura = new newscomponents.RSButtonBigIcon_new();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaFactura = new RSMaterialComponent.RSTableMetro();
+        btnGuardar1 = new rojerusan.RSButtonHover();
+        labelIcon13 = new necesario.LabelIcon();
         btnMinimizar1 = new RSMaterialComponent.RSButtonIconDos();
         btnSalir1 = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage3 = new necesario.RSLabelImage();
@@ -42,37 +69,31 @@ public class Factura extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
         txtFactura = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtCedul = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        txtnombreCliente = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        rSLabelFecha3 = new rojeru_san.rsdate.RSLabelFecha();
-        btnBuscarCliente = new rojerusan.RSButtonHover();
-        labelIcon8 = new necesario.LabelIcon();
-        btnBuscarProducto = new rojerusan.RSButtonHover();
-        labelIcon9 = new necesario.LabelIcon();
-        labelIcon5 = new necesario.LabelIcon();
-        btnGuardar = new rojerusan.RSButtonHover();
-        labelIcon7 = new necesario.LabelIcon();
-        btnDarDeBaja = new rojerusan.RSButtonHover();
-        btnNuevaCuenta = new rojerusan.RSButtonHover();
-        labelIcon10 = new necesario.LabelIcon();
-        labelIcon6 = new necesario.LabelIcon();
-        btnActualizarDatos = new rojerusan.RSButtonHover();
-        txtFormaPago = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        txtIva = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txttotal = new javax.swing.JTextField();
-        txtnombreCliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        labelIcon8 = new necesario.LabelIcon();
+        labelIcon9 = new necesario.LabelIcon();
+        btnBuscarCliente1 = new rojerusan.RSButtonHover();
+        btnBuscarProducto1 = new rojerusan.RSButtonHover();
+        jLabel10 = new javax.swing.JLabel();
+        txtFormaPago = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtsubtotal1 = new javax.swing.JTextField();
+        txtSubtotal = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaFactura = new RSMaterialComponent.RSTableMetro();
+        rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
+        checkBoxIVA = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -126,29 +147,21 @@ public class Factura extends javax.swing.JFrame {
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 50, 1160, 90);
 
-        tablaFactura.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Cantidad", "Marca", "Precio Unitario", "Precio Final"
+        btnGuardar1.setBackground(new java.awt.Color(0, 204, 51));
+        btnGuardar1.setText("Guardar");
+        btnGuardar1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
             }
-        ));
-        tablaFactura.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane2.setViewportView(tablaFactura);
+        });
+        jPanel3.add(btnGuardar1);
+        btnGuardar1.setBounds(340, 640, 130, 30);
 
-        jPanel3.add(jScrollPane2);
-        jScrollPane2.setBounds(120, 310, 600, 220);
+        labelIcon13.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon13.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+        jPanel3.add(labelIcon13);
+        labelIcon13.setBounds(300, 640, 30, 30);
 
         btnMinimizar1.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar1.setForeground(new java.awt.Color(102, 102, 102));
@@ -188,9 +201,9 @@ public class Factura extends javax.swing.JFrame {
         rSLabelHora2.setBounds(540, 0, 140, 40);
 
         rSLabelFecha2.setForeground(new java.awt.Color(102, 102, 102));
-        rSLabelFecha2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rSLabelFecha2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel3.add(rSLabelFecha2);
-        rSLabelFecha2.setBounds(670, 150, 110, 30);
+        rSLabelFecha2.setBounds(420, 0, 130, 40);
 
         jLabel25.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(102, 102, 102));
@@ -217,236 +230,8 @@ public class Factura extends javax.swing.JFrame {
                 txtFacturaMouseClicked(evt);
             }
         });
-        txtFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFacturaActionPerformed(evt);
-            }
-        });
         jPanel3.add(txtFactura);
-        txtFactura.setBounds(170, 150, 160, 30);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Fecha: ");
-        jPanel3.add(jLabel5);
-        jLabel5.setBounds(620, 150, 50, 30);
-
-        txtCedul.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCedul.setForeground(new java.awt.Color(102, 102, 102));
-        txtCedul.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCedul.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCedulMouseClicked(evt);
-            }
-        });
-        txtCedul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtCedul);
-        txtCedul.setBounds(170, 180, 160, 30);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Cédula Cliente:");
-        jPanel3.add(jLabel6);
-        jLabel6.setBounds(20, 190, 110, 30);
-
-        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
-        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodigoMouseClicked(evt);
-            }
-        });
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtCodigo);
-        txtCodigo.setBounds(170, 250, 160, 30);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Código Producto:");
-        jPanel3.add(jLabel7);
-        jLabel7.setBounds(20, 250, 130, 30);
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Nro Factura:");
-        jPanel3.add(jLabel9);
-        jLabel9.setBounds(20, 160, 110, 30);
-
-        rSLabelFecha3.setForeground(new java.awt.Color(102, 102, 102));
-        rSLabelFecha3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel3.add(rSLabelFecha3);
-        rSLabelFecha3.setBounds(420, 0, 130, 40);
-
-        btnBuscarCliente.setBackground(new java.awt.Color(204, 0, 255));
-        btnBuscarCliente.setText("Buscar");
-        btnBuscarCliente.setColorHover(new java.awt.Color(102, 102, 102));
-        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarClienteActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnBuscarCliente);
-        btnBuscarCliente.setBounds(400, 200, 130, 20);
-
-        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        jPanel3.add(labelIcon8);
-        labelIcon8.setBounds(360, 190, 30, 30);
-
-        btnBuscarProducto.setBackground(new java.awt.Color(204, 0, 255));
-        btnBuscarProducto.setText("Buscar");
-        btnBuscarProducto.setColorHover(new java.awt.Color(102, 102, 102));
-        btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarProductoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnBuscarProducto);
-        btnBuscarProducto.setBounds(400, 260, 130, 20);
-
-        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-        jPanel3.add(labelIcon9);
-        labelIcon9.setBounds(360, 250, 30, 30);
-
-        labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
-        jPanel3.add(labelIcon5);
-        labelIcon5.setBounds(90, 650, 30, 30);
-
-        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnGuardar);
-        btnGuardar.setBounds(130, 650, 130, 30);
-
-        labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        jPanel3.add(labelIcon7);
-        labelIcon7.setBounds(90, 700, 30, 30);
-
-        btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
-        btnDarDeBaja.setText("Dar de baja");
-        btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
-        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBajaActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(130, 700, 130, 30);
-
-        btnNuevaCuenta.setBackground(new java.awt.Color(0, 102, 51));
-        btnNuevaCuenta.setText("Nueva cuenta");
-        btnNuevaCuenta.setColorHover(new java.awt.Color(102, 102, 102));
-        btnNuevaCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaCuentaActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnNuevaCuenta);
-        btnNuevaCuenta.setBounds(400, 700, 180, 30);
-
-        labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
-        jPanel3.add(labelIcon10);
-        labelIcon10.setBounds(360, 700, 30, 30);
-
-        labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
-        jPanel3.add(labelIcon6);
-        labelIcon6.setBounds(360, 650, 30, 30);
-
-        btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
-        btnActualizarDatos.setText("Actualizar datos");
-        btnActualizarDatos.setColorHover(new java.awt.Color(102, 102, 102));
-        btnActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarDatosActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(400, 650, 180, 30);
-
-        txtFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtFormaPago.setForeground(new java.awt.Color(102, 102, 102));
-        txtFormaPago.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtFormaPago.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtFormaPagoMouseClicked(evt);
-            }
-        });
-        txtFormaPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFormaPagoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtFormaPago);
-        txtFormaPago.setBounds(230, 530, 120, 30);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Forma Pago:");
-        jPanel3.add(jLabel10);
-        jLabel10.setBounds(130, 530, 100, 20);
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel11.setText("Iva:");
-        jPanel3.add(jLabel11);
-        jLabel11.setBounds(400, 560, 70, 30);
-
-        txtIva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtIva.setForeground(new java.awt.Color(102, 102, 102));
-        txtIva.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtIva.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtIvaMouseClicked(evt);
-            }
-        });
-        txtIva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIvaActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtIva);
-        txtIva.setBounds(470, 560, 120, 30);
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel12.setText("Total:");
-        jPanel3.add(jLabel12);
-        jLabel12.setBounds(400, 590, 70, 30);
-
-        txttotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txttotal.setForeground(new java.awt.Color(102, 102, 102));
-        txttotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txttotal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txttotalMouseClicked(evt);
-            }
-        });
-        txttotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttotalActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txttotal);
-        txttotal.setBounds(470, 590, 120, 30);
+        txtFactura.setBounds(200, 170, 160, 30);
 
         txtnombreCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtnombreCliente.setForeground(new java.awt.Color(102, 102, 102));
@@ -462,45 +247,212 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtnombreCliente);
-        txtnombreCliente.setBounds(170, 210, 160, 30);
+        txtnombreCliente.setBounds(200, 230, 160, 30);
+
+        txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(102, 102, 102));
+        txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCedulaMouseClicked(evt);
+            }
+        });
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCedula);
+        txtCedula.setBounds(200, 200, 160, 30);
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodigoMouseClicked(evt);
+            }
+        });
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCodigo);
+        txtCodigo.setBounds(200, 270, 160, 30);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Código Producto:");
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(50, 270, 130, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText(" Cliente:");
         jPanel3.add(jLabel8);
-        jLabel8.setBounds(20, 220, 110, 30);
+        jLabel8.setBounds(50, 240, 110, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Cédula Cliente:");
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(50, 210, 110, 30);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Nro Factura:");
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(50, 180, 110, 30);
+
+        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jPanel3.add(labelIcon8);
+        labelIcon8.setBounds(390, 200, 30, 30);
+
+        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jPanel3.add(labelIcon9);
+        labelIcon9.setBounds(390, 250, 30, 30);
+
+        btnBuscarCliente1.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarCliente1.setText("Buscar");
+        btnBuscarCliente1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCliente1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuscarCliente1);
+        btnBuscarCliente1.setBounds(400, 210, 130, 20);
+
+        btnBuscarProducto1.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarProducto1.setText("Buscar");
+        btnBuscarProducto1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProducto1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuscarProducto1);
+        btnBuscarProducto1.setBounds(400, 260, 130, 20);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Forma Pago:");
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(110, 520, 100, 20);
+
+        txtFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFormaPago.setForeground(new java.awt.Color(102, 102, 102));
+        txtFormaPago.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtFormaPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFormaPagoMouseClicked(evt);
+            }
+        });
+        txtFormaPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFormaPagoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtFormaPago);
+        txtFormaPago.setBounds(210, 520, 120, 30);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Subtotal:");
         jPanel3.add(jLabel13);
-        jLabel13.setBounds(400, 530, 70, 30);
+        jLabel13.setBounds(540, 510, 70, 30);
 
-        txtsubtotal1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtsubtotal1.setForeground(new java.awt.Color(102, 102, 102));
-        txtsubtotal1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtsubtotal1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSubtotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtSubtotal.setForeground(new java.awt.Color(102, 102, 102));
+        txtSubtotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtSubtotal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtsubtotal1MouseClicked(evt);
+                txtSubtotalMouseClicked(evt);
             }
         });
-        txtsubtotal1.addActionListener(new java.awt.event.ActionListener() {
+        txtSubtotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsubtotal1ActionPerformed(evt);
+                txtSubtotalActionPerformed(evt);
             }
         });
-        jPanel3.add(txtsubtotal1);
-        txtsubtotal1.setBounds(470, 530, 120, 30);
+        jPanel3.add(txtSubtotal);
+        txtSubtotal.setBounds(610, 510, 120, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Iva:");
+        jPanel3.add(jLabel11);
+        jLabel11.setBounds(540, 540, 70, 30);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Total:");
+        jPanel3.add(jLabel12);
+        jLabel12.setBounds(540, 570, 70, 30);
+
+        txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(102, 102, 102));
+        txtTotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtTotal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTotalMouseClicked(evt);
+            }
+        });
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtTotal);
+        txtTotal.setBounds(610, 570, 120, 30);
+
+        tablaFactura.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaFactura.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane3.setViewportView(tablaFactura);
+
+        jPanel3.add(jScrollPane3);
+        jScrollPane3.setBounds(120, 310, 600, 170);
+
+        rSLabelFecha1.setForeground(new java.awt.Color(102, 102, 102));
+        rSLabelFecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel3.add(rSLabelFecha1);
+        rSLabelFecha1.setBounds(420, 150, 120, 30);
+
+        checkBoxIVA.setText("12%");
+        jPanel3.add(checkBoxIVA);
+        checkBoxIVA.setBounds(610, 550, 49, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
         );
 
         pack();
@@ -530,17 +482,22 @@ public class Factura extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtFacturaMouseClicked
 
-    private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
+    private void txtnombreClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnombreClienteMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFacturaActionPerformed
+    }//GEN-LAST:event_txtnombreClienteMouseClicked
 
-    private void txtCedulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulMouseClicked
+    private void txtnombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreClienteActionPerformed
+        mostrarNombreCliente();
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulMouseClicked
+    }//GEN-LAST:event_txtnombreClienteActionPerformed
 
-    private void txtCedulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulActionPerformed
+    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulActionPerformed
+    }//GEN-LAST:event_txtCedulaMouseClicked
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
         // TODO add your handling code here:
@@ -550,29 +507,15 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+    private void btnBuscarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCliente1ActionPerformed
+      mostrarNombreCliente();
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+    }//GEN-LAST:event_btnBuscarCliente1ActionPerformed
 
-    private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
+    private void btnBuscarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProducto1ActionPerformed
+        mostrarTabla();
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarProductoActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDarDeBajaActionPerformed
-
-    private void btnNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevaCuentaActionPerformed
-
-    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+    }//GEN-LAST:event_btnBuscarProducto1ActionPerformed
 
     private void txtFormaPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFormaPagoMouseClicked
         // TODO add your handling code here:
@@ -582,21 +525,45 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFormaPagoActionPerformed
 
-    private void txtIvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIvaMouseClicked
+    private void txtSubtotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSubtotalMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIvaMouseClicked
+    }//GEN-LAST:event_txtSubtotalMouseClicked
 
-    private void txtIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaActionPerformed
+    private void txtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIvaActionPerformed
+    }//GEN-LAST:event_txtSubtotalActionPerformed
 
-    private void txttotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txttotalMouseClicked
+    private void txtTotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTotalMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttotalMouseClicked
+    }//GEN-LAST:event_txtTotalMouseClicked
 
-    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttotalActionPerformed
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+   
+        FacturaDAO fac1 = new FacturaDAO();
+        Date fecha = new Date();
+        Persona persona = new Persona();
+        persona.setIdPersona(Long.valueOf(2));
+        String nroFactura = txtFactura.getText();
+        Boolean iva = checkBoxIVA.isSelected();
+        String formaPago = txtFormaPago.getText();
+        double subtotal = Double.parseDouble(txtSubtotal.getText());
+        double total = Double.parseDouble(txtTotal.getText());
+        fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
+        //fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, (Persona) idPersona);
+        JOptionPane.showMessageDialog(rootPane, "factura agregada");
+         mostrarTabla();
+         txtCodigo.setText("");
+         txtCedula.setText("");
+         txtFactura.setText("");
+         txtSubtotal.setText("");
+         txtTotal.setText("");
+         txtnombreCliente.setText("");
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
@@ -604,25 +571,10 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
+           FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
-
-    private void txtnombreClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnombreClienteMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreClienteMouseClicked
-
-    private void txtnombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreClienteActionPerformed
-
-    private void txtsubtotal1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsubtotal1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsubtotal1MouseClicked
-
-    private void txtsubtotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubtotal1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsubtotal1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -651,12 +603,6 @@ FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -667,49 +613,42 @@ FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSButtonHover btnActualizarDatos;
-    private rojerusan.RSButtonHover btnBuscarCliente;
-    private rojerusan.RSButtonHover btnBuscarProducto;
-    private rojerusan.RSButtonHover btnDarDeBaja;
+    private rojerusan.RSButtonHover btnBuscarCliente1;
+    private rojerusan.RSButtonHover btnBuscarProducto1;
     private newscomponents.RSButtonBigIcon_new btnDetalleFactura;
     private newscomponents.RSButtonBigIcon_new btnFactura;
-    private rojerusan.RSButtonHover btnGuardar;
+    private rojerusan.RSButtonHover btnGuardar1;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar1;
-    private rojerusan.RSButtonHover btnNuevaCuenta;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
+    private javax.swing.JCheckBox checkBoxIVA;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
-    private necesario.LabelIcon labelIcon10;
-    private necesario.LabelIcon labelIcon5;
-    private necesario.LabelIcon labelIcon6;
-    private necesario.LabelIcon labelIcon7;
+    private javax.swing.JScrollPane jScrollPane3;
+    private necesario.LabelIcon labelIcon13;
     private necesario.LabelIcon labelIcon8;
     private necesario.LabelIcon labelIcon9;
+    private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
-    private rojeru_san.rsdate.RSLabelFecha rSLabelFecha3;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora2;
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage5;
     private RSMaterialComponent.RSTableMetro tablaFactura;
-    private javax.swing.JTextField txtCedul;
+    private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtFactura;
     private javax.swing.JTextField txtFormaPago;
-    private javax.swing.JTextField txtIva;
+    private javax.swing.JTextField txtSubtotal;
+    private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtnombreCliente;
-    private javax.swing.JTextField txtsubtotal1;
-    private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }

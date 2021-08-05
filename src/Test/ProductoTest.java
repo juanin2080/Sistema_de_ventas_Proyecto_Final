@@ -18,6 +18,9 @@ public class ProductoTest {
 //        AdministrarProducto vs= new AdministrarProducto();
 //        vs.setVisible(true);
         ProductoDAO pdao = new ProductoDAO();
-        System.out.println(pdao.dardeBaja(Long.valueOf(1),13, "gaseosa", Double.valueOf(5.5), "Pepsi", "Jose"));
+        //System.out.println(pdao.insertarProducto(15, "cocina", Double.valueOf(5.5), "mabe", "jose"));
+                System.out.println(pdao.insertarProducto(20, "refrigeradora", Double.valueOf(500.5), "indurama", "Marco"));
+
+        //System.out.println(pdao.dardeBaja(Long.valueOf(1),13, "gaseosa", Double.valueOf(5.5), "Pepsi", "Jose"));
     }
 }

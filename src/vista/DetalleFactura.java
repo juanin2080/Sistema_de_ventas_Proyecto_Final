@@ -5,6 +5,12 @@
  */
 package vista;
 
+import controlador.DAO.DetalleFacturaDAO;
+import controlador.DAO.FacturaDAO;
+import java.util.Date;
+import modelo.Persona;
+import modelo.Producto;
+
 /**
  *
  * @author María Castillo
@@ -505,24 +511,27 @@ public class DetalleFactura extends javax.swing.JFrame {
 
         tbtClientes1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CodigoProducto", "Cantidad", "Precio Unitario", "Precio total", "Stock"
+                "CodigoProducto", "Cantidad", "Precio Unitario", "Precio total"
             }
         ));
         tbtClientes1.setBackgoundHead(new java.awt.Color(102, 0, 102));
         jScrollPane2.setViewportView(tbtClientes1);
+        if (tbtClientes1.getColumnModel().getColumnCount() > 0) {
+            tbtClientes1.getColumnModel().getColumn(1).setHeaderValue("Cantidad");
+        }
 
         jPanel3.add(jScrollPane2);
         jScrollPane2.setBounds(30, 360, 700, 190);
@@ -530,6 +539,11 @@ public class DetalleFactura extends javax.swing.JFrame {
         btnGuardar1.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar1.setText("Guardar");
         btnGuardar1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnGuardar1);
         btnGuardar1.setBounds(350, 590, 130, 30);
 
@@ -791,6 +805,11 @@ public class DetalleFactura extends javax.swing.JFrame {
     private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFacturaActionPerformed
+
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+      
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     /**
      * @param args the command line arguments

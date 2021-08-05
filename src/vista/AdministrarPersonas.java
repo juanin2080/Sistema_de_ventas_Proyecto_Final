@@ -6,7 +6,10 @@
 package vista;
 
 import controlador.DAO.PersonaDAO;
+import controlador.DAO.RolDAO;
 import javax.swing.JOptionPane;
+import modelo.Rol;
+import static modelo.Rol_.idRol;
 
 /**
  *
@@ -430,7 +433,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
+        
+//        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), (Rol) idRol);
 //        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
 //        limpiarCampos();
 //        mostrarTabla();

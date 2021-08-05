@@ -9,7 +9,9 @@ import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
 import controlador.DAO.PersonaDAO;
 import java.util.Date;  
+import modelo.Factura;
 import modelo.Persona;
+import modelo.Producto;
 import modelo.Rol;
 
 /**
@@ -17,13 +19,19 @@ import modelo.Rol;
  * @author María Castillo
  */
 public class FacturaTest {
+    
         public static void main(String[] args) {      
-      FacturaDAO fac1 = new FacturaDAO();
+        FacturaDAO fac1 = new FacturaDAO();
         Date fecha= new Date();  
         Persona persona = new Persona();
         persona.setIdPersona(Long.valueOf(1));
-
-        System.out.println(fac1.insertarFactura(fecha,"efectivo", true, "2", Double.valueOf(10.00), Double.valueOf(21.00), persona));
-        //System.out.println(fac1.actualizarFactura(Long.valueOf(24), fecha, "efectivo", true, "2", Double.valueOf(11.00), Double.valueOf(45.00), persona));
+        DetalleFacturaDAO detallefac = new DetalleFacturaDAO();
+        Factura factura= new Factura();
+        factura.setIdFactura(Long.valueOf(1));
+        Producto producto = new Producto();
+        producto.setIdProducto(Long.valueOf(1));
+            System.out.println(detallefac.insertarDetalleFactura(25, Double.valueOf(105.00), Double.valueOf(210.00), factura, producto));
+        //System.out.println(fac1.insertarFactura(fecha,"tarjetaCredito", true, "3", Double.valueOf(205.00), Double.valueOf(21.00), persona));
+       //System.out.println(fac1.actualizarFactura(Long.valueOf(1), fecha, "tarjetaCredito", true, "3", Double.valueOf(11.00), Double.valueOf(45.00), persona));
         }
 }
