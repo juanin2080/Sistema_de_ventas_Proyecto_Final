@@ -6,8 +6,14 @@
 package controlador.DAO;
 
 import controlador.RolJpaController;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Rol;
@@ -17,6 +23,7 @@ import modelo.Rol;
  * @author juana
  */
 public class RolDAO {
+
     private Rol rol = new Rol();
     private RolJpaController controladorRol = new RolJpaController();
 
@@ -25,9 +32,9 @@ public class RolDAO {
             rol.setIdRol(Long.MIN_VALUE);
             rol.setRol(rolPersona);
             controladorRol.create(rol);
-            System.out.println("Rol creado.");
+            JOptionPane.showMessageDialog(null, "Rol creado.");
         } catch (Exception e) {
-            System.out.println("Hubo un problema al crear el rol.");
+            JOptionPane.showMessageDialog(null, "Hubo un problema al crear el rol.");
             System.out.println(e.getMessage());
 
         }
@@ -57,4 +64,40 @@ public class RolDAO {
         }
 
     }
+
+    public void listarRoles(JTable tabla) {
+        DefaultTableModel modelo;
+        String[] titulo = {"Rol"};
+        modelo = new DefaultTableModel(null, titulo);
+        List<Rol> datos = controladorRol.findRolEntities();
+        String[] datosRol = new String[1];
+        for (Rol rol : datos) {
+            datosRol[0] = rol.getRol();
+            modelo.addRow(datosRol);
+        }
+        tabla.setModel(modelo);
+
+    }
+
+    public void listarComboBox(JComboBox cbxRol) {
+        List<Rol> datos = controladorRol.findRolEntities();
+        for (Rol rol : datos) {
+            cbxRol.addItem(rol.getRol());
+        }
+    }
+
+    public Rol buscarRol(String rol) {
+        Rol rolCbx = new Rol();
+        List<Rol> datos = controladorRol.findRolEntities();
+        for (Rol dato : datos) {
+            if (dato.getRol().equals(rol)) {
+                rolCbx.setIdRol(dato.getIdRol());
+                rolCbx.setRol(dato.getRol());
+            }
+
+        }
+        return rolCbx;
+
+    }
+
 }
