@@ -6,7 +6,10 @@
 package vista;
 
 import controlador.DAO.ProveedorDAO;
+import controlador.DAO.RolDAO;
 import javax.swing.JOptionPane;
+import static modelo.Persona_.rol;
+import modelo.Rol;
 
 /**
  *
@@ -14,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class AdministrarProveedor extends javax.swing.JFrame {
 
+    private Rol rol = new Rol();
+    private RolDAO rDAO = new RolDAO();
     /**
      * Creates new form RegistrarPersonal
      */
@@ -85,6 +90,8 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        cbxRol = new RSMaterialComponent.RSComboBoxMaterial<>();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -265,7 +272,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbtProveedor);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(492, 240, 660, 380);
+        jScrollPane1.setBounds(492, 240, 660, 340);
 
         btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar.setText("Guardar");
@@ -276,7 +283,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(60, 590, 130, 30);
+        btnGuardar.setBounds(760, 610, 130, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
@@ -298,7 +305,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon9.setBounds(220, 470, 30, 30);
 
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(220, 590, 30, 30);
+        labelIcon6.setBounds(920, 610, 30, 30);
 
         labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
@@ -309,7 +316,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon15.setBounds(20, 520, 30, 30);
 
         jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(20, 640, 30, 30);
+        labelIcon7.setBounds(720, 660, 30, 30);
 
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
@@ -320,7 +327,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(60, 640, 130, 30);
+        btnDarDeBaja.setBounds(760, 660, 130, 30);
 
         btnNuevoProveedor.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoProveedor.setText("Nuevo Proveedor");
@@ -331,7 +338,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoProveedor);
-        btnNuevoProveedor.setBounds(260, 640, 180, 30);
+        btnNuevoProveedor.setBounds(960, 660, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -381,7 +388,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon13.setBounds(220, 520, 30, 30);
 
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(220, 640, 30, 30);
+        labelIcon10.setBounds(920, 660, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -435,7 +442,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos1);
-        btnActualizarDatos1.setBounds(260, 590, 180, 30);
+        btnActualizarDatos1.setBounds(960, 610, 180, 30);
 
         labelIcon19.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon19.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
@@ -457,7 +464,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon21.setBounds(350, 420, 30, 30);
 
         jPanel1.add(labelIcon19);
-        labelIcon19.setBounds(20, 590, 30, 30);
+        labelIcon19.setBounds(720, 610, 30, 30);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
@@ -525,6 +532,18 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(txtEmail);
         txtEmail.setBounds(140, 350, 220, 30);
 
+        cbxRol.setForeground(new java.awt.Color(102, 102, 102));
+        cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
+        cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(cbxRol);
+        cbxRol.setBounds(140, 570, 220, 40);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel20.setText("Rol:");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(20, 580, 100, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -534,7 +553,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -580,23 +599,29 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 //        String mensaje = "";
 //            mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), txtRuc.getText(), txtEmpresa.getText());
 //            JOptionPane.showMessageDialog(null, mensaje);
+
+//        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+//        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txt, email, rol, empresa, ruc);
+//        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
+//        limpiarCampos();
+//        mostrarTabla("");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
 
-    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {                                    
+    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {
 
-    }                                   
+    }
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                      
+    }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         InicioSesion inicioSesion = new InicioSesion();
@@ -613,7 +638,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
-                                     
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
@@ -740,11 +764,13 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private RSMaterialComponent.RSComboBoxMaterial<Rol> cbxRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
