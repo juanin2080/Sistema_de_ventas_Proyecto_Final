@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.DetalleCompra;
 import modelo.Producto;
 
@@ -26,10 +27,13 @@ import modelo.Producto;
  */
 public class ProductoJpaController implements Serializable {
 
+    public ProductoJpaController() {
+    }
+    
     public ProductoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sistema_de_Ventas_Proyecto_FinalPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -158,7 +162,7 @@ public class ProductoJpaController implements Serializable {
             if (msg == null || msg.length() == 0) {
                 Long id = producto.getIdProducto();
                 if (findProducto(id) == null) {
-                    throw new NonexistentEntityException("The producto with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("El producto con el id: " + id + " no existe.");
                 }
             }
             throw ex;

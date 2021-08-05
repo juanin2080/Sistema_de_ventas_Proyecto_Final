@@ -129,6 +129,10 @@ public class Producto implements Serializable {
         this.proveedor = proveedor;
     }
 
+
+   
+    
+
     @Override
     public int hashCode() {
         int hash = 0;

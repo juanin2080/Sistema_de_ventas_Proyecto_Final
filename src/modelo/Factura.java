@@ -39,6 +39,7 @@ public class Factura implements Serializable {
     private double total;
     private double subtotal;
     private String formaPago;
+    
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;

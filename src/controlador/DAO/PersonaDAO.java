@@ -18,7 +18,6 @@ import modelo.Rol;
  * @author juana
  */
 public class PersonaDAO {
-
 private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
     private String mensaje = "";

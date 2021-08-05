@@ -49,6 +49,14 @@ public class Rol implements Serializable {
         this.rol = rol;
     }
 
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
