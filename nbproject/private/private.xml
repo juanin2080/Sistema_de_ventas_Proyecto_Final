@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Rol.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/PersonaDAO.java</file>
-            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarRoles.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/Test/PersonaTest.java</file>
-            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/PersonaJpaController.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarPersonas.java</file>
-            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/RolJpaController.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/modelo/Persona.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/RolDAO.java</file>
         </group>
     </open-files>
