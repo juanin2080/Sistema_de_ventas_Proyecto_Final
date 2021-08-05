@@ -9,6 +9,6 @@ package controlador.DAO;
  *
  * @author juana
  */
-public class RolDao {
+public class RolDAO {
     
 }

@@ -52,6 +52,13 @@ public class DetalleCompra extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtProveedor = new RSMaterialComponent.RSTableMetro();
+        lblCedula = new javax.swing.JLabel();
+        txtCodProductoCP = new javax.swing.JTextField();
+        labelIcon8 = new necesario.LabelIcon();
+        labelIcon9 = new necesario.LabelIcon();
+        bntBuscarCedulaCP = new rojerusan.RSButtonHover();
+        lblCedula1 = new javax.swing.JLabel();
+        txtCodProductoCP1 = new javax.swing.JTextField();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -252,24 +259,77 @@ public class DetalleCompra extends javax.swing.JFrame {
 
         tbtProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Cantidad", "PrecioUnitario", "PrecioTotal"
+                "Nombre", "Marca", "Cantidad", "PrecioUnitario", "PrecioTotal"
             }
         ));
         tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));
         jScrollPane1.setViewportView(tbtProveedor);
+
+        lblCedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCedula.setForeground(new java.awt.Color(102, 102, 102));
+        lblCedula.setText(" Codigo Producto:");
+
+        txtCodProductoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodProductoCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodProductoCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodProductoCP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodProductoCPMouseClicked(evt);
+            }
+        });
+        txtCodProductoCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodProductoCPActionPerformed(evt);
+            }
+        });
+
+        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+
+        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
+        labelIcon8.add(labelIcon9);
+        labelIcon9.setBounds(580, 680, 30, 30);
+
+        bntBuscarCedulaCP.setBackground(new java.awt.Color(204, 0, 255));
+        bntBuscarCedulaCP.setText("Buscar");
+        bntBuscarCedulaCP.setColorHover(new java.awt.Color(102, 102, 102));
+        bntBuscarCedulaCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntBuscarCedulaCPActionPerformed(evt);
+            }
+        });
+
+        lblCedula1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCedula1.setForeground(new java.awt.Color(102, 102, 102));
+        lblCedula1.setText("Número Compra:");
+
+        txtCodProductoCP1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodProductoCP1.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodProductoCP1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodProductoCP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodProductoCP1MouseClicked(evt);
+            }
+        });
+        txtCodProductoCP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodProductoCP1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -278,16 +338,44 @@ public class DetalleCompra extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblCedula1)
+                                .addGap(61, 61, 61)
+                                .addComponent(txtCodProductoCP1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblCedula)
+                                .addGap(61, 61, 61)
+                                .addComponent(txtCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(177, 177, 177))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodProductoCP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         jPanel1.add(jPanel3);
@@ -361,6 +449,26 @@ public class DetalleCompra extends javax.swing.JFrame {
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
+    private void txtCodProductoCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoCPMouseClicked
+
+    }//GEN-LAST:event_txtCodProductoCPMouseClicked
+
+    private void txtCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodProductoCPActionPerformed
+
+    private void bntBuscarCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bntBuscarCedulaCPActionPerformed
+
+    private void txtCodProductoCP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoCP1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodProductoCP1MouseClicked
+
+    private void txtCodProductoCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoCP1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodProductoCP1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -397,6 +505,7 @@ public class DetalleCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSButtonHover bntBuscarCedulaCP;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
@@ -414,11 +523,17 @@ public class DetalleCompra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private necesario.LabelIcon labelIcon8;
+    private necesario.LabelIcon labelIcon9;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblCedula1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tbtProveedor;
+    private javax.swing.JTextField txtCodProductoCP;
+    private javax.swing.JTextField txtCodProductoCP1;
     // End of variables declaration//GEN-END:variables
 }

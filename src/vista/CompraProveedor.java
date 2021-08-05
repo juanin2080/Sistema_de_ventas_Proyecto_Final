@@ -59,7 +59,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblProveedor = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbtProveedor = new RSMaterialComponent.RSTableMetro();
+        tblProductoCP = new RSMaterialComponent.RSTableMetro();
         labelIcon5 = new necesario.LabelIcon();
         btnGuardarCP = new rojerusan.RSButtonHover();
         jlblSubtotal = new javax.swing.JLabel();
@@ -72,7 +72,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         labelIcon14 = new necesario.LabelIcon();
         labelIcon15 = new necesario.LabelIcon();
         lblNroFactura = new javax.swing.JLabel();
-        txtnroFacturaCP = new javax.swing.JTextField();
+        txtnroCompraCP = new javax.swing.JTextField();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         lblFormaPago = new javax.swing.JLabel();
         txtFormaPagoCP = new javax.swing.JTextField();
@@ -346,7 +346,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblCodigo.setForeground(new java.awt.Color(102, 102, 102));
         lblCodigo.setText("Codigo:");
 
-        tbtProveedor.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductoCP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -364,8 +364,8 @@ public class CompraProveedor extends javax.swing.JFrame {
                 "Codigo", "Stock", "Marca", "PrecioUnitario"
             }
         ));
-        tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane1.setViewportView(tbtProveedor);
+        tblProductoCP.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane1.setViewportView(tblProductoCP);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
@@ -409,19 +409,19 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         lblNroFactura.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNroFactura.setForeground(new java.awt.Color(102, 102, 102));
-        lblNroFactura.setText("Nro Factura");
+        lblNroFactura.setText("Nro Compra");
 
-        txtnroFacturaCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtnroFacturaCP.setForeground(new java.awt.Color(102, 102, 102));
-        txtnroFacturaCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtnroFacturaCP.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtnroCompraCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtnroCompraCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtnroCompraCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtnroCompraCP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtnroFacturaCPMouseClicked(evt);
+                txtnroCompraCPMouseClicked(evt);
             }
         });
-        txtnroFacturaCP.addActionListener(new java.awt.event.ActionListener() {
+        txtnroCompraCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnroFacturaCPActionPerformed(evt);
+                txtnroCompraCPActionPerformed(evt);
             }
         });
 
@@ -469,7 +469,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                                 .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtnroFacturaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtnroCompraCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(220, Short.MAX_VALUE))
@@ -516,7 +516,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblNroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtnroFacturaCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnroCompraCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -651,7 +651,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodProductoCPActionPerformed
 
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
-        String nroCompra = txtnroFacturaCP.getText();
+        String nroCompra = txtnroCompraCP.getText();
         boolean iva = checkBoxIVACP.isSelected() ;
         String fPago = txtFormaPagoCP.getText();
         double subtotal = Double.parseDouble(txtSubtotalCP.getText()) ;
@@ -659,7 +659,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         cdao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total);
     }//GEN-LAST:event_btnGuardarCPActionPerformed
     private void limiar(){
-        txtnroFacturaCP.setText("");
+        txtnroCompraCP.setText("");
         //checkBoxIVA.setSelected(rootPaneCheckingEnabled);
         txtFormaPagoCP.setText("");
         txtSubtotalCP.setText("");
@@ -671,13 +671,13 @@ public class CompraProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSubtotalCPActionPerformed
 
-    private void txtnroFacturaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroFacturaCPMouseClicked
+    private void txtnroCompraCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroCompraCPMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnroFacturaCPMouseClicked
+    }//GEN-LAST:event_txtnroCompraCPMouseClicked
 
-    private void txtnroFacturaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnroFacturaCPActionPerformed
+    private void txtnroCompraCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnroCompraCPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnroFacturaCPActionPerformed
+    }//GEN-LAST:event_txtnroCompraCPActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);       
@@ -782,13 +782,13 @@ public class CompraProveedor extends javax.swing.JFrame {
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
-    private RSMaterialComponent.RSTableMetro tbtProveedor;
+    private RSMaterialComponent.RSTableMetro tblProductoCP;
     private javax.swing.JTextField txtCedulaCP;
     private javax.swing.JTextField txtCodProductoCP;
     private javax.swing.JTextField txtFormaPagoCP;
     private javax.swing.JTextField txtProveedorCP;
     private javax.swing.JTextField txtSubtotalCP;
     private javax.swing.JTextField txtTotalPagarCP;
-    private javax.swing.JTextField txtnroFacturaCP;
+    private javax.swing.JTextField txtnroCompraCP;
     // End of variables declaration//GEN-END:variables
 }
