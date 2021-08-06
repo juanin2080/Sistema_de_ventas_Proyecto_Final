@@ -50,21 +50,21 @@ public class ProveedorDAO {
         return mensaje;
     }
 
-    public String actualizarDatos(int id, String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
+    public String actualizarDatos(Long id, String nombres, String cedula, String direccion, String telefono, String email,  Rol idRol, String empresa, String ruc) {
         try {
-            proveedor.setIdPersona(Long.MIN_VALUE);
+            proveedor.setIdPersona(id);
+            proveedor.setRol(idRol);
             proveedor.setNombres(nombres);
             proveedor.setCedula(cedula);
             proveedor.setDireccion(direccion);
             proveedor.setTelefono(telefono);
             proveedor.setEmail(email);
-            proveedor.setRol(idRol);
             proveedor.setEmpresa(empresa);
             proveedor.setRuc(ruc);
             controladorProveedor.edit(proveedor);
-            mensaje = "Proveedor registrada con exito";
+            mensaje = "Proveedor actualizado con exito";
         } catch (Exception e) {
-            mensaje = "No se pudo registrar el proveedor ";
+            mensaje = "No se pudo actualizar el proveedor ";
             System.out.println(e.getMessage());
         }
 
@@ -85,29 +85,35 @@ public class ProveedorDAO {
         return mensaje;
     }
 
-    public void listarPersonas(JTable tabla, String cedula, String id) {
+    public void listarPersonas(JTable tabla, String cedula) {
+        String[] datosPersona = new String[9];
         DefaultTableModel modelo;
         String[] titulo = {"Cédula", "Nombres", "Teléfono", "Dirección", "Email", "Ruc", "Empresa", "Id", "Rol"};
         modelo = new DefaultTableModel(null, titulo);
 
         List<Persona> datos = buscarPersona(cedula);
-        List<Proveedor> datoP = buscarProveedor(id);
+        List<Proveedor> datosPro = buscarProveedor(cedula);
+        String ruc = "";
 
-        String[] datosPersona = new String[9];
         for (Persona persona : datos) {
-            datosPersona[0] = persona.getCedula();
-            datosPersona[1] = persona.getNombres();
-            datosPersona[2] = persona.getTelefono();
-            datosPersona[3] = persona.getDireccion();
-            datosPersona[4] = persona.getEmail();
-            for (Proveedor proveedor : datoP) {
-                datosPersona[5] = proveedor.getRuc();
-                datosPersona[6] = proveedor.getEmpresa();
+            for (Proveedor proveedor1 : datosPro) {
+                if (persona.getIdPersona().equals(proveedor1.getIdPersona())) {
+                    datosPersona[0] = persona.getCedula();
+                    datosPersona[1] = persona.getNombres();
+                    datosPersona[2] = persona.getTelefono();
+                    datosPersona[3] = persona.getDireccion();
+                    datosPersona[4] = persona.getEmail();
+                    datosPersona[5] = proveedor1.getRuc();
+                    datosPersona[6] = proveedor1.getEmpresa();
+                    datosPersona[7] = persona.getIdPersona() + "";
+                    datosPersona[8] = persona.getRol() + "";
+
+                    modelo.addRow(datosPersona);
+                }
             }
-            datosPersona[7] = persona.getIdPersona() + "";
-            datosPersona[8] = persona.getRol() + "";
-            modelo.addRow(datosPersona);
+
         }
+
         tabla.setModel(modelo);
         tabla.getColumnModel().getColumn(7).setMaxWidth(0);
         tabla.getColumnModel().getColumn(7).setMinWidth(0);
@@ -127,11 +133,12 @@ public class ProveedorDAO {
         return lista;
     }
 
-    private List<Proveedor> buscarProveedor(String id) {
+    public List<Proveedor> buscarProveedor(String id) {
         EntityManager em = controladorProveedor.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Proveedor p WHERE p.idPersona LIKE :id");
         query.setParameter("id", id + "%");
         List<Proveedor> lista = query.getResultList();
         return lista;
     }
+
 }
