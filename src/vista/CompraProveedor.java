@@ -7,8 +7,10 @@ package vista;
 
 import controlador.DAO.CompraDAO;
 import controlador.DAO.ProductoDAO;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Producto;
 
 /**
  *
@@ -18,13 +20,14 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private CompraDAO cdao = new CompraDAO();
     private ProductoDAO pdao = new ProductoDAO();
+    private Producto producto = new Producto();
+    ArrayList<Producto> listaProductos = new ArrayList<Producto>();
     Date fecha = new Date();
     String subtotal = "";
+
     public CompraProveedor() {
         initComponents();
-        mostrarTabla("");
-        subtotal = String.valueOf(cdao.calcularSubtotal()) ;
-        txtSubtotalCP.setText(subtotal);
+
     }
 
     /**
@@ -351,24 +354,14 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodigo.setForeground(new java.awt.Color(102, 102, 102));
-        lblCodigo.setText("Codigo:");
+        lblCodigo.setText("Código:");
 
         tblProductoCP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Codigo", "Stock", "Marca", "PrecioUnitario"
+
             }
         ));
         tblProductoCP.setBackgoundHead(new java.awt.Color(102, 0, 102));
@@ -518,7 +511,6 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addComponent(jlblSubtotal)
                         .addGap(18, 18, 18)
                         .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -654,13 +646,32 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void bntCalcularIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCalcularIvaActionPerformed
         calcularIva();
-        
+
     }//GEN-LAST:event_bntCalcularIvaActionPerformed
 
     private void btnBuscarCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoCPActionPerformed
-        mostrarTabla(txtCodProductoCP.getText());
+        producto = cdao.buscarProductoCompra(txtCodProductoCP.getText());
+        listaProductos.add(producto);
+        subtotal = String.valueOf(cdao.calcularSubtotal(listaProductos));
+        txtSubtotalCP.setText(subtotal);
+        mostrarTabla();
+        imprimirLista();
+        System.out.println(cdao.calcularSubtotal(listaProductos));
+        //cdao.calcularCodigo(tblProductoCP);
+            
+
     }//GEN-LAST:event_btnBuscarCodProductoCPActionPerformed
 
+    public void imprimirLista() {
+        Producto p = new Producto();
+        for (Producto producto : listaProductos) {
+            p.setCodigo(producto.getCodigo());
+            System.out.println(p.getCodigo());
+            p.setNombre(producto.getNombre());
+            System.out.println(p.getNombre());
+
+        }
+    }
     private void txtCedulaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaCPMouseClicked
 
     }//GEN-LAST:event_txtCedulaCPMouseClicked
@@ -703,7 +714,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
 
     private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
-         txtSubtotalCP.setEnabled(false);
+        txtSubtotalCP.setEnabled(false);
     }//GEN-LAST:event_txtSubtotalCPActionPerformed
 
     private void txtnroCompraCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroCompraCPMouseClicked
@@ -727,7 +738,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFormaPagoCPActionPerformed
 
     private void txtTotalPagarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarCPActionPerformed
-            
+
     }//GEN-LAST:event_txtTotalPagarCPActionPerformed
 
     private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
@@ -759,8 +770,8 @@ public class CompraProveedor extends javax.swing.JFrame {
         }
     }
 
-    private void mostrarTabla(String codigo) {
-        cdao.listarProducto(tblProductoCP, codigo);
+    private void mostrarTabla() {
+        cdao.listarProducto(tblProductoCP, listaProductos);
 
     }
 
