@@ -18,7 +18,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     ProductoDAO pDao = new ProductoDAO();
-    Producto id = new Producto();
+
 
     public AdministrarProducto() {
         initComponents();
