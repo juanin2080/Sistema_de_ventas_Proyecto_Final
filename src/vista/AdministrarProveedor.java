@@ -8,7 +8,6 @@ package vista;
 import controlador.DAO.ProveedorDAO;
 import controlador.DAO.RolDAO;
 import javax.swing.JOptionPane;
-import static modelo.Persona_.rol;
 import modelo.Rol;
 
 /**
@@ -27,6 +26,8 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     public AdministrarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        mostrarTabla("", txtId.getText());
+        llenarCbx();
     }
 
     /**
@@ -92,6 +93,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         cbxRol = new RSMaterialComponent.RSComboBoxMaterial<>();
         jLabel20 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -249,26 +251,31 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
         tbtProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Cédula", "Nombres", "Email", "Teléfono", "Dirección", "Ruc", "Empresa"
+
             }
         ));
         tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        tbtProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtProveedorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtProveedor);
 
         jPanel1.add(jScrollPane1);
@@ -544,6 +551,17 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(jLabel20);
         jLabel20.setBounds(20, 580, 100, 30);
 
+        txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtId.setForeground(new java.awt.Color(102, 102, 102));
+        txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtId);
+        txtId.setBounds(380, 240, 90, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -596,15 +614,16 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 //        } else {
 //            
 //        }
-//        String mensaje = "";
+//        
 //            mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), txtRuc.getText(), txtEmpresa.getText());
 //            JOptionPane.showMessageDialog(null, mensaje);
+        String mensaje = "";
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+        JOptionPane.showMessageDialog(null, mensaje);
+        mostrarTabla("", txtId.getText());
 
-//        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-//        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txt, email, rol, empresa, ruc);
-//        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
-//        limpiarCampos();
-//        mostrarTabla("");
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
@@ -650,7 +669,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void btnActualizarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatos1ActionPerformed
         // TODO add your handling code here:
         String mensaje = "";
-        mensaje = pdao.actualizarDatos(8, txtEmpresa.getText(), txtRuc.getText());
+        mensaje = pdao.actualizarDatos(Integer.parseInt(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
         JOptionPane.showMessageDialog(null, mensaje);
     }//GEN-LAST:event_btnActualizarDatos1ActionPerformed
 
@@ -685,6 +704,36 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void txtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpresaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmpresaActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
+
+    private void tbtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtProveedorMouseClicked
+        // TODO add your handling code here:
+        int select = tbtProveedor.getSelectedRow();
+
+//        txtCodigo.setText(tbtProducto.getValueAt(select, 0) + "");
+//        txtNombres.setText(tbtProducto.getValueAt(select, 1) + "");
+//        txtPrecio.setText(tbtProducto.getValueAt(select, 2) + "");
+//        txtMarca.setText(tbtProducto.getValueAt(select, 3) + "");
+//        txtProveedor.setText(tbtProducto.getValueAt(select, 4) + "");
+//        txtCantidad.setText((String) tbtProducto.getValueAt(select, 5));
+//        txtid.setText(tbtProducto.getValueAt(select, 6) + "");
+//        txtCodigo.setEditable(false);
+        txtCedula.setText(tbtProveedor.getValueAt(select, 0)+"");
+        txtNombres.setText(tbtProveedor.getValueAt(select, 1)+"");
+
+
+    }//GEN-LAST:event_tbtProveedorMouseClicked
+    private void mostrarTabla(String cedula, String id) {
+        pdao.listarPersonas(tbtProveedor, cedula, id);
+    }
+
+    public void llenarCbx() {
+        cbxRol.removeAllItems();
+        rDAO.listarComboBox(cbxRol);
+    }
 
     /**
      * @param args the command line arguments
@@ -804,6 +853,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmpresa;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtRuc;
     private javax.swing.JTextField txtTelefono;

@@ -21,8 +21,8 @@ public class PersonaTest {
         PersonaDAO pDAO = new PersonaDAO();
         RolDAO rDAO = new RolDAO();
         Rol rol = new Rol();
-        rol.setIdRol(Long.valueOf(1));
-        rol.setRol("Administrador");
+//        rol.setIdRol(Long.valueOf(1));
+//        rol.setRol("Administrador");
 //        ProductoDAO proDAO = new ProductoDAO();
 //        DetalleCompra dc = new DetalleCompra();
 //        DetalleFactura df = new DetalleFactura();
@@ -31,7 +31,7 @@ public class PersonaTest {
 //        System.out.println(pDAO.actualizarPersona(Long.valueOf(100), "Juan Carlos Sanchez", "Daniel Alvarez", "0985559155", "juanarmijos@gmail.com", true));
 //        pDAO.darDeBajaPersona(Long.valueOf(4));
 //        System.out.println(pDAO.insertarPersona("Juan Carlos Armijos", "1150329887", "Daniel Alvarez", "0985559155", "juanarmijos@gmail.com", rol));
-//        rDAO.insertarRol("Administrador");
+        rDAO.insertarRol("Administrador");
 //        rDAO.darDeBajaRol(Long.valueOf(11));
     }
 }

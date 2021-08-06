@@ -81,7 +81,6 @@ public class ProductoDAO {
         }
         return mensaje;
     }
-    String id;
 
     public void listarProducto(JTable tabla, String codigo) {
         DefaultTableModel model;
