@@ -20,5 +20,6 @@ public class ProductoTest {
 //        ProductoDAO pdao = new ProductoDAO();
 //        System.out.println(pdao.insertarProducto(13, "gaseosa", Double.valueOf(5.5), "Pepsi", "Jose"));
 //        pdao.editar(Long.MIN_VALUE, 0, "asd", Double.valueOf(0.5), "asd", "asd");
+        
     }
 }

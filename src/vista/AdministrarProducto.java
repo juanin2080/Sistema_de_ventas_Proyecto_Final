@@ -7,6 +7,7 @@ package vista;
 
 import controlador.DAO.ProductoDAO;
 import javax.swing.JOptionPane;
+import modelo.Producto;
 
 /**
  *

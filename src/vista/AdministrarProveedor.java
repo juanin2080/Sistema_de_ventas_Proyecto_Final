@@ -8,7 +8,6 @@ package vista;
 import controlador.DAO.ProveedorDAO;
 import controlador.DAO.RolDAO;
 import javax.swing.JOptionPane;
-import static modelo.Persona_.rol;
 import modelo.Rol;
 
 /**
