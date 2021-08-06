@@ -65,13 +65,13 @@ public class PersonaDAO {
         return mensaje;
 
     }
-      public void darDeBajaPersona(Long id) {
+
+    public void darDeBajaPersona(Long id) {
         try {
             controladorPersona.destroy(id);
             System.out.println("Persona dado de baja.");
         } catch (Exception e) {
             System.out.println("Hubo un problema al dar de baja a la persona.");
-
         }
 
     }
@@ -109,6 +109,25 @@ public class PersonaDAO {
         query.setParameter("cedula", cedula + "%");
         List<Persona> lista = query.getResultList();
         return lista;
+    }
+
+    public Persona buscarRolPersona(Long id) {
+        List<Persona> datos = controladorPersona.findPersonaEntities();
+        Persona persona = new Persona();
+        for (Persona dato : datos) {
+            if (id == dato.getIdPersona()) {
+                persona.setIdPersona(dato.getIdPersona());
+                persona.setNombres(dato.getNombres());
+                persona.setCedula(dato.getCedula());
+                persona.setDireccion(dato.getDireccion());
+                persona.setTelefono(dato.getTelefono());
+                persona.setEmail(dato.getEmail());
+                persona.setRol(dato.getRol());
+            }
+
+        }
+        return persona;
+
     }
 
 }
