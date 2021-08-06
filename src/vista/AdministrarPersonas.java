@@ -10,6 +10,7 @@ import controlador.DAO.RolDAO;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import modelo.Persona;
 import modelo.Rol;
 
 /**
@@ -30,9 +31,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         mostrarTabla("");
         llenarCbx();
-//        txtId.setVisible(false);
-//        txtRol.setVisible(false);
-//        buscarRol();
+        txtId.setVisible(false);
+        txtRol.setVisible(false);
     }
 
     /**
@@ -47,6 +47,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtEmail.setText("");
         txtNombres.setText("");
         txtTelefono.setText("");
+        txtCedula.setEditable(true);
+        cbxRol.setEnabled(true);
     }
 
     private void mostrarTabla(String cedula) {
@@ -470,10 +472,9 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoPersonalActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        txtRol.setEditable(false);
-        Object objeto = (Object) txtRol.getText();
-        Rol rolP = (Rol) objeto;
-        pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), rolP);
+        Persona person = new Persona();
+        person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+        pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
         limpiarCampos();
         mostrarTabla("");
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
@@ -484,6 +485,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
         limpiarCampos();
         mostrarTabla("");
+        cbxRol.setSelectedIndex(0);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -542,6 +544,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtEmail.setText(tbtPersonal.getValueAt(seleccion, 4) + "");
         txtId.setText(tbtPersonal.getValueAt(seleccion, 5) + "");
         txtRol.setText(tbtPersonal.getValueAt(seleccion, 6) + "");
+        txtCedula.setEditable(false);
+        cbxRol.setEnabled(false);
     }//GEN-LAST:event_tbtPersonalMouseClicked
 
     private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
