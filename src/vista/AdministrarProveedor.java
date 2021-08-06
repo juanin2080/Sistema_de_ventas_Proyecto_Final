@@ -5,9 +5,12 @@
  */
 package vista;
 
+import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProveedorDAO;
 import controlador.DAO.RolDAO;
 import javax.swing.JOptionPane;
+import modelo.Persona;
+import modelo.Proveedor;
 import modelo.Rol;
 
 /**
@@ -15,18 +18,21 @@ import modelo.Rol;
  * @author juana
  */
 public class AdministrarProveedor extends javax.swing.JFrame {
-
+    
     private Rol rol = new Rol();
     private RolDAO rDAO = new RolDAO();
+    private PersonaDAO pDAO = new PersonaDAO();
     /**
      * Creates new form RegistrarPersonal
      */
     private ProveedorDAO pdao = new ProveedorDAO();
-
+    
     public AdministrarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        mostrarTabla("", txtId.getText());
+        mostrarTabla("", txtRol.getText());
+        txtId.setVisible(false);
+        txtRol.setVisible(false);
         llenarCbx();
     }
 
@@ -63,9 +69,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon8 = new necesario.LabelIcon();
         labelIcon9 = new necesario.LabelIcon();
         labelIcon11 = new necesario.LabelIcon();
-        labelIcon7 = new necesario.LabelIcon();
-        labelIcon15 = new necesario.LabelIcon();
-        btnDarDeBaja = new rojerusan.RSButtonHover();
         btnNuevoProveedor = new rojerusan.RSButtonHover();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
@@ -93,6 +96,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         cbxRol = new RSMaterialComponent.RSComboBoxMaterial<>();
         jLabel20 = new javax.swing.JLabel();
+        txtRol = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -314,28 +318,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(labelIcon6);
         labelIcon6.setBounds(920, 610, 30, 30);
 
-        labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-
-        labelIcon15.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon15.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        labelIcon7.add(labelIcon15);
-        labelIcon15.setBounds(20, 520, 30, 30);
-
-        jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(720, 660, 30, 30);
-
-        btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
-        btnDarDeBaja.setText("Dar de baja");
-        btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
-        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBajaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(760, 660, 130, 30);
-
         btnNuevoProveedor.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoProveedor.setText("Nuevo Proveedor");
         btnNuevoProveedor.setColorHover(new java.awt.Color(102, 102, 102));
@@ -551,6 +533,17 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel1.add(jLabel20);
         jLabel20.setBounds(20, 580, 100, 30);
 
+        txtRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtRol.setForeground(new java.awt.Color(102, 102, 102));
+        txtRol.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRolActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtRol);
+        txtRol.setBounds(380, 290, 90, 30);
+
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(102, 102, 102));
         txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
@@ -570,9 +563,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
         );
 
         pack();
@@ -596,16 +587,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
         // TODO add your handling code here:
+        limpiar();
+        txtCedula.setEditable(true);
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
-
-    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
-        // TODO add your handling code here:
-
-        String mensaje = "";
-        mensaje = pdao.eliminar(Long.valueOf(8));
-        JOptionPane.showMessageDialog(null, mensaje);
-
-    }//GEN-LAST:event_btnDarDeBajaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -621,23 +605,23 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
         mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
         JOptionPane.showMessageDialog(null, mensaje);
-        mostrarTabla("", txtId.getText());
-
+        mostrarTabla("", txtRol.getText());
+        limpiar();
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
-
+    
     private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {
-
+        
     }
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
-
+    
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -656,7 +640,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         conf.setVisible(true);
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
-
+    
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
@@ -669,8 +653,15 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void btnActualizarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatos1ActionPerformed
         // TODO add your handling code here:
         String mensaje = "";
-        mensaje = pdao.actualizarDatos(Integer.parseInt(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+        Persona person = new Persona();
+        person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+//        Proveedor proveedor = new Proveedor();
+
+//        pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+        mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
         JOptionPane.showMessageDialog(null, mensaje);
+        mostrarTabla("", txtRol.getText());
+        limpiar();
     }//GEN-LAST:event_btnActualizarDatos1ActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
@@ -705,31 +696,48 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmpresaActionPerformed
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+    private void txtRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
+    }//GEN-LAST:event_txtRolActionPerformed
 
     private void tbtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtProveedorMouseClicked
         // TODO add your handling code here:
         int select = tbtProveedor.getSelectedRow();
-
-//        txtCodigo.setText(tbtProducto.getValueAt(select, 0) + "");
-//        txtNombres.setText(tbtProducto.getValueAt(select, 1) + "");
-//        txtPrecio.setText(tbtProducto.getValueAt(select, 2) + "");
-//        txtMarca.setText(tbtProducto.getValueAt(select, 3) + "");
-//        txtProveedor.setText(tbtProducto.getValueAt(select, 4) + "");
-//        txtCantidad.setText((String) tbtProducto.getValueAt(select, 5));
-//        txtid.setText(tbtProducto.getValueAt(select, 6) + "");
-//        txtCodigo.setEditable(false);
-        txtCedula.setText(tbtProveedor.getValueAt(select, 0)+"");
-        txtNombres.setText(tbtProveedor.getValueAt(select, 1)+"");
-
+        
+        txtCedula.setText(tbtProveedor.getValueAt(select, 0) + "");
+        txtNombres.setText(tbtProveedor.getValueAt(select, 1) + "");
+        txtTelefono.setText(tbtProveedor.getValueAt(select, 2) + "");
+        txtDireccion.setText(tbtProveedor.getValueAt(select, 3) + "");
+        txtEmail.setText(tbtProveedor.getValueAt(select, 4) + "");
+        txtRuc.setText((String) tbtProveedor.getValueAt(select, 5));
+        txtEmpresa.setText(tbtProveedor.getValueAt(select, 6) + "");
+        txtId.setText((String) tbtProveedor.getValueAt(select, 7));
+        txtRol.setText((String) tbtProveedor.getValueAt(select, 8));
+        txtCedula.setEditable(false);
+        
+        cbxRol.setEnabled(false);
+        
 
     }//GEN-LAST:event_tbtProveedorMouseClicked
-    private void mostrarTabla(String cedula, String id) {
-        pdao.listarPersonas(tbtProveedor, cedula, id);
+    
+    public void limpiar() {
+        txtCedula.setText("");
+        txtDireccion.setText("");
+        txtEmail.setText("");
+        txtEmpresa.setText("");
+        txtNombres.setText("");
+        txtRuc.setText("");
+        txtTelefono.setText("");
+        txtEmpresa.setText("");
     }
-
+    
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
+    private void mostrarTabla(String cedula, String id) {
+        pdao.listarPersonas(tbtProveedor, cedula);
+    }
+    
     public void llenarCbx() {
         cbxRol.removeAllItems();
         rDAO.listarComboBox(cbxRol);
@@ -804,7 +812,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos1;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
-    private rojerusan.RSButtonHover btnDarDeBaja;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoProveedor;
@@ -835,13 +842,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon12;
     private necesario.LabelIcon labelIcon13;
     private necesario.LabelIcon labelIcon14;
-    private necesario.LabelIcon labelIcon15;
     private necesario.LabelIcon labelIcon19;
     private necesario.LabelIcon labelIcon20;
     private necesario.LabelIcon labelIcon21;
     private necesario.LabelIcon labelIcon22;
     private necesario.LabelIcon labelIcon6;
-    private necesario.LabelIcon labelIcon7;
     private necesario.LabelIcon labelIcon8;
     private necesario.LabelIcon labelIcon9;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
@@ -855,6 +860,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtRuc;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
