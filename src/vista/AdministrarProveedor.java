@@ -104,9 +104,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 204));
         jPanel2.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre Vendedor");
+        jLabel1.setText("Nombre Administrador");
         jPanel2.add(jLabel1);
         jLabel1.setBounds(10, 80, 220, 70);
 

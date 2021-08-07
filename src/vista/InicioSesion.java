@@ -5,6 +5,10 @@
  */
 package vista;
 
+import controlador.DAO.CuentaDAO;
+import javax.swing.JOptionPane;
+import modelo.Cuenta;
+
 /**
  *
  * @author juana
@@ -14,9 +18,16 @@ public class InicioSesion extends javax.swing.JFrame {
     /**
      * Creates new form InicioSesion
      */
+    CuentaDAO cDAO = new CuentaDAO();
+
     public InicioSesion() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public void LimpiarCampos() {
+        txtUsuario.setText("");
+        txtClave.setText("");
     }
 
     /**
@@ -32,7 +43,7 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JPasswordField();
+        txtClave = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         labelIcon3 = new necesario.LabelIcon();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -82,11 +93,6 @@ public class InicioSesion extends javax.swing.JFrame {
         txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(102, 102, 102));
         txtUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsuarioMouseClicked(evt);
-            }
-        });
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -95,15 +101,11 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1.add(txtUsuario);
         txtUsuario.setBounds(450, 170, 240, 30);
 
-        txtContrasenia.setForeground(new java.awt.Color(102, 102, 102));
-        txtContrasenia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtContraseniaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(txtContrasenia);
-        txtContrasenia.setBounds(450, 290, 240, 30);
+        txtClave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtClave.setForeground(new java.awt.Color(102, 102, 102));
+        txtClave.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        jPanel1.add(txtClave);
+        txtClave.setBounds(450, 290, 240, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,16 +234,25 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void txtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseClicked
-
-    }//GEN-LAST:event_txtUsuarioMouseClicked
-
-    private void txtContraseniaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaMouseClicked
-
-    }//GEN-LAST:event_txtContraseniaMouseClicked
-
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
+        Cuenta cuenta = new Cuenta();
+        cuenta = cDAO.autenticacion(txtUsuario.getText(), txtClave.getText());
+        if (cuenta.getPersona().getRol().getRol().equals("Administrador")) {
+            MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+            dispose();
+            mpa.setLocationRelativeTo(null);
+            mpa.setVisible(true);
+            LimpiarCampos();
+        } else if (cuenta.getPersona().getRol().getRol().equals("Vendedor")) {
+            MenuPrincipalVendedor mpv = new MenuPrincipalVendedor();
+            dispose();
+            mpv.setLocationRelativeTo(null);
+            mpv.setVisible(true);
+            LimpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(null, "El usuario no está autorizado para ingresar al sistema");
+            LimpiarCampos();
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
@@ -257,7 +268,7 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void btnVerContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerContraseniaActionPerformed
-        txtContrasenia.setEchoChar((char) 0);
+        txtClave.setEchoChar((char) 0);
     }//GEN-LAST:event_btnVerContraseniaActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
@@ -325,7 +336,7 @@ public class InicioSesion extends javax.swing.JFrame {
     necesario.LabelIcon labelIcon6;
     rojeru_san.rslabel.RSLabelImage rSLabelImage1;
     necesario.RSLabelImage rSLabelImage2;
-    javax.swing.JPasswordField txtContrasenia;
+    javax.swing.JPasswordField txtClave;
     javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

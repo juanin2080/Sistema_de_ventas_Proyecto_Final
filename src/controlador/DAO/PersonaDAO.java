@@ -23,9 +23,8 @@ public class PersonaDAO {
 
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
-    private String mensaje = "";
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
+    public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
@@ -35,16 +34,13 @@ public class PersonaDAO {
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.create(persona);
-            mensaje = "Persona registrada con exito";
         } catch (Exception e) {
-            mensaje = "No se pudo registrar la persona ";
             System.out.println(e.getMessage());
         }
 
-        return mensaje;
     }
 
-    public String actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
+    public void actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
         try {
             persona.setIdPersona(id);
             persona.setNombres(nombres);
@@ -54,15 +50,11 @@ public class PersonaDAO {
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.edit(persona);
-            mensaje = "Persona actualizada con exito";
             JOptionPane.showMessageDialog(null, "Persona actualizada con exito");
         } catch (Exception e) {
-            mensaje = "No se pudo actualizar la persona";
             JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona");
             System.out.println(e.getMessage());
         }
-
-        return mensaje;
 
     }
 
@@ -128,6 +120,23 @@ public class PersonaDAO {
         }
         return persona;
 
+    }
+
+    public Persona BuscarCuentaPersona(String cedula) {
+        Persona person = new Persona();
+        List<Persona> datos = controladorPersona.findPersonaEntities();
+        for (Persona dato : datos) {
+            if (dato.getCedula().equals(cedula)) {
+                person.setIdPersona(dato.getIdPersona());
+                person.setNombres(dato.getNombres());
+                person.setCedula(dato.getCedula());
+                person.setTelefono(dato.getTelefono());
+                person.setEmail(dato.getEmail());
+                person.setRol(dato.getRol());
+            }
+
+        }
+        return person;
     }
 
 }
