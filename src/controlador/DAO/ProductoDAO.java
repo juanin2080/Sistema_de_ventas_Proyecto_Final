@@ -6,6 +6,11 @@
 package controlador.DAO;
 
 import controlador.ProductoJpaController;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 
 /**
@@ -18,12 +23,12 @@ public class ProductoDAO {
     private Producto producto = new Producto();
     private String mensaje = "";
 
-    public String insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor) {
+    public String insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         try {
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
             producto.setPrecio(precio);
-            producto.setStock(0);
+            producto.setStock(cantidad);
             producto.setMarca(Marca);
             producto.setEstado(true);
             producto.setProveedor(proveedor);
@@ -37,13 +42,13 @@ public class ProductoDAO {
         return mensaje;
     }
 
-    public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor) {
+    public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         try {
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
             producto.setPrecio(precio);
-            producto.setStock(0);
+            producto.setStock(cantidad);
             producto.setMarca(Marca);
             producto.setEstado(true);
             producto.setProveedor(proveedor);
@@ -57,13 +62,13 @@ public class ProductoDAO {
         return mensaje;
     }
 
-    public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor) {
+    public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         try {
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
             producto.setPrecio(precio);
-            producto.setStock(0);
+            producto.setStock(cantidad);
             producto.setMarca(Marca);
             producto.setEstado(false);
             producto.setProveedor(proveedor);
@@ -77,4 +82,42 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    public void listarProducto(JTable tabla, String codigo) {
+        DefaultTableModel model;
+
+        String[] titulo = {"CÓDIGO", "NOMBRE", "PRECIO", "MARCA", "PROVEEDOR", "STOCK", "ID"};
+        model = new DefaultTableModel(null, titulo);
+
+        List<Producto> datos = buscarProducto(codigo);
+
+        String[] listarProducto = new String[7];
+
+        for (Producto product : datos) {
+            if (product.getEstado() == true) {
+                listarProducto[0] = product.getCodigo() + "";
+                listarProducto[1] = product.getNombre();
+                listarProducto[2] = product.getPrecio() + "";
+                listarProducto[3] = product.getMarca();
+                listarProducto[4] = product.getProveedor();
+                listarProducto[5] = product.getStock() + "";
+                listarProducto[6] = product.getIdProducto() + "";
+                model.addRow(listarProducto);
+            }
+        }
+        tabla.setModel(model);
+        tabla.getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(6).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
+    }
+
+    private List<Producto> buscarProducto(String codigo) {
+        Producto pd;
+        EntityManager em = controladorProducto.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
+        query.setParameter("codigo", codigo + "%");
+
+        List<Producto> lista = query.getResultList();
+        return lista;
+    }
 }

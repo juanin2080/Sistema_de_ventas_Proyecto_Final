@@ -18,9 +18,13 @@ public class AdministrarProducto extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     ProductoDAO pDao = new ProductoDAO();
+
+
     public AdministrarProducto() {
         initComponents();
         this.setLocationRelativeTo(null);
+        mostrarTabla("");
+        txtid.setVisible(false);
     }
 
     /**
@@ -39,7 +43,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
         btnConfiguración = new newscomponents.RSButtonBigIcon_new();
-        txtCodigo = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
@@ -48,7 +52,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtProducto = new RSMaterialComponent.RSTableMetro();
-        btnGuardar = new rojerusan.RSButtonHover();
+        btnBuscar = new rojerusan.RSButtonHover();
         labelIcon5 = new necesario.LabelIcon();
         labelIcon6 = new necesario.LabelIcon();
         btnActualizarDatos = new rojerusan.RSButtonHover();
@@ -68,6 +72,10 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtProveedor = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
+        btnGuardar = new rojerusan.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -148,21 +156,28 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
 
-        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
-        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtid.setEditable(false);
+        txtid.setBackground(new java.awt.Color(255, 255, 255));
+        txtid.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtid.setForeground(new java.awt.Color(255, 255, 255));
+        txtid.setBorder(null);
+        txtid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodigoMouseClicked(evt);
+                txtidMouseClicked(evt);
             }
         });
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(140, 280, 220, 30);
+        txtid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtidKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtid);
+        txtid.setBounds(380, 240, 50, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -196,7 +211,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Proveedor:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 460, 80, 30);
+        jLabel7.setBounds(20, 500, 80, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
@@ -222,50 +237,55 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
         tbtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Código", "Nombre", "Precio", "Stock", "Marca", "Proveedor"
+
             }
         ));
         tbtProducto.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        tbtProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtProductoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtProducto);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(452, 240, 700, 330);
 
-        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(0, 204, 51));
+        btnBuscar.setText("Buscar");
+        btnBuscar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(60, 510, 130, 30);
+        jPanel1.add(btnBuscar);
+        btnBuscar.setBounds(330, 280, 100, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(20, 510, 30, 30);
+        labelIcon5.setBounds(20, 550, 30, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(210, 510, 30, 30);
+        labelIcon6.setBounds(210, 550, 30, 30);
 
         btnActualizarDatos.setBackground(new java.awt.Color(0, 102, 204));
         btnActualizarDatos.setText("Actualizar datos");
@@ -276,12 +296,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos);
-        btnActualizarDatos.setBounds(250, 510, 180, 30);
+        btnActualizarDatos.setBounds(250, 550, 180, 30);
 
         labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
         jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(20, 550, 30, 30);
+        labelIcon7.setBounds(20, 590, 30, 30);
 
         btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
         btnDarDeBaja.setText("Dar de baja");
@@ -292,10 +312,10 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(60, 550, 130, 30);
+        btnDarDeBaja.setBounds(60, 590, 130, 30);
 
         btnNuevoProducto.setBackground(new java.awt.Color(0, 102, 51));
-        btnNuevoProducto.setText("Nuevo producto");
+        btnNuevoProducto.setText("Limpiar");
         btnNuevoProducto.setColorHover(new java.awt.Color(102, 102, 102));
         btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,7 +323,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoProducto);
-        btnNuevoProducto.setBounds(250, 550, 180, 30);
+        btnNuevoProducto.setBounds(250, 590, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -334,9 +354,9 @@ public class AdministrarProducto extends javax.swing.JFrame {
         btnSalir.setBounds(1110, 10, 40, 40);
 
         labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLEAR);
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(210, 550, 30, 30);
+        labelIcon10.setBounds(210, 590, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -401,7 +421,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtProveedor);
-        txtProveedor.setBounds(140, 460, 220, 30);
+        txtProveedor.setBounds(140, 500, 220, 30);
 
         txtMarca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMarca.setForeground(new java.awt.Color(102, 102, 102));
@@ -418,6 +438,60 @@ public class AdministrarProducto extends javax.swing.JFrame {
         });
         jPanel1.add(txtMarca);
         txtMarca.setBounds(140, 410, 220, 30);
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodigoMouseClicked(evt);
+            }
+        });
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtCodigo);
+        txtCodigo.setBounds(140, 280, 150, 30);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Cantidad");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(20, 460, 80, 30);
+
+        txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(102, 102, 102));
+        txtCantidad.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCantidadMouseClicked(evt);
+            }
+        });
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtCantidad);
+        txtCantidad.setBounds(140, 460, 220, 30);
+
+        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar);
+        btnGuardar.setBounds(60, 550, 130, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -451,24 +525,40 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
         // TODO add your handling code here:
+
+        txtCodigo.setText("");
+        txtNombres.setText("");
+        txtPrecio.setText("");
+        txtMarca.setText("");
+        txtProveedor.setText("");
+        txtCantidad.setText("");
+        
+        txtCodigo.setEditable(true);
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
         // TODO add your handling code here:
+        String mensaje = "";
+        mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText() , Integer.parseInt(txtCantidad.getText()));
+        JOptionPane.showMessageDialog(null, mensaje);
+        mostrarTabla("");
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         // TODO add your handling code here:
+        String mensaje = "";
+        mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+        JOptionPane.showMessageDialog(null, mensaje);
+
+        mostrarTabla("");
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        String mensaje = "";
-            mensaje = pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.parseDouble(txtPrecio.getText()), txtMarca.getText(),txtProveedor.getText());
-            JOptionPane.showMessageDialog(null, mensaje);
-        
-        
-    }//GEN-LAST:event_btnGuardarActionPerformed
+       mostrarTabla(txtCodigo.getText());
+            
+       
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
@@ -486,13 +576,13 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNombresMouseClicked
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
-    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
+    private void txtidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidMouseClicked
 
-    }//GEN-LAST:event_txtCodigoMouseClicked
+    }//GEN-LAST:event_txtidMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         InicioSesion inicioSesion = new InicioSesion();
@@ -538,6 +628,70 @@ public class AdministrarProducto extends javax.swing.JFrame {
         conf.setVisible(true);
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
+
+
+    private void tbtProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtProductoMouseClicked
+        // TODO add your handling code here:
+
+        int select = tbtProducto.getSelectedRow();
+
+        txtCodigo.setText(tbtProducto.getValueAt(select, 0) + "");
+        txtNombres.setText(tbtProducto.getValueAt(select, 1) + "");
+        txtPrecio.setText(tbtProducto.getValueAt(select, 2) + "");
+        txtMarca.setText(tbtProducto.getValueAt(select, 3) + "");
+        txtProveedor.setText(tbtProducto.getValueAt(select, 4) + "");
+        txtCantidad.setText((String) tbtProducto.getValueAt(select, 5));
+        txtid.setText(tbtProducto.getValueAt(select, 6) + "");
+        txtCodigo.setEditable(false);
+        
+
+
+    }//GEN-LAST:event_tbtProductoMouseClicked
+
+    private void txtidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyReleased
+        // TODO add your handling code here:
+//        mostrarTabla(txtCodigo.getText());
+    }//GEN-LAST:event_txtidKeyReleased
+
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoMouseClicked
+
+    private void txtCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadMouseClicked
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+         String mensaje = "";
+       mensaje= pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.parseDouble(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+        JOptionPane.showMessageDialog(null, mensaje);
+        mostrarTabla("");
+
+        txtCodigo.setText("");
+        txtNombres.setText("");
+        txtPrecio.setText("");
+        txtMarca.setText("");
+        txtProveedor.setText("");
+        txtCantidad.setText("");
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void mostrarTabla(String codigo) {
+        pDao.listarProducto(tbtProducto, codigo);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -591,6 +745,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
+    private rojerusan.RSButtonHover btnBuscar;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnDarDeBaja;
     private rojerusan.RSButtonHover btnGuardar;
@@ -601,6 +756,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
@@ -621,10 +777,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tbtProducto;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProveedor;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

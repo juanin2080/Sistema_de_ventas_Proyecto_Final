@@ -10,6 +10,7 @@ import controlador.DAO.RolDAO;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import modelo.Persona;
 import modelo.Rol;
 
 /**
@@ -28,9 +29,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     public AdministrarPersonas() {
         initComponents();
         this.setLocationRelativeTo(null);
-        mostrarTabla();
+        mostrarTabla("");
         llenarCbx();
-//        buscarRol();
+        txtId.setVisible(false);
+        txtRol.setVisible(false);
     }
 
     /**
@@ -40,27 +42,23 @@ public class AdministrarPersonas extends javax.swing.JFrame {
      */
     public void limpiarCampos() {
         txtCedula.setText("");
+        txtRol.setText("");
         txtDireccion.setText("");
         txtEmail.setText("");
         txtNombres.setText("");
         txtTelefono.setText("");
+        txtCedula.setEditable(true);
+        cbxRol.setEnabled(true);
     }
 
-    private void mostrarTabla() {
-        pDAO.listarPersonas(tbtPersonal);
+    private void mostrarTabla(String cedula) {
+        pDAO.listarPersonas(tbtPersonal, cedula);
     }
 
     public void llenarCbx() {
         cbxRol.removeAllItems();
         rDAO.listarComboBox(cbxRol);
     }
-
-//    public void buscarRol() {
-//        System.out.println(cbxRol.getSelectedItem().toString());
-//        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-//        System.out.println("id rol en persona: " + rol.getIdRol());
-//        System.out.println("rol en persona: " + rol.getRol());
-//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,7 +69,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         rSLabelImage4 = new necesario.RSLabelImage();
-        txtCedula = new javax.swing.JTextField();
+        txtRol = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
@@ -87,8 +85,6 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         labelIcon5 = new necesario.LabelIcon();
         labelIcon6 = new necesario.LabelIcon();
         btnActualizarDatos = new rojerusan.RSButtonHover();
-        labelIcon7 = new necesario.LabelIcon();
-        btnDarDeBaja = new rojerusan.RSButtonHover();
         btnNuevoPersonal = new rojerusan.RSButtonHover();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
@@ -102,6 +98,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         btnRegresar = new newscomponents.RSButtonIcon_new();
         jLabel20 = new javax.swing.JLabel();
         cbxRol = new RSMaterialComponent.RSComboBoxMaterial<>();
+        txtCedula = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -142,21 +140,21 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
 
-        txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCedula.setForeground(new java.awt.Color(102, 102, 102));
-        txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtRol.setForeground(new java.awt.Color(102, 102, 102));
+        txtRol.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCedulaMouseClicked(evt);
+                txtRolMouseClicked(evt);
             }
         });
-        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+        txtRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaActionPerformed(evt);
+                txtRolActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCedula);
-        txtCedula.setBounds(140, 280, 220, 30);
+        jPanel1.add(txtRol);
+        txtRol.setBounds(380, 310, 60, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -303,24 +301,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jPanel1.add(btnActualizarDatos);
         btnActualizarDatos.setBounds(250, 560, 180, 30);
 
-        labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        jPanel1.add(labelIcon7);
-        labelIcon7.setBounds(20, 600, 30, 30);
-
-        btnDarDeBaja.setBackground(new java.awt.Color(255, 0, 0));
-        btnDarDeBaja.setText("Dar de baja");
-        btnDarDeBaja.setColorHover(new java.awt.Color(102, 102, 102));
-        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBajaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnDarDeBaja);
-        btnDarDeBaja.setBounds(60, 600, 130, 30);
-
         btnNuevoPersonal.setBackground(new java.awt.Color(0, 102, 51));
-        btnNuevoPersonal.setText("Nuevo personal");
+        btnNuevoPersonal.setText("Limpiar");
         btnNuevoPersonal.setColorHover(new java.awt.Color(102, 102, 102));
         btnNuevoPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +310,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoPersonal);
-        btnNuevoPersonal.setBounds(250, 600, 180, 30);
+        btnNuevoPersonal.setBounds(150, 610, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -361,7 +343,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         labelIcon10.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon10.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(210, 600, 30, 30);
+        labelIcon10.setBounds(110, 610, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -415,8 +397,45 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         cbxRol.setForeground(new java.awt.Color(102, 102, 102));
         cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxRolActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxRol);
-        cbxRol.setBounds(140, 490, 220, 40);
+        cbxRol.setBounds(140, 480, 220, 40);
+
+        txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCedula.setForeground(new java.awt.Color(102, 102, 102));
+        txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCedulaMouseClicked(evt);
+            }
+        });
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtCedula);
+        txtCedula.setBounds(140, 280, 220, 30);
+
+        txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtId.setForeground(new java.awt.Color(102, 102, 102));
+        txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtId.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIdMouseClicked(evt);
+            }
+        });
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtId);
+        txtId.setBounds(380, 260, 60, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -449,26 +468,24 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnNuevoPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPersonalActionPerformed
-        // TODO add your handling code here:
+        limpiarCampos();
     }//GEN-LAST:event_btnNuevoPersonalActionPerformed
 
-    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDarDeBajaActionPerformed
-
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-//        txtCedula.setEditable(false);
-//        pDAO.actualizarPersona(Long.MIN_VALUE, txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText());
-//        limpiarCampos();
-//        mostrarTabla();
+        Persona person = new Persona();
+        person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+        pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+        limpiarCampos();
+        mostrarTabla("");
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(),rol);
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
         JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
         limpiarCampos();
-        mostrarTabla();
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(0);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -503,13 +520,13 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNombresMouseClicked
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+    private void txtRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
+    }//GEN-LAST:event_txtRolActionPerformed
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+    private void txtRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRolMouseClicked
 
-    }//GEN-LAST:event_txtCedulaMouseClicked
+    }//GEN-LAST:event_txtRolMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         InicioSesion inicioSesion = new InicioSesion();
@@ -525,7 +542,31 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono.setText(tbtPersonal.getValueAt(seleccion, 2) + "");
         txtDireccion.setText(tbtPersonal.getValueAt(seleccion, 3) + "");
         txtEmail.setText(tbtPersonal.getValueAt(seleccion, 4) + "");
+        txtId.setText(tbtPersonal.getValueAt(seleccion, 5) + "");
+        txtRol.setText(tbtPersonal.getValueAt(seleccion, 6) + "");
+        txtCedula.setEditable(false);
+        cbxRol.setEnabled(false);
     }//GEN-LAST:event_tbtPersonalMouseClicked
+
+    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaMouseClicked
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdMouseClicked
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
+
+    private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,7 +620,6 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
-    private rojerusan.RSButtonHover btnDarDeBaja;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoPersonal;
@@ -603,7 +643,6 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon10;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
-    private necesario.LabelIcon labelIcon7;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private necesario.RSLabelImage rSLabelImage2;
@@ -612,7 +651,9 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

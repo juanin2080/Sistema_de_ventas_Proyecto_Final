@@ -8,6 +8,7 @@ package controlador.DAO;
 import controlador.PersonaJpaController;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,7 +24,7 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
     private String mensaje = "";
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol) {
+    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
@@ -31,7 +32,7 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
             persona.setDireccion(direccion);
             persona.setTelefono(telefono);
             persona.setEmail(email);
-            persona.setRol(idRol);
+            persona.setRol(rol);
             controladorPersona.create(persona);
             mensaje = "Persona registrada con exito";
         } catch (Exception e) {
@@ -49,6 +50,7 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
             persona.setDireccion(direccion);
             persona.setTelefono(telefono);
             persona.setEmail(email);
+            persona.setRol(rol);
             controladorPersona.edit(persona);
             mensaje = "Persona actualizada con exito";
             JOptionPane.showMessageDialog(null, "Persona actualizada con exito");
@@ -62,31 +64,68 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
 
     }
 
-    public String darDeBajaPersona(Long id) {
+    public void darDeBajaPersona(Long id) {
         try {
             controladorPersona.destroy(id);
-            mensaje = "Persona dada de baja con exito";
+            System.out.println("Persona dado de baja.");
         } catch (Exception e) {
-            mensaje = "Persona no dada de baja con exito";
-            System.out.println(e.getMessage());
+            System.out.println("Hubo un problema al dar de baja a la persona.");
         }
-        return mensaje;
+
     }
 
-    public void listarPersonas(JTable tabla) {
+    public void listarPersonas(JTable tabla, String cedula) {
         DefaultTableModel modelo;
-        String[] titulo = {"Cédula", "Nombres", "Teléfono", "Dirección", "Email"};
+        String[] titulo = {"Cédula", "Nombres", "Teléfono", "Dirección", "Email", "Id", "Rol"};
         modelo = new DefaultTableModel(null, titulo);
-        List<Persona> datos = controladorPersona.findPersonaEntities();
-        String[] datosPersona = new String[5];
+        List<Persona> datos = buscarPersona(cedula);
+        String[] datosPersona = new String[7];
         for (Persona persona : datos) {
             datosPersona[0] = persona.getCedula();
             datosPersona[1] = persona.getNombres();
             datosPersona[2] = persona.getTelefono();
             datosPersona[3] = persona.getDireccion();
             datosPersona[4] = persona.getEmail();
+            datosPersona[5] = persona.getIdPersona() + "";
+            datosPersona[6] = persona.getRol() + "";
             modelo.addRow(datosPersona);
         }
         tabla.setModel(modelo);
+        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(6).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
+
+    private List<Persona> buscarPersona(String cedula) {
+        EntityManager em = controladorPersona.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula LIKE :cedula");
+        query.setParameter("cedula", cedula + "%");
+        List<Persona> lista = query.getResultList();
+        return lista;
+    }
+
+    public Persona buscarRolPersona(Long id) {
+        List<Persona> datos = controladorPersona.findPersonaEntities();
+        Persona persona = new Persona();
+        for (Persona dato : datos) {
+            if (id == dato.getIdPersona()) {
+                persona.setIdPersona(dato.getIdPersona());
+                persona.setNombres(dato.getNombres());
+                persona.setCedula(dato.getCedula());
+                persona.setDireccion(dato.getDireccion());
+                persona.setTelefono(dato.getTelefono());
+                persona.setEmail(dato.getEmail());
+                persona.setRol(dato.getRol());
+            }
+
+        }
+        return persona;
+
+    }
+
 }
