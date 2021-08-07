@@ -10,6 +10,7 @@ import controlador.ProveedorJpaController;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Persona;
@@ -29,28 +30,38 @@ public class ProveedorDAO {
 //    private Persona persona = new Persona();
     private String mensaje = "";
 
-    public String insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
-        try {
-            proveedor.setIdPersona(Long.MIN_VALUE);
-            proveedor.setNombres(nombres);
-            proveedor.setCedula(cedula);
-            proveedor.setDireccion(direccion);
-            proveedor.setTelefono(telefono);
-            proveedor.setEmail(email);
-            proveedor.setRol(idRol);
-            proveedor.setEmpresa(empresa);
-            proveedor.setRuc(ruc);
-            controladorProveedor.create(proveedor);
-            mensaje = "Proveedor registrada con exito";
-        } catch (Exception e) {
-            mensaje = "No se pudo registrar el proveedor ";
-            System.out.println(e.getMessage());
+    public void insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
+
+        List<Persona> datos = buscarPersona(cedula);
+
+        for (Persona dato : datos) {
+            if (dato.getCedula().equals(cedula)) {
+                JOptionPane.showMessageDialog(null, "La cedula ya existe.\n Intente de nuevo");
+            } else {
+                try {
+                    proveedor.setIdPersona(Long.MIN_VALUE);
+                    proveedor.setNombres(nombres);
+                    proveedor.setCedula(cedula);
+                    proveedor.setDireccion(direccion);
+                    proveedor.setTelefono(telefono);
+                    proveedor.setEmail(email);
+                    proveedor.setRol(idRol);
+                    proveedor.setEmpresa(empresa);
+                    proveedor.setRuc(ruc);
+                    controladorProveedor.create(proveedor);
+                    mensaje = "Proveedor registrada con exito";
+                } catch (Exception e) {
+                    mensaje = "No se pudo registrar el proveedor ";
+                    System.out.println(e.getMessage());
+                }
+                JOptionPane.showMessageDialog(null, mensaje);
+
+            }
         }
 
-        return mensaje;
     }
 
-    public String actualizarDatos(Long id, String nombres, String cedula, String direccion, String telefono, String email,  Rol idRol, String empresa, String ruc) {
+    public String actualizarDatos(Long id, String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
         try {
             proveedor.setIdPersona(id);
             proveedor.setRol(idRol);

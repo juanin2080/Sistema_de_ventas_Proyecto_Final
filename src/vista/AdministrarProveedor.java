@@ -601,10 +601,10 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 //        
 //            mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), txtRuc.getText(), txtEmpresa.getText());
 //            JOptionPane.showMessageDialog(null, mensaje);
-        String mensaje = "";
+        
         rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
-        JOptionPane.showMessageDialog(null, mensaje);
+        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+        
         mostrarTabla("", txtRol.getText());
         limpiar();
 

@@ -676,7 +676,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
          String mensaje = "";
-        mensaje = pDao.insertarProducto(Integer.parseInt(txtid.getText()), txtNombres.getText(), Double.parseDouble(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+       mensaje= pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.parseDouble(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
         JOptionPane.showMessageDialog(null, mensaje);
         mostrarTabla("");
 
@@ -685,7 +685,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtPrecio.setText("");
         txtMarca.setText("");
         txtProveedor.setText("");
-        txtCantidad.getText();
+        txtCantidad.setText("");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void mostrarTabla(String codigo) {

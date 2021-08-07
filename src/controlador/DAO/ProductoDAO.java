@@ -62,7 +62,7 @@ public class ProductoDAO {
         return mensaje;
     }
 
-    public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor,int cantidad) {
+    public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         try {
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
@@ -93,15 +93,16 @@ public class ProductoDAO {
         String[] listarProducto = new String[7];
 
         for (Producto product : datos) {
-            listarProducto[0] = product.getCodigo() + "";
-            listarProducto[1] = product.getNombre();
-            listarProducto[2] = product.getPrecio() + "";
-            listarProducto[3] = product.getMarca();
-            listarProducto[4] = product.getProveedor();
-            listarProducto[5] = product.getStock() + "";
-            listarProducto[6] = product.getIdProducto() + "";
-            model.addRow(listarProducto);
-
+            if (product.getEstado() == true) {
+                listarProducto[0] = product.getCodigo() + "";
+                listarProducto[1] = product.getNombre();
+                listarProducto[2] = product.getPrecio() + "";
+                listarProducto[3] = product.getMarca();
+                listarProducto[4] = product.getProveedor();
+                listarProducto[5] = product.getStock() + "";
+                listarProducto[6] = product.getIdProducto() + "";
+                model.addRow(listarProducto);
+            }
         }
         tabla.setModel(model);
         tabla.getColumnModel().getColumn(6).setMaxWidth(0);
@@ -115,7 +116,7 @@ public class ProductoDAO {
         EntityManager em = controladorProducto.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
         query.setParameter("codigo", codigo + "%");
-        
+
         List<Producto> lista = query.getResultList();
         return lista;
     }
