@@ -8,6 +8,7 @@ package controlador.DAO;
 import controlador.FacturaJpaController;
 import controlador.PersonaJpaController;
 import controlador.ProductoJpaController;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,9 +34,9 @@ public class FacturaDAO {
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Factura factura = new Factura();
     private String mensaje = "";
-    private ProductoDAO producto= new ProductoDAO();
-    private PersonaDAO pe= new PersonaDAO();
-    
+    private ProductoDAO producto = new ProductoDAO();
+    private PersonaDAO pe = new PersonaDAO();
+
     public String insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
         try {
             factura.setIdFactura(Long.MIN_VALUE);
@@ -54,26 +55,26 @@ public class FacturaDAO {
         }
         return mensaje;
     }
-
-    public String actualizarFactura(Long idFactura, Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
-        try {
-
-            factura.setIdFactura(idFactura);
-            factura.setFecha((Date) fecha);
-            factura.setFormaPago(formaPago);
-            factura.setIva(iva);
-            factura.setSubtotal(subtotal);
-            factura.setNroFactura(nroFactura);
-            factura.setTotal(total);
-            factura.setPersona(idPersona);
-            Controladorfactura.edit(factura);
-            mensaje = "Actualizado exitamente";
-        } catch (Exception e) {
-            mensaje = "No se puede actualizar ";
-            System.out.println(e.getMessage());
-        }
-        return mensaje;
-    }
+//
+//    public String actualizarFactura(Long idFactura, Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
+//        try {
+//
+//            factura.setIdFactura(idFactura);
+//            factura.setFecha((Date) fecha);
+//            factura.setFormaPago(formaPago);
+//            factura.setIva(iva);
+//            factura.setSubtotal(subtotal);
+//            factura.setNroFactura(nroFactura);
+//            factura.setTotal(total);
+//            factura.setPersona(idPersona);
+//            Controladorfactura.edit(factura);
+//            mensaje = "Actualizado exitamente";
+//        } catch (Exception e) {
+//            mensaje = "No se puede actualizar ";
+//            System.out.println(e.getMessage());
+//        }
+//        return mensaje;
+//    }
 
     public String darDeBajaPersona(Long idFactura) {
         try {
@@ -85,24 +86,85 @@ public class FacturaDAO {
         }
         return mensaje;
     }
-
-    //////////
-    public void listarProducto(JTable tablaFactura, String codigo) {
+//    public void listarProducto(JTable tablaFactura, ArrayList<Producto> datos) {
+//        DefaultTableModel model;
+//        String[] titulo = {"CODIGO", "MARCA", "PRECIOUNITARIO"};
+//        model = new DefaultTableModel(null, titulo);
+//        String[] listarProducto = new String[3];
+//        Producto producto = new Producto();
+//        for (Producto dato : datos) {
+//                producto.setIdProducto(dato.getIdProducto());
+//                producto.setMarca(dato.getMarca());
+//                producto.setPrecio(dato.getPrecio());
+//                listarProducto[0] = dato.getCodigo() + "";
+//                listarProducto[1] = dato.getMarca();
+//                listarProducto[2] = dato.getPrecio() + "";
+//                model.addRow(listarProducto);
+//            
+//
+//        }
+//       
+//        tablaFactura.setModel(model);
+//    }
+public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         DefaultTableModel model;
-        String[] titulo = { "CODIGO", "MARCA", "PRECIOUNITARIO"};
+        String[] titulo = {"CODIGO", "MARCA", "STOCK", "PRECIOUNITARIO"};
         model = new DefaultTableModel(null, titulo);
-        List<Producto> datos = buscarProducto(codigo);
-        String[] listarProducto = new String[3];
-        for (Producto product : datos) {
-            listarProducto[0] = product.getCodigo() + "";
-            listarProducto[1] = product.getMarca();
-            listarProducto[2] = product.getPrecio() + "";
+        String[] listarProducto = new String[4];
+        Producto producto = new Producto();
+        for (Producto dato : datos) {
+            producto.setIdProducto(dato.getIdProducto());
+            producto.setMarca(dato.getMarca());
+            producto.setStock(dato.getStock());
+            producto.setPrecio(dato.getPrecio());
+            listarProducto[0] = dato.getCodigo() + "";
+            listarProducto[1] = dato.getMarca();
+            listarProducto[2] = dato.getStock() + "";
+            listarProducto[3] = dato.getPrecio() + "";
             model.addRow(listarProducto);
-
         }
-        tablaFactura.setModel(model);
-        
+        tablaCompra.setModel(model);
     }
+public Producto buscarProductoFactura(String codigo, int cantidad) {
+        List<Producto> datos = controladorProducto.findProductoEntities();
+        Producto producto = new Producto();
+        for (Producto dato : datos) {
+            if (String.valueOf(dato.getCodigo()).equals(codigo)) {
+                producto.setIdProducto(dato.getIdProducto());
+                producto.setCodigo(dato.getCodigo());
+                producto.setNombre(dato.getNombre());
+                producto.setPrecio(dato.getPrecio());
+                producto.setStock((dato.getStock()- cantidad));
+                producto.setMarca(dato.getMarca());
+                producto.setEstado(dato.getEstado());
+                producto.setProveedor(dato.getProveedor());
+
+            }
+        }
+        return producto;
+    }
+
+    
+//    public Producto buscarProductoF(String codigo) {
+//        List<Producto> datos = controladorProducto.findProductoEntities();
+//        Producto producto = new Producto();
+//        for (Producto dato : datos) {
+//            if (String.valueOf(dato.getCodigo()).equals(codigo)) {
+//                producto.setIdProducto(dato.getIdProducto());
+//                producto.setCodigo(dato.getCodigo());
+//                producto.setNombre(dato.getNombre());
+//                producto.setPrecio(dato.getPrecio());
+//                producto.setStock(dato.getStock());
+//                producto.setMarca(dato.getMarca());
+//                producto.setEstado(dato.getEstado());
+//                producto.setProveedor(dato.getProveedor());
+//                
+//
+//            }
+//        }
+//        datos.add(producto);
+//        return producto;
+//    }
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
@@ -111,15 +173,27 @@ public class FacturaDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
-       public String listarPersona(String nombre, String cedula) {
+    public String listarPersona(String cedula) {
+        String nombre = "";
+
         DefaultTableModel model;
         List<Persona> datos = buscarCliente(cedula);
         for (Persona persona : datos) {
-           persona.setNombres(nombre);
+            nombre = persona.getNombres();
         }
         return nombre;
     }
-        private List<Persona> buscarCliente(String cedula) {
+    public String retornarId(String cedula) {
+        String id = "";
+
+        DefaultTableModel model;
+        List<Persona> datos = buscarCliente(cedula);
+        for (Persona persona : datos) {
+            id = String.valueOf(persona.getIdPersona());
+        }
+        return id;
+    }
+    private List<Persona> buscarCliente(String cedula) {
         Persona persona;
         EntityManager em = controladorPersona.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
@@ -127,4 +201,20 @@ public class FacturaDAO {
         List<Persona> lista = query.getResultList();
         return lista;
     }
+//    public double calcularSubtotal(ArrayList<Producto> listaproductos) {
+//        double subtotal = 0;
+//        for (Producto dato : listaproductos) {
+//            subtotal += dato.getPrecio();
+//
+//        }
+//        return subtotal;
+//    }
+    public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
+        double subtotal = 0;
+        for (Producto dato : listaProductos) {
+            subtotal = (dato.getPrecio()*cantidad);
+        }
+        return subtotal;
+    }
+
 }

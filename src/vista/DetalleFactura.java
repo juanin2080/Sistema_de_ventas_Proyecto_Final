@@ -7,10 +7,11 @@ package vista;
 
 import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
+import java.util.ArrayList;
 import java.util.Date;
 import modelo.Persona;
 import modelo.Producto;
-
+import modelo.Factura;
 /**
  *
  * @author María Castillo
@@ -20,10 +21,20 @@ public class DetalleFactura extends javax.swing.JFrame {
     /**
      * Creates new form DetalleFactura
      */
+    private FacturaDAO fac= new FacturaDAO();
+    private DetalleFacturaDAO detallefactura= new DetalleFacturaDAO();
+    ArrayList<Factura> listadetalle = new ArrayList<Factura>();
+    Date fecha = new Date();
+    Factura factura= new Factura(); 
     public DetalleFactura() {
         initComponents();
-    }
+        this.setLocationRelativeTo(null);
 
+    }
+    private void mostrarTabla() {
+    detallefactura.listarDetalleFactura(tablaDetalle, txtFactura.getText());
+     
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +94,7 @@ public class DetalleFactura extends javax.swing.JFrame {
         btnDetalleFactura = new newscomponents.RSButtonBigIcon_new();
         btnFactura = new newscomponents.RSButtonBigIcon_new();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbtClientes1 = new RSMaterialComponent.RSTableMetro();
+        tablaDetalle = new RSMaterialComponent.RSTableMetro();
         btnGuardar1 = new rojerusan.RSButtonHover();
         labelIcon13 = new necesario.LabelIcon();
         btnMinimizar1 = new RSMaterialComponent.RSButtonIconDos();
@@ -95,8 +106,6 @@ public class DetalleFactura extends javax.swing.JFrame {
         btnRegresar = new newscomponents.RSButtonIcon_new();
         labelIcon14 = new necesario.LabelIcon();
         btnBuscarCliente = new rojerusan.RSButtonHover();
-        jLabel8 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtFactura = new javax.swing.JTextField();
 
@@ -509,7 +518,7 @@ public class DetalleFactura extends javax.swing.JFrame {
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 50, 1160, 90);
 
-        tbtClientes1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -527,10 +536,10 @@ public class DetalleFactura extends javax.swing.JFrame {
                 "CodigoProducto", "Cantidad", "Precio Unitario", "Precio total"
             }
         ));
-        tbtClientes1.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane2.setViewportView(tbtClientes1);
-        if (tbtClientes1.getColumnModel().getColumnCount() > 0) {
-            tbtClientes1.getColumnModel().getColumn(1).setHeaderValue("Cantidad");
+        tablaDetalle.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane2.setViewportView(tablaDetalle);
+        if (tablaDetalle.getColumnModel().getColumnCount() > 0) {
+            tablaDetalle.getColumnModel().getColumn(1).setHeaderValue("Cantidad");
         }
 
         jPanel3.add(jScrollPane2);
@@ -627,33 +636,11 @@ public class DetalleFactura extends javax.swing.JFrame {
         jPanel3.add(btnBuscarCliente);
         btnBuscarCliente.setBounds(450, 180, 90, 20);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Código Producto:");
-        jPanel3.add(jLabel8);
-        jLabel8.setBounds(70, 170, 130, 30);
-
-        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
-        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodigoMouseClicked(evt);
-            }
-        });
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtCodigo);
-        txtCodigo.setBounds(220, 160, 160, 30);
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Nro Factura:");
         jPanel3.add(jLabel10);
-        jLabel10.setBounds(70, 210, 110, 30);
+        jLabel10.setBounds(80, 170, 110, 30);
 
         txtFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtFactura.setForeground(new java.awt.Color(102, 102, 102));
@@ -669,7 +656,7 @@ public class DetalleFactura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtFactura);
-        txtFactura.setBounds(220, 200, 160, 30);
+        txtFactura.setBounds(220, 170, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -787,16 +774,12 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        
+        mostrarTabla();
+        txtFactura.setText(null);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
-
-    private void txtCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoMouseClicked
-
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
         // TODO add your handling code here:
@@ -877,7 +860,6 @@ public class DetalleFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -903,11 +885,10 @@ public class DetalleFactura extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
     private necesario.RSLabelImage rSLabelImage5;
+    private RSMaterialComponent.RSTableMetro tablaDetalle;
     private RSMaterialComponent.RSTableMetro tbtClientes;
-    private RSMaterialComponent.RSTableMetro tbtClientes1;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCodProducto;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtFactura;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
