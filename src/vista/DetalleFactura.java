@@ -7,11 +7,14 @@ package vista;
 
 import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
+import controlador.utilidades.Controladores;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import modelo.Persona;
 import modelo.Producto;
 import modelo.Factura;
+
 /**
  *
  * @author María Castillo
@@ -21,20 +24,24 @@ public class DetalleFactura extends javax.swing.JFrame {
     /**
      * Creates new form DetalleFactura
      */
-    private FacturaDAO fac= new FacturaDAO();
-    private DetalleFacturaDAO detallefactura= new DetalleFacturaDAO();
+    private FacturaDAO fac = new FacturaDAO();
+    private DetalleFacturaDAO detallefactura = new DetalleFacturaDAO();
     ArrayList<Factura> listadetalle = new ArrayList<Factura>();
     Date fecha = new Date();
-    Factura factura= new Factura(); 
+    Factura factura = new Factura();
+    Controladores controles = new Controladores();
+
     public DetalleFactura() {
         initComponents();
         this.setLocationRelativeTo(null);
 
     }
+
     private void mostrarTabla() {
-    detallefactura.listarDetalleFactura(tablaDetalle, txtFactura.getText());
-     
+        detallefactura.listarDetalleFactura(tablaDetalle, txtFactura.getText());
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -762,7 +769,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-    FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
+        FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
@@ -774,9 +781,17 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        
-        mostrarTabla();
-        txtFactura.setText(null);
+        if (txtFactura.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Llene el campo nro Factura");
+        } else {
+            if (controles.contieneSoloLetras(txtFactura.getText()) == false) {
+                mostrarTabla();
+                txtFactura.setText(null);
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese nro Factura correcto");
+            }
+        }
+        //detalleFactura.retornalista(listaProductos);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
@@ -790,7 +805,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFacturaActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-      
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 

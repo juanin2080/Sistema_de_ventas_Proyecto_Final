@@ -23,7 +23,7 @@ public class PersonaDAO {
 private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
     private String mensaje = "";
-
+    
     public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
             persona.setIdPersona(Long.MIN_VALUE);
@@ -42,7 +42,7 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
 
         return mensaje;
     }
-    public String actualizarPersona(Long id, String cedula, String nombres, String direccion, String telefono, String email) {
+    public String actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
         try {
             persona.setIdPersona(id);
             persona.setNombres(nombres);

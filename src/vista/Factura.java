@@ -5,6 +5,8 @@
  */
 package vista;
 
+import controlador.utilidades.Controladores;
+import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProductoDAO;
@@ -27,41 +29,49 @@ import modelo.Rol;
  * @author María Castillo
  */
 public class Factura extends javax.swing.JFrame {
-    private FacturaDAO fac= new FacturaDAO();
-    private ProductoDAO producto= new ProductoDAO();
-    private PersonaDAO pe= new PersonaDAO();            
+
+    Controladores controles = new Controladores();
+    private FacturaDAO fac = new FacturaDAO();
+    private ProductoDAO producto = new ProductoDAO();
+    private PersonaDAO pe = new PersonaDAO();
+    private DetalleFacturaDAO detalleFactura = new DetalleFacturaDAO();
     /**
      * Creates new form Factura
      */
 
-   ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+    ArrayList<Producto> listaProductos = new ArrayList<Producto>();
 
     Date fecha = new Date();
     //String subtotal = "";
-    String nombre ="";
-    String id="";
+    String nombre = "";
+    String id = "";
     Double subtotal = 0.0;
 
-    Producto produc= new Producto();
+    Producto produc = new Producto();
+
     public Factura() {
-      
+
         initComponents();
         this.setLocationRelativeTo(null);
         txtidPersona.setVisible(false);
+
 //        subtotal = String.valueOf(fac.calcularSubtotal()) ;
-       // txtSubtotal.setText(subtotal);
+        // txtSubtotal.setText(subtotal);
     }
+
     private void mostrarTabla() {
 
-      fac.listarProducto(tablaFactura,listaProductos);
-        System.out.println(listaProductos.size());
+        fac.listarProducto(tablaFactura, listaProductos);
+        //System.out.println(listaProductos.size());
     }
-   private void mostrarNombreCliente(String cedula){
-       nombre=fac.listarPersona(cedula);
-       txtnombreCliente.setText(nombre); 
-       id=fac.retornarId(cedula);
-       txtidPersona.setText(id);      
-   }
+
+    private void mostrarNombreCliente(String cedula) {
+        nombre = fac.listarPersona(cedula);
+        txtnombreCliente.setText(nombre);
+        id = fac.retornarId(cedula);
+        txtidPersona.setText(id);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,6 +122,8 @@ public class Factura extends javax.swing.JFrame {
         txtFactura = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        btnLimpiar = new rojerusan.RSButtonHover();
+        labelIcon14 = new necesario.LabelIcon();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -177,12 +189,12 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnGuardar1);
-        btnGuardar1.setBounds(340, 640, 130, 30);
+        btnGuardar1.setBounds(440, 640, 130, 30);
 
         labelIcon13.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon13.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel3.add(labelIcon13);
-        labelIcon13.setBounds(300, 640, 30, 30);
+        labelIcon13.setBounds(400, 640, 30, 30);
 
         btnMinimizar1.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar1.setForeground(new java.awt.Color(102, 102, 102));
@@ -517,6 +529,22 @@ public class Factura extends javax.swing.JFrame {
         jPanel3.add(txtCodigo);
         txtCodigo.setBounds(200, 270, 160, 30);
 
+        btnLimpiar.setBackground(new java.awt.Color(0, 102, 51));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnLimpiar);
+        btnLimpiar.setBounds(150, 640, 130, 30);
+
+        labelIcon14.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLEAR_ALL);
+        jPanel3.add(labelIcon14);
+        labelIcon14.setBounds(110, 640, 30, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -534,9 +562,13 @@ public class Factura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
+        DetalleFacturaDAO det = new DetalleFacturaDAO();
+        det.copiarListaProductos(listaProductos);
         DetalleFactura detalle = new DetalleFactura();
+        detalle.setLocationRelativeTo(null);
+        //dispose();
         detalle.setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDetalleFacturaActionPerformed
 
@@ -565,7 +597,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnombreClienteMouseClicked
 
     private void txtnombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreClienteActionPerformed
-       
+
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreClienteActionPerformed
 
@@ -592,18 +624,32 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnBuscarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProducto1ActionPerformed
-//        produc = fac.buscarProductoF(txtCantidadProducto.getText());
-//        listaProductos.add(produc);
-//        subtotal = String.valueOf(fac.calcularSubtotal(listaProductos)) ;
-//        txtSubtotal.setText(subtotal);
-//        mostrarTabla();
-//        txtCantidadProducto.setText(null);
-//        System.out.println(fac.calcularSubtotal(listaProductos));
-    produc = fac.buscarProductoFactura(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-        listaProductos.add(produc);
-        calcularSubtotal();
-        txtSubtotal.setText(String.valueOf(subtotal));
-        mostrarTabla();
+        if (txtCodigo.getText().equals("") || txtCantidadProducto.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
+        } else {
+            if (controles.contieneSoloLetras(txtCodigo.getText()) == false && controles.contieneSoloLetras(txtCantidadProducto.getText()) == false) {
+                produc = fac.buscarProductoFactura(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
+                listaProductos.add(produc);
+                calcularSubtotal();
+                txtSubtotal.setText(String.valueOf(subtotal));
+
+                for (Producto listaProducto : listaProductos) {
+                    listaProducto.getCodigo();
+                    listaProducto.getStock();
+                    System.out.println("id" + listaProducto.getIdProducto());
+                    System.out.println("codigo" + listaProducto.getCodigo());
+                    System.out.println("cod stock" + listaProducto.getStock());
+                }
+
+                mostrarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
+            }
+
+        }
+
+///////////////////////        
 
     }//GEN-LAST:event_btnBuscarProducto1ActionPerformed
 
@@ -633,27 +679,37 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-   
-        FacturaDAO fac1 = new FacturaDAO();
-        Date fecha = new Date();
-        Persona persona = new Persona();
-        persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
-        String nroFactura = txtFactura.getText();
-        Boolean iva = checkBoxIVA.isSelected();
-        String formaPago = txtFormaPago.getText();
-        double subtotal = Double.parseDouble(txtSubtotal.getText());
-        double total = Double.parseDouble(txtTotal.getText());
-        fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
-        JOptionPane.showMessageDialog(rootPane, "factura agregada");
-         mostrarTabla();
-         
-         txtCedula.setText("");
-         txtidPersona.setText("");
-         txtSubtotal.setText("");
-         txtTotal.setText("");
-         txtnombreCliente.setText("");
-         
-         
+        if ((txtFactura.getText().equals("") || txtCedula.getText().equals("") || txtnombreCliente.getText().equals("")
+                || txtCodigo.getText().equals("") || txtCantidadProducto.getText().equals("") || txtFormaPago.getText().equals("")
+                || txtSubtotal.getText().equals("") || txtTotal.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+        } else {
+            if (controles.contieneSoloLetras(txtFactura.getText()) == false && controles.contieneSoloLetras(txtFormaPago.getText()) == true) {
+                FacturaDAO fac1 = new FacturaDAO();
+                Date fecha = new Date();
+                Persona persona = new Persona();
+                persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
+                String nroFactura = txtFactura.getText();
+                Boolean iva = checkBoxIVA.isSelected();
+                String formaPago = txtFormaPago.getText();
+                double subtotal = Double.parseDouble(txtSubtotal.getText());
+                double total = Double.parseDouble(txtTotal.getText());
+                fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
+                JOptionPane.showMessageDialog(rootPane, "factura agregada");
+                mostrarTabla();
+
+                txtCedula.setText("");
+                txtidPersona.setText("");
+                txtSubtotal.setText("");
+                txtTotal.setText("");
+                txtnombreCliente.setText("");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");
+            }
+
+        }
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
@@ -663,7 +719,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-           FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
+        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
@@ -673,10 +729,17 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxIVAActionPerformed
 
     private void btnBuscarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCliente2ActionPerformed
-        mostrarNombreCliente(txtCedula.getText());
-        
+        if (txtCedula.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula del Cliente");
+        } else {
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                mostrarNombreCliente(txtCedula.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
+            }
+        }
 
-                // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarCliente2ActionPerformed
 
     private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
@@ -694,7 +757,11 @@ public class Factura extends javax.swing.JFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
- private void calcularIva() {
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+    private void calcularIva() {
         double subtotal = Double.parseDouble(txtSubtotal.getText());
         boolean iva = checkBoxIVA.isSelected();
         double total;
@@ -714,11 +781,11 @@ public class Factura extends javax.swing.JFrame {
             txtTotal.setText(String.valueOf(total));
         }
     }
-public void calcularSubtotal() {
+
+    public void calcularSubtotal() {
         subtotal += fac.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidadProducto.getText()));
 
     }
-
 
     /**
      * @param args the command line arguments
@@ -737,13 +804,17 @@ public void calcularSubtotal() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -763,6 +834,7 @@ public void calcularSubtotal() {
     private newscomponents.RSButtonBigIcon_new btnDetalleFactura;
     private newscomponents.RSButtonBigIcon_new btnFactura;
     private rojerusan.RSButtonHover btnGuardar1;
+    private rojerusan.RSButtonHover btnLimpiar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar1;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
@@ -781,6 +853,7 @@ public void calcularSubtotal() {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private necesario.LabelIcon labelIcon13;
+    private necesario.LabelIcon labelIcon14;
     private necesario.LabelIcon labelIcon8;
     private necesario.LabelIcon labelIcon9;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;

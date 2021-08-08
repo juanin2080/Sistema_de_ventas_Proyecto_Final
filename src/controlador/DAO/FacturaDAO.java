@@ -106,7 +106,8 @@ public class FacturaDAO {
 //       
 //        tablaFactura.setModel(model);
 //    }
-public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
+
+    public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         DefaultTableModel model;
         String[] titulo = {"CODIGO", "MARCA", "STOCK", "PRECIOUNITARIO"};
         model = new DefaultTableModel(null, titulo);
@@ -125,7 +126,8 @@ public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         }
         tablaCompra.setModel(model);
     }
-public Producto buscarProductoFactura(String codigo, int cantidad) {
+
+    public Producto buscarProductoFactura(String codigo, int cantidad) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
         for (Producto dato : datos) {
@@ -134,7 +136,7 @@ public Producto buscarProductoFactura(String codigo, int cantidad) {
                 producto.setCodigo(dato.getCodigo());
                 producto.setNombre(dato.getNombre());
                 producto.setPrecio(dato.getPrecio());
-                producto.setStock((dato.getStock()- cantidad));
+                producto.setStock((dato.getStock() - cantidad));
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
@@ -144,7 +146,6 @@ public Producto buscarProductoFactura(String codigo, int cantidad) {
         return producto;
     }
 
-    
 //    public Producto buscarProductoF(String codigo) {
 //        List<Producto> datos = controladorProducto.findProductoEntities();
 //        Producto producto = new Producto();
@@ -173,6 +174,7 @@ public Producto buscarProductoFactura(String codigo, int cantidad) {
         List<Producto> lista = query.getResultList();
         return lista;
     }
+
     public String listarPersona(String cedula) {
         String nombre = "";
 
@@ -183,6 +185,7 @@ public Producto buscarProductoFactura(String codigo, int cantidad) {
         }
         return nombre;
     }
+
     public String retornarId(String cedula) {
         String id = "";
 
@@ -193,6 +196,7 @@ public Producto buscarProductoFactura(String codigo, int cantidad) {
         }
         return id;
     }
+
     private List<Persona> buscarCliente(String cedula) {
         Persona persona;
         EntityManager em = controladorPersona.getEntityManager();
@@ -209,12 +213,36 @@ public Producto buscarProductoFactura(String codigo, int cantidad) {
 //        }
 //        return subtotal;
 //    }
+
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
         for (Producto dato : listaProductos) {
-            subtotal = (dato.getPrecio()*cantidad);
+            subtotal = (dato.getPrecio() * cantidad);
         }
         return subtotal;
+    }
+    public Factura buscarFacturaId (Long idFactura){
+        Factura factura = new Factura();
+        List<Factura> listafactura= Controladorfactura.findFacturaEntities();
+        for (Factura factura1 : listafactura) {
+            if (idFactura==factura1.getIdFactura()) {
+                factura.setIdFactura(factura1.getIdFactura());
+                factura.setFecha(factura1.getFecha());
+                factura.setFormaPago(factura1.getFormaPago());
+                factura.setNroFactura(factura1.getNroFactura());
+                factura.setTotal(factura1.getTotal());
+                factura.setSubtotal(factura1.getSubtotal());
+                factura.setIva(factura1.isIva());
+                
+            }
+        }
+        return factura;
+    }
+    public void actualizarStockBD(String codigo, int cantidad){
+        Producto p = new Producto();
+        p = buscarProductoFactura(codigo, cantidad);
+        producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
+        
     }
 
 }
