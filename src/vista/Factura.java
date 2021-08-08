@@ -132,6 +132,7 @@ public class Factura extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         btnLimpiar = new rojerusan.RSButtonHover();
         labelIcon14 = new necesario.LabelIcon();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -293,7 +294,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtnombreCliente);
-        txtnombreCliente.setBounds(200, 230, 160, 30);
+        txtnombreCliente.setBounds(200, 230, 140, 30);
 
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(102, 102, 102));
@@ -309,7 +310,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCedula);
-        txtCedula.setBounds(200, 200, 160, 30);
+        txtCedula.setBounds(200, 200, 140, 30);
 
         txtCantidadProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCantidadProducto.setForeground(new java.awt.Color(102, 102, 102));
@@ -325,7 +326,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCantidadProducto);
-        txtCantidadProducto.setBounds(200, 320, 160, 30);
+        txtCantidadProducto.setBounds(200, 320, 140, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -513,7 +514,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtFactura);
-        txtFactura.setBounds(200, 170, 160, 30);
+        txtFactura.setBounds(200, 170, 140, 30);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
@@ -535,7 +536,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCodigo);
-        txtCodigo.setBounds(200, 270, 160, 30);
+        txtCodigo.setBounds(200, 270, 140, 30);
 
         btnLimpiar.setBackground(new java.awt.Color(0, 102, 51));
         btnLimpiar.setText("Limpiar");
@@ -553,13 +554,15 @@ public class Factura extends javax.swing.JFrame {
         jPanel3.add(labelIcon14);
         labelIcon14.setBounds(110, 640, 30, 30);
 
+        jLabel1.setText("*");
+        jPanel3.add(jLabel1);
+        jLabel1.setBounds(350, 190, 20, 14);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -850,6 +853,7 @@ public class Factura extends javax.swing.JFrame {
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
     private javax.swing.JCheckBox checkBoxIVA;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
