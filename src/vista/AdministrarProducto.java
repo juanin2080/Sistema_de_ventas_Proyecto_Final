@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.DAO.ProductoDAO;
+import controladores.utilidades.Controladores;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     ProductoDAO pDao = new ProductoDAO();
+    Controladores controles = new Controladores();
 
     public AdministrarProducto() {
         initComponents();
@@ -544,7 +546,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         } else {
             String mensaje = "";
             mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-            
+
             JOptionPane.showMessageDialog(null, mensaje);
             mostrarTabla("");
         }
@@ -685,29 +687,44 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+//List <Producto> = 
         
         if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
                 || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
-            txtCodigo.setText("");
-            txtNombres.setText("");
-            txtPrecio.setText("");
-            txtMarca.setText("");
-            txtProveedor.setText("");
-            txtCantidad.setText("");
+            limpiar();
         } else {
-            pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-            mostrarTabla("");
-            txtCodigo.setText("");
-            txtNombres.setText("");
-            txtPrecio.setText("");
-            txtMarca.setText("");
-            txtProveedor.setText("");
-            txtCantidad.setText("");
+            Boolean lnombres = controles.contieneSoloLetras(txtNombres.getText());
+            Boolean lmarca = controles.contieneSoloLetras(txtMarca.getText());
+            Boolean lproveedor = controles.contieneSoloLetras(txtProveedor.getText());
+            Boolean ncodigo = controles.contieneSoloLetras(txtCodigo.getText());
+            Boolean ncantidad = controles.contieneSoloLetras(txtCantidad.getText());;
+            Boolean nprecio = controles.contieneSoloLetras(txtPrecio.getText());
+            if (lnombres == true && lmarca == true && lproveedor == true
+                    && ncodigo == false && ncantidad == false && nprecio == false) {
+                String mensaje;
+                mensaje = pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+                JOptionPane.showMessageDialog(null, mensaje);
+                mostrarTabla("");
+
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese correctamente los campos");
+            }
+
         }
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void limpiar() {
+        txtCodigo.setText("");
+        txtNombres.setText("");
+        txtPrecio.setText("");
+        txtMarca.setText("");
+        txtProveedor.setText("");
+        txtCantidad.setText("");
+    }
 
     private void mostrarTabla(String codigo) {
         pDao.listarProducto(tbtProducto, codigo);

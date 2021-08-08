@@ -36,8 +36,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtId.setVisible(false);
         txtRol.setVisible(false);
         llenarCbx();
-
-//        cbxRol.setEnabled(false);
+        cbxRol.setEnabled(true);
     }
 
     /**
@@ -597,13 +596,14 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
-            rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-            pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
 
-            mostrarTabla("");
-            limpiar();
-        
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(2);
+        limpiar();
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed

@@ -22,11 +22,12 @@ public class ProductoDAO {
 
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private Producto producto = new Producto();
-    private String mensaje = "";
 
-    public void insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+    public String insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+        String mensaje = "";
 
         try {
+
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
             producto.setPrecio(precio);
@@ -37,14 +38,18 @@ public class ProductoDAO {
             controladorProducto.create(producto);
 
             mensaje = "Producto registrado con exito";
+            System.out.println("ingresa");
+
         } catch (Exception e) {
             System.out.println("mensaje en guardar: " + e.getMessage());
             mensaje = "No se pudo registrar el producto ";
         }
-        JOptionPane.showMessageDialog(null, mensaje);
+
+        return mensaje;
     }
 
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+        String mensaje = "";
         try {
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
@@ -65,7 +70,10 @@ public class ProductoDAO {
     }
 
     public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+        String mensaje = "";
+
         try {
+
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
@@ -113,7 +121,7 @@ public class ProductoDAO {
         tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
 
-    private List<Producto> buscarProducto(String codigo) {
+    public List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
