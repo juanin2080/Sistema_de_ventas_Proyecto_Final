@@ -19,7 +19,7 @@ import vista.Factura;
  *
  * @author María Castillo
  */
-public class FacturaTest {
+public class FacturaTesT {
     
         public static void main(String[] args) {  
             Controladores controles= new Controladores();
