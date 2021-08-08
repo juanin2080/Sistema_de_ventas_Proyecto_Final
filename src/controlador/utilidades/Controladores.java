@@ -10,11 +10,10 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author Usuario
+ * @author USUARIO
  */
 public class Controladores {
-
-    public boolean validadorDeCedula(String cedula) {
+        public boolean validadorDeCedula(String cedula) {
         boolean cedulaCorrecta = false;
 
         try {
@@ -23,8 +22,8 @@ public class Controladores {
             {
                 int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
                 if (tercerDigito < 6) {
-// Coeficientes de validación cédula
-// El decimo digito se lo considera dígito verificador
+                // Coeficientes de validación cédula
+                // El decimo digito se lo considera dígito verificador
                     int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
                     int verificador = Integer.parseInt(cedula.substring(9, 10));
                     int suma = 0;
@@ -61,21 +60,22 @@ public class Controladores {
         }
         return cedulaCorrecta;
     }
-
-    public boolean contieneSoloLetras(String cadena) {
+        
+   public boolean contieneSoloLetras(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
             // Si no está entre a y z, ni entre A y Z, ni es un espacio
             if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
                 return false;
-            }
+            } 
         }
         return true;
     }
-
     public boolean validarEmail(String email) {
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
     }
+
+
 }

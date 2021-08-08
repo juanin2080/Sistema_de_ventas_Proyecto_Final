@@ -356,21 +356,35 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
+        Configuracion conf = new Configuracion();
+        this.dispose();
+        conf.setVisible(true);
+        conf.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        // TODO add your handling code here:
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        this.dispose();
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
+
 
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonaActionPerformed
-        // TODO add your handling code here:
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnPersonaActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        // TODO add your handling code here:
+        AdministrarProducto adminProducto = new AdministrarProducto();
+        this.dispose();
+        adminProducto.setVisible(true);
+        adminProducto.setLocationRelativeTo(null);
+
 
     }//GEN-LAST:event_btnProductosActionPerformed
 
@@ -399,6 +413,7 @@ public class Inventario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
