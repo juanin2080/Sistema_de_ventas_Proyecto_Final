@@ -9,6 +9,6 @@ package Test;
  *
  * @author María Castillo
  */
-public class Prueba {
+public class FacturaPrueba {
     
 }
