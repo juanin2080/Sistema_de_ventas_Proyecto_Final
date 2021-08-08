@@ -6,7 +6,7 @@
 package vista;
 
 import controlador.DAO.DetalleFacturaDAO;
-import controlador.DAO.FacturaDAO;
+//import controlador.DAO.FacturaDAO;
 import controlador.utilidades.Controladores;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +24,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     /**
      * Creates new form DetalleFactura
      */
-    private FacturaDAO fac = new FacturaDAO();
+//    private FacturaDAO fac = new FacturaDAO();
     private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     ArrayList<Factura> listadetalle = new ArrayList<Factura>();
     Date fecha = new Date();

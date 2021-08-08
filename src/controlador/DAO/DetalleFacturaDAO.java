@@ -6,7 +6,7 @@
 package controlador.DAO;
 
 import controlador.DetalleFacturaJpaController;
-import controlador.FacturaJpaController;
+//import controlador.FacturaJpaController;
 import controlador.ProductoJpaController;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +25,14 @@ import modelo.Producto;
 public class DetalleFacturaDAO {
 
     private ProductoDAO prod = new ProductoDAO();
-    private FacturaDAO fac = new FacturaDAO();
+//    private FacturaDAO fac = new FacturaDAO();
     private ProductoJpaController ControladorProducto = new ProductoJpaController();
-    private FacturaJpaController Controladorfactura = new FacturaJpaController();
+//    private FacturaJpaController Controladorfactura = new FacturaJpaController();
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
     Producto produc = new Producto();
     private String mensaje = "";
-    private FacturaDAO factura = new FacturaDAO();
+//    private FacturaDAO factura = new FacturaDAO();
 
 //    public String insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura idFactura, Producto idProducto) {
 //        try {
@@ -112,7 +112,7 @@ public class DetalleFacturaDAO {
         List<DetalleFactura> datos =detallefac.findDetalleFacturaEntities();
         String[] listardetalle = new String[4];
         for (DetalleFactura dato : datos) {
-            factura= fac.buscarFacturaId(dato.getFactura().getIdFactura());
+//            factura= fac.buscarFacturaId(dato.getFactura().getIdFactura());
             listardetalle[0]= factura.getFecha()+"";
 //            producto = buscarProductoId(dato.getProducto().getIdProducto(), );
             System.out.println("Stock"+ producto.getStock());
