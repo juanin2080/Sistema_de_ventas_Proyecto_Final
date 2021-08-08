@@ -25,6 +25,13 @@ public class CompraTest {
 //         System.out.println(cdao.eliminarCompra(Long.valueOf(4)));
     CompraProveedor cp = new CompraProveedor();
     cp.setVisible(true);
+//    boolean sd= cdao.contieneSoloNumeros("110001010");
+//        if(sd == true){
+//            System.out.println("contiene numero");
+//        }else{
+//            System.out.println("no contiene numero");
+//        }
+//    
     }
       
 }

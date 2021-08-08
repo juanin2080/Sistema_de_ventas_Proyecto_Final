@@ -7,15 +7,18 @@ package controlador.DAO;
 
 import controlador.CompraJpaController;
 import controlador.ProductoJpaController;
+import controlador.ProveedorJpaController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Compra;
 import modelo.Producto;
+import modelo.Proveedor;
 
 /**
  *
@@ -25,12 +28,16 @@ public class CompraDAO {
 
     private CompraJpaController tjc = new CompraJpaController();
     private ProductoJpaController controladorProducto = new ProductoJpaController();
+    private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
     private Compra compra = new Compra();
     private Producto producto = new Producto();
-    private String mensaje = "";
-    private int respuestaStock;
+    private Proveedor provedor = new Proveedor();
+    private ProductoDAO pdao = new ProductoDAO();
 
-    public String insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total) {
+    private String mensaje = "";
+   
+
+    public void insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
             compra.setNroCompra(nroCompra);
@@ -39,15 +46,16 @@ public class CompraDAO {
             compra.setfPago(fPago);
             compra.setSubtotal(subtotal);
             compra.setTotal(total);
-            compra.setExternal_IDProveedor(Long.MIN_VALUE);
+            compra.setExternal_IDProveedor(Long.valueOf(idProveedor));
             tjc.create(compra);
             mensaje = "Guardado correctamente";
+            JOptionPane.showMessageDialog(null, "Guardado correctamente");
         } catch (Exception e) {
             System.out.println("MENSAJE EN GUARDAR: " + e.getMessage());
             mensaje = "No se pudo guardar la informacion";
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la informacion");
         }
 
-        return mensaje;
     }
 
 //    public String actualizarCompra(Long id, String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total) {
@@ -97,8 +105,6 @@ public class CompraDAO {
             listarProducto[3] = dato.getPrecio() + "";
             model.addRow(listarProducto);
         }
-        int stock = calcularStock(datos, tablaCompra);
-        System.out.println("stock" + stock);
         tablaCompra.setModel(model);
     }
     public int calcularStock(ArrayList<Producto> listaProductos, JTable tablaCompra) {
@@ -123,11 +129,38 @@ public class CompraDAO {
         return lista;
     }
 
-    public Producto buscarProductoCompra(String codigo) {
+    public Producto buscarProductoCompra(String codigo, int cantidad) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
         for (Producto dato : datos) {
             if (String.valueOf(dato.getCodigo()).equals(codigo)) {
+                producto.setIdProducto(dato.getIdProducto());
+                producto.setCodigo(dato.getCodigo());
+                producto.setNombre(dato.getNombre());
+                producto.setPrecio(dato.getPrecio());
+                producto.setStock((dato.getStock()+ cantidad));
+                producto.setMarca(dato.getMarca());
+                producto.setEstado(dato.getEstado());
+                producto.setProveedor(dato.getProveedor());
+
+            }
+        }
+        return producto;
+    }
+
+    public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
+        double subtotal = 0;
+        for (Producto dato : listaProductos) {
+            subtotal = (dato.getPrecio()*cantidad);
+        }
+        return subtotal;
+    }
+    
+    public Producto buscarProductoID(String idProducto) {
+        List<Producto> datos = controladorProducto.findProductoEntities();
+        Producto producto = new Producto();
+        for (Producto dato : datos) {
+            if (String.valueOf(dato.getCodigo()).equals(idProducto)) {
                 producto.setIdProducto(dato.getIdProducto());
                 producto.setCodigo(dato.getCodigo());
                 producto.setNombre(dato.getNombre());
@@ -139,17 +172,44 @@ public class CompraDAO {
 
             }
         }
-        datos.add(producto);
         return producto;
     }
 
-    public double calcularSubtotal(ArrayList<Producto> listaProductos) {
-        double subtotal = 0;
-        for (Producto dato : listaProductos) {
-            subtotal += dato.getPrecio();
+    
+    public String listarProveedor(String cedula) {
+        String nombre = "";
 
+        DefaultTableModel model;
+        List<Proveedor> datos = buscarProveedor(cedula);
+        for (Proveedor proveedor : datos) {
+            nombre = proveedor.getNombres();
         }
-        return subtotal;
+        return nombre;
     }
-      
+
+    public String retornarId(String cedula) {
+        String id = "";
+
+        DefaultTableModel model;
+        List<Proveedor> datos = buscarProveedor(cedula);
+        for (Proveedor proveedor : datos) {
+            id = String.valueOf(proveedor.getIdPersona());
+        }
+        return id;
+    }
+    private List<Proveedor> buscarProveedor(String cedula) {
+        Proveedor proveedor;
+        EntityManager em = controladorProveedor.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Proveedor p WHERE p.cedula like :cedula");
+        query.setParameter("cedula", cedula + "%");
+        List<Proveedor> lista = query.getResultList();
+        return lista;
+    }
+
+    public void actualizarStockBD(String codigo, int cantidad){
+        Producto p = new Producto();
+        p = buscarProductoCompra(codigo, cantidad);
+        pdao.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
+        
+    }
 }

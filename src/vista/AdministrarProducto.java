@@ -686,7 +686,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtPrecio.setText("");
         txtMarca.setText("");
         txtProveedor.setText("");
-        txtCantidad.getText();
+        txtCantidad.setText("");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void mostrarTabla(String codigo) {

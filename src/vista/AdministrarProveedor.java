@@ -524,6 +524,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         cbxRol.setForeground(new java.awt.Color(102, 102, 102));
         cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxRolActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxRol);
         cbxRol.setBounds(140, 570, 220, 40);
 
@@ -734,6 +739,10 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRolActionPerformed
     private void mostrarTabla(String cedula, String id) {
         pdao.listarPersonas(tbtProveedor, cedula);
     }

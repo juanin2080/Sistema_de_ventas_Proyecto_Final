@@ -119,4 +119,23 @@ public class ProductoDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
+//    public String actualizarStockBD(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int stock, int cantidad) {
+//        try {
+//            producto.setIdProducto(id);
+//            producto.setCodigo(codigo);
+//            producto.setNombre(nombre);
+//            producto.setPrecio(precio);
+//            producto.setStock(stock+cantidad);
+//            producto.setMarca(Marca);
+//            producto.setEstado(true);
+//            producto.setProveedor(proveedor);
+//            controladorProducto.edit(producto);
+//
+//            mensaje = "Producto actualizado con exito";
+//        } catch (Exception e) {
+//            System.out.println("mensaje en guardar: " + e.getMessage());
+//            mensaje = "No se pudo actualizar el producto ";
+//        }
+//        return mensaje;
+//    }
 }
