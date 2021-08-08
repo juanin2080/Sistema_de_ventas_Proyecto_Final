@@ -528,11 +528,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         cbxRol.setForeground(new java.awt.Color(102, 102, 102));
         cbxRol.setColorMaterial(new java.awt.Color(102, 102, 102));
         cbxRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxRol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxRolActionPerformed(evt);
-            }
-        });
         jPanel1.add(cbxRol);
         cbxRol.setBounds(140, 570, 220, 40);
 
