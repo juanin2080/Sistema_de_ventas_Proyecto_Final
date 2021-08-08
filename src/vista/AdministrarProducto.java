@@ -20,7 +20,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
      */
     ProductoDAO pDao = new ProductoDAO();
 
-
     public AdministrarProducto() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -533,32 +532,44 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtMarca.setText("");
         txtProveedor.setText("");
         txtCantidad.setText("");
-        
+
         txtCodigo.setEditable(true);
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
         // TODO add your handling code here:
-        String mensaje = "";
-        mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText() , Integer.parseInt(txtCantidad.getText()));
-        JOptionPane.showMessageDialog(null, mensaje);
-        mostrarTabla("");
+
+        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
+                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        } else {
+            String mensaje = "";
+            mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            
+            JOptionPane.showMessageDialog(null, mensaje);
+            mostrarTabla("");
+        }
+
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         // TODO add your handling code here:
-        String mensaje = "";
-        mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-        JOptionPane.showMessageDialog(null, mensaje);
+        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
+                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        } else {
+            String mensaje = "";
+            mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            JOptionPane.showMessageDialog(null, mensaje);
 
-        mostrarTabla("");
+            mostrarTabla("");
+        }
+
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-       mostrarTabla(txtCodigo.getText());
-            
-       
+        mostrarTabla(txtCodigo.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -644,7 +655,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtCantidad.setText((String) tbtProducto.getValueAt(select, 5));
         txtid.setText(tbtProducto.getValueAt(select, 6) + "");
         txtCodigo.setEditable(false);
-        
 
 
     }//GEN-LAST:event_tbtProductoMouseClicked
@@ -676,17 +686,28 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-         String mensaje = "";
-        mensaje = pDao.insertarProducto(Integer.parseInt(txtid.getText()), txtNombres.getText(), Double.parseDouble(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-        JOptionPane.showMessageDialog(null, mensaje);
-        mostrarTabla("");
+        
+        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
+                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+            txtCodigo.setText("");
+            txtNombres.setText("");
+            txtPrecio.setText("");
+            txtMarca.setText("");
+            txtProveedor.setText("");
+            txtCantidad.setText("");
+        } else {
+            pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            mostrarTabla("");
+            txtCodigo.setText("");
+            txtNombres.setText("");
+            txtPrecio.setText("");
+            txtMarca.setText("");
+            txtProveedor.setText("");
+            txtCantidad.setText("");
+        }
 
-        txtCodigo.setText("");
-        txtNombres.setText("");
-        txtPrecio.setText("");
-        txtMarca.setText("");
-        txtProveedor.setText("");
-        txtCantidad.setText("");
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void mostrarTabla(String codigo) {

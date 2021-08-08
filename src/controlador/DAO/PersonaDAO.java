@@ -7,6 +7,8 @@ package controlador.DAO;
 
 import controlador.PersonaJpaController;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.swing.JComboBox;
@@ -20,12 +22,13 @@ import modelo.*;
  * @author juana
  */
 public class PersonaDAO {
-private PersonaJpaController controladorPersona = new PersonaJpaController();
-    private Persona persona = new Persona();
-    private String mensaje = "";
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
+    private PersonaJpaController controladorPersona = new PersonaJpaController();
+    private Persona persona = new Persona();
+
+    public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
+
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
             persona.setCedula(cedula);
@@ -34,16 +37,15 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.create(persona);
-            mensaje = "Persona registrada con exito";
         } catch (Exception e) {
-            mensaje = "No se pudo registrar la persona ";
             System.out.println(e.getMessage());
         }
 
-        return mensaje;
     }
 
-    public String actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
+    
+
+    public void actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
         try {
             persona.setIdPersona(id);
             persona.setNombres(nombres);
@@ -53,15 +55,11 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.edit(persona);
-            mensaje = "Persona actualizada con exito";
             JOptionPane.showMessageDialog(null, "Persona actualizada con exito");
         } catch (Exception e) {
-            mensaje = "No se pudo actualizar la persona";
             JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona");
             System.out.println(e.getMessage());
         }
-
-        return mensaje;
 
     }
 
@@ -127,6 +125,23 @@ private PersonaJpaController controladorPersona = new PersonaJpaController();
         }
         return persona;
 
+    }
+
+    public Persona BuscarCuentaPersona(String cedula) {
+        Persona person = new Persona();
+        List<Persona> datos = controladorPersona.findPersonaEntities();
+        for (Persona dato : datos) {
+            if (dato.getCedula().equals(cedula)) {
+                person.setIdPersona(dato.getIdPersona());
+                person.setNombres(dato.getNombres());
+                person.setCedula(dato.getCedula());
+                person.setTelefono(dato.getTelefono());
+                person.setEmail(dato.getEmail());
+                person.setRol(dato.getRol());
+            }
+
+        }
+        return person;
     }
 
 }

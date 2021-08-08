@@ -7,6 +7,7 @@ package Test;
 
 import vista.AdministrarProveedor;
 import controlador.DAO.ProveedorDAO;
+import controladores.utilidades.Controladores;
 
 /**
  *
@@ -21,6 +22,18 @@ public class ProveedorTest {
 
         AdministrarProveedor pd = new AdministrarProveedor();
         pd.setVisible(true);
+//        Controladores controles = new Controladores();
+//        Boolean da = controles.contieneSoloLetras("Maria");
+//        da=controles.validadorDeCedula("1105309445");
+//        
+//        da= controles.validarEmail("maria.castillo@gmail.com");
+//        if (da== true) {
+////            System.out.println("letras");
+//            System.out.println("correcta");
+//        }else{
+////            System.out.println("numeroa");
+//            System.out.println("incorrecta");
+//        }
     }
 
 }
