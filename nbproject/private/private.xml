@@ -4,14 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/ProductoDAO.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/DetalleFacturaDAO.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Producto.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarProveedor.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/Test/ProductoTest.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarProducto.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/Test/ProveedorTest.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/FacturaDAO.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/ProveedorDAO.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/PersonaDAO.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/RolDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/ProveedorDAO.java</file>
         </group>
     </open-files>
 </project-private>
