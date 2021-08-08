@@ -36,6 +36,14 @@ public class CompraProveedor extends javax.swing.JFrame {
     public CompraProveedor() {
         initComponents();
         txtIdProveedor.setVisible(false);
+        lblAvisoCompra.setVisible(false);
+        lblAvisoCedula.setVisible(false);
+        lblAvisoProveedor.setVisible(false);
+        lblAvisoCodigo.setVisible(false);
+        lblAvisoCantidad.setVisible(false);
+        lblAvisoFormaPago.setVisible(false);
+        lblAvisoSubtotal.setVisible(false);
+        lblAvisoTotal.setVisible(false);
     }
 
     /**
@@ -71,7 +79,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         btnBuscarCodProductoCP = new rojerusan.RSButtonHover();
         txtCedulaCP = new javax.swing.JTextField();
         txtProveedorCP = new javax.swing.JTextField();
-        txtCantidad = new javax.swing.JTextField();
+        txtFormaPagoCP = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
@@ -92,7 +100,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         txtnroCompraCP = new javax.swing.JTextField();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         lblFormaPago = new javax.swing.JLabel();
-        txtFormaPagoCP = new javax.swing.JTextField();
         checkBoxIVACP = new javax.swing.JCheckBox();
         btnBuscarCedulaCP1 = new rojerusan.RSButtonHover();
         txtIdProveedor = new javax.swing.JTextField();
@@ -100,6 +107,16 @@ public class CompraProveedor extends javax.swing.JFrame {
         txtCodProductoCP = new javax.swing.JTextField();
         btnLimpiar = new rojerusan.RSButtonHover();
         labelIcon1 = new necesario.LabelIcon();
+        lblAvisoTotal = new javax.swing.JLabel();
+        lblAvisoCompra = new javax.swing.JLabel();
+        lblAvisoCedula = new javax.swing.JLabel();
+        lblAvisoProveedor = new javax.swing.JLabel();
+        lblAvisoCantidad = new javax.swing.JLabel();
+        lblAvisoFormaPago = new javax.swing.JLabel();
+        lblAvisoSubtotal = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
+        txtCantidad1 = new javax.swing.JTextField();
+        lblAvisoCodigo = new javax.swing.JLabel();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -310,7 +327,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel3.add(bntCalcularIva);
-        bntCalcularIva.setBounds(608, 441, 93, 24);
+        bntCalcularIva.setBounds(650, 440, 93, 24);
 
         btnBuscarCodProductoCP.setBackground(new java.awt.Color(204, 0, 255));
         btnBuscarCodProductoCP.setText("Buscar");
@@ -331,8 +348,18 @@ public class CompraProveedor extends javax.swing.JFrame {
                 txtCedulaCPMouseClicked(evt);
             }
         });
+        txtCedulaCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaCPActionPerformed(evt);
+            }
+        });
+        txtCedulaCP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaCPKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtCedulaCP);
-        txtCedulaCP.setBounds(310, 120, 220, 18);
+        txtCedulaCP.setBounds(310, 120, 180, 18);
 
         txtProveedorCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtProveedorCP.setForeground(new java.awt.Color(102, 102, 102));
@@ -342,24 +369,29 @@ public class CompraProveedor extends javax.swing.JFrame {
                 txtProveedorCPMouseClicked(evt);
             }
         });
-        jPanel3.add(txtProveedorCP);
-        txtProveedorCP.setBounds(310, 150, 220, 18);
-
-        txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCantidad.setForeground(new java.awt.Color(102, 102, 102));
-        txtCantidad.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCantidadMouseClicked(evt);
-            }
-        });
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+        txtProveedorCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
+                txtProveedorCPActionPerformed(evt);
             }
         });
-        jPanel3.add(txtCantidad);
-        txtCantidad.setBounds(310, 220, 220, 18);
+        jPanel3.add(txtProveedorCP);
+        txtProveedorCP.setBounds(310, 150, 180, 18);
+
+        txtFormaPagoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFormaPagoCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtFormaPagoCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtFormaPagoCP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFormaPagoCPMouseClicked(evt);
+            }
+        });
+        txtFormaPagoCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFormaPagoCPActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtFormaPagoCP);
+        txtFormaPagoCP.setBounds(210, 440, 130, 18);
 
         lblCedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCedula.setForeground(new java.awt.Color(102, 102, 102));
@@ -427,7 +459,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtSubtotalCP);
-        txtSubtotalCP.setBounds(540, 440, 61, 20);
+        txtSubtotalCP.setBounds(540, 430, 61, 30);
 
         txtTotalPagarCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,7 +467,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtTotalPagarCP);
-        txtTotalPagarCP.setBounds(541, 482, 61, 20);
+        txtTotalPagarCP.setBounds(541, 482, 61, 30);
 
         labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
@@ -473,8 +505,18 @@ public class CompraProveedor extends javax.swing.JFrame {
                 txtnroCompraCPMouseClicked(evt);
             }
         });
+        txtnroCompraCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnroCompraCPActionPerformed(evt);
+            }
+        });
+        txtnroCompraCP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnroCompraCPKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtnroCompraCP);
-        txtnroCompraCP.setBounds(310, 91, 220, 18);
+        txtnroCompraCP.setBounds(310, 91, 180, 18);
 
         rSLabelFecha1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelFecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -483,15 +525,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         lblFormaPago.setText("FormaPago:");
         jPanel3.add(lblFormaPago);
-        lblFormaPago.setBounds(130, 440, 80, 20);
-
-        txtFormaPagoCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFormaPagoCPActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtFormaPagoCP);
-        txtFormaPagoCP.setBounds(220, 440, 74, 20);
+        lblFormaPago.setBounds(140, 440, 80, 20);
 
         checkBoxIVACP.setText("14%");
         checkBoxIVACP.addActionListener(new java.awt.event.ActionListener() {
@@ -543,8 +577,18 @@ public class CompraProveedor extends javax.swing.JFrame {
                 txtCodProductoCPMouseClicked(evt);
             }
         });
+        txtCodProductoCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodProductoCPActionPerformed(evt);
+            }
+        });
+        txtCodProductoCP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodProductoCPKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtCodProductoCP);
-        txtCodProductoCP.setBounds(310, 190, 220, 18);
+        txtCodProductoCP.setBounds(310, 190, 180, 18);
 
         btnLimpiar.setBackground(new java.awt.Color(0, 102, 51));
         btnLimpiar.setText("Limpiar");
@@ -561,6 +605,83 @@ public class CompraProveedor extends javax.swing.JFrame {
         labelIcon1.setInheritsPopupMenu(true);
         jPanel3.add(labelIcon1);
         labelIcon1.setBounds(70, 500, 30, 30);
+
+        lblAvisoTotal.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoTotal.setText("*");
+        jPanel3.add(lblAvisoTotal);
+        lblAvisoTotal.setBounds(610, 490, 20, 14);
+
+        lblAvisoCompra.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCompra.setText("*");
+        jPanel3.add(lblAvisoCompra);
+        lblAvisoCompra.setBounds(490, 90, 20, 14);
+
+        lblAvisoCedula.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCedula.setText("*");
+        jPanel3.add(lblAvisoCedula);
+        lblAvisoCedula.setBounds(490, 120, 20, 14);
+
+        lblAvisoProveedor.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoProveedor.setText("*");
+        jPanel3.add(lblAvisoProveedor);
+        lblAvisoProveedor.setBounds(490, 150, 20, 14);
+
+        lblAvisoCantidad.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCantidad.setText("*");
+        jPanel3.add(lblAvisoCantidad);
+        lblAvisoCantidad.setBounds(490, 220, 20, 14);
+
+        lblAvisoFormaPago.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoFormaPago.setText("*");
+        jPanel3.add(lblAvisoFormaPago);
+        lblAvisoFormaPago.setBounds(340, 440, 20, 14);
+
+        lblAvisoSubtotal.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoSubtotal.setText("*");
+        jPanel3.add(lblAvisoSubtotal);
+        lblAvisoSubtotal.setBounds(610, 430, 20, 14);
+
+        txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(102, 102, 102));
+        txtCantidad.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCantidadMouseClicked(evt);
+            }
+        });
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
+        jPanel3.add(txtCantidad);
+        txtCantidad.setBounds(310, 220, 180, 18);
+
+        txtCantidad1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCantidad1.setForeground(new java.awt.Color(102, 102, 102));
+        txtCantidad1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCantidad1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCantidad1MouseClicked(evt);
+            }
+        });
+        txtCantidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidad1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCantidad1);
+        txtCantidad1.setBounds(310, 220, 180, 18);
+
+        lblAvisoCodigo.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCodigo.setText("*");
+        jPanel3.add(lblAvisoCodigo);
+        lblAvisoCodigo.setBounds(490, 190, 20, 14);
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(100, 150, 850, 550);
@@ -595,16 +716,27 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        // TODO add your handling code here:
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        this.dispose();
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
+
 
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        // TODO add your handling code here:
+        AdministrarProducto adminProducto = new AdministrarProducto();
+        this.dispose();
+        adminProducto.setVisible(true);
+        adminProducto.setLocationRelativeTo(null);
+
 
     }//GEN-LAST:event_btnProductoActionPerformed
 
@@ -632,17 +764,18 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_bntCalcularIvaActionPerformed
 
     private void btnBuscarCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoCPActionPerformed
-        if (txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("")) {
-
+        if (txtCodProductoCP.getText().equals("") || txtFormaPagoCP.getText().equals("")) {
+            lblAvisoCodigo.setVisible(true);
+            lblAvisoCantidad.setVisible(true);
             JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
         } else {
-            if (controladores.contieneSoloLetras(txtCodProductoCP.getText()) == false && controladores.contieneSoloLetras(txtCantidad.getText()) == false) {
-                producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+            if (controladores.contieneSoloLetras(txtCodProductoCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == false) {
+                producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtFormaPagoCP.getText()));
                 listaProductos.add(producto);
                 calcularSubtotal();
                 txtSubtotalCP.setText(String.valueOf(subtotal));
                 mostrarTabla();
-                cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtFormaPagoCP.getText()));
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
             }
@@ -660,14 +793,12 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtProveedorCPMouseClicked
 
-    private void txtCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseClicked
+    private void txtFormaPagoCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFormaPagoCPMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadMouseClicked
+    }//GEN-LAST:event_txtFormaPagoCPMouseClicked
 
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
-        if (txtnroCompraCP.getText().equals("") || txtCedulaCP.getText().equals("") || txtProveedorCP.getText().equals("")
-                || txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("") || txtFormaPagoCP.getText().equals("")
-                || txtSubtotalCP.getText().equals("") || txtTotalPagarCP.getText().equals("")) {
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
 
         } else {
@@ -688,22 +819,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnGuardarCPActionPerformed
-    private void limiar() {
 
-        txtnroCompraCP.setText("");
-        txtCedulaCP.setText("");
-        txtProveedorCP.setText("");
-        txtCantidad.setText("");
-        //checkBoxIVA.setSelected(rootPaneCheckingEnabled);
-        txtFormaPagoCP.setText("");
-        txtSubtotalCP.setText("");
-        txtTotalPagarCP.setText("");
-    }
-
-
-    private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
-        txtSubtotalCP.setEnabled(false);
-    }//GEN-LAST:event_txtSubtotalCPActionPerformed
 
     private void txtnroCompraCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroCompraCPMouseClicked
         // TODO add your handling code here:
@@ -717,10 +833,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
-    private void txtFormaPagoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaPagoCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFormaPagoCPActionPerformed
-
     private void txtTotalPagarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarCPActionPerformed
 
     }//GEN-LAST:event_txtTotalPagarCPActionPerformed
@@ -731,12 +843,13 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
         if (txtCedulaCP.getText().equals("")) {
+            lblAvisoCedula.setVisible(true);
             JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula del Proveedor");
         } else {
-            if(controladores.validadorDeCedula(txtCedulaCP.getText())){
+            if (controladores.validadorDeCedula(txtCedulaCP.getText())) {
                 mostrarNombreProveedor(txtCedulaCP.getText());
-            }else{
-                 JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
             }
         }
     }//GEN-LAST:event_btnBuscarCedulaCP1ActionPerformed
@@ -754,12 +867,84 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodProductoCPMouseClicked
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limiar();
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtFormaPagoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaPagoCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFormaPagoCPActionPerformed
+
+    private void txtProveedorCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorCPActionPerformed
+
+    private void txtCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaCPActionPerformed
+
+    private void txtCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadMouseClicked
 
     private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void txtCantidad1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidad1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidad1MouseClicked
+
+    private void txtCantidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidad1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidad1ActionPerformed
+
+    private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
+        txtSubtotalCP.setEnabled(false);
+    }//GEN-LAST:event_txtSubtotalCPActionPerformed
+
+    private void txtnroCompraCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnroCompraCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnroCompraCPActionPerformed
+
+    private void txtnroCompraCPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnroCompraCPKeyTyped
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtnroCompraCPKeyTyped
+
+    private void txtCedulaCPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaCPKeyTyped
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtCedulaCPKeyTyped
+
+    private void txtCodProductoCPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProductoCPKeyTyped
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtCodProductoCPKeyTyped
+
+    private void txtCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodProductoCPActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void calcularIva() {
         double subtotal = Double.parseDouble(txtSubtotalCP.getText());
@@ -795,8 +980,49 @@ public class CompraProveedor extends javax.swing.JFrame {
     }
 
     public void calcularSubtotal() {
-        subtotal += cdao.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidad.getText()));
+        subtotal += cdao.calcularSubtotal(listaProductos, Integer.parseInt(txtFormaPagoCP.getText()));
 
+    }
+
+    public boolean camposVacios() {
+        if (txtnroCompraCP.getText().equals("") || txtCedulaCP.getText().equals("") || txtProveedorCP.getText().equals("")
+                || txtCodProductoCP.getText().equals("") || txtFormaPagoCP.getText().equals("") || txtFormaPagoCP.getText().equals("")
+                || txtSubtotalCP.getText().equals("") || txtTotalPagarCP.getText().equals("")) {
+            txtIdProveedor.setVisible(true);
+            lblAvisoCompra.setVisible(true);
+            lblAvisoCedula.setVisible(true);
+            lblAvisoProveedor.setVisible(true);
+            lblAvisoCodigo.setVisible(true);
+            lblAvisoCantidad.setVisible(true);
+            lblAvisoFormaPago.setVisible(true);
+            lblAvisoSubtotal.setVisible(true);
+            lblAvisoTotal.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private void limpiar() {
+
+        txtnroCompraCP.setText("");
+        txtCedulaCP.setText("");
+        txtProveedorCP.setText("");
+        txtCodProductoCP.setText("");
+        txtFormaPagoCP.setText("");
+        txtFormaPagoCP.setText("");
+        txtSubtotalCP.setText("");
+        txtTotalPagarCP.setText("");
+        txtIdProveedor.setVisible(false);
+        lblAvisoCompra.setVisible(false);
+        lblAvisoCedula.setVisible(false);
+        lblAvisoProveedor.setVisible(false);
+        lblAvisoCodigo.setVisible(false);
+        lblAvisoCantidad.setVisible(false);
+        lblAvisoFormaPago.setVisible(false);
+        lblAvisoSubtotal.setVisible(false);
+        lblAvisoTotal.setVisible(false);
     }
 
 //    public void imprimirLista() {
@@ -909,6 +1135,14 @@ public class CompraProveedor extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon8;
     private necesario.LabelIcon labelIcon9;
+    private javax.swing.JLabel lblAvisoCantidad;
+    private javax.swing.JLabel lblAvisoCedula;
+    private javax.swing.JLabel lblAvisoCodigo;
+    private javax.swing.JLabel lblAvisoCompra;
+    private javax.swing.JLabel lblAvisoFormaPago;
+    private javax.swing.JLabel lblAvisoProveedor;
+    private javax.swing.JLabel lblAvisoSubtotal;
+    private javax.swing.JLabel lblAvisoTotal;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblFormaPago;
@@ -922,6 +1156,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tblProductoCP;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCantidad1;
     private javax.swing.JTextField txtCedulaCP;
     private javax.swing.JTextField txtCodProductoCP;
     private javax.swing.JTextField txtFormaPagoCP;

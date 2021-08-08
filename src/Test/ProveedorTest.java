@@ -7,7 +7,7 @@ package Test;
 
 import vista.AdministrarProveedor;
 import controlador.DAO.ProveedorDAO;
-import controladores.utilidades.Controladores;
+import controlador.utilidades.Controladores;
 
 /**
  *

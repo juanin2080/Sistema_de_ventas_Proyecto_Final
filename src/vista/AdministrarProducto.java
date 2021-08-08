@@ -620,16 +620,25 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMarcaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        // TODO add your handling code here:
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        this.dispose();
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        // TODO add your handling code here:
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        this.dispose();
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnProductoActionPerformed
 

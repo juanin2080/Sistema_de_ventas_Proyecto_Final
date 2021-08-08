@@ -60,6 +60,7 @@ public class Controladores {
         }
         return cedulaCorrecta;
     }
+        
    public boolean contieneSoloLetras(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);

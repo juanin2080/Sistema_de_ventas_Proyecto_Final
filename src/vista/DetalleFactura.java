@@ -757,7 +757,10 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir1ActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
+       vista.Factura factura = new vista.Factura();
+        this.dispose();
+        factura.setVisible(true);
+        factura .setLocationRelativeTo(null);
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed

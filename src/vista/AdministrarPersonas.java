@@ -7,7 +7,7 @@ package vista;
 
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.RolDAO;
-import controladores.utilidades.Controladores;
+import controlador.utilidades.Controladores;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
