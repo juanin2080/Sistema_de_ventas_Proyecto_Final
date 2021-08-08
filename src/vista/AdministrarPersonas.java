@@ -7,6 +7,7 @@ package vista;
 
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.RolDAO;
+import controladores.utilidades.Controladores;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private Rol rol = new Rol();
     private RolDAO rDAO = new RolDAO();
     private PersonaDAO pDAO = new PersonaDAO();
+    Controladores controles = new Controladores();
 
     public AdministrarPersonas() {
         initComponents();
@@ -480,8 +482,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       
-        if (pDAO.validarEmail(txtEmail.getText()) && pDAO.validadorDeCedula(txtCedula.getText()) && pDAO.contieneSoloLetras(txtNombres.getText())) {
+
+        if (controles.validarEmail(txtEmail.getText()) && controles.validadorDeCedula(txtCedula.getText()) && controles.contieneSoloLetras(txtNombres.getText())) {
             rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
             pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
             JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");

@@ -25,7 +25,7 @@ import modelo.Rol;
 public class ProveedorDAO {
 
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
-//    private PersonaJpaController controladorPersona = new PersonaJpaController();
+    private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Proveedor proveedor = new Proveedor();
 //    private Persona persona = new Persona();
     private String mensaje = "";
@@ -34,30 +34,22 @@ public class ProveedorDAO {
 
         List<Persona> datos = buscarPersona(cedula);
 
-        for (Persona dato : datos) {
-            if (dato.getCedula().equals(cedula)) {
-                JOptionPane.showMessageDialog(null, "La cedula ya existe.\n Intente de nuevo");
-            } else {
-                try {
-                    proveedor.setIdPersona(Long.MIN_VALUE);
-                    proveedor.setNombres(nombres);
-                    proveedor.setCedula(cedula);
-                    proveedor.setDireccion(direccion);
-                    proveedor.setTelefono(telefono);
-                    proveedor.setEmail(email);
-                    proveedor.setRol(idRol);
-                    proveedor.setEmpresa(empresa);
-                    proveedor.setRuc(ruc);
-                    controladorProveedor.create(proveedor);
-                    mensaje = "Proveedor registrada con exito";
-                } catch (Exception e) {
-                    mensaje = "No se pudo registrar el proveedor ";
-                    System.out.println(e.getMessage());
-                }
-                JOptionPane.showMessageDialog(null, mensaje);
-
-            }
+        try {
+            proveedor.setNombres(nombres);
+            proveedor.setCedula(cedula);
+            proveedor.setDireccion(direccion);
+            proveedor.setTelefono(telefono);
+            proveedor.setEmail(email);
+            proveedor.setRol(idRol);
+            proveedor.setEmpresa(empresa);
+            proveedor.setRuc(ruc);
+            controladorPersona.create(proveedor);
+            mensaje = "Proveedor registrada con exito";
+        } catch (Exception e) {
+            mensaje = "No se pudo registrar el proveedor ";
+            System.out.println(e.getMessage());
         }
+        JOptionPane.showMessageDialog(null, mensaje);
 
     }
 
@@ -199,14 +191,14 @@ public class ProveedorDAO {
         }
         return cedulaCorrecta;
     }
-    
+
     public boolean contieneSoloLetras(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
             // Si no está entre a y z, ni entre A y Z, ni es un espacio
             if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
                 return false;
-            } 
+            }
         }
         return true;
     }

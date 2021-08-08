@@ -8,6 +8,7 @@ package vista;
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProveedorDAO;
 import controlador.DAO.RolDAO;
+import controladores.utilidades.Controladores;
 import javax.swing.JOptionPane;
 import modelo.Persona;
 import modelo.Proveedor;
@@ -22,6 +23,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private Rol rol = new Rol();
     private RolDAO rDAO = new RolDAO();
     private PersonaDAO pDAO = new PersonaDAO();
+    Controladores controles = new Controladores();
     /**
      * Creates new form RegistrarPersonal
      */
@@ -30,10 +32,12 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     public AdministrarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        mostrarTabla("", txtRol.getText());
+        mostrarTabla("");
         txtId.setVisible(false);
         txtRol.setVisible(false);
         llenarCbx();
+
+//        cbxRol.setEnabled(false);
     }
 
     /**
@@ -593,22 +597,13 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (txtCedula.getText().equals("") || txtNombres.getText().equals("") || txtEmail.getText().equals("") || txtTelefono.getText().equals("")
-                || txtDireccion.getText().equals("") || txtRuc.getText().equals("") || txtEmpresa.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
-        } else {
-            if (pDAO.validarEmail(txtEmail.getText()) && pDAO.validadorDeCedula(txtCedula.getText()) && pDAO.contieneSoloLetras(txtNombres.getText())) {
-                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-                pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+        
+            rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+            pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
 
-                mostrarTabla("", txtRol.getText());
-                cbxRol.setSelectedIndex(2);
-                limpiar();
-            }else{
-                JOptionPane.showMessageDialog(null, "Datos  No Validos");
-            }
-
-        }
+            mostrarTabla("");
+            limpiar();
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
@@ -662,7 +657,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
             mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
             JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("", txtRol.getText());
+            mostrarTabla("");
             limpiar();
         }
 
@@ -738,7 +733,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
-    private void mostrarTabla(String cedula, String id) {
+    private void mostrarTabla(String cedula) {
         pdao.listarPersonas(tbtProveedor, cedula);
     }
 
