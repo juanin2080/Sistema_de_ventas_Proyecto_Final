@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test;
+package controlador.DAO;
 
 /**
  *
- * @author María Castillo
+ * @author juana
  */
-public class FacturaPrueba {
+public class DetalleCompraDAO {
     
 }

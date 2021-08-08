@@ -573,14 +573,21 @@ public class Factura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
+        dispose();
         DetalleFacturaDAO det = new DetalleFacturaDAO();
-        det.copiarListaProductos(listaProductos);
+        det.setListaProductosCopia(listaProductos);
+        for (Producto producto1 : det.getListaProductosCopia()) {
+            System.out.println("idCopiado" + producto1.getIdProducto());
+            System.out.println("codigoCopiado" + producto1.getCodigo());
+            System.out.println("cod stockCopiado" + producto1.getStock());
+        }
+        listaProductos = null;
+        //Vista
         DetalleFactura detalle = new DetalleFactura();
         detalle.setLocationRelativeTo(null);
-        //dispose();
+        dispose();
         detalle.setVisible(true);
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnDetalleFacturaActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
@@ -652,7 +659,6 @@ public class Factura extends javax.swing.JFrame {
                     System.out.println("codigo" + listaProducto.getCodigo());
                     System.out.println("cod stock" + listaProducto.getStock());
                 }
-
                 mostrarTabla();
                 fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
 
@@ -707,15 +713,20 @@ public class Factura extends javax.swing.JFrame {
                 String formaPago = txtFormaPago.getText();
                 double subtotal = Double.parseDouble(txtSubtotal.getText());
                 double total = Double.parseDouble(txtTotal.getText());
-                fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
+                detalleFactura.setFacturaCopia(fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona));
+//                System.out.println(detalleFactura.getFacturaCopia().getIdFactura());
+//                Funciona con uno
+                //==========================================================================================
+                Producto p = new Producto();
+                p = fac1.buscarProductoF(txtCodigo.getText());
+                System.out.println(p.getIdProducto());
+                System.out.println(p.getPrecio());
+                detalleFactura.insertarDetalleFactura(Integer.valueOf(txtCantidadProducto.getText()), Double.valueOf(txtTotal.getText()), produc.getPrecio(), detalleFactura.getFacturaCopia(), p);
+                //==========================================================================================
+//          
+
                 JOptionPane.showMessageDialog(rootPane, "factura agregada");
                 mostrarTabla();
-//
-//                txtCedula.setText("");
-//                txtidPersona.setText("");
-//                txtSubtotal.setText("");
-//                txtTotal.setText("");
-//                txtnombreCliente.setText("");
 
             } else {
                 JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");
@@ -830,6 +841,12 @@ public class Factura extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Factura.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

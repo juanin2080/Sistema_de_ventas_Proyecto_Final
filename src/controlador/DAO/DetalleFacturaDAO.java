@@ -7,17 +7,17 @@ package controlador.DAO;
 
 import controlador.DetalleFacturaJpaController;
 import controlador.FacturaJpaController;
+//import controlador.FacturaJpaController;
 import controlador.ProductoJpaController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleFactura;
 import modelo.Factura;
-import modelo.Factura_;
-import static modelo.Factura_.nroFactura;
 import modelo.Producto;
 
 /**
@@ -27,47 +27,36 @@ import modelo.Producto;
 public class DetalleFacturaDAO {
 
     private ProductoDAO prod = new ProductoDAO();
-    private FacturaDAO fac = new FacturaDAO();
     private ProductoJpaController ControladorProducto = new ProductoJpaController();
-    private FacturaJpaController Controladorfactura = new FacturaJpaController();
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
+    private FacturaJpaController Controladorfactura = new FacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
     Producto produc = new Producto();
     private String mensaje = "";
-    private FacturaDAO factura = new FacturaDAO();
+    private ArrayList<Producto> listaProductosCopia = new ArrayList<Producto>();
+    private Factura facturaCopia = new Factura();
 
-//    public String insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura idFactura, Producto idProducto) {
-//        try {
-//            detalle.setIdDetalleFactura(Long.MIN_VALUE);
-//            detalle.setCantidad(cantidad);
-//            detalle.setPrecioTotal(precioTotal);
-//            detalle.setPrecioUnitario(precioUnitario);
-//            detalle.setFactura(idFactura);
-//            detalle.setProducto(idProducto);
-////        detalle.setIdDetalleFactura(idDetalleFactura);
-//            detallefac.create(detalle);
-//            mensaje = "Detalle de Factura  registrada con exito";
-//        } catch (Exception e) {
-//            mensaje = "No se pudo registrar el Detalle de Factura ";
-//            System.out.println(e.getMessage());
-//        }
-//        return mensaje;
-//    }
-//COPIAMOS DE FACTURA VISTA
-    public  ArrayList<Producto>  copiarListaProductos(ArrayList<Producto> lista) {
-        ArrayList<Producto> productos = lista;
-        for (Producto listaProducto : lista) {
-            listaProducto.getCodigo();
-            listaProducto.getStock();
-            System.out.println("idCopiado" + listaProducto.getIdProducto());
-            System.out.println("codigoCopiado" + listaProducto.getCodigo());
-            System.out.println("cod stockCopiado" + listaProducto.getStock());
+    public String insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+        try {
+            detalle.setIdDetalleFactura(Long.MIN_VALUE);
+            detalle.setCantidad(cantidad);
+            detalle.setPrecioTotal(precioTotal);
+            detalle.setPrecioUnitario(precioUnitario);
+            detalle.setProducto(producto);
+            detalle.setFactura(factura);
+            detallefac.create(detalle);
+            mensaje = "Detalle de Factura  registrada con exito";
+//            JOptionPane.showMessageDialog(null, "Detalle de Factura  registrada con exito");
+            System.out.println("Detalle de Factura  registrada con exito");
+        } catch (Exception e) {
+            mensaje = "No se pudo registrar el Detalle de Factura ";
+//            JOptionPane.showMessageDialog(null, "No se pudo registrar el Detalle de Factura ");
+            System.out.println("No se pudo registrar el Detalle de Factura ");
+            System.out.println(e.getMessage());
         }
-        return productos;
-
+        return mensaje;
     }
 //buscar producto que estara en detalle F 
-
     public Producto buscarProductoDF(ArrayList<Producto> lisProducto) {
         Producto product = new Producto();
         for (Producto producto : lisProducto) {
@@ -105,26 +94,18 @@ public class DetalleFacturaDAO {
     }
 //mostrar en detalle factura VISTA
 
-    public void listarDetalleFactura(JTable tablaDetalle, String nroFactura) {
-        Factura factura = new Factura();
-        Producto producto = new Producto();
+    public void listarDetalleFactura(JTable tablaDetalle) {
         DefaultTableModel model;
-        String[] titulo = {"FECHA", "STOCK", "PRECIO UNITARIO", "PRECIO TOTAL"};
+        String[] titulo = {"Fecha", "Forma de pago", "Precio Total", "Cédula cliente"};
         model = new DefaultTableModel(null, titulo);
-        List<DetalleFactura> datos =detallefac.findDetalleFacturaEntities();
+        List<DetalleFactura> datos = detallefac.findDetalleFacturaEntities();
         String[] listardetalle = new String[4];
         for (DetalleFactura dato : datos) {
-            factura= fac.buscarFacturaId(dato.getFactura().getIdFactura());
-            listardetalle[0]= factura.getFecha()+"";
-//            producto = buscarProductoId(dato.getProducto().getIdProducto(), );
-            System.out.println("Stock"+ producto.getStock());
-            listardetalle[1]= producto.getStock()+"";
-            listardetalle[2]= producto.getPrecio()+"";
-            listardetalle[3]= factura.getTotal()+"";
+            listardetalle[0] = dato.getFactura().getFecha() + "";
+            listardetalle[1] = dato.getFactura().getFormaPago() + "";
+            listardetalle[2] = dato.getFactura().getTotal() + "";
+            listardetalle[3] = dato.getFactura().getPersona().getCedula() + "";
             model.addRow(listardetalle);
-            factura=  null;
-            producto= null;
-            
         }
         tablaDetalle.setModel(model);
     }
@@ -169,7 +150,7 @@ public class DetalleFacturaDAO {
 
     public Producto buscarProductoId(Long idProducto, ArrayList<Producto> listProducto) {
         Producto producto = new Producto();
-        
+
         for (Producto producto1 : listProducto) {
             if (idProducto == producto1.getIdProducto()) {
                 producto.setCodigo(producto1.getCodigo());
@@ -185,6 +166,34 @@ public class DetalleFacturaDAO {
         }
         return producto;
 
+    }
+
+    public Factura buscarFacturaBD(String nroFactura) {
+        Factura f = new Factura();
+        List<Factura> listaFactura = Controladorfactura.findFacturaEntities();
+        for (Factura fac : listaFactura) {
+            if (nroFactura.equals(fac.getNroFactura())) {
+                f = fac;
+            }
+
+        }
+        return f;
+    }
+
+    public ArrayList<Producto> getListaProductosCopia() {
+        return listaProductosCopia;
+    }
+
+    public void setListaProductosCopia(ArrayList<Producto> listaProductosCopia) {
+        this.listaProductosCopia = listaProductosCopia;
+    }
+
+    public Factura getFacturaCopia() {
+        return facturaCopia;
+    }
+
+    public void setFacturaCopia(Factura facturaCopia) {
+        this.facturaCopia = facturaCopia;
     }
 
 }

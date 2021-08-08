@@ -9,6 +9,7 @@ import controlador.ProductoJpaController;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
@@ -23,7 +24,8 @@ public class ProductoDAO {
     private Producto producto = new Producto();
     private String mensaje = "";
 
-    public String insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+    public void insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+
         try {
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
@@ -39,7 +41,7 @@ public class ProductoDAO {
             System.out.println("mensaje en guardar: " + e.getMessage());
             mensaje = "No se pudo registrar el producto ";
         }
-        return mensaje;
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
@@ -120,4 +122,23 @@ public class ProductoDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
+//    public String actualizarStockBD(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int stock, int cantidad) {
+//        try {
+//            producto.setIdProducto(id);
+//            producto.setCodigo(codigo);
+//            producto.setNombre(nombre);
+//            producto.setPrecio(precio);
+//            producto.setStock(stock+cantidad);
+//            producto.setMarca(Marca);
+//            producto.setEstado(true);
+//            producto.setProveedor(proveedor);
+//            controladorProducto.edit(producto);
+//
+//            mensaje = "Producto actualizado con exito";
+//        } catch (Exception e) {
+//            System.out.println("mensaje en guardar: " + e.getMessage());
+//            mensaje = "No se pudo actualizar el producto ";
+//        }
+//        return mensaje;
+//    }
 }

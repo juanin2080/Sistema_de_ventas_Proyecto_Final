@@ -8,6 +8,7 @@ package controlador.DAO;
 import controlador.FacturaJpaController;
 import controlador.PersonaJpaController;
 import controlador.ProductoJpaController;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,9 +36,10 @@ public class FacturaDAO {
     private Factura factura = new Factura();
     private String mensaje = "";
     private ProductoDAO producto = new ProductoDAO();
+    private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     private PersonaDAO pe = new PersonaDAO();
 
-    public String insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
+    public Factura insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
         try {
             factura.setIdFactura(Long.MIN_VALUE);
             factura.setFecha(fecha);
@@ -49,12 +51,41 @@ public class FacturaDAO {
             factura.setPersona(idPersona);
             Controladorfactura.create(factura);
             mensaje = "Factura registrada con exito";
+
         } catch (Exception e) {
             mensaje = "No se pudo registrar la factura ";
             System.out.println(e.getMessage());
         }
-        return mensaje;
+        return factura;
     }
+
+//    public String insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
+//        try {
+//            factura.setIdFactura(Long.MIN_VALUE);
+//            factura.setFecha(fecha);
+//            factura.setFormaPago(formaPago);
+//            factura.setIva(iva);
+//            factura.setSubtotal(subtotal);
+//            factura.setNroFactura(nroFactura);
+//            factura.setTotal(total);
+//            factura.setPersona(idPersona);
+//            Controladorfactura.create(factura);
+//            mensaje = "Factura registrada con exito";
+////            dDAO.getFacturaCopia().setIdFactura(factura.getIdFactura());
+////            dDAO.getFacturaCopia().setFecha(factura.getFecha());
+////            dDAO.getFacturaCopia().setFormaPago(factura.getFormaPago());
+////            dDAO.getFacturaCopia().setIva(factura.isIva());
+////            dDAO.getFacturaCopia().setNroFactura(factura.getNroFactura());
+////            dDAO.getFacturaCopia().setSubtotal(factura.getSubtotal());
+////            dDAO.getFacturaCopia().setTotal(factura.getTotal());
+////            dDAO.getFacturaCopia().setPersona(factura.getPersona());
+//
+//        } catch (Exception e) {
+//            mensaje = "No se pudo registrar la factura ";
+//            System.out.println(e.getMessage());
+//        }
+//        return mensaje;
+//    }
 //
 //    public String actualizarFactura(Long idFactura, Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
 //        try {
@@ -75,7 +106,6 @@ public class FacturaDAO {
 //        }
 //        return mensaje;
 //    }
-
     public String darDeBajaPersona(Long idFactura) {
         try {
             Controladorfactura.destroy(idFactura);
@@ -146,26 +176,26 @@ public class FacturaDAO {
         return producto;
     }
 
-//    public Producto buscarProductoF(String codigo) {
-//        List<Producto> datos = controladorProducto.findProductoEntities();
-//        Producto producto = new Producto();
-//        for (Producto dato : datos) {
-//            if (String.valueOf(dato.getCodigo()).equals(codigo)) {
-//                producto.setIdProducto(dato.getIdProducto());
-//                producto.setCodigo(dato.getCodigo());
-//                producto.setNombre(dato.getNombre());
-//                producto.setPrecio(dato.getPrecio());
-//                producto.setStock(dato.getStock());
-//                producto.setMarca(dato.getMarca());
-//                producto.setEstado(dato.getEstado());
-//                producto.setProveedor(dato.getProveedor());
-//                
-//
-//            }
-//        }
-//        datos.add(producto);
-//        return producto;
-//    }
+    public Producto buscarProductoF(String codigo) {
+        List<Producto> datos = controladorProducto.findProductoEntities();
+        Producto producto = new Producto();
+        for (Producto dato : datos) {
+            if (String.valueOf(dato.getCodigo()).equals(codigo)) {
+                producto.setIdProducto(dato.getIdProducto());
+                producto.setCodigo(dato.getCodigo());
+                producto.setNombre(dato.getNombre());
+                producto.setPrecio(dato.getPrecio());
+                producto.setStock(dato.getStock());
+                producto.setMarca(dato.getMarca());
+                producto.setEstado(dato.getEstado());
+                producto.setProveedor(dato.getProveedor());
+
+            }
+        }
+        datos.add(producto);
+        return producto;
+    }
+
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
@@ -221,11 +251,12 @@ public class FacturaDAO {
         }
         return subtotal;
     }
-    public Factura buscarFacturaId (Long idFactura){
+
+    public Factura buscarFacturaId(Long idFactura) {
         Factura factura = new Factura();
-        List<Factura> listafactura= Controladorfactura.findFacturaEntities();
+        List<Factura> listafactura = Controladorfactura.findFacturaEntities();
         for (Factura factura1 : listafactura) {
-            if (idFactura==factura1.getIdFactura()) {
+            if (idFactura == factura1.getIdFactura()) {
                 factura.setIdFactura(factura1.getIdFactura());
                 factura.setFecha(factura1.getFecha());
                 factura.setFormaPago(factura1.getFormaPago());
@@ -233,16 +264,18 @@ public class FacturaDAO {
                 factura.setTotal(factura1.getTotal());
                 factura.setSubtotal(factura1.getSubtotal());
                 factura.setIva(factura1.isIva());
-                
+
             }
         }
         return factura;
     }
-    public void actualizarStockBD(String codigo, int cantidad){
+
+    public void actualizarStockBD(String codigo, int cantidad) {
         Producto p = new Producto();
         p = buscarProductoFactura(codigo, cantidad);
         producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-        
+
     }
+
 
 }

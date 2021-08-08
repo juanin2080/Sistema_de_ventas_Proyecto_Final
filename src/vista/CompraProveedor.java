@@ -5,9 +5,16 @@
  */
 package vista;
 
+import com.mysql.cj.protocol.Message;
 import controlador.DAO.CompraDAO;
+import controlador.DAO.ProductoDAO;
+import controlador.DAO.ProveedorDAO;
+import controlador.utilidades.Controladores;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Producto;
+import modelo.Proveedor;
 
 /**
  *
@@ -16,9 +23,19 @@ import javax.swing.JOptionPane;
 public class CompraProveedor extends javax.swing.JFrame {
 
     private CompraDAO cdao = new CompraDAO();
+    private ProductoDAO pdao = new ProductoDAO();
+    private Producto producto = new Producto();
+    private ProveedorDAO proveedor = new ProveedorDAO();
+    Controladores controladores = new Controladores();
+    ArrayList<Producto> listaProductos = new ArrayList<Producto>();
     Date fecha = new Date();
+    Double subtotal = 0.0;
+    String nombre = "";
+    String id = "";
+
     public CompraProveedor() {
         initComponents();
+        txtIdProveedor.setVisible(false);
     }
 
     /**
@@ -50,16 +67,16 @@ public class CompraProveedor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        bntBuscarCedulaCP = new rojerusan.RSButtonHover();
+        bntCalcularIva = new rojerusan.RSButtonHover();
         btnBuscarCodProductoCP = new rojerusan.RSButtonHover();
         txtCedulaCP = new javax.swing.JTextField();
         txtProveedorCP = new javax.swing.JTextField();
-        txtCodProductoCP = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbtProveedor = new RSMaterialComponent.RSTableMetro();
+        tblProductoCP = new RSMaterialComponent.RSTableMetro();
         labelIcon5 = new necesario.LabelIcon();
         btnGuardarCP = new rojerusan.RSButtonHover();
         jlblSubtotal = new javax.swing.JLabel();
@@ -72,11 +89,17 @@ public class CompraProveedor extends javax.swing.JFrame {
         labelIcon14 = new necesario.LabelIcon();
         labelIcon15 = new necesario.LabelIcon();
         lblNroFactura = new javax.swing.JLabel();
-        txtnroFacturaCP = new javax.swing.JTextField();
+        txtnroCompraCP = new javax.swing.JTextField();
         rSLabelFecha1 = new rojeru_san.rsdate.RSLabelFecha();
         lblFormaPago = new javax.swing.JLabel();
         txtFormaPagoCP = new javax.swing.JTextField();
         checkBoxIVACP = new javax.swing.JCheckBox();
+        btnBuscarCedulaCP1 = new rojerusan.RSButtonHover();
+        txtIdProveedor = new javax.swing.JTextField();
+        jlblSubtotal1 = new javax.swing.JLabel();
+        txtCodProductoCP = new javax.swing.JTextField();
+        btnLimpiar = new rojerusan.RSButtonHover();
+        labelIcon1 = new necesario.LabelIcon();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -218,6 +241,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -274,14 +298,19 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        bntBuscarCedulaCP.setBackground(new java.awt.Color(204, 0, 255));
-        bntBuscarCedulaCP.setText("Buscar");
-        bntBuscarCedulaCP.setColorHover(new java.awt.Color(102, 102, 102));
-        bntBuscarCedulaCP.addActionListener(new java.awt.event.ActionListener() {
+        jPanel3.add(jPanel4);
+        jPanel4.setBounds(1, 1, 848, 74);
+
+        bntCalcularIva.setBackground(new java.awt.Color(102, 153, 255));
+        bntCalcularIva.setText("Calcular");
+        bntCalcularIva.setColorHover(new java.awt.Color(102, 102, 102));
+        bntCalcularIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntBuscarCedulaCPActionPerformed(evt);
+                bntCalcularIvaActionPerformed(evt);
             }
         });
+        jPanel3.add(bntCalcularIva);
+        bntCalcularIva.setBounds(608, 441, 93, 24);
 
         btnBuscarCodProductoCP.setBackground(new java.awt.Color(204, 0, 255));
         btnBuscarCodProductoCP.setText("Buscar");
@@ -291,6 +320,8 @@ public class CompraProveedor extends javax.swing.JFrame {
                 btnBuscarCodProductoCPActionPerformed(evt);
             }
         });
+        jPanel3.add(btnBuscarCodProductoCP);
+        btnBuscarCodProductoCP.setBounds(584, 218, 82, 22);
 
         txtCedulaCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedulaCP.setForeground(new java.awt.Color(102, 102, 102));
@@ -300,11 +331,8 @@ public class CompraProveedor extends javax.swing.JFrame {
                 txtCedulaCPMouseClicked(evt);
             }
         });
-        txtCedulaCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaCPActionPerformed(evt);
-            }
-        });
+        jPanel3.add(txtCedulaCP);
+        txtCedulaCP.setBounds(310, 120, 220, 18);
 
         txtProveedorCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtProveedorCP.setForeground(new java.awt.Color(102, 102, 102));
@@ -314,61 +342,61 @@ public class CompraProveedor extends javax.swing.JFrame {
                 txtProveedorCPMouseClicked(evt);
             }
         });
-        txtProveedorCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProveedorCPActionPerformed(evt);
-            }
-        });
+        jPanel3.add(txtProveedorCP);
+        txtProveedorCP.setBounds(310, 150, 220, 18);
 
-        txtCodProductoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCodProductoCP.setForeground(new java.awt.Color(102, 102, 102));
-        txtCodProductoCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCodProductoCP.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(102, 102, 102));
+        txtCantidad.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCodProductoCPMouseClicked(evt);
+                txtCantidadMouseClicked(evt);
             }
         });
-        txtCodProductoCP.addActionListener(new java.awt.event.ActionListener() {
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodProductoCPActionPerformed(evt);
+                txtCantidadActionPerformed(evt);
             }
         });
+        jPanel3.add(txtCantidad);
+        txtCantidad.setBounds(310, 220, 220, 18);
 
         lblCedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCedula.setForeground(new java.awt.Color(102, 102, 102));
         lblCedula.setText("Cédula:");
+        jPanel3.add(lblCedula);
+        lblCedula.setBounds(190, 120, 80, 30);
 
         lblProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblProveedor.setForeground(new java.awt.Color(102, 102, 102));
         lblProveedor.setText("Proveedor:");
+        jPanel3.add(lblProveedor);
+        lblProveedor.setBounds(190, 150, 80, 30);
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodigo.setForeground(new java.awt.Color(102, 102, 102));
-        lblCodigo.setText("Codigo:");
+        lblCodigo.setText("Código:");
+        jPanel3.add(lblCodigo);
+        lblCodigo.setBounds(190, 190, 80, 20);
 
-        tbtProveedor.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductoCP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Codigo", "Stock", "Marca", "PrecioUnitario"
+
             }
         ));
-        tbtProveedor.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane1.setViewportView(tbtProveedor);
+        tblProductoCP.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane1.setViewportView(tblProductoCP);
+
+        jPanel3.add(jScrollPane1);
+        jScrollPane1.setBounds(92, 246, 624, 183);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+        jPanel3.add(labelIcon5);
+        labelIcon5.setBounds(250, 500, 30, 30);
 
         btnGuardarCP.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardarCP.setText("Guardar");
@@ -378,18 +406,36 @@ public class CompraProveedor extends javax.swing.JFrame {
                 btnGuardarCPActionPerformed(evt);
             }
         });
+        jPanel3.add(btnGuardarCP);
+        btnGuardarCP.setBounds(280, 500, 130, 30);
 
         jlblSubtotal.setText("Subtotal:");
+        jPanel3.add(jlblSubtotal);
+        jlblSubtotal.setBounds(450, 440, 70, 14);
 
         jlblIva.setText("IVA:");
+        jPanel3.add(jlblIva);
+        jlblIva.setBounds(453, 460, 70, 20);
 
         jlblTotalPago.setText("Total a pagar:");
+        jPanel3.add(jlblTotalPago);
+        jlblTotalPago.setBounds(450, 484, 90, 20);
 
         txtSubtotalCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubtotalCPActionPerformed(evt);
             }
         });
+        jPanel3.add(txtSubtotalCP);
+        txtSubtotalCP.setBounds(540, 440, 61, 20);
+
+        txtTotalPagarCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalPagarCPActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtTotalPagarCP);
+        txtTotalPagarCP.setBounds(541, 482, 61, 20);
 
         labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
@@ -399,6 +445,9 @@ public class CompraProveedor extends javax.swing.JFrame {
         labelIcon8.add(labelIcon9);
         labelIcon9.setBounds(580, 680, 30, 30);
 
+        jPanel3.add(labelIcon8);
+        labelIcon8.setBounds(548, 126, 30, 30);
+
         labelIcon14.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
 
@@ -407,157 +456,111 @@ public class CompraProveedor extends javax.swing.JFrame {
         labelIcon14.add(labelIcon15);
         labelIcon15.setBounds(580, 680, 30, 30);
 
+        jPanel3.add(labelIcon14);
+        labelIcon14.setBounds(548, 210, 30, 30);
+
         lblNroFactura.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNroFactura.setForeground(new java.awt.Color(102, 102, 102));
-        lblNroFactura.setText("Nro Factura");
+        lblNroFactura.setText("Nro Compra:");
+        jPanel3.add(lblNroFactura);
+        lblNroFactura.setBounds(190, 85, 80, 30);
 
-        txtnroFacturaCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtnroFacturaCP.setForeground(new java.awt.Color(102, 102, 102));
-        txtnroFacturaCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtnroFacturaCP.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtnroCompraCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtnroCompraCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtnroCompraCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtnroCompraCP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtnroFacturaCPMouseClicked(evt);
+                txtnroCompraCPMouseClicked(evt);
             }
         });
-        txtnroFacturaCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnroFacturaCPActionPerformed(evt);
-            }
-        });
+        jPanel3.add(txtnroCompraCP);
+        txtnroCompraCP.setBounds(310, 91, 220, 18);
 
         rSLabelFecha1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelFecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel3.add(rSLabelFecha1);
+        rSLabelFecha1.setBounds(560, 85, 138, 30);
 
         lblFormaPago.setText("FormaPago:");
+        jPanel3.add(lblFormaPago);
+        lblFormaPago.setBounds(130, 440, 80, 20);
 
         txtFormaPagoCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFormaPagoCPActionPerformed(evt);
             }
         });
+        jPanel3.add(txtFormaPagoCP);
+        txtFormaPagoCP.setBounds(220, 440, 74, 20);
 
-        checkBoxIVACP.setText("12%");
+        checkBoxIVACP.setText("14%");
+        checkBoxIVACP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxIVACPActionPerformed(evt);
+            }
+        });
+        jPanel3.add(checkBoxIVACP);
+        checkBoxIVACP.setBounds(541, 460, 61, 18);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(txtCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblNroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtnroFacturaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(220, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(lblFormaPago)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlblSubtotal)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jlblIva)
-                                .addGap(18, 18, 18)
-                                .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jlblTotalPago)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(116, 116, 116)))
-                                .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(195, 195, 195))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtnroFacturaCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtProveedorCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCodProductoCP, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFormaPago)
-                            .addComponent(txtFormaPagoCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSubtotalCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblSubtotal))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkBoxIVACP, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblIva))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTotalPagarCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblTotalPago))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(btnGuardarCP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
+        btnBuscarCedulaCP1.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarCedulaCP1.setText("Buscar");
+        btnBuscarCedulaCP1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarCedulaCP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCedulaCP1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuscarCedulaCP1);
+        btnBuscarCedulaCP1.setBounds(584, 126, 82, 22);
+
+        txtIdProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtIdProveedor.setForeground(new java.awt.Color(102, 102, 102));
+        txtIdProveedor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtIdProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIdProveedorMouseClicked(evt);
+            }
+        });
+        txtIdProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdProveedorActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtIdProveedor);
+        txtIdProveedor.setBounds(790, 129, 48, 18);
+
+        jlblSubtotal1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlblSubtotal1.setForeground(new java.awt.Color(102, 102, 102));
+        jlblSubtotal1.setText("Cantidad:");
+        jPanel3.add(jlblSubtotal1);
+        jlblSubtotal1.setBounds(190, 222, 59, 15);
+
+        txtCodProductoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCodProductoCP.setForeground(new java.awt.Color(102, 102, 102));
+        txtCodProductoCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCodProductoCP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodProductoCPMouseClicked(evt);
+            }
+        });
+        jPanel3.add(txtCodProductoCP);
+        txtCodProductoCP.setBounds(310, 190, 220, 18);
+
+        btnLimpiar.setBackground(new java.awt.Color(0, 102, 51));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnLimpiar);
+        btnLimpiar.setBounds(100, 500, 130, 30);
+
+        labelIcon1.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CACHED);
+        labelIcon1.setInheritsPopupMenu(true);
+        jPanel3.add(labelIcon1);
+        labelIcon1.setBounds(70, 500, 30, 30);
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(100, 150, 850, 550);
@@ -593,7 +596,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -602,7 +605,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
@@ -618,69 +621,96 @@ public class CompraProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void bntBuscarCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bntBuscarCedulaCPActionPerformed
+    private void bntCalcularIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCalcularIvaActionPerformed
+        if (txtSubtotalCP.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese los productos que desea comprar");
+        } else {
+            calcularIva();
+        }
+
+
+    }//GEN-LAST:event_bntCalcularIvaActionPerformed
 
     private void btnBuscarCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoCPActionPerformed
-        // TODO add your handling code here:
+        if (txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
+        } else {
+            if (controladores.contieneSoloLetras(txtCodProductoCP.getText()) == false && controladores.contieneSoloLetras(txtCantidad.getText()) == false) {
+                producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                listaProductos.add(producto);
+                calcularSubtotal();
+                txtSubtotalCP.setText(String.valueOf(subtotal));
+                mostrarTabla();
+                cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
+            }
+
+        }
+
+
     }//GEN-LAST:event_btnBuscarCodProductoCPActionPerformed
 
     private void txtCedulaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaCPMouseClicked
 
     }//GEN-LAST:event_txtCedulaCPMouseClicked
 
-    private void txtCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaCPActionPerformed
-
     private void txtProveedorCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorCPMouseClicked
 
     }//GEN-LAST:event_txtProveedorCPMouseClicked
 
-    private void txtProveedorCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorCPActionPerformed
+    private void txtCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorCPActionPerformed
-
-    private void txtCodProductoCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoCPMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodProductoCPMouseClicked
-
-    private void txtCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProductoCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodProductoCPActionPerformed
+    }//GEN-LAST:event_txtCantidadMouseClicked
 
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
-        String nroCompra = txtnroFacturaCP.getText();
-        boolean iva = checkBoxIVACP.isSelected() ;
-        String fPago = txtFormaPagoCP.getText();
-        double subtotal = Double.parseDouble(txtSubtotalCP.getText()) ;
-        double total = Double.parseDouble(txtTotalPagarCP.getText()) ;            
-        cdao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total);
+        if (txtnroCompraCP.getText().equals("") || txtCedulaCP.getText().equals("") || txtProveedorCP.getText().equals("")
+                || txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("") || txtFormaPagoCP.getText().equals("")
+                || txtSubtotalCP.getText().equals("") || txtTotalPagarCP.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+
+        } else {
+
+            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
+                String nroCompra = txtnroCompraCP.getText();
+                boolean iva = checkBoxIVACP.isSelected();
+                String fPago = txtFormaPagoCP.getText();
+                double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+                double total = Double.parseDouble(txtTotalPagarCP.getText());
+
+                cdao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Compra y forma de pago sean correctos");
+            }
+
+        }
+
+
     }//GEN-LAST:event_btnGuardarCPActionPerformed
-    private void limiar(){
-        txtnroFacturaCP.setText("");
+    private void limiar() {
+
+        txtnroCompraCP.setText("");
+        txtCedulaCP.setText("");
+        txtProveedorCP.setText("");
+        txtCantidad.setText("");
         //checkBoxIVA.setSelected(rootPaneCheckingEnabled);
         txtFormaPagoCP.setText("");
         txtSubtotalCP.setText("");
-        txtTotalPagarCP.setText("");           
+        txtTotalPagarCP.setText("");
     }
-    
-    
+
+
     private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
-        // TODO add your handling code here:
+        txtSubtotalCP.setEnabled(false);
     }//GEN-LAST:event_txtSubtotalCPActionPerformed
 
-    private void txtnroFacturaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroFacturaCPMouseClicked
+    private void txtnroCompraCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnroCompraCPMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnroFacturaCPMouseClicked
-
-    private void txtnroFacturaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnroFacturaCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnroFacturaCPActionPerformed
+    }//GEN-LAST:event_txtnroCompraCPMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);       
+        FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -691,6 +721,94 @@ public class CompraProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFormaPagoCPActionPerformed
 
+    private void txtTotalPagarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarCPActionPerformed
+
+    }//GEN-LAST:event_txtTotalPagarCPActionPerformed
+
+    private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkBoxIVACPActionPerformed
+
+    private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
+        if (txtCedulaCP.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula del Proveedor");
+        } else {
+            if (controladores.validadorDeCedula(txtCedulaCP.getText())) {
+                mostrarNombreProveedor(txtCedulaCP.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
+            }
+        }
+    }//GEN-LAST:event_btnBuscarCedulaCP1ActionPerformed
+
+    private void txtIdProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdProveedorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdProveedorMouseClicked
+
+    private void txtIdProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdProveedorActionPerformed
+
+    private void txtCodProductoCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProductoCPMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodProductoCPMouseClicked
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void calcularIva() {
+        double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+        boolean iva = checkBoxIVACP.isSelected();
+        double total;
+        double totaliva;
+        double ivaT;
+        double resta;
+        if (iva == true) {
+            ivaT = 1.14;
+            totaliva = subtotal / ivaT;
+            resta = subtotal - totaliva;
+            total = subtotal + resta;
+            double roundDbl = Math.round(total * 100.0) / 100.0;
+            txtTotalPagarCP.setText(String.valueOf(roundDbl));
+
+        } else {
+            total = subtotal;
+            txtTotalPagarCP.setText(String.valueOf(total));
+        }
+    }
+
+    private void mostrarTabla() {
+        cdao.listarProducto(tblProductoCP, listaProductos);
+
+    }
+
+    private void mostrarNombreProveedor(String cedula) {
+        nombre = cdao.listarProveedor(cedula);
+        txtProveedorCP.setText(nombre);
+        id = cdao.retornarId(cedula);
+        txtIdProveedor.setText(id);
+    }
+
+    public void calcularSubtotal() {
+        subtotal += cdao.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidad.getText()));
+
+    }
+
+//    public void imprimirLista() {
+//        Producto p = new Producto();
+//        for (Producto producto : listaProductos) {
+//            p.setCodigo(producto.getCodigo());
+//            System.out.println(p.getCodigo());
+//            p.setNombre(producto.getNombre());
+//            System.out.println(p.getNombre());
+//
+//        }
+//    }
     /**
      * @param args the command line arguments
      */
@@ -758,10 +876,12 @@ public class CompraProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSButtonHover bntBuscarCedulaCP;
+    private rojerusan.RSButtonHover bntCalcularIva;
+    private rojerusan.RSButtonHover btnBuscarCedulaCP1;
     private rojerusan.RSButtonHover btnBuscarCodProductoCP;
     private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnGuardarCP;
+    private rojerusan.RSButtonHover btnLimpiar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
     private newscomponents.RSButtonBigIcon_new btnProveedor;
@@ -781,7 +901,9 @@ public class CompraProveedor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlblIva;
     private javax.swing.JLabel jlblSubtotal;
+    private javax.swing.JLabel jlblSubtotal1;
     private javax.swing.JLabel jlblTotalPago;
+    private necesario.LabelIcon labelIcon1;
     private necesario.LabelIcon labelIcon14;
     private necesario.LabelIcon labelIcon15;
     private necesario.LabelIcon labelIcon5;
@@ -798,13 +920,15 @@ public class CompraProveedor extends javax.swing.JFrame {
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
-    private RSMaterialComponent.RSTableMetro tbtProveedor;
+    private RSMaterialComponent.RSTableMetro tblProductoCP;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCedulaCP;
     private javax.swing.JTextField txtCodProductoCP;
     private javax.swing.JTextField txtFormaPagoCP;
+    private javax.swing.JTextField txtIdProveedor;
     private javax.swing.JTextField txtProveedorCP;
     private javax.swing.JTextField txtSubtotalCP;
     private javax.swing.JTextField txtTotalPagarCP;
-    private javax.swing.JTextField txtnroFacturaCP;
+    private javax.swing.JTextField txtnroCompraCP;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,7 +25,7 @@ import modelo.Rol;
 public class ProveedorDAO {
 
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
-//    private PersonaJpaController controladorPersona = new PersonaJpaController();
+    private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Proveedor proveedor = new Proveedor();
 //    private Persona persona = new Persona();
     private String mensaje = "";
@@ -34,30 +34,22 @@ public class ProveedorDAO {
 
         List<Persona> datos = buscarPersona(cedula);
 
-        for (Persona dato : datos) {
-            if (dato.getCedula().equals(cedula)) {
-                JOptionPane.showMessageDialog(null, "La cedula ya existe.\n Intente de nuevo");
-            } else {
-                try {
-                    proveedor.setIdPersona(Long.MIN_VALUE);
-                    proveedor.setNombres(nombres);
-                    proveedor.setCedula(cedula);
-                    proveedor.setDireccion(direccion);
-                    proveedor.setTelefono(telefono);
-                    proveedor.setEmail(email);
-                    proveedor.setRol(idRol);
-                    proveedor.setEmpresa(empresa);
-                    proveedor.setRuc(ruc);
-                    controladorProveedor.create(proveedor);
-                    mensaje = "Proveedor registrada con exito";
-                } catch (Exception e) {
-                    mensaje = "No se pudo registrar el proveedor ";
-                    System.out.println(e.getMessage());
-                }
-                JOptionPane.showMessageDialog(null, mensaje);
-
-            }
+        try {
+            proveedor.setNombres(nombres);
+            proveedor.setCedula(cedula);
+            proveedor.setDireccion(direccion);
+            proveedor.setTelefono(telefono);
+            proveedor.setEmail(email);
+            proveedor.setRol(idRol);
+            proveedor.setEmpresa(empresa);
+            proveedor.setRuc(ruc);
+            controladorPersona.create(proveedor);
+            mensaje = "Proveedor registrada con exito";
+        } catch (Exception e) {
+            mensaje = "No se pudo registrar el proveedor ";
+            System.out.println(e.getMessage());
         }
+        JOptionPane.showMessageDialog(null, mensaje);
 
     }
 
@@ -152,4 +144,62 @@ public class ProveedorDAO {
         return lista;
     }
 
+    public boolean validadorDeCedula(String cedula) {
+        boolean cedulaCorrecta = false;
+
+        try {
+
+            if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+            {
+                int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+                if (tercerDigito < 6) {
+// Coeficientes de validación cédula
+// El decimo digito se lo considera dígito verificador
+                    int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
+                    int verificador = Integer.parseInt(cedula.substring(9, 10));
+                    int suma = 0;
+                    int digito = 0;
+                    for (int i = 0; i < (cedula.length() - 1); i++) {
+                        digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+                        suma += ((digito % 10) + (digito / 10));
+                    }
+
+                    if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+                        cedulaCorrecta = true;
+                    } else if ((10 - (suma % 10)) == verificador) {
+                        cedulaCorrecta = true;
+                    } else {
+                        cedulaCorrecta = false;
+                    }
+                } else {
+                    cedulaCorrecta = false;
+                }
+            } else {
+                cedulaCorrecta = false;
+            }
+        } catch (NumberFormatException nfe) {
+            cedulaCorrecta = false;
+        } catch (Exception err) {
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+            cedulaCorrecta = false;
+        }
+
+        if (!cedulaCorrecta) {
+            System.out.println("La Cédula ingresada es Incorrecta");
+        } else {
+            System.out.println("La Cédula ingresada es correcta");
+        }
+        return cedulaCorrecta;
+    }
+
+    public boolean contieneSoloLetras(String cadena) {
+        for (int x = 0; x < cadena.length(); x++) {
+            char c = cadena.charAt(x);
+            // Si no está entre a y z, ni entre A y Z, ni es un espacio
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
