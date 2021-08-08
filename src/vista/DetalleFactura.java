@@ -25,7 +25,7 @@ public class DetalleFactura extends javax.swing.JFrame {
      * Creates new form DetalleFactura
      */
     private FacturaDAO fac = new FacturaDAO();
-    private DetalleFacturaDAO detallefactura = new DetalleFacturaDAO();
+    private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     ArrayList<Factura> listadetalle = new ArrayList<Factura>();
     Date fecha = new Date();
     Factura factura = new Factura();
@@ -38,7 +38,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     }
 
     private void mostrarTabla() {
-        detallefactura.listarDetalleFactura(tablaDetalle, txtFactura.getText());
+        dDAO.listarDetalleFactura(tablaDetalle, txtFactura.getText());
 
     }
 
@@ -785,15 +785,13 @@ public class DetalleFactura extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Llene el campo nro Factura");
         } else {
             if (controles.contieneSoloLetras(txtFactura.getText()) == false) {
+                
                 mostrarTabla();
-                txtFactura.setText(null);
-            }else{
+                txtFactura.setText("");
+            } else {
                 JOptionPane.showMessageDialog(null, "Ingrese nro Factura correcto");
             }
         }
-        //detalleFactura.retornalista(listaProductos);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked

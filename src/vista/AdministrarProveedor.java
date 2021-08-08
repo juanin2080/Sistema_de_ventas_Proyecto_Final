@@ -8,7 +8,7 @@ package vista;
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProveedorDAO;
 import controlador.DAO.RolDAO;
-import controladores.utilidades.Controladores;
+import controlador.utilidades.Controladores;
 import javax.swing.JOptionPane;
 import modelo.Persona;
 import modelo.Proveedor;
