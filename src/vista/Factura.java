@@ -707,12 +707,12 @@ public class Factura extends javax.swing.JFrame {
                 fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
                 JOptionPane.showMessageDialog(rootPane, "factura agregada");
                 mostrarTabla();
-
-                txtCedula.setText("");
-                txtidPersona.setText("");
-                txtSubtotal.setText("");
-                txtTotal.setText("");
-                txtnombreCliente.setText("");
+//
+//                txtCedula.setText("");
+//                txtidPersona.setText("");
+//                txtSubtotal.setText("");
+//                txtTotal.setText("");
+//                txtnombreCliente.setText("");
 
             } else {
                 JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");
