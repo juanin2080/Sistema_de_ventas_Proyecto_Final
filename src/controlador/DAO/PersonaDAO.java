@@ -25,10 +25,8 @@ public class PersonaDAO {
 
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
-    private String mensaje = "";
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
-
+    public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
 
             persona.setIdPersona(Long.MIN_VALUE);
@@ -39,14 +37,10 @@ public class PersonaDAO {
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.create(persona);
-            mensaje = "Persona registrada con exito";
-
         } catch (Exception e) {
-            mensaje = "No se pudo registrar la persona ";
             System.out.println(e.getMessage());
         }
 
-        return mensaje;
     }
 
     public boolean validarEmail(String email) {
@@ -65,15 +59,11 @@ public class PersonaDAO {
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.edit(persona);
-            mensaje = "Persona actualizada con exito";
             JOptionPane.showMessageDialog(null, "Persona actualizada con exito");
         } catch (Exception e) {
-            mensaje = "No se pudo actualizar la persona";
             JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona");
             System.out.println(e.getMessage());
         }
-
-        return mensaje;
 
     }
 

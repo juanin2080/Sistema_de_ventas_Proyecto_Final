@@ -104,7 +104,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnDetalleFactura);
-        btnDetalleFactura.setBounds(140, 10, 140, 70);
+        btnDetalleFactura.setBounds(140, 10, 130, 70);
 
         btnFactura.setBackground(new java.awt.Color(0, 153, 102));
         btnFactura.setText("Factura");
