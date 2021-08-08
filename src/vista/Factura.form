@@ -865,7 +865,7 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="icons" type="rojeru_san.efectos.ValoresEnum$ICONS" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="CLEAR_ALL"/>
+              <Value id="EDIT"/>
             </Property>
           </Properties>
           <Constraints>

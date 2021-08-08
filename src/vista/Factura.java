@@ -72,6 +72,14 @@ public class Factura extends javax.swing.JFrame {
         txtidPersona.setText(id);
     }
 
+    public void limpiarCampos() {
+        txtCedula.setText("");
+        txtidPersona.setText("");
+        txtSubtotal.setText("");
+        txtTotal.setText("");
+        txtnombreCliente.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -541,7 +549,7 @@ public class Factura extends javax.swing.JFrame {
         btnLimpiar.setBounds(150, 640, 130, 30);
 
         labelIcon14.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLEAR_ALL);
+        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel3.add(labelIcon14);
         labelIcon14.setBounds(110, 640, 30, 30);
 
@@ -643,6 +651,8 @@ public class Factura extends javax.swing.JFrame {
                 }
 
                 mostrarTabla();
+                fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
+
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
             }
@@ -759,6 +769,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarCampos();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
     private void calcularIva() {
