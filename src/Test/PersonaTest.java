@@ -7,9 +7,12 @@ package Test;
 
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.RolDAO;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import modelo.DetalleCompra;
 import modelo.DetalleFactura;
 import modelo.Rol;
+import vista.AdministrarPersonas;
 
 /**
  *
@@ -19,8 +22,8 @@ public class PersonaTest {
     
     public static void main(String[] args) {
         PersonaDAO pDAO = new PersonaDAO();
-        RolDAO rDAO = new RolDAO();
-        Rol rol = new Rol();
+//        RolDAO rDAO = new RolDAO();
+//        Rol rol = new Rol();
 //        rol.setIdRol(Long.valueOf(1));
 //        rol.setRol("Administrador");
 //        ProductoDAO proDAO = new ProductoDAO();
@@ -31,7 +34,16 @@ public class PersonaTest {
 //        System.out.println(pDAO.actualizarPersona(Long.valueOf(100), "Juan Carlos Sanchez", "Daniel Alvarez", "0985559155", "juanarmijos@gmail.com", true));
 //        pDAO.darDeBajaPersona(Long.valueOf(4));
 //        System.out.println(pDAO.insertarPersona("Juan Carlos Armijos", "1150329887", "Daniel Alvarez", "0985559155", "juanarmijos@gmail.com", rol));
-        rDAO.insertarRol("Administrador");
+//        rDAO.insertarRol("Administrador");
 //        rDAO.darDeBajaRol(Long.valueOf(11));
+        AdministrarPersonas per = new AdministrarPersonas();
+        per.setVisible(true);
+//        boolean sd= pDAO.contieneSoloLetras("asdas");
+//        if(sd == false){
+//            System.out.println("contiene numero");
+//        }else{
+//            System.out.println("no contiene numero");
+//        }
     }
+    
 }

@@ -18,7 +18,7 @@ import modelo.Rol;
  * @author juana
  */
 public class AdministrarProveedor extends javax.swing.JFrame {
-    
+
     private Rol rol = new Rol();
     private RolDAO rDAO = new RolDAO();
     private PersonaDAO pDAO = new PersonaDAO();
@@ -26,7 +26,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     private ProveedorDAO pdao = new ProveedorDAO();
-    
+
     public AdministrarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -294,7 +294,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(760, 610, 130, 30);
+        btnGuardar.setBounds(760, 590, 130, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
@@ -316,7 +316,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon9.setBounds(220, 470, 30, 30);
 
         jPanel1.add(labelIcon6);
-        labelIcon6.setBounds(920, 610, 30, 30);
+        labelIcon6.setBounds(920, 590, 30, 30);
 
         btnNuevoProveedor.setBackground(new java.awt.Color(0, 102, 51));
         btnNuevoProveedor.setText("Nuevo Proveedor");
@@ -327,7 +327,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoProveedor);
-        btnNuevoProveedor.setBounds(960, 660, 180, 30);
+        btnNuevoProveedor.setBounds(960, 640, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -377,7 +377,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon13.setBounds(220, 520, 30, 30);
 
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(920, 660, 30, 30);
+        labelIcon10.setBounds(920, 640, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -431,7 +431,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnActualizarDatos1);
-        btnActualizarDatos1.setBounds(960, 610, 180, 30);
+        btnActualizarDatos1.setBounds(960, 590, 180, 30);
 
         labelIcon19.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon19.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
@@ -453,7 +453,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon21.setBounds(350, 420, 30, 30);
 
         jPanel1.add(labelIcon19);
-        labelIcon19.setBounds(720, 610, 30, 30);
+        labelIcon19.setBounds(720, 590, 30, 30);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
@@ -563,7 +563,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
 
         pack();
@@ -593,35 +593,36 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-//        if (txtEmpresa.getText().equals("") || txtRuc.getText().equals("") || txtNombres.getText().equals("") || txtCedula.getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
-//        } else {
-//            
-//        }
-//        
-//            mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), txtRuc.getText(), txtEmpresa.getText());
-//            JOptionPane.showMessageDialog(null, mensaje);
-        
-        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
-        
-        mostrarTabla("", txtRol.getText());
-        limpiar();
+        if (txtCedula.getText().equals("") || txtNombres.getText().equals("") || txtEmail.getText().equals("") || txtTelefono.getText().equals("")
+                || txtDireccion.getText().equals("") || txtRuc.getText().equals("") || txtEmpresa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        } else {
+            if (pDAO.validarEmail(txtEmail.getText()) && pDAO.validadorDeCedula(txtCedula.getText()) && pDAO.contieneSoloLetras(txtNombres.getText())) {
+                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+                pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
 
+                mostrarTabla("", txtRol.getText());
+                cbxRol.setSelectedIndex(2);
+                limpiar();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos  No Validos");
+            }
+
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
-    
+
     private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {
-        
+
     }
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
-    
+
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -640,7 +641,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         conf.setVisible(true);
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
-    
+
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
@@ -652,16 +653,19 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnActualizarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatos1ActionPerformed
         // TODO add your handling code here:
-        String mensaje = "";
-        Persona person = new Persona();
-        person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-//        Proveedor proveedor = new Proveedor();
 
-//        pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
-        mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
-        JOptionPane.showMessageDialog(null, mensaje);
-        mostrarTabla("", txtRol.getText());
-        limpiar();
+        if (txtEmpresa.getText().equals("") || txtRuc.getText().equals("") || txtNombres.getText().equals("") || txtCedula.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        } else {
+            String mensaje = "";
+            Persona person = new Persona();
+            person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+            mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
+            JOptionPane.showMessageDialog(null, mensaje);
+            mostrarTabla("", txtRol.getText());
+            limpiar();
+        }
+
     }//GEN-LAST:event_btnActualizarDatos1ActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
@@ -703,7 +707,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void tbtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtProveedorMouseClicked
         // TODO add your handling code here:
         int select = tbtProveedor.getSelectedRow();
-        
+
         txtCedula.setText(tbtProveedor.getValueAt(select, 0) + "");
         txtNombres.setText(tbtProveedor.getValueAt(select, 1) + "");
         txtTelefono.setText(tbtProveedor.getValueAt(select, 2) + "");
@@ -714,12 +718,12 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtId.setText((String) tbtProveedor.getValueAt(select, 7));
         txtRol.setText((String) tbtProveedor.getValueAt(select, 8));
         txtCedula.setEditable(false);
-        
+
         cbxRol.setEnabled(false);
-        
+
 
     }//GEN-LAST:event_tbtProveedorMouseClicked
-    
+
     public void limpiar() {
         txtCedula.setText("");
         txtDireccion.setText("");
@@ -730,14 +734,14 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtEmpresa.setText("");
     }
-    
+
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
     private void mostrarTabla(String cedula, String id) {
         pdao.listarPersonas(tbtProveedor, cedula);
     }
-    
+
     public void llenarCbx() {
         cbxRol.removeAllItems();
         rDAO.listarComboBox(cbxRol);

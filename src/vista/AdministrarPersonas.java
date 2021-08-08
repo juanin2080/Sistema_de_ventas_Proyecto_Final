@@ -480,12 +480,20 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
-        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
-        limpiarCampos();
-        mostrarTabla("");
-        cbxRol.setSelectedIndex(0);
+       
+        if (pDAO.validarEmail(txtEmail.getText()) && pDAO.validadorDeCedula(txtCedula.getText()) && pDAO.contieneSoloLetras(txtNombres.getText())) {
+            rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+            pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+            JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
+            limpiarCampos();
+            mostrarTabla("");
+            cbxRol.setSelectedIndex(0);
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos  No Validos");
+            limpiarCampos();
+        }
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed

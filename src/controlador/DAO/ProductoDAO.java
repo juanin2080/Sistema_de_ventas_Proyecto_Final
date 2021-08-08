@@ -9,6 +9,7 @@ import controlador.ProductoJpaController;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
@@ -23,23 +24,34 @@ public class ProductoDAO {
     private Producto producto = new Producto();
     private String mensaje = "";
 
-    public String insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
-        try {
-            producto.setCodigo(codigo);
-            producto.setNombre(nombre);
-            producto.setPrecio(precio);
-            producto.setStock(cantidad);
-            producto.setMarca(Marca);
-            producto.setEstado(true);
-            producto.setProveedor(proveedor);
-            controladorProducto.create(producto);
+    public void insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
 
-            mensaje = "Producto registrado con exito";
-        } catch (Exception e) {
-            System.out.println("mensaje en guardar: " + e.getMessage());
-            mensaje = "No se pudo registrar el producto ";
+        List<Producto> datos = buscarProducto(String.valueOf(codigo));
+
+        for (Producto dato : datos) {
+            if (dato.getCodigo() == codigo) {
+                JOptionPane.showMessageDialog(null, "El código ya existe.\n Intente de nuevo");
+            } else {
+                try {
+                    producto.setCodigo(codigo);
+                    producto.setNombre(nombre);
+                    producto.setPrecio(precio);
+                    producto.setStock(cantidad);
+                    producto.setMarca(Marca);
+                    producto.setEstado(true);
+                    producto.setProveedor(proveedor);
+                    controladorProducto.create(producto);
+
+                    mensaje = "Producto registrado con exito";
+                } catch (Exception e) {
+                    System.out.println("mensaje en guardar: " + e.getMessage());
+                    mensaje = "No se pudo registrar el producto ";
+                }
+                JOptionPane.showMessageDialog(null, mensaje);
+            }
         }
-        return mensaje;
+
+//        return mensaje;
     }
 
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
