@@ -5,16 +5,10 @@
  */
 package controlador.DAO;
 
-
 /**
  *
- * @author USUARIO
+ * @author juana
  */
-<<<<<<< HEAD:src/controlador/DAO/DetalleCompraDAO.java
 public class DetalleCompraDAO {
-   
-=======
-public class FacturaPrueba {
     
->>>>>>> Maria_Desarrollo:src/Test/FacturaPrueba.java
 }

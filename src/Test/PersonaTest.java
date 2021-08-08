@@ -36,9 +36,9 @@ public class PersonaTest {
 //        pDAO.darDeBajaPersona(Long.valueOf(4));
 //        System.out.println(pDAO.insertarPersona("Juan Carlos Armijos", "1150329887", "Daniel Alvarez", "0985559155", "juanarmijos@gmail.com", rol));
 //        rDAO.insertarRol("Administrador");
-//        rDAO.darDeBajaRol(Long.valueOf(11));
-        AdministrarPersonas per = new AdministrarPersonas();
-        per.setVisible(true);
+//        rDAO.darDeBajaRol(Long.valueOf(4));
+//        AdministrarPersonas per = new AdministrarPersonas();
+//        per.setVisible(true);
 //        boolean sd= pDAO.contieneSoloLetras("asdas");
 //        if(sd == false){
 //            System.out.println("contiene numero");
