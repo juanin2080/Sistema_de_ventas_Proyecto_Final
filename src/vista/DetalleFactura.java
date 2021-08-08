@@ -5,6 +5,16 @@
  */
 package vista;
 
+import controlador.DAO.DetalleFacturaDAO;
+import controlador.DAO.FacturaDAO;
+import controlador.utilidades.Controladores;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import modelo.Persona;
+import modelo.Producto;
+import modelo.Factura;
+
 /**
  *
  * @author María Castillo
@@ -14,8 +24,22 @@ public class DetalleFactura extends javax.swing.JFrame {
     /**
      * Creates new form DetalleFactura
      */
+    private FacturaDAO fac = new FacturaDAO();
+    private DetalleFacturaDAO detallefactura = new DetalleFacturaDAO();
+    ArrayList<Factura> listadetalle = new ArrayList<Factura>();
+    Date fecha = new Date();
+    Factura factura = new Factura();
+    Controladores controles = new Controladores();
+
     public DetalleFactura() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
+    }
+
+    private void mostrarTabla() {
+        detallefactura.listarDetalleFactura(tablaDetalle, txtFactura.getText());
+
     }
 
     /**
@@ -77,7 +101,7 @@ public class DetalleFactura extends javax.swing.JFrame {
         btnDetalleFactura = new newscomponents.RSButtonBigIcon_new();
         btnFactura = new newscomponents.RSButtonBigIcon_new();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbtClientes1 = new RSMaterialComponent.RSTableMetro();
+        tablaDetalle = new RSMaterialComponent.RSTableMetro();
         btnGuardar1 = new rojerusan.RSButtonHover();
         labelIcon13 = new necesario.LabelIcon();
         btnMinimizar1 = new RSMaterialComponent.RSButtonIconDos();
@@ -87,6 +111,10 @@ public class DetalleFactura extends javax.swing.JFrame {
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel25 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
+        labelIcon14 = new necesario.LabelIcon();
+        btnBuscarCliente = new rojerusan.RSButtonHover();
+        jLabel10 = new javax.swing.JLabel();
+        txtFactura = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -497,33 +525,41 @@ public class DetalleFactura extends javax.swing.JFrame {
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 50, 1160, 90);
 
-        tbtClientes1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CodigoProducto", "Cantidad", "Precio Unitario", "Precio total", "Stock"
+                "CodigoProducto", "Cantidad", "Precio Unitario", "Precio total"
             }
         ));
-        tbtClientes1.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane2.setViewportView(tbtClientes1);
+        tablaDetalle.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane2.setViewportView(tablaDetalle);
+        if (tablaDetalle.getColumnModel().getColumnCount() > 0) {
+            tablaDetalle.getColumnModel().getColumn(1).setHeaderValue("Cantidad");
+        }
 
         jPanel3.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 220, 700, 330);
+        jScrollPane2.setBounds(30, 360, 700, 190);
 
         btnGuardar1.setBackground(new java.awt.Color(0, 204, 51));
         btnGuardar1.setText("Guardar");
         btnGuardar1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnGuardar1);
         btnGuardar1.setBounds(350, 590, 130, 30);
 
@@ -590,6 +626,44 @@ public class DetalleFactura extends javax.swing.JFrame {
         });
         jPanel3.add(btnRegresar);
         btnRegresar.setBounds(270, 10, 120, 30);
+
+        labelIcon14.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
+        jPanel3.add(labelIcon14);
+        labelIcon14.setBounds(410, 170, 30, 30);
+
+        btnBuscarCliente.setBackground(new java.awt.Color(204, 0, 255));
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.setColorHover(new java.awt.Color(102, 102, 102));
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuscarCliente);
+        btnBuscarCliente.setBounds(450, 180, 90, 20);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Nro Factura:");
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(80, 170, 110, 30);
+
+        txtFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFactura.setForeground(new java.awt.Color(102, 102, 102));
+        txtFactura.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFacturaMouseClicked(evt);
+            }
+        });
+        txtFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFacturaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtFactura);
+        txtFactura.setBounds(220, 170, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -695,7 +769,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-    FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
+        FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
@@ -705,6 +779,35 @@ public class DetalleFactura extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        if (txtFactura.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Llene el campo nro Factura");
+        } else {
+            if (controles.contieneSoloLetras(txtFactura.getText()) == false) {
+                mostrarTabla();
+                txtFactura.setText(null);
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese nro Factura correcto");
+            }
+        }
+        //detalleFactura.retornalista(listaProductos);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFacturaMouseClicked
+
+    private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFacturaActionPerformed
+
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -732,6 +835,7 @@ public class DetalleFactura extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DetalleFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -746,6 +850,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnBuscar;
     private rojerusan.RSButtonHover btnBuscar1;
     private rojerusan.RSButtonHover btnBuscar3;
+    private rojerusan.RSButtonHover btnBuscarCliente;
     private rojerusan.RSButtonHover btnBuscarProducto;
     private newscomponents.RSButtonBigIcon_new btnClientes;
     private rojerusan.RSButtonHover btnDarDeBaja;
@@ -760,6 +865,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private RSMaterialComponent.RSButtonIconDos btnSalir;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
     private newscomponents.RSButtonBigIcon_new btnVentas;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -780,6 +886,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon11;
     private necesario.LabelIcon labelIcon12;
     private necesario.LabelIcon labelIcon13;
+    private necesario.LabelIcon labelIcon14;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
     private necesario.LabelIcon labelIcon7;
@@ -793,10 +900,11 @@ public class DetalleFactura extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
     private necesario.RSLabelImage rSLabelImage5;
+    private RSMaterialComponent.RSTableMetro tablaDetalle;
     private RSMaterialComponent.RSTableMetro tbtClientes;
-    private RSMaterialComponent.RSTableMetro tbtClientes1;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCodProducto;
+    private javax.swing.JTextField txtFactura;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtNroFactura;
