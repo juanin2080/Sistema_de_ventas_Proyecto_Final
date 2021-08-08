@@ -237,27 +237,43 @@ public class InicioSesion extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         Cuenta cuenta = new Cuenta();
         cuenta = cDAO.autenticacion(txtUsuario.getText(), txtClave.getText());
-        if (cuenta.getPersona().getRol().getRol().equals("Administrador")) {
-            MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
-            dispose();
-            mpa.setLocationRelativeTo(null);
-            mpa.setVisible(true);
-            LimpiarCampos();
-        } else if (cuenta.getPersona().getRol().getRol().equals("Vendedor")) {
-            MenuPrincipalVendedor mpv = new MenuPrincipalVendedor();
-            dispose();
-            mpv.setLocationRelativeTo(null);
-            mpv.setVisible(true);
-            LimpiarCampos();
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
-            JOptionPane.showMessageDialog(null, "El usuario no está autorizado para ingresar al sistema");
-            LimpiarCampos();
+            if (cuenta.getPersona().getRol().getRol().equals("Administrador")) {
+                MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+                dispose();
+                mpa.setLocationRelativeTo(null);
+                mpa.setVisible(true);
+                LimpiarCampos();
+            } else if (cuenta.getPersona().getRol().getRol().equals("Vendedor")) {
+                MenuPrincipalVendedor mpv = new MenuPrincipalVendedor();
+                dispose();
+                mpv.setLocationRelativeTo(null);
+                mpv.setVisible(true);
+                LimpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no está autorizado para ingresar al sistema");
+                LimpiarCampos();
+            }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+        } else {
+            JOptionPane.showMessageDialog(null, "Registro Exitoso");
+        }
     }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    public boolean camposVacios() {
+        if (txtUsuario.getText().equals("") || txtClave.getText().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         FiveCodMover.FiveCodMoverJFrame.MousePressed(evt);

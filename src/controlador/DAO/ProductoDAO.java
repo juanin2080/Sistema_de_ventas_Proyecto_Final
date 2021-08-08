@@ -6,13 +6,17 @@
 package controlador.DAO;
 
 import controlador.ProductoJpaController;
+import controlador.ProveedorJpaController;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
+import modelo.Proveedor;
+import modelo.Rol;
 
 /**
  *
@@ -22,27 +26,29 @@ public class ProductoDAO {
 
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private Producto producto = new Producto();
+    private ProveedorJpaController empresaPro = new ProveedorJpaController();
 
-    public String insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+    public String insertarProducto(String codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
 
-        try {
+        if (validar(Integer.parseInt(codigo)) == 1) {
+            mensaje = "Ya existe un producto con ese código";
+        } else {
+            try {
+                producto.setCodigo(Integer.parseInt(codigo));
+                producto.setNombre(nombre);
+                producto.setPrecio(precio);
+                producto.setStock(cantidad);
+                producto.setMarca(Marca);
+                producto.setEstado(true);
+                producto.setProveedor(proveedor);
+                controladorProducto.create(producto);
 
-            producto.setCodigo(codigo);
-            producto.setNombre(nombre);
-            producto.setPrecio(precio);
-            producto.setStock(cantidad);
-            producto.setMarca(Marca);
-            producto.setEstado(true);
-            producto.setProveedor(proveedor);
-            controladorProducto.create(producto);
-
-            mensaje = "Producto registrado con exito";
-            System.out.println("ingresa");
-
-        } catch (Exception e) {
-            System.out.println("mensaje en guardar: " + e.getMessage());
-            mensaje = "No se pudo registrar el producto ";
+                mensaje = "Producto registrado con exito";
+            } catch (Exception e) {
+                System.out.println("mensaje en guardar: " + e.getMessage());
+                mensaje = "No se pudo registrar el producto ";
+            }
         }
 
         return mensaje;
@@ -111,8 +117,10 @@ public class ProductoDAO {
                 listarProducto[4] = product.getProveedor();
                 listarProducto[5] = product.getStock() + "";
                 listarProducto[6] = product.getIdProducto() + "";
+
                 model.addRow(listarProducto);
             }
+
         }
         tabla.setModel(model);
         tabla.getColumnModel().getColumn(6).setMaxWidth(0);
@@ -121,7 +129,7 @@ public class ProductoDAO {
         tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
 
-    public List<Producto> buscarProducto(String codigo) {
+    private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
@@ -130,4 +138,55 @@ public class ProductoDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
+
+    public List<Producto> listarProductos(String codigo) {
+        EntityManager em = controladorProducto.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
+        query.setParameter("codigo", codigo + "%");
+
+        List<Producto> lista = query.getResultList();
+        return lista;
+    }
+
+    public int validar(int codigo) {
+        boolean estado = true;
+        List<Producto> datos = listarProductos("%");
+        String cod = "";
+        for (Producto dato : datos) {
+            cod = String.valueOf(dato.getCodigo());
+            if (cod.equals(String.valueOf(codigo))) {
+                estado = true;
+                break;
+            } else {
+                estado = false;
+            }
+        }
+        if (estado == true) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public void listarComboBox(JComboBox cbxEmpresa) {
+        List<Proveedor> datos = empresaPro.findProveedorEntities();
+        for (Proveedor dato : datos) {
+            cbxEmpresa.addItem(dato.getEmpresa());
+        }
+    }
+
+    public Proveedor buscarEmpresa(String empresa) {
+        Proveedor empresaCbx = new Proveedor();
+        List<Proveedor> datos = this.empresaPro.findProveedorEntities();
+
+        for (Proveedor dato : datos) {
+            if (dato.getEmpresa().equals(empresa)) {
+                empresaCbx.setEmpresa(dato.getEmpresa());
+
+            }
+        }
+        return empresaCbx;
+
+    }
+
 }

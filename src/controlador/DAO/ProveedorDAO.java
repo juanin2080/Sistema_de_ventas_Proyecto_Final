@@ -29,27 +29,29 @@ public class ProveedorDAO {
 //    private Persona persona = new Persona();
     private String mensaje = "";
 
-    public void insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
+    public String insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
 
-        List<Persona> datos = buscarPersona(cedula);
-
-        try {
-            proveedor.setNombres(nombres);
-            proveedor.setCedula(cedula);
-            proveedor.setDireccion(direccion);
-            proveedor.setTelefono(telefono);
-            proveedor.setEmail(email);
-            proveedor.setRol(idRol);
-            proveedor.setEmpresa(empresa);
-            proveedor.setRuc(ruc);
-            controladorPersona.create(proveedor);
-            mensaje = "Proveedor registrada con exito";
-        } catch (Exception e) {
-            mensaje = "No se pudo registrar el proveedor ";
-            System.out.println(e.getMessage());
+        if (validar(cedula) == 1) {
+            mensaje = "Ya existe un proveedor con esa cedula";
+        } else {
+            try {
+                proveedor.setNombres(nombres);
+                proveedor.setCedula(cedula);
+                proveedor.setDireccion(direccion);
+                proveedor.setTelefono(telefono);
+                proveedor.setEmail(email);
+                proveedor.setRol(idRol);
+                proveedor.setEmpresa(empresa);
+                proveedor.setRuc(ruc);
+                controladorPersona.create(proveedor);
+                mensaje = "Proveedor registrada con exito";
+            } catch (Exception e) {
+                mensaje = "No se pudo registrar el proveedor ";
+                System.out.println(e.getMessage());
+            }
         }
-        JOptionPane.showMessageDialog(null, mensaje);
 
+        return mensaje;
     }
 
     public String actualizarDatos(Long id, String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
@@ -143,7 +145,34 @@ public class ProveedorDAO {
         return lista;
     }
 
-  
+    public int validar(String cedula) {
+        boolean estado = true;
+        List<Persona> datos = listarProveedores("%");
 
-  
+        System.out.println(datos.size());
+        for (Persona dato : datos) {
+            System.out.println(dato.getCedula());
+            if (dato.getCedula().equals(cedula)) {
+                estado = true;
+                break;
+            } else {
+                estado = false;
+            }
+        }
+        if (estado == true) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public List<Persona> listarProveedores(String cedula) {
+        EntityManager em = controladorPersona.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
+        query.setParameter("cedula", cedula + "%");
+
+        List<Persona> lista = query.getResultList();
+        return lista;
+    }
+
 }

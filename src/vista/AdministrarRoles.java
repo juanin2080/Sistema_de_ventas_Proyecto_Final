@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.DAO.RolDAO;
+import javax.swing.JOptionPane;
 import modelo.Rol;
 
 /**
@@ -18,11 +19,12 @@ public class AdministrarRoles extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     RolDAO rDAO = new RolDAO();
-
+    
     public AdministrarRoles() {
         initComponents();
         this.setLocationRelativeTo(null);
         mostrarTabla();
+        txtavisoRol.setVisible(false);
     }
 
     /**
@@ -33,11 +35,11 @@ public class AdministrarRoles extends javax.swing.JFrame {
     public void mostrarTabla() {
         rDAO.listarRoles(tbtRoles);
     }
-
+    
     public void limpiarCampos() {
         txtRol.setText("");
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,6 +64,7 @@ public class AdministrarRoles extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
+        txtavisoRol = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -225,6 +228,11 @@ public class AdministrarRoles extends javax.swing.JFrame {
         jPanel1.add(btnRegresar);
         btnRegresar.setBounds(270, 10, 120, 30);
 
+        txtavisoRol.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoRol.setText("*");
+        jPanel1.add(txtavisoRol);
+        txtavisoRol.setBounds(420, 290, 34, 20);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,9 +264,15 @@ public class AdministrarRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        rDAO.insertarRol(txtRol.getText());
-        limpiarCampos();
-        mostrarTabla();
+        if (txtRol.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "LLene todos los campos");
+            txtavisoRol.setVisible(true);
+        } else {
+            rDAO.insertarRol(txtRol.getText());
+            limpiarCampos();
+            mostrarTabla();
+        }
+        
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -348,5 +362,6 @@ public class AdministrarRoles extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tbtRoles;
     private javax.swing.JTextField txtRol;
+    private javax.swing.JLabel txtavisoRol;
     // End of variables declaration//GEN-END:variables
 }

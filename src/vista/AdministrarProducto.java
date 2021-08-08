@@ -6,7 +6,8 @@
 package vista;
 
 import controlador.DAO.ProductoDAO;
-import controladores.utilidades.Controladores;
+import controlador.utilidades.Controladores;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,13 @@ public class AdministrarProducto extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         mostrarTabla("");
         txtid.setVisible(false);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoCantidad.setVisible(false);
+        txtavisoCod.setVisible(false);
+        txtavisoMarca.setVisible(false);
+        txtavisoPrecio.setVisible(false);
+        txtavisoProveedor.setVisible(false);
     }
 
     /**
@@ -77,6 +85,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         btnGuardar = new rojerusan.RSButtonHover();
+        txtavisoMarca = new javax.swing.JLabel();
+        txtavisoPrecio = new javax.swing.JLabel();
+        txtavisoNombre = new javax.swing.JLabel();
+        txtavisoCod = new javax.swing.JLabel();
+        txtavisoCantidad = new javax.swing.JLabel();
+        txtavisoProveedor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -231,6 +245,11 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
+            }
+        });
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
             }
         });
         jPanel1.add(txtPrecio);
@@ -457,6 +476,9 @@ public class AdministrarProducto extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
         });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(140, 280, 150, 30);
@@ -480,6 +502,11 @@ public class AdministrarProducto extends javax.swing.JFrame {
                 txtCantidadActionPerformed(evt);
             }
         });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCantidad);
         txtCantidad.setBounds(140, 460, 220, 30);
 
@@ -494,6 +521,36 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jPanel1.add(btnGuardar);
         btnGuardar.setBounds(60, 550, 130, 30);
 
+        txtavisoMarca.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoMarca.setText("*");
+        jPanel1.add(txtavisoMarca);
+        txtavisoMarca.setBounds(360, 410, 34, 14);
+
+        txtavisoPrecio.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoPrecio.setText("*");
+        jPanel1.add(txtavisoPrecio);
+        txtavisoPrecio.setBounds(360, 370, 34, 14);
+
+        txtavisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoNombre.setText("*");
+        jPanel1.add(txtavisoNombre);
+        txtavisoNombre.setBounds(360, 330, 34, 14);
+
+        txtavisoCod.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCod.setText("*");
+        jPanel1.add(txtavisoCod);
+        txtavisoCod.setBounds(290, 280, 34, 20);
+
+        txtavisoCantidad.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCantidad.setText("*");
+        jPanel1.add(txtavisoCantidad);
+        txtavisoCantidad.setBounds(360, 470, 34, 14);
+
+        txtavisoProveedor.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoProveedor.setText("*");
+        jPanel1.add(txtavisoProveedor);
+        txtavisoProveedor.setBounds(360, 510, 34, 14);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -502,7 +559,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -535,13 +592,34 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtCantidad.setText("");
 
         txtCodigo.setEditable(true);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoCantidad.setVisible(false);
+        txtavisoCod.setVisible(false);
+        txtavisoMarca.setVisible(false);
+        txtavisoPrecio.setVisible(false);
+        txtavisoProveedor.setVisible(false);
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
+    public boolean camposVacios() {
+        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
+                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+
+            txtavisoNombre.setVisible(true);
+            txtavisoCantidad.setVisible(true);
+            txtavisoCod.setVisible(true);
+            txtavisoMarca.setVisible(true);
+            txtavisoPrecio.setVisible(true);
+            txtavisoProveedor.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
         // TODO add your handling code here:
 
-        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
             String mensaje = "";
@@ -555,8 +633,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         // TODO add your handling code here:
-        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
             String mensaje = "";
@@ -570,7 +647,13 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        mostrarTabla(txtCodigo.getText());
+        if(txtCodigo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "LLene el campo código");
+            txtavisoCod.setVisible(true);
+        }else{
+            mostrarTabla(txtCodigo.getText());
+        }
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -603,14 +686,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         inicioSesion.setVisible(true);
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorMouseClicked
-
-    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorActionPerformed
 
     private void txtMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMarcaMouseClicked
         // TODO add your handling code here:
@@ -687,10 +762,8 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-//List <Producto> = 
-        
-        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
             limpiar();
         } else {
@@ -703,7 +776,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             if (lnombres == true && lmarca == true && lproveedor == true
                     && ncodigo == false && ncantidad == false && nprecio == false) {
                 String mensaje;
-                mensaje = pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+                mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
                 JOptionPane.showMessageDialog(null, mensaje);
                 mostrarTabla("");
 
@@ -716,6 +789,41 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorActionPerformed
+
+    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorMouseClicked
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+           char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+           char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void limpiar() {
         txtCodigo.setText("");
@@ -821,6 +929,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProveedor;
+    private javax.swing.JLabel txtavisoCantidad;
+    private javax.swing.JLabel txtavisoCod;
+    private javax.swing.JLabel txtavisoMarca;
+    private javax.swing.JLabel txtavisoNombre;
+    private javax.swing.JLabel txtavisoPrecio;
+    private javax.swing.JLabel txtavisoProveedor;
     private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,8 @@ package vista;
 
 import controlador.DAO.CuentaDAO;
 import controlador.DAO.PersonaDAO;
+import controlador.utilidades.Controladores;
+import javax.swing.JOptionPane;
 import modelo.Cuenta;
 import modelo.Persona;
 
@@ -22,6 +24,7 @@ public class AdministrarCuentas extends javax.swing.JFrame {
     private Persona persona = new Persona();
     private PersonaDAO pDAO = new PersonaDAO();
     private CuentaDAO cDAO = new CuentaDAO();
+    Controladores controles = new Controladores();
 
     public AdministrarCuentas() {
         initComponents();
@@ -31,6 +34,11 @@ public class AdministrarCuentas extends javax.swing.JFrame {
         txtIdCuenta.setVisible(false);
         txtIdPersona.setVisible(false);
         txtNombres.setEditable(false);
+
+        txtavisoCed.setVisible(false);
+        txtavisoClave.setVisible(false);
+        txtavisoNombre.setVisible(false);
+        txtavisoUsuario.setVisible(false);
     }
 
     /**
@@ -42,6 +50,19 @@ public class AdministrarCuentas extends javax.swing.JFrame {
         cDAO.listarCuentas(tbtCuentas, usuario);
     }
 
+    public boolean camposVacios() {
+        if (txtCedula.getText().equals("") || txtClave.getText().equals("")
+                || txtUsuario.getText().equals("")) {
+            txtavisoCed.setVisible(true);
+            txtavisoClave.setVisible(true);
+            txtavisoNombre.setVisible(true);
+            txtavisoUsuario.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void LimpiarCampos() {
         txtCedula.setText("");
         txtClave.setText("");
@@ -51,6 +72,12 @@ public class AdministrarCuentas extends javax.swing.JFrame {
         txtIdCuenta.setText("");
         txtIdPersona.setText("");
         txtCedula.setEditable(true);
+
+        txtavisoCed.setVisible(false);
+        txtavisoClave.setVisible(false);
+        txtavisoNombre.setVisible(false);
+        txtavisoUsuario.setVisible(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -95,6 +122,10 @@ public class AdministrarCuentas extends javax.swing.JFrame {
         txtClave = new javax.swing.JPasswordField();
         btnVerContrasenia = new RSMaterialComponent.RSButtonIconDos();
         txtEstado = new javax.swing.JLabel();
+        txtavisoCed = new javax.swing.JLabel();
+        txtavisoNombre = new javax.swing.JLabel();
+        txtavisoUsuario = new javax.swing.JLabel();
+        txtavisoClave = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -138,6 +169,11 @@ public class AdministrarCuentas extends javax.swing.JFrame {
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(102, 102, 102));
         txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCedula);
         txtCedula.setBounds(140, 280, 220, 30);
 
@@ -371,6 +407,26 @@ public class AdministrarCuentas extends javax.swing.JFrame {
         jPanel1.add(txtEstado);
         txtEstado.setBounds(450, 330, 110, 30);
 
+        txtavisoCed.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCed.setText("*");
+        jPanel1.add(txtavisoCed);
+        txtavisoCed.setBounds(360, 280, 34, 20);
+
+        txtavisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoNombre.setText("*");
+        jPanel1.add(txtavisoNombre);
+        txtavisoNombre.setBounds(360, 330, 34, 14);
+
+        txtavisoUsuario.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoUsuario.setText("*");
+        jPanel1.add(txtavisoUsuario);
+        txtavisoUsuario.setBounds(360, 360, 34, 14);
+
+        txtavisoClave.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoClave.setText("*");
+        jPanel1.add(txtavisoClave);
+        txtavisoClave.setBounds(360, 410, 34, 14);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -406,29 +462,53 @@ public class AdministrarCuentas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaCuentaActionPerformed
 
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
-        Persona person = new Persona();
-        person = pDAO.buscarRolPersona(Long.valueOf(txtIdPersona.getText()));
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+        } else {
+            Persona person = new Persona();
+            person = pDAO.buscarRolPersona(Long.valueOf(txtIdPersona.getText()));
 //        Cuenta cuentaP = new Cuenta();
 //        cuentaP.setIdCuenta(Long.valueOf(txtIdCuenta.getText()));
 //        cuentaP.setUsuario(txtUsuario.getText());
 //        cuentaP.setClave(txtClave.getText());
 //        cuentaP.setEstado(Boolean.valueOf(txtEstado.getText()));
 //        cuentaP.setPersona(person);
-        Boolean estado = false;
-        cDAO.darDeBajaCuenta(Long.valueOf(txtIdCuenta.getText()), txtUsuario.getText(), txtClave.getText(), estado, person);
+            Boolean estado = false;
+            cDAO.darDeBajaCuenta(Long.valueOf(txtIdCuenta.getText()), txtUsuario.getText(), txtClave.getText(), estado, person);
+        }
+
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        Persona person = new Persona();
-        person = pDAO.buscarRolPersona(Long.valueOf(txtIdPersona.getText()));
-        cDAO.actualizarCuenta(Long.valueOf(txtIdCuenta.getText()), txtUsuario.getText(), txtClave.getText(), Boolean.valueOf(txtEstado.getText()), person);
-        mostrarTabla("");
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+        } else {
+            Persona person = new Persona();
+            person = pDAO.buscarRolPersona(Long.valueOf(txtIdPersona.getText()));
+            cDAO.actualizarCuenta(Long.valueOf(txtIdCuenta.getText()), txtUsuario.getText(), txtClave.getText(), Boolean.valueOf(txtEstado.getText()), person);
+            mostrarTabla("");
+        }
+
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        cDAO.insertarCuenta(txtUsuario.getText(), txtClave.getText(), true, persona);
-        mostrarTabla("");
-        LimpiarCampos();
+
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+        } else {
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                cDAO.insertarCuenta(txtUsuario.getText(), txtClave.getText(), true, persona);
+                mostrarTabla("");
+                LimpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+                txtavisoCed.setVisible(true);
+                txtavisoClave.setVisible(true);
+                txtavisoNombre.setVisible(true);
+                txtavisoUsuario.setVisible(true);
+            }
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -439,8 +519,15 @@ public class AdministrarCuentas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnBuscarCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaActionPerformed
-        persona = pDAO.BuscarCuentaPersona(txtCedula.getText());
-        txtNombres.setText(persona.getNombres());
+
+        if (txtCedula.getText().length() != 10 || txtCedula.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese una cédula valida");
+            txtavisoCed.setVisible(true);
+        } else {
+            persona = pDAO.BuscarCuentaPersona(txtCedula.getText());
+            txtNombres.setText(persona.getNombres());
+        }
+
     }//GEN-LAST:event_btnBuscarCedulaActionPerformed
 
     private void tbtCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtCuentasMouseClicked
@@ -459,6 +546,16 @@ public class AdministrarCuentas extends javax.swing.JFrame {
     private void btnVerContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerContraseniaActionPerformed
         txtClave.setEchoChar((char) 0);
     }//GEN-LAST:event_btnVerContraseniaActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -565,5 +662,9 @@ public class AdministrarCuentas extends javax.swing.JFrame {
     private javax.swing.JLabel txtIdPersona;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JLabel txtavisoCed;
+    private javax.swing.JLabel txtavisoClave;
+    private javax.swing.JLabel txtavisoNombre;
+    private javax.swing.JLabel txtavisoUsuario;
     // End of variables declaration//GEN-END:variables
 }
