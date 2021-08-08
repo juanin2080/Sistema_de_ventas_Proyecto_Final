@@ -10,19 +10,11 @@ import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProductoDAO;
-import controlador.DAO.RolDAO;
-import controlador.PersonaJpaController;
 import java.util.ArrayList;
-import static modelo.Compra_.fecha;
-import static modelo.Persona_.idPersona;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
-import static modelo.Factura_.formaPago;
-import static modelo.Factura_.nroFactura;
 import modelo.Persona;
 import modelo.Producto;
-import modelo.Rol;
 
 /**
  *
@@ -659,7 +651,6 @@ public class Factura extends javax.swing.JFrame {
 
         }
 
-///////////////////////        
 
     }//GEN-LAST:event_btnBuscarProducto1ActionPerformed
 
@@ -707,12 +698,12 @@ public class Factura extends javax.swing.JFrame {
                 fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
                 JOptionPane.showMessageDialog(rootPane, "factura agregada");
                 mostrarTabla();
-
-                txtCedula.setText("");
-                txtidPersona.setText("");
-                txtSubtotal.setText("");
-                txtTotal.setText("");
-                txtnombreCliente.setText("");
+//
+//                txtCedula.setText("");
+//                txtidPersona.setText("");
+//                txtSubtotal.setText("");
+//                txtTotal.setText("");
+//                txtnombreCliente.setText("");
 
             } else {
                 JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");

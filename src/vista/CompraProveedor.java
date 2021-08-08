@@ -733,10 +733,10 @@ public class CompraProveedor extends javax.swing.JFrame {
         if (txtCedulaCP.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula del Proveedor");
         } else {
-            if(controladores.validadorDeCedula(txtCedulaCP.getText())){
+            if (controladores.validadorDeCedula(txtCedulaCP.getText())) {
                 mostrarNombreProveedor(txtCedulaCP.getText());
-            }else{
-                 JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
             }
         }
     }//GEN-LAST:event_btnBuscarCedulaCP1ActionPerformed

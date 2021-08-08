@@ -484,17 +484,12 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        if (controles.validarEmail(txtEmail.getText()) && controles.validadorDeCedula(txtCedula.getText()) && controles.contieneSoloLetras(txtNombres.getText())) {
-            rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-            pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
-            JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
-            limpiarCampos();
-            mostrarTabla("");
-            cbxRol.setSelectedIndex(0);
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos  No Validos");
-            limpiarCampos();
-        }
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+        JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
+        limpiarCampos();
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(0);
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed

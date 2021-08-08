@@ -43,8 +43,6 @@ public class PersonaDAO {
 
     }
 
-    
-
     public void actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
         try {
             persona.setIdPersona(id);
