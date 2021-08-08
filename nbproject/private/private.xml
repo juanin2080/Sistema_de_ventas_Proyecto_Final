@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/MenuPrincipalAdministrador.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/PersonaDAO.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/Factura.java</file>
+            <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/InicioSesion.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/vista/MenuPrincipalVendedor.java</file>
             <file>file:/C:/Users/juana/Documents/NetBeansProjects/Sistema_de_Ventas_Proyecto_Final/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/RolDAO.java</file>
         </group>
