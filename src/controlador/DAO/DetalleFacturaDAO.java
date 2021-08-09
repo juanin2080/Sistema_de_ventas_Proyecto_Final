@@ -120,7 +120,7 @@ public class DetalleFacturaDAO {
                 detallef.setCantidad(dato.getCantidad());
                 detallef.setPrecioUnitario(dato.getPrecioUnitario());
                 detallef.setPrecioTotal(dato.getPrecioTotal());
-            }
+            } 
         }
         datos.add(detallef);
         return detallef;
@@ -166,7 +166,7 @@ public class DetalleFacturaDAO {
         }
         return producto;
 
-    }
+    } 
 
     public Factura buscarFacturaBD(String nroFactura) {
         Factura f = new Factura();

@@ -111,7 +111,7 @@ public class DetalleFactura extends javax.swing.JFrame {
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
         jLabel25 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
-        btnBuscarCliente = new rojerusan.RSButtonHover();
+        btnMostrar = new rojerusan.RSButtonHover();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -611,16 +611,16 @@ public class DetalleFactura extends javax.swing.JFrame {
         jPanel3.add(btnRegresar);
         btnRegresar.setBounds(270, 10, 120, 30);
 
-        btnBuscarCliente.setBackground(new java.awt.Color(204, 0, 255));
-        btnBuscarCliente.setText("Mostrar");
-        btnBuscarCliente.setColorHover(new java.awt.Color(102, 102, 102));
-        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setBackground(new java.awt.Color(204, 0, 255));
+        btnMostrar.setText("Mostrar");
+        btnMostrar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarClienteActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBuscarCliente);
-        btnBuscarCliente.setBounds(330, 180, 90, 20);
+        jPanel3.add(btnMostrar);
+        btnMostrar.setBounds(330, 180, 90, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -742,9 +742,9 @@ public class DetalleFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
-    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         dDAO.listarDetalleFactura(tablaDetalle);
-    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -787,7 +787,6 @@ public class DetalleFactura extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnBuscar;
     private rojerusan.RSButtonHover btnBuscar1;
     private rojerusan.RSButtonHover btnBuscar3;
-    private rojerusan.RSButtonHover btnBuscarCliente;
     private rojerusan.RSButtonHover btnBuscarProducto;
     private newscomponents.RSButtonBigIcon_new btnClientes;
     private rojerusan.RSButtonHover btnDarDeBaja;
@@ -797,6 +796,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnGuardar1;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar1;
+    private rojerusan.RSButtonHover btnMostrar;
     private rojerusan.RSButtonHover btnNuevoCliente;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
