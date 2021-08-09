@@ -264,6 +264,7 @@ public class InicioSesion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
             JOptionPane.showMessageDialog(null, "Registro Exitoso");
+            
         }
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 

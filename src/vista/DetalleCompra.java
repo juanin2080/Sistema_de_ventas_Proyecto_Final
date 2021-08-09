@@ -9,8 +9,6 @@ import controlador.DAO.DetalleCompraDAO;
 import java.util.ArrayList;
 import modelo.Compra;
 
-
-
 /**
  *
  * @author USUARIO
@@ -20,7 +18,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     /**
      * Creates new form DetalleCompra
      */
-  
     public DetalleCompra() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -376,7 +373,7 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
-        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
+        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -400,10 +397,10 @@ public class DetalleCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
         this.dispose();
-        adminPersonas.setVisible(true);
-        adminPersonas.setLocationRelativeTo(null);
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
 
 
     }//GEN-LAST:event_btnProveedorActionPerformed
@@ -413,8 +410,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         this.dispose();
         adminProducto.setVisible(true);
         adminProducto.setLocationRelativeTo(null);
-
-
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
@@ -434,12 +429,12 @@ public class DetalleCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNroCompraActionPerformed
 
     private void bntBuscarCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaCPActionPerformed
-      
+
     }//GEN-LAST:event_bntBuscarCedulaCPActionPerformed
-     private void mostrarTabla() {
-   
+    private void mostrarTabla() {
 
     }
+
     /**
      * @param args the command line arguments
      */

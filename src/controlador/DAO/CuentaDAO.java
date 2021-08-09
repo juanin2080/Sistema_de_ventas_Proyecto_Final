@@ -25,18 +25,18 @@ public class CuentaDAO {
     private Cuenta cuenta = new Cuenta();
 
     public void insertarCuenta(String usuario, String clave, Boolean estado, Persona persona) {
-            try {
-                cuenta.setIdCuenta(Long.MIN_VALUE);
-                cuenta.setUsuario(usuario);
-                cuenta.setClave(clave);
-                cuenta.setEstado(estado);
-                cuenta.setPersona(persona);
-                controladorCuenta.create(cuenta);
-                JOptionPane.showMessageDialog(null, "Cuenta creada con exito");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                JOptionPane.showMessageDialog(null, "Hubo un error al crear su cuenta");
-            }
+        try {
+            cuenta.setIdCuenta(Long.MIN_VALUE);
+            cuenta.setUsuario(usuario);
+            cuenta.setClave(clave);
+            cuenta.setEstado(estado);
+            cuenta.setPersona(persona);
+            controladorCuenta.create(cuenta);
+            JOptionPane.showMessageDialog(null, "Cuenta creada con exito");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Hubo un error al crear su cuenta");
+        }
 
     }
 

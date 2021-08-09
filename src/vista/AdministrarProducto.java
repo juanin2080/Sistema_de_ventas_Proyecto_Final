@@ -10,6 +10,7 @@ import controlador.utilidades.Controladores;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Producto;
+import modelo.Proveedor;
 
 /**
  *
@@ -22,6 +23,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
      */
     ProductoDAO pDao = new ProductoDAO();
     Controladores controles = new Controladores();
+    Proveedor proveedor = new Proveedor();
 
     public AdministrarProducto() {
         initComponents();
@@ -648,13 +650,13 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        if(txtCodigo.getText().equals("")){
+        if (txtCodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "LLene el campo código");
             txtavisoCod.setVisible(true);
-        }else{
+        } else {
             mostrarTabla(txtCodigo.getText());
         }
-        
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -712,10 +714,10 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        AdministrarProducto adminProducto = new AdministrarProducto();
         this.dispose();
-        adminProveedor.setVisible(true);
-        adminProveedor.setLocationRelativeTo(null);
+        adminProducto.setVisible(true);
+        adminProducto.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnProductoActionPerformed
 
@@ -800,14 +802,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorActionPerformed
-
-    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorMouseClicked
-
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         // TODO add your handling code here:
         char caracteres = evt.getKeyChar();
@@ -819,7 +813,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
         // TODO add your handling code here:
-           char caracteres = evt.getKeyChar();
+        char caracteres = evt.getKeyChar();
 
         if (caracteres < '0' || caracteres > '9') {
             evt.consume();
@@ -828,12 +822,20 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         // TODO add your handling code here:
-           char caracteres = evt.getKeyChar();
+        char caracteres = evt.getKeyChar();
 
         if (caracteres < '0' || caracteres > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorActionPerformed
+
+    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorMouseClicked
 
     private void limpiar() {
         txtCodigo.setText("");

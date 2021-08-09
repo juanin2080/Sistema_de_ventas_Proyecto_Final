@@ -19,7 +19,7 @@ public class AdministrarRoles extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     RolDAO rDAO = new RolDAO();
-    
+
     public AdministrarRoles() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -35,11 +35,11 @@ public class AdministrarRoles extends javax.swing.JFrame {
     public void mostrarTabla() {
         rDAO.listarRoles(tbtRoles);
     }
-    
+
     public void limpiarCampos() {
         txtRol.setText("");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -272,7 +272,7 @@ public class AdministrarRoles extends javax.swing.JFrame {
             limpiarCampos();
             mostrarTabla();
         }
-        
+
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 

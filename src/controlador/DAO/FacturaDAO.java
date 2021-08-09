@@ -221,11 +221,12 @@ public class FacturaDAO {
         }
         return subtotal;
     }
-    public Factura buscarFacturaId (Long idFactura){
+
+    public Factura buscarFacturaId(Long idFactura) {
         Factura factura = new Factura();
-        List<Factura> listafactura= Controladorfactura.findFacturaEntities();
+        List<Factura> listafactura = Controladorfactura.findFacturaEntities();
         for (Factura factura1 : listafactura) {
-            if (idFactura==factura1.getIdFactura()) {
+            if (idFactura == factura1.getIdFactura()) {
                 factura.setIdFactura(factura1.getIdFactura());
                 factura.setFecha(factura1.getFecha());
                 factura.setFormaPago(factura1.getFormaPago());
@@ -233,16 +234,17 @@ public class FacturaDAO {
                 factura.setTotal(factura1.getTotal());
                 factura.setSubtotal(factura1.getSubtotal());
                 factura.setIva(factura1.isIva());
-                
+
             }
         }
         return factura;
     }
-    public void actualizarStockBD(String codigo, int cantidad){
+
+    public void actualizarStockBD(String codigo, int cantidad) {
         Producto p = new Producto();
         p = buscarProductoFactura(codigo, cantidad);
         producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-        
+
     }
 
 }

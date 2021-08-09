@@ -35,11 +35,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         mostrarTabla("");
         txtRol.setVisible(false);
         txtId.setVisible(false);
-       
+
         llenarCbx();
         cbxRol.setSelectedIndex(2);
         cbxRol.setEnabled(false);
-        
+
         txtavisoNombre.setVisible(false);
         txtavisoDirec.setVisible(false);
         txtavisoEmail.setVisible(false);
@@ -760,22 +760,27 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
         } else {
-            String mensaje = "";
-            Persona person = new Persona();
-            person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-            mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
-            JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("");
-            limpiar();
+            if (controles.validarEmail(txtEmail.getText())) {
+                String mensaje = "";
+                Persona person = new Persona();
+                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
+                JOptionPane.showMessageDialog(null, mensaje);
+                mostrarTabla("");
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                txtavisoEmail.setVisible(true);
+            }
         }
 
     }//GEN-LAST:event_btnActualizarDatos1ActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
         this.dispose();
-        adminPersonas.setVisible(true);
-        adminPersonas.setLocationRelativeTo(null);
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
@@ -824,10 +829,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtId.setText((String) tbtProveedor.getValueAt(select, 7));
         txtRol.setText((String) tbtProveedor.getValueAt(select, 8));
         txtCedula.setEditable(false);
-        
 
         cbxRol.setEnabled(false);
-         txtId.setVisible(false);
+        txtId.setVisible(false);
 
 
     }//GEN-LAST:event_tbtProveedorMouseClicked
@@ -841,8 +845,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtRuc.setText("");
         txtTelefono.setText("");
         txtEmpresa.setText("");
-        
-        
+
         txtavisoNombre.setVisible(false);
         txtavisoDirec.setVisible(false);
         txtavisoEmail.setVisible(false);
@@ -850,7 +853,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtavisoRuc.setVisible(false);
         txtavisoTlf.setVisible(false);
         txtavisoCed.setVisible(false);
-        
+
     }
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped

@@ -54,7 +54,7 @@ public class DetalleFacturaDAO {
 //        return mensaje;
 //    }
 //COPIAMOS DE FACTURA VISTA
-    public  ArrayList<Producto>  copiarListaProductos(ArrayList<Producto> lista) {
+    public ArrayList<Producto> copiarListaProductos(ArrayList<Producto> lista) {
         ArrayList<Producto> productos = lista;
         for (Producto listaProducto : lista) {
             listaProducto.getCodigo();
@@ -111,20 +111,20 @@ public class DetalleFacturaDAO {
         DefaultTableModel model;
         String[] titulo = {"FECHA", "STOCK", "PRECIO UNITARIO", "PRECIO TOTAL"};
         model = new DefaultTableModel(null, titulo);
-        List<DetalleFactura> datos =detallefac.findDetalleFacturaEntities();
+        List<DetalleFactura> datos = detallefac.findDetalleFacturaEntities();
         String[] listardetalle = new String[4];
         for (DetalleFactura dato : datos) {
-            factura= fac.buscarFacturaId(dato.getFactura().getIdFactura());
-            listardetalle[0]= factura.getFecha()+"";
+            factura = fac.buscarFacturaId(dato.getFactura().getIdFactura());
+            listardetalle[0] = factura.getFecha() + "";
 //            producto = buscarProductoId(dato.getProducto().getIdProducto(), );
-            System.out.println("Stock"+ producto.getStock());
-            listardetalle[1]= producto.getStock()+"";
-            listardetalle[2]= producto.getPrecio()+"";
-            listardetalle[3]= factura.getTotal()+"";
+            System.out.println("Stock" + producto.getStock());
+            listardetalle[1] = producto.getStock() + "";
+            listardetalle[2] = producto.getPrecio() + "";
+            listardetalle[3] = factura.getTotal() + "";
             model.addRow(listardetalle);
-            factura=  null;
-            producto= null;
-            
+            factura = null;
+            producto = null;
+
         }
         tablaDetalle.setModel(model);
     }
@@ -169,7 +169,7 @@ public class DetalleFacturaDAO {
 
     public Producto buscarProductoId(Long idProducto, ArrayList<Producto> listProducto) {
         Producto producto = new Producto();
-        
+
         for (Producto producto1 : listProducto) {
             if (idProducto == producto1.getIdProducto()) {
                 producto.setCodigo(producto1.getCodigo());
