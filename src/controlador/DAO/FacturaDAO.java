@@ -59,53 +59,6 @@ public class FacturaDAO {
         return factura;
     }
 
-//    public String insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
-//        try {
-//            factura.setIdFactura(Long.MIN_VALUE);
-//            factura.setFecha(fecha);
-//            factura.setFormaPago(formaPago);
-//            factura.setIva(iva);
-//            factura.setSubtotal(subtotal);
-//            factura.setNroFactura(nroFactura);
-//            factura.setTotal(total);
-//            factura.setPersona(idPersona);
-//            Controladorfactura.create(factura);
-//            mensaje = "Factura registrada con exito";
-////            dDAO.getFacturaCopia().setIdFactura(factura.getIdFactura());
-////            dDAO.getFacturaCopia().setFecha(factura.getFecha());
-////            dDAO.getFacturaCopia().setFormaPago(factura.getFormaPago());
-////            dDAO.getFacturaCopia().setIva(factura.isIva());
-////            dDAO.getFacturaCopia().setNroFactura(factura.getNroFactura());
-////            dDAO.getFacturaCopia().setSubtotal(factura.getSubtotal());
-////            dDAO.getFacturaCopia().setTotal(factura.getTotal());
-////            dDAO.getFacturaCopia().setPersona(factura.getPersona());
-//
-//        } catch (Exception e) {
-//            mensaje = "No se pudo registrar la factura ";
-//            System.out.println(e.getMessage());
-//        }
-//        return mensaje;
-//    }
-//
-//    public String actualizarFactura(Long idFactura, Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
-//        try {
-//
-//            factura.setIdFactura(idFactura);
-//            factura.setFecha((Date) fecha);
-//            factura.setFormaPago(formaPago);
-//            factura.setIva(iva);
-//            factura.setSubtotal(subtotal);
-//            factura.setNroFactura(nroFactura);
-//            factura.setTotal(total);
-//            factura.setPersona(idPersona);
-//            Controladorfactura.edit(factura);
-//            mensaje = "Actualizado exitamente";
-//        } catch (Exception e) {
-//            mensaje = "No se puede actualizar ";
-//            System.out.println(e.getMessage());
-//        }
-//        return mensaje;
-//    }
     public String darDeBajaPersona(Long idFactura) {
         try {
             Controladorfactura.destroy(idFactura);
@@ -116,26 +69,6 @@ public class FacturaDAO {
         }
         return mensaje;
     }
-//    public void listarProducto(JTable tablaFactura, ArrayList<Producto> datos) {
-//        DefaultTableModel model;
-//        String[] titulo = {"CODIGO", "MARCA", "PRECIOUNITARIO"};
-//        model = new DefaultTableModel(null, titulo);
-//        String[] listarProducto = new String[3];
-//        Producto producto = new Producto();
-//        for (Producto dato : datos) {
-//                producto.setIdProducto(dato.getIdProducto());
-//                producto.setMarca(dato.getMarca());
-//                producto.setPrecio(dato.getPrecio());
-//                listarProducto[0] = dato.getCodigo() + "";
-//                listarProducto[1] = dato.getMarca();
-//                listarProducto[2] = dato.getPrecio() + "";
-//                model.addRow(listarProducto);
-//            
-//
-//        }
-//       
-//        tablaFactura.setModel(model);
-//    }
 
     public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         DefaultTableModel model;
@@ -235,14 +168,6 @@ public class FacturaDAO {
         List<Persona> lista = query.getResultList();
         return lista;
     }
-//    public double calcularSubtotal(ArrayList<Producto> listaproductos) {
-//        double subtotal = 0;
-//        for (Producto dato : listaproductos) {
-//            subtotal += dato.getPrecio();
-//
-//        }
-//        return subtotal;
-//    }
 
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
@@ -276,6 +201,5 @@ public class FacturaDAO {
         producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
 
     }
-
 
 }

@@ -132,7 +132,6 @@ public class Factura extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         btnLimpiar = new rojerusan.RSButtonHover();
         labelIcon14 = new necesario.LabelIcon();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -554,10 +553,6 @@ public class Factura extends javax.swing.JFrame {
         jPanel3.add(labelIcon14);
         labelIcon14.setBounds(110, 640, 30, 30);
 
-        jLabel1.setText("*");
-        jPanel3.add(jLabel1);
-        jLabel1.setBounds(350, 190, 20, 14);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -870,7 +865,6 @@ public class Factura extends javax.swing.JFrame {
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
     private javax.swing.JCheckBox checkBoxIVA;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
