@@ -119,7 +119,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblAvisoFormaPago = new javax.swing.JLabel();
         lblAvisoSubtotal = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
-        txtCantidad1 = new javax.swing.JTextField();
         lblAvisoCodigo = new javax.swing.JLabel();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
@@ -584,7 +583,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         jlblSubtotal1.setForeground(new java.awt.Color(102, 102, 102));
         jlblSubtotal1.setText("Cantidad:");
         jPanel3.add(jlblSubtotal1);
-        jlblSubtotal1.setBounds(190, 222, 59, 15);
+        jlblSubtotal1.setBounds(190, 222, 58, 15);
 
         txtCodProductoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCodProductoCP.setForeground(new java.awt.Color(102, 102, 102));
@@ -679,22 +678,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel3.add(txtCantidad);
         txtCantidad.setBounds(310, 220, 180, 18);
 
-        txtCantidad1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCantidad1.setForeground(new java.awt.Color(102, 102, 102));
-        txtCantidad1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtCantidad1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCantidad1MouseClicked(evt);
-            }
-        });
-        txtCantidad1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidad1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtCantidad1);
-        txtCantidad1.setBounds(310, 220, 180, 18);
-
         lblAvisoCodigo.setForeground(new java.awt.Color(255, 0, 0));
         lblAvisoCodigo.setText("*");
         jPanel3.add(lblAvisoCodigo);
@@ -781,23 +764,23 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_bntCalcularIvaActionPerformed
 
     private void btnBuscarCodProductoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodProductoCPActionPerformed
-//        if (txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("")) {
-//            lblAvisoCodigo.setVisible(true);
-//            lblAvisoCantidad.setVisible(true);
-//            JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
-//        } else {
-//            if (controladores.contieneSoloLetras(txtCodProductoCP.getText()) == false && controladores.contieneSoloLetras(txtCantidad.getText()) == false) {
-        producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
-        listaProductos.add(producto);
-        calcularSubtotal();
-        txtSubtotalCP.setText(String.valueOf(subtotal));
-        mostrarTabla();
-        cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
-//            }
-//
-//        }
+        if (txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("")) {
+            lblAvisoCodigo.setVisible(true);
+            lblAvisoCantidad.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
+        } else {
+            if (controladores.contieneSoloLetras(txtCodProductoCP.getText()) == false && controladores.contieneSoloLetras(txtCantidad.getText()) == false) {
+                producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                listaProductos.add(producto);
+                calcularSubtotal();
+                txtSubtotalCP.setText(String.valueOf(subtotal));
+                mostrarTabla();
+                cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
+            }
+
+        }
 
 
     }//GEN-LAST:event_btnBuscarCodProductoCPActionPerformed
@@ -921,14 +904,6 @@ public class CompraProveedor extends javax.swing.JFrame {
     private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadActionPerformed
-
-    private void txtCantidad1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidad1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidad1MouseClicked
-
-    private void txtCantidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidad1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidad1ActionPerformed
 
     private void txtSubtotalCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalCPActionPerformed
         txtSubtotalCP.setEnabled(false);
@@ -1207,7 +1182,6 @@ public class CompraProveedor extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tblProductoCP;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCantidad1;
     private javax.swing.JTextField txtCedulaCP;
     private javax.swing.JTextField txtCodProductoCP;
     private javax.swing.JTextField txtFormaPagoCP;

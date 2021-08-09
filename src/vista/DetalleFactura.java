@@ -714,10 +714,10 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir1ActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-       vista.Factura factura = new vista.Factura();
+        vista.Factura factura = new vista.Factura();
         this.dispose();
         factura.setVisible(true);
-        factura .setLocationRelativeTo(null);
+        factura.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
@@ -739,6 +739,30 @@ public class DetalleFactura extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        if (txtFactura.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Llene el campo nro Factura");
+        } else {
+            if (controles.contieneSoloLetras(txtFactura.getText()) == false) {
+                mostrarTabla();
+                txtFactura.setText(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese nro Factura correcto");
+            }
+        }
+        //detalleFactura.retornalista(listaProductos);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void txtFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFacturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFacturaMouseClicked
+
+    private void txtFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFacturaActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
 

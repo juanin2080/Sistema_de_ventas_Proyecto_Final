@@ -382,8 +382,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         this.dispose();
         adminProducto.setVisible(true);
         adminProducto.setLocationRelativeTo(null);
-
-
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed

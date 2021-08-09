@@ -49,6 +49,15 @@ public class Factura extends javax.swing.JFrame {
 
 //        subtotal = String.valueOf(fac.calcularSubtotal()) ;
         // txtSubtotal.setText(subtotal);
+        lblAvisoFactura.setVisible(false);
+        lblAvisoCedula.setVisible(false);
+        lblAvisoCliente.setVisible(false);
+        lblAvisoCodigo.setVisible(false);
+        lblAvisoCantidad.setVisible(false);
+        lblAvisoFormaPago.setVisible(false);
+        lblAvisoSubtotal.setVisible(false);
+        lblAvisoTotal.setVisible(false);
+
     }
 
     private void mostrarTabla() {
@@ -124,6 +133,14 @@ public class Factura extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         btnLimpiar = new rojerusan.RSButtonHover();
         labelIcon14 = new necesario.LabelIcon();
+        lblAvisoCedula = new javax.swing.JLabel();
+        lblAvisoTotal = new javax.swing.JLabel();
+        lblAvisoFactura = new javax.swing.JLabel();
+        lblAvisoCliente = new javax.swing.JLabel();
+        lblAvisoCodigo = new javax.swing.JLabel();
+        lblAvisoCantidad = new javax.swing.JLabel();
+        lblAvisoFormaPago = new javax.swing.JLabel();
+        lblAvisoSubtotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -285,7 +302,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtnombreCliente);
-        txtnombreCliente.setBounds(200, 230, 140, 30);
+        txtnombreCliente.setBounds(190, 250, 160, 30);
 
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(102, 102, 102));
@@ -301,7 +318,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCedula);
-        txtCedula.setBounds(200, 200, 140, 30);
+        txtCedula.setBounds(190, 210, 160, 30);
 
         txtCantidadProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCantidadProducto.setForeground(new java.awt.Color(102, 102, 102));
@@ -317,31 +334,31 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCantidadProducto);
-        txtCantidadProducto.setBounds(200, 320, 140, 30);
+        txtCantidadProducto.setBounds(190, 330, 160, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Cantidad:");
         jPanel3.add(jLabel7);
-        jLabel7.setBounds(50, 320, 130, 30);
+        jLabel7.setBounds(40, 330, 130, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText(" Cliente:");
         jPanel3.add(jLabel8);
-        jLabel8.setBounds(50, 240, 110, 30);
+        jLabel8.setBounds(40, 250, 110, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Cédula Cliente:");
         jPanel3.add(jLabel6);
-        jLabel6.setBounds(50, 210, 110, 30);
+        jLabel6.setBounds(40, 210, 110, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Nro Factura:");
         jPanel3.add(jLabel9);
-        jLabel9.setBounds(50, 180, 110, 30);
+        jLabel9.setBounds(40, 170, 110, 30);
 
         labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
@@ -474,7 +491,7 @@ public class Factura extends javax.swing.JFrame {
         rSLabelFecha1.setForeground(new java.awt.Color(102, 102, 102));
         rSLabelFecha1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel3.add(rSLabelFecha1);
-        rSLabelFecha1.setBounds(420, 150, 120, 30);
+        rSLabelFecha1.setBounds(440, 150, 120, 30);
 
         checkBoxIVA.setText("14%");
         checkBoxIVA.addActionListener(new java.awt.event.ActionListener() {
@@ -505,13 +522,13 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtFactura);
-        txtFactura.setBounds(200, 170, 140, 30);
+        txtFactura.setBounds(190, 160, 160, 30);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Código Producto:");
         jPanel3.add(jLabel14);
-        jLabel14.setBounds(50, 270, 130, 30);
+        jLabel14.setBounds(40, 290, 130, 30);
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(102, 102, 102));
@@ -527,7 +544,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtCodigo);
-        txtCodigo.setBounds(200, 270, 140, 30);
+        txtCodigo.setBounds(190, 290, 160, 30);
 
         btnLimpiar.setBackground(new java.awt.Color(0, 102, 51));
         btnLimpiar.setText("Limpiar");
@@ -544,6 +561,46 @@ public class Factura extends javax.swing.JFrame {
         labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel3.add(labelIcon14);
         labelIcon14.setBounds(110, 640, 30, 30);
+
+        lblAvisoCedula.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCedula.setText("*");
+        jPanel3.add(lblAvisoCedula);
+        lblAvisoCedula.setBounds(360, 210, 20, 14);
+
+        lblAvisoTotal.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoTotal.setText("*");
+        jPanel3.add(lblAvisoTotal);
+        lblAvisoTotal.setBounds(600, 610, 30, 14);
+
+        lblAvisoFactura.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoFactura.setText("*");
+        jPanel3.add(lblAvisoFactura);
+        lblAvisoFactura.setBounds(360, 170, 30, 14);
+
+        lblAvisoCliente.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCliente.setText("*");
+        jPanel3.add(lblAvisoCliente);
+        lblAvisoCliente.setBounds(360, 250, 30, 14);
+
+        lblAvisoCodigo.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCodigo.setText("*");
+        jPanel3.add(lblAvisoCodigo);
+        lblAvisoCodigo.setBounds(360, 290, 30, 14);
+
+        lblAvisoCantidad.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoCantidad.setText("*");
+        jPanel3.add(lblAvisoCantidad);
+        lblAvisoCantidad.setBounds(360, 330, 30, 14);
+
+        lblAvisoFormaPago.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoFormaPago.setText("*");
+        jPanel3.add(lblAvisoFormaPago);
+        lblAvisoFormaPago.setBounds(350, 580, 30, 14);
+
+        lblAvisoSubtotal.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoSubtotal.setText("*");
+        jPanel3.add(lblAvisoSubtotal);
+        lblAvisoSubtotal.setBounds(600, 550, 30, 14);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -630,7 +687,8 @@ public class Factura extends javax.swing.JFrame {
 
     private void btnBuscarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProducto1ActionPerformed
         if (txtCodigo.getText().equals("") || txtCantidadProducto.getText().equals("")) {
-
+            lblAvisoCodigo.setVisible(true);
+            lblAvisoCantidad.setVisible(true);
             JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
         } else {
             if (controles.contieneSoloLetras(txtCodigo.getText()) == false && controles.contieneSoloLetras(txtCantidadProducto.getText()) == false) {
@@ -684,10 +742,26 @@ public class Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
 
-    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-        if ((txtFactura.getText().equals("") || txtCedula.getText().equals("") || txtnombreCliente.getText().equals("")
+    public boolean camposVacios() {
+        if (txtFactura.getText().equals("") || txtCedula.getText().equals("") || txtnombreCliente.getText().equals("")
                 || txtCodigo.getText().equals("") || txtCantidadProducto.getText().equals("") || txtFormaPago.getText().equals("")
-                || txtSubtotal.getText().equals("") || txtTotal.getText().equals(""))) {
+                || txtSubtotal.getText().equals("") || txtTotal.getText().equals("")) {
+
+            lblAvisoCedula.setVisible(true);
+            lblAvisoCliente.setVisible(true);
+            lblAvisoCodigo.setVisible(true);
+            lblAvisoCantidad.setVisible(true);
+            lblAvisoFormaPago.setVisible(true);
+            lblAvisoSubtotal.setVisible(true);
+            lblAvisoTotal.setVisible(true);
+            lblAvisoFactura.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.contieneSoloLetras(txtFactura.getText()) == false && controles.contieneSoloLetras(txtFormaPago.getText()) == true) {
@@ -714,6 +788,7 @@ public class Factura extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(rootPane, "factura agregada");
                 mostrarTabla();
+                limpiar();
 
             } else {
                 JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");
@@ -742,6 +817,7 @@ public class Factura extends javax.swing.JFrame {
     private void btnBuscarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCliente2ActionPerformed
         if (txtCedula.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula del Cliente");
+            lblAvisoCedula.setVisible(true);
         } else {
             if (controles.validadorDeCedula(txtCedula.getText())) {
                 mostrarNombreCliente(txtCedula.getText());
@@ -772,6 +848,7 @@ public class Factura extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCampos();
         // TODO add your handling code here:
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
     private void calcularIva() {
         double subtotal = Double.parseDouble(txtSubtotal.getText());
@@ -797,6 +874,26 @@ public class Factura extends javax.swing.JFrame {
     public void calcularSubtotal() {
         subtotal += fac.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidadProducto.getText()));
 
+    }
+
+    private void limpiar() {
+        txtFactura.setText("");
+        txtCedula.setText("");
+        txtnombreCliente.setText("");
+        txtCodigo.setText("");
+        txtCantidadProducto.setText("");
+        txtFormaPago.setText("");
+        txtSubtotal.setText("");
+        txtTotal.setText("");
+
+        lblAvisoCedula.setVisible(false);
+        lblAvisoCliente.setVisible(false);
+        lblAvisoCodigo.setVisible(false);
+        lblAvisoCantidad.setVisible(false);
+        lblAvisoFormaPago.setVisible(false);
+        lblAvisoSubtotal.setVisible(false);
+        lblAvisoTotal.setVisible(false);
+        lblAvisoFactura.setVisible(false);
     }
 
     /**
@@ -874,6 +971,14 @@ public class Factura extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon14;
     private necesario.LabelIcon labelIcon8;
     private necesario.LabelIcon labelIcon9;
+    private javax.swing.JLabel lblAvisoCantidad;
+    private javax.swing.JLabel lblAvisoCedula;
+    private javax.swing.JLabel lblAvisoCliente;
+    private javax.swing.JLabel lblAvisoCodigo;
+    private javax.swing.JLabel lblAvisoFactura;
+    private javax.swing.JLabel lblAvisoFormaPago;
+    private javax.swing.JLabel lblAvisoSubtotal;
+    private javax.swing.JLabel lblAvisoTotal;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora2;

@@ -33,11 +33,20 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         mostrarTabla("");
-        txtId.setVisible(false);
         txtRol.setVisible(false);
-        llenarCbx();
+        txtId.setVisible(false);
 
-//        cbxRol.setEnabled(false);
+        llenarCbx();
+        cbxRol.setSelectedIndex(2);
+        cbxRol.setEnabled(false);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoDirec.setVisible(false);
+        txtavisoEmail.setVisible(false);
+        txtavisoEmpresa.setVisible(false);
+        txtavisoRuc.setVisible(false);
+        txtavisoTlf.setVisible(false);
+        txtavisoCed.setVisible(false);
     }
 
     /**
@@ -102,6 +111,13 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         txtRol = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
+        txtavisoCed = new javax.swing.JLabel();
+        txtavisoNombre = new javax.swing.JLabel();
+        txtavisoEmail = new javax.swing.JLabel();
+        txtavisoTlf = new javax.swing.JLabel();
+        txtavisoDirec = new javax.swing.JLabel();
+        txtavisoRuc = new javax.swing.JLabel();
+        txtavisoEmpresa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -197,6 +213,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(102, 102, 102));
         txtCedula.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCedula);
         txtCedula.setBounds(140, 270, 220, 30);
 
@@ -220,6 +241,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
                 txtNombresActionPerformed(evt);
             }
         });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombres);
         txtNombres.setBounds(140, 310, 220, 30);
 
@@ -235,6 +261,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRucActionPerformed(evt);
+            }
+        });
+        txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucKeyTyped(evt);
             }
         });
         jPanel1.add(txtRuc);
@@ -323,7 +354,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon6.setBounds(920, 590, 30, 30);
 
         btnNuevoProveedor.setBackground(new java.awt.Color(0, 102, 51));
-        btnNuevoProveedor.setText("Nuevo Proveedor");
+        btnNuevoProveedor.setText("Limpiar");
         btnNuevoProveedor.setColorHover(new java.awt.Color(102, 102, 102));
         btnNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +362,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevoProveedor);
-        btnNuevoProveedor.setBounds(960, 640, 180, 30);
+        btnNuevoProveedor.setBounds(860, 640, 180, 30);
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
@@ -381,7 +412,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         labelIcon13.setBounds(220, 520, 30, 30);
 
         jPanel1.add(labelIcon10);
-        labelIcon10.setBounds(920, 640, 30, 30);
+        labelIcon10.setBounds(820, 640, 30, 30);
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel1.add(rSLabelImage2);
@@ -484,6 +515,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
                 txtTelefonoActionPerformed(evt);
             }
         });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtTelefono);
         txtTelefono.setBounds(140, 400, 220, 30);
 
@@ -546,7 +582,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtRol);
-        txtRol.setBounds(380, 290, 90, 30);
+        txtRol.setBounds(620, 590, 90, 30);
 
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(102, 102, 102));
@@ -557,7 +593,42 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtId);
-        txtId.setBounds(380, 240, 90, 30);
+        txtId.setBounds(510, 590, 90, 30);
+
+        txtavisoCed.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCed.setText("*");
+        jPanel1.add(txtavisoCed);
+        txtavisoCed.setBounds(380, 280, 34, 20);
+
+        txtavisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoNombre.setText("*");
+        jPanel1.add(txtavisoNombre);
+        txtavisoNombre.setBounds(380, 310, 34, 14);
+
+        txtavisoEmail.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoEmail.setText("*");
+        jPanel1.add(txtavisoEmail);
+        txtavisoEmail.setBounds(380, 360, 34, 14);
+
+        txtavisoTlf.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoTlf.setText("*");
+        jPanel1.add(txtavisoTlf);
+        txtavisoTlf.setBounds(380, 400, 34, 14);
+
+        txtavisoDirec.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoDirec.setText("*");
+        jPanel1.add(txtavisoDirec);
+        txtavisoDirec.setBounds(380, 450, 34, 14);
+
+        txtavisoRuc.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoRuc.setText("*");
+        jPanel1.add(txtavisoRuc);
+        txtavisoRuc.setBounds(380, 490, 34, 14);
+
+        txtavisoEmpresa.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoEmpresa.setText("*");
+        jPanel1.add(txtavisoEmpresa);
+        txtavisoEmpresa.setBounds(380, 540, 34, 14);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -597,15 +668,45 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
-            rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-            pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+        } else {
+            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
+                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+                String mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+                JOptionPane.showMessageDialog(null, mensaje);
+                mostrarTabla("");
+                cbxRol.setSelectedIndex(2);
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+                txtavisoCed.setVisible(true);
+                txtavisoEmail.setVisible(true);
+            }
+        }
 
-            mostrarTabla("");
-            limpiar();
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    public boolean camposVacios() {
+        if (txtCedula.getText().equals("") || txtDireccion.getText().equals("")
+                || txtEmail.getText().equals("") || txtEmpresa.getText().equals("")
+                || txtNombres.getText().equals("") || txtRuc.getText().equals("")
+                || txtTelefono.getText().equals("")) {
+
+            txtavisoNombre.setVisible(true);
+            txtavisoDirec.setVisible(true);
+            txtavisoEmail.setVisible(true);
+            txtavisoEmpresa.setVisible(true);
+            txtavisoNombre.setVisible(true);
+            txtavisoRuc.setVisible(true);
+            txtavisoTlf.setVisible(true);
+            txtavisoCed.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
@@ -656,25 +757,30 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void btnActualizarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatos1ActionPerformed
         // TODO add your handling code here:
 
-        if (txtEmpresa.getText().equals("") || txtRuc.getText().equals("") || txtNombres.getText().equals("") || txtCedula.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
         } else {
-            String mensaje = "";
-            Persona person = new Persona();
-            person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-            mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
-            JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("");
-            limpiar();
+            if (controles.validarEmail(txtEmail.getText())) {
+                String mensaje = "";
+                Persona person = new Persona();
+                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
+                JOptionPane.showMessageDialog(null, mensaje);
+                mostrarTabla("");
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                txtavisoEmail.setVisible(true);
+            }
         }
 
     }//GEN-LAST:event_btnActualizarDatos1ActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
         this.dispose();
-        adminPersonas.setVisible(true);
-        adminPersonas.setLocationRelativeTo(null);
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
@@ -725,6 +831,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtCedula.setEditable(false);
 
         cbxRol.setEnabled(false);
+        txtId.setVisible(false);
 
 
     }//GEN-LAST:event_tbtProveedorMouseClicked
@@ -738,7 +845,52 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         txtRuc.setText("");
         txtTelefono.setText("");
         txtEmpresa.setText("");
+
+        txtavisoNombre.setVisible(false);
+        txtavisoDirec.setVisible(false);
+        txtavisoEmail.setVisible(false);
+        txtavisoEmpresa.setVisible(false);
+        txtavisoRuc.setVisible(false);
+        txtavisoTlf.setVisible(false);
+        txtavisoCed.setVisible(false);
+
     }
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtRucKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_txtNombresKeyTyped
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
@@ -872,5 +1024,12 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtRuc;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JLabel txtavisoCed;
+    private javax.swing.JLabel txtavisoDirec;
+    private javax.swing.JLabel txtavisoEmail;
+    private javax.swing.JLabel txtavisoEmpresa;
+    private javax.swing.JLabel txtavisoNombre;
+    private javax.swing.JLabel txtavisoRuc;
+    private javax.swing.JLabel txtavisoTlf;
     // End of variables declaration//GEN-END:variables
 }

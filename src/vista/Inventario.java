@@ -5,17 +5,27 @@
  */
 package vista;
 
+import controlador.DAO.ProductoDAO;
+
 /**
  *
  * @author Usuario
  */
 public class Inventario extends javax.swing.JFrame {
 
+    ProductoDAO pDao = new ProductoDAO();
+
     /**
      * Creates new form Inventario
      */
     public Inventario() {
         initComponents();
+        mostrarTabla("");
+    }
+
+    private void mostrarTabla(String codigo) {
+        pDao.listarProducto(tableInventario, codigo);
+
     }
 
     /**

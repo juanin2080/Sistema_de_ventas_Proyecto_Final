@@ -16,7 +16,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarPersonal
      */
-
     public MenuPrincipalAdministrador() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -228,13 +227,13 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
-    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {                                    
+    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {
 
-    }                                   
+    }
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                      
+    }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         InicioSesion inicioSesion = new InicioSesion();
@@ -251,7 +250,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         conf.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
-                                     
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         AdministrarPersonas adminPersonas = new AdministrarPersonas();
