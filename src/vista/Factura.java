@@ -10,19 +10,11 @@ import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProductoDAO;
-import controlador.DAO.RolDAO;
-import controlador.PersonaJpaController;
 import java.util.ArrayList;
-import static modelo.Compra_.fecha;
-import static modelo.Persona_.idPersona;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
-import static modelo.Factura_.formaPago;
-import static modelo.Factura_.nroFactura;
 import modelo.Persona;
 import modelo.Producto;
-import modelo.Rol;
 
 /**
  *
