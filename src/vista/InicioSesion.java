@@ -246,15 +246,18 @@ public class InicioSesion extends javax.swing.JFrame {
                 mpa.setLocationRelativeTo(null);
                 mpa.setVisible(true);
                 LimpiarCampos();
-            } else if (cuenta.getPersona().getRol().getRol().equals("Vendedor")) {
-                MenuPrincipalVendedor mpv = new MenuPrincipalVendedor();
-                dispose();
-                mpv.setLocationRelativeTo(null);
-                mpv.setVisible(true);
-                LimpiarCampos();
             } else {
-                JOptionPane.showMessageDialog(null, "El usuario no está autorizado para ingresar al sistema");
-                LimpiarCampos();
+
+                if (cuenta.getPersona().getRol().getRol().equals("Vendedor")) {
+                    MenuPrincipalVendedor mpv = new MenuPrincipalVendedor();
+                    dispose();
+                    mpv.setLocationRelativeTo(null);
+                    mpv.setVisible(true);
+                    LimpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario no está autorizado para ingresar al sistema");
+                    LimpiarCampos();
+                }
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
@@ -264,7 +267,7 @@ public class InicioSesion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
             JOptionPane.showMessageDialog(null, "Registro Exitoso");
-            
+
         }
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 

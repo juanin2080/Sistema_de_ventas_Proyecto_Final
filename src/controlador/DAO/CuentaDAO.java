@@ -130,17 +130,22 @@ public class CuentaDAO {
     public Cuenta autenticacion(String usuario, String clave) {
         Cuenta cuentaPersona = new Cuenta();
         List<Cuenta> datos = controladorCuenta.findCuentaEntities();
-        for (Cuenta cuenta : datos) {
-            if (cuenta.getUsuario().equals(usuario) && cuenta.getClave().equals(clave)) {
-                cuentaPersona.setIdCuenta(cuenta.getIdCuenta());
-                cuentaPersona.setUsuario(cuenta.getUsuario());
-                cuentaPersona.setClave(cuenta.getClave());
-                cuentaPersona.setEstado(cuenta.getEstado());
-                cuentaPersona.setPersona(cuenta.getPersona());
-                System.out.println("Entro a verificar los datos");
-            }
+        try {
+            for (Cuenta cuenta : datos) {
+                if (cuenta.getUsuario().equals(usuario) && cuenta.getClave().equals(clave)) {
+                    cuentaPersona.setIdCuenta(cuenta.getIdCuenta());
+                    cuentaPersona.setUsuario(cuenta.getUsuario());
+                    cuentaPersona.setClave(cuenta.getClave());
+                    cuentaPersona.setEstado(cuenta.getEstado());
+                    cuentaPersona.setPersona(cuenta.getPersona());
+                    System.out.println("Entro a verificar los datos");
+                }
 
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Este usuario no está registrado o su tipo de usuario no es permitido en el sistema");
         }
+
         return cuentaPersona;
     }
 }
