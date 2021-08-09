@@ -8,6 +8,7 @@ package controlador.DAO;
 import controlador.CompraJpaController;
 import controlador.DetalleCompraJpaController;
 import controlador.DetalleFacturaJpaController;
+import controlador.FacturaJpaController;
 //import controlador.FacturaJpaController;
 import controlador.ProductoJpaController;
 import controlador.ProveedorJpaController;
