@@ -230,15 +230,26 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
-        // TODO add your handling code here:
+        DetalleFactura detalleFactura = new DetalleFactura();
+        this.dispose();
+        detalleFactura.setVisible(true);
+        detalleFactura .setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnDetalleFacturaActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
+        Factura factura = new Factura();
+        this.dispose();
+        factura.setVisible(true);
+        factura .setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
                                      

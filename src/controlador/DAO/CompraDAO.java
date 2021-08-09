@@ -35,9 +35,8 @@ public class CompraDAO {
     private ProductoDAO pdao = new ProductoDAO();
 
     private String mensaje = "";
-   
 
-    public void insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
+    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
             compra.setNroCompra(nroCompra);
@@ -55,7 +54,7 @@ public class CompraDAO {
             mensaje = "No se pudo guardar la informacion";
             JOptionPane.showMessageDialog(null, "No se pudo guardar la informacion");
         }
-
+        return compra;
     }
 
 //    public String actualizarCompra(Long id, String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total) {
@@ -107,15 +106,16 @@ public class CompraDAO {
         }
         tablaCompra.setModel(model);
     }
+
     public int calcularStock(ArrayList<Producto> listaProductos, JTable tablaCompra) {
         int calcularStock = 0;
-        
+
         for (Producto dato : listaProductos) {
             if (true) {
-                
+
             }
-            calcularStock += dato.getStock()+1;
-            
+            calcularStock += dato.getStock() + 1;
+
         }
         return calcularStock;
     }
@@ -138,7 +138,7 @@ public class CompraDAO {
                 producto.setCodigo(dato.getCodigo());
                 producto.setNombre(dato.getNombre());
                 producto.setPrecio(dato.getPrecio());
-                producto.setStock((dato.getStock()+ cantidad));
+                producto.setStock((dato.getStock() + cantidad));
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
@@ -148,14 +148,34 @@ public class CompraDAO {
         return producto;
     }
 
+    public Producto buscarProductoC(String codigo) {
+        List<Producto> datos = controladorProducto.findProductoEntities();
+        Producto producto = new Producto();
+        for (Producto dato : datos) {
+            if (String.valueOf(dato.getCodigo()).equals(codigo)) {
+                producto.setIdProducto(dato.getIdProducto());
+                producto.setCodigo(dato.getCodigo());
+                producto.setNombre(dato.getNombre());
+                producto.setPrecio(dato.getPrecio());
+                producto.setStock(dato.getStock());
+                producto.setMarca(dato.getMarca());
+                producto.setEstado(dato.getEstado());
+                producto.setProveedor(dato.getProveedor());
+
+            }
+        }
+        datos.add(producto);
+        return producto;
+    }
+
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
         for (Producto dato : listaProductos) {
-            subtotal = (dato.getPrecio()*cantidad);
+            subtotal = (dato.getPrecio() * cantidad);
         }
         return subtotal;
     }
-    
+
     public Producto buscarProductoID(String idProducto) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -175,7 +195,6 @@ public class CompraDAO {
         return producto;
     }
 
-    
     public String listarProveedor(String cedula) {
         String nombre = "";
 
@@ -197,6 +216,7 @@ public class CompraDAO {
         }
         return id;
     }
+
     private List<Proveedor> buscarProveedor(String cedula) {
         Proveedor proveedor;
         EntityManager em = controladorProveedor.getEntityManager();
@@ -206,10 +226,10 @@ public class CompraDAO {
         return lista;
     }
 
-    public void actualizarStockBD(String codigo, int cantidad){
+    public void actualizarStockBD(String codigo, int cantidad) {
         Producto p = new Producto();
         p = buscarProductoCompra(codigo, cantidad);
         pdao.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-        
+
     }
 }
