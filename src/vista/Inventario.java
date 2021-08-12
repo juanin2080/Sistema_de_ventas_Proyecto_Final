@@ -56,7 +56,6 @@ public class Inventario extends javax.swing.JFrame {
         btnRegresarRV = new newscomponents.RSButtonIcon_new();
         jPanel5 = new javax.swing.JPanel();
         rSLabelImage4 = new necesario.RSLabelImage();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnPersona = new newscomponents.RSButtonBigIcon_new();
         btnProductos = new newscomponents.RSButtonBigIcon_new();
@@ -224,18 +223,6 @@ public class Inventario extends javax.swing.JFrame {
         jPanel5.add(rSLabelImage4);
         rSLabelImage4.setBounds(990, 10, 140, 110);
 
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnConfiguración);
-        btnConfiguración.setBounds(670, 0, 130, 130);
-
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedores");
         btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
@@ -246,7 +233,7 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
         jPanel5.add(btnProveedor);
-        btnProveedor.setBounds(280, 0, 130, 130);
+        btnProveedor.setBounds(470, 0, 130, 130);
 
         btnPersona.setBackground(new java.awt.Color(0, 153, 102));
         btnPersona.setText("Registrar");
@@ -258,7 +245,7 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
         jPanel5.add(btnPersona);
-        btnPersona.setBounds(100, 0, 140, 130);
+        btnPersona.setBounds(290, 0, 140, 130);
 
         btnProductos.setBackground(new java.awt.Color(0, 153, 102));
         btnProductos.setText("Producto");
@@ -270,7 +257,7 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
         jPanel5.add(btnProductos);
-        btnProductos.setBounds(460, 0, 150, 130);
+        btnProductos.setBounds(650, 0, 150, 130);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -355,14 +342,6 @@ public class Inventario extends javax.swing.JFrame {
         FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
-
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         AdministrarProveedor adminProveedor = new AdministrarProveedor();
         this.dispose();
@@ -425,7 +404,6 @@ public class Inventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private RSMaterialComponent.RSButtonIconDos btnMinimizarRoV;
     private newscomponents.RSButtonBigIcon_new btnPersona;
     private newscomponents.RSButtonBigIcon_new btnProductos;

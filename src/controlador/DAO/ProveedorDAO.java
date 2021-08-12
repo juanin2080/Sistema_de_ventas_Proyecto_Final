@@ -26,32 +26,25 @@ public class ProveedorDAO {
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Proveedor proveedor = new Proveedor();
-//    private Persona persona = new Persona();
     private String mensaje = "";
 
-    public String insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
+    public void insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
 
-        if (validar(cedula) == 1) {
-            mensaje = "Ya existe un proveedor con esa cedula";
-        } else {
-            try {
-                proveedor.setNombres(nombres);
-                proveedor.setCedula(cedula);
-                proveedor.setDireccion(direccion);
-                proveedor.setTelefono(telefono);
-                proveedor.setEmail(email);
-                proveedor.setRol(idRol);
-                proveedor.setEmpresa(empresa);
-                proveedor.setRuc(ruc);
-                controladorPersona.create(proveedor);
-                mensaje = "Proveedor registrada con exito";
-            } catch (Exception e) {
-                mensaje = "No se pudo registrar el proveedor ";
-                System.out.println(e.getMessage());
-            }
+        try {
+            proveedor.setNombres(nombres);
+            proveedor.setCedula(cedula);
+            proveedor.setDireccion(direccion);
+            proveedor.setTelefono(telefono);
+            proveedor.setEmail(email);
+            proveedor.setRol(idRol);
+            proveedor.setEmpresa(empresa);
+            proveedor.setRuc(ruc);
+            controladorPersona.create(proveedor);
+            JOptionPane.showMessageDialog(null, "Proveedor registrada con exito");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo registrar el proveedor ");
+            System.out.println(e.getMessage());
         }
-
-        return mensaje;
     }
 
     public String actualizarDatos(Long id, String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
@@ -143,27 +136,6 @@ public class ProveedorDAO {
         query.setParameter("id", id + "%");
         List<Proveedor> lista = query.getResultList();
         return lista;
-    }
-
-    public int validar(String cedula) {
-        boolean estado = true;
-        List<Persona> datos = listarProveedores("%");
-
-        System.out.println(datos.size());
-        for (Persona dato : datos) {
-            System.out.println(dato.getCedula());
-            if (dato.getCedula().equals(cedula)) {
-                estado = true;
-                break;
-            } else {
-                estado = false;
-            }
-        }
-        if (estado == true) {
-            return 1;
-        } else {
-            return 0;
-        }
     }
 
     public List<Persona> listarProveedores(String cedula) {

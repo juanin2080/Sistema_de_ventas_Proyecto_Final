@@ -66,7 +66,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         txtCedula = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -166,7 +165,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(270, 30, 140, 120);
+        btnRegistrar.setBounds(310, 20, 140, 120);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -179,7 +178,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(430, 30, 140, 120);
+        btnProveedor.setBounds(470, 20, 140, 120);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -192,20 +191,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(590, 30, 150, 120);
-
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(750, 30, 140, 120);
+        btnProducto.setBounds(630, 20, 150, 120);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -575,7 +561,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
         txtRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRol.setForeground(new java.awt.Color(102, 102, 102));
-        txtRol.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtRol.setBorder(null);
         txtRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRolActionPerformed(evt);
@@ -586,7 +572,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(102, 102, 102));
-        txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtId.setBorder(null);
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
@@ -668,22 +654,21 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (camposVacios()) {
-            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
-        } else {
-            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
-                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-                String mensaje = pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
-                JOptionPane.showMessageDialog(null, mensaje);
-                mostrarTabla("");
-                cbxRol.setSelectedIndex(2);
-                limpiar();
-            } else {
-                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
-                txtavisoCed.setVisible(true);
-                txtavisoEmail.setVisible(true);
-            }
-        }
+//        if (camposVacios()) {
+//            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+//        } else {
+//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(2);
+        limpiar();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+//                txtavisoCed.setVisible(true);
+//                txtavisoEmail.setVisible(true);
+//            }
+//        }
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -729,14 +714,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         inicioSesion.setVisible(true);
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -972,7 +949,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos1;
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoProveedor;

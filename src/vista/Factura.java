@@ -46,9 +46,6 @@ public class Factura extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtidPersona.setVisible(false);
-
-//        subtotal = String.valueOf(fac.calcularSubtotal()) ;
-        // txtSubtotal.setText(subtotal);
         lblAvisoFactura.setVisible(false);
         lblAvisoCedula.setVisible(false);
         lblAvisoCliente.setVisible(false);
@@ -274,7 +271,7 @@ public class Factura extends javax.swing.JFrame {
 
         txtidPersona.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtidPersona.setForeground(new java.awt.Color(102, 102, 102));
-        txtidPersona.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtidPersona.setBorder(null);
         txtidPersona.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtidPersonaMouseClicked(evt);
@@ -618,14 +615,6 @@ public class Factura extends javax.swing.JFrame {
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
         dispose();
-        DetalleFacturaDAO det = new DetalleFacturaDAO();
-        det.setListaProductosCopia(listaProductos);
-        for (Producto producto1 : det.getListaProductosCopia()) {
-            System.out.println("idCopiado" + producto1.getIdProducto());
-            System.out.println("codigoCopiado" + producto1.getCodigo());
-            System.out.println("cod stockCopiado" + producto1.getStock());
-        }
-        listaProductos = null;
         //Vista
         DetalleFactura detalle = new DetalleFactura();
         detalle.setLocationRelativeTo(null);
@@ -772,21 +761,12 @@ public class Factura extends javax.swing.JFrame {
                 String nroFactura = txtFactura.getText();
                 Boolean iva = checkBoxIVA.isSelected();
                 String formaPago = txtFormaPago.getText();
+                String idAci = "";
+                Boolean estado = false;
                 double subtotal = Double.parseDouble(txtSubtotal.getText());
                 double total = Double.parseDouble(txtTotal.getText());
-                detalleFactura.setFacturaCopia(fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona));
-//                System.out.println(detalleFactura.getFacturaCopia().getIdFactura());
-//                Funciona con uno
-                //==========================================================================================
-                Producto p = new Producto();
-                p = fac1.buscarProductoF(txtCodigo.getText());
-                System.out.println(p.getIdProducto());
-                System.out.println(p.getPrecio());
-                detalleFactura.insertarDetalleFactura(Integer.valueOf(txtCantidadProducto.getText()), Double.valueOf(txtTotal.getText()), produc.getPrecio(), detalleFactura.getFacturaCopia(), p);
-                //==========================================================================================
-//          
-
-                JOptionPane.showMessageDialog(rootPane, "factura agregada");
+                fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona, idAci, estado);
+                JOptionPane.showMessageDialog(rootPane, "Factura agregada");
                 mostrarTabla();
                 limpiar();
 

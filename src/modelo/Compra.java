@@ -15,11 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-//import modelo.enums.FormaPago;
 
 /**
  *
@@ -36,14 +33,15 @@ public class Compra implements Serializable {
     private String nroCompra;
     private Date fecha;
     private boolean iva;
-    private String fPago;
     private double subtotal;
     private double total;
+    private String formaPago;
     private Long external_IDProveedor;
+    private String idACI;
+    private Boolean estado;
 
-        
     @OneToMany(mappedBy = "Compra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DetalleCompra> listaDCompra = new ArrayList<DetalleCompra>(); 
+    private List<DetalleCompra> listaDCompra = new ArrayList<DetalleCompra>();
 
     public Long getExternal_IDProveedor() {
         return external_IDProveedor;
@@ -60,7 +58,7 @@ public class Compra implements Serializable {
     public void setListaDCompra(List<DetalleCompra> listaDCompra) {
         this.listaDCompra = listaDCompra;
     }
-    
+
     public String getNroCompra() {
         return nroCompra;
     }
@@ -85,14 +83,6 @@ public class Compra implements Serializable {
         this.iva = iva;
     }
 
-    public String getfPago() {
-        return fPago;
-    }
-
-    public void setfPago(String fPago) {
-        this.fPago = fPago;
-    }
-
     public double getSubtotal() {
         return subtotal;
     }
@@ -108,12 +98,37 @@ public class Compra implements Serializable {
     public void setTotal(double total) {
         this.total = total;
     }
+
     public Long getIdCompra() {
         return idCompra;
     }
 
     public void setIdCompra(Long idCompra) {
         this.idCompra = idCompra;
+    }
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+
+    public String getIdACI() {
+        return idACI;
+    }
+
+    public void setIdACI(String idACI) {
+        this.idACI = idACI;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     @Override

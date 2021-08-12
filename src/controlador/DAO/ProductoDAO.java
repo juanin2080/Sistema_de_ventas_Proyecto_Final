@@ -31,24 +31,20 @@ public class ProductoDAO {
     public String insertarProducto(String codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
 
-        if (validar(Integer.parseInt(codigo)) == 1) {
-            mensaje = "Ya existe un producto con ese código";
-        } else {
-            try {
-                producto.setCodigo(Integer.parseInt(codigo));
-                producto.setNombre(nombre);
-                producto.setPrecio(precio);
-                producto.setStock(cantidad);
-                producto.setMarca(Marca);
-                producto.setEstado(true);
-                producto.setProveedor(proveedor);
-                controladorProducto.create(producto);
+        try {
+            producto.setCodigo(Integer.parseInt(codigo));
+            producto.setNombre(nombre);
+            producto.setPrecio(precio);
+            producto.setStock(cantidad);
+            producto.setMarca(Marca);
+            producto.setEstado(true);
+            producto.setProveedor(proveedor);
+            controladorProducto.create(producto);
 
-                mensaje = "Producto registrado con exito";
-            } catch (Exception e) {
-                System.out.println("mensaje en guardar: " + e.getMessage());
-                mensaje = "No se pudo registrar el producto ";
-            }
+            mensaje = "Producto registrado con exito";
+        } catch (Exception e) {
+            System.out.println("mensaje en guardar: " + e.getMessage());
+            mensaje = "No se pudo registrar el producto ";
         }
 
         return mensaje;
@@ -146,26 +142,6 @@ public class ProductoDAO {
 
         List<Producto> lista = query.getResultList();
         return lista;
-    }
-
-    public int validar(int codigo) {
-        boolean estado = true;
-        List<Producto> datos = listarProductos("%");
-        String cod = "";
-        for (Producto dato : datos) {
-            cod = String.valueOf(dato.getCodigo());
-            if (cod.equals(String.valueOf(codigo))) {
-                estado = true;
-                break;
-            } else {
-                estado = false;
-            }
-        }
-        if (estado == true) {
-            return 1;
-        } else {
-            return 0;
-        }
     }
 
     public void listarComboBox(JComboBox cbxEmpresa) {

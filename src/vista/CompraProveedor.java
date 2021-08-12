@@ -5,7 +5,6 @@
  */
 package vista;
 
-import com.mysql.cj.protocol.Message;
 import controlador.DAO.CompraDAO;
 import controlador.DAO.DetalleCompraDAO;
 import controlador.DAO.ProductoDAO;
@@ -61,7 +60,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         rSLabelImage4 = new necesario.RSLabelImage();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
@@ -148,19 +146,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel2.add(rSLabelImage4);
         rSLabelImage4.setBounds(870, 10, 140, 80);
 
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(730, 10, 140, 80);
-
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
         btnProveedor.setBgHover(new java.awt.Color(102, 102, 102));
@@ -172,7 +157,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(420, 10, 140, 80);
+        btnProveedor.setBounds(510, 10, 140, 80);
 
         btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistrar.setText("Registrar");
@@ -185,7 +170,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(260, 10, 140, 80);
+        btnRegistrar.setBounds(350, 10, 140, 80);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -198,7 +183,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(580, 10, 140, 80);
+        btnProducto.setBounds(670, 10, 140, 80);
 
         btnDetalleCompra.setBackground(new java.awt.Color(0, 153, 102));
         btnDetalleCompra.setText("Detalle Compra");
@@ -211,7 +196,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnDetalleCompra);
-        btnDetalleCompra.setBounds(100, 10, 140, 80);
+        btnDetalleCompra.setBounds(190, 10, 140, 80);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 40, 1040, 100);
@@ -332,7 +317,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel4);
-        jPanel4.setBounds(1, 1, 848, 93);
+        jPanel4.setBounds(1, 1, 848, 74);
 
         bntCalcularIva.setBackground(new java.awt.Color(102, 153, 255));
         bntCalcularIva.setText("Calcular");
@@ -565,7 +550,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         txtIdProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtIdProveedor.setForeground(new java.awt.Color(102, 102, 102));
-        txtIdProveedor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtIdProveedor.setBorder(null);
         txtIdProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtIdProveedorMouseClicked(evt);
@@ -577,13 +562,13 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtIdProveedor);
-        txtIdProveedor.setBounds(790, 129, 48, 18);
+        txtIdProveedor.setBounds(790, 129, 48, 17);
 
         jlblSubtotal1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlblSubtotal1.setForeground(new java.awt.Color(102, 102, 102));
         jlblSubtotal1.setText("Cantidad:");
         jPanel3.add(jlblSubtotal1);
-        jlblSubtotal1.setBounds(190, 222, 58, 15);
+        jlblSubtotal1.setBounds(190, 222, 59, 15);
 
         txtCodProductoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCodProductoCP.setForeground(new java.awt.Color(102, 102, 102));
@@ -704,16 +689,9 @@ public class CompraProveedor extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1038, 704));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         AdministrarProveedor adminProveedor = new AdministrarProveedor();
@@ -804,32 +782,23 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         } else {
 
-            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
-                CompraDAO comDao = new CompraDAO();
-                Proveedor prove = new Proveedor();
-                String nroCompra = txtnroCompraCP.getText();
-                boolean iva = checkBoxIVACP.isSelected();
-                String fPago = txtFormaPagoCP.getText();
-                double subtotal = Double.parseDouble(txtSubtotalCP.getText());
-                double total = Double.parseDouble(txtTotalPagarCP.getText());
+//            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
+            CompraDAO comDao = new CompraDAO();
+            Proveedor prove = new Proveedor();
+            String nroCompra = txtnroCompraCP.getText();
+            boolean iva = checkBoxIVACP.isSelected();
+            String fPago = txtFormaPagoCP.getText();
+            double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+            double total = Double.parseDouble(txtTotalPagarCP.getText());
+            String idAci = "";
+            Boolean estado = false;
+            comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText()), idAci, estado);
+            mostrarTabla();
+            limpiar();
 
-                //detalleCompra.setCompraCopia(cdao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
-                //==========================================================================================
-                detalleCompra.setCompraCopia(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
-                System.out.println("detalle compra copia" + detalleCompra.getCompraCopia().getIdCompra());
-                Producto p = new Producto();
-                p = comDao.buscarProductoC(txtCodProductoCP.getText());
-                System.out.println(p.getIdProducto());
-                System.out.println(p.getPrecio());
-                detalleCompra.insertarDetalleCompra(Integer.valueOf(txtCantidad.getText()), Double.valueOf(txtTotalPagarCP.getText()), produc.getPrecio(), detalleCompra.getCompraCopia(), p);
-                //==========================================================================================
-
-                mostrarTabla();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Compra y forma de pago sean correctos");
-            }
-
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Compra y forma de pago sean correctos");
+//            }
         }
 
 
@@ -955,14 +924,6 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     private void btnDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleCompraActionPerformed
         dispose();
-        DetalleCompraDAO det = new DetalleCompraDAO();
-        det.setListaProductosCopia(listaProductos);
-        for (Producto producto1 : det.getListaProductosCopia()) {
-            System.out.println("idCopiado" + producto1.getIdProducto());
-            System.out.println("codigoCopiado" + producto1.getCodigo());
-            System.out.println("cod stockCopiado" + producto1.getStock());
-        }
-        listaProductos = null;
         //Vista
         DetalleCompra detalle = new DetalleCompra();
         detalle.setLocationRelativeTo(null);
@@ -1130,7 +1091,6 @@ public class CompraProveedor extends javax.swing.JFrame {
     private rojerusan.RSButtonHover bntCalcularIva;
     private rojerusan.RSButtonHover btnBuscarCedulaCP1;
     private rojerusan.RSButtonHover btnBuscarCodProductoCP;
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private newscomponents.RSButtonBigIcon_new btnDetalleCompra;
     private rojerusan.RSButtonHover btnGuardarCP;
     private rojerusan.RSButtonHover btnLimpiar;

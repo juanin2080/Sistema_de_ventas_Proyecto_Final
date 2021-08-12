@@ -18,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import modelo.enums.FormaPago;
 
 /**
  *
@@ -39,10 +38,13 @@ public class Factura implements Serializable {
     private double total;
     private double subtotal;
     private String formaPago;
-    
+    private String idACI;
+    private Boolean estado;
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;
+
     public Persona getPersona() {
         return persona;
     }
@@ -50,7 +52,7 @@ public class Factura implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-    
+
     @OneToOne(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DetalleFactura detalleF;
 
@@ -61,6 +63,7 @@ public class Factura implements Serializable {
     public void setDetalleF(DetalleFactura detalleF) {
         this.detalleF = detalleF;
     }
+
     public Long getIdFactura() {
         return idFactura;
     }
@@ -84,7 +87,6 @@ public class Factura implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
 
     public boolean isIva() {
         return iva;
@@ -118,7 +120,22 @@ public class Factura implements Serializable {
         this.formaPago = formaPago;
     }
 
-  
+    public String getIdACI() {
+        return idACI;
+    }
+
+    public void setIdACI(String idACI) {
+        this.idACI = idACI;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -144,5 +161,5 @@ public class Factura implements Serializable {
     public String toString() {
         return "modelo.Facturas[ id=" + idFactura + " ]";
     }
-    
+
 }

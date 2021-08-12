@@ -10,9 +10,6 @@ import controlador.DAO.DetalleFacturaDAO;
 import controlador.utilidades.Controladores;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
-import modelo.Persona;
-import modelo.Producto;
 import modelo.Factura;
 
 /**
@@ -24,7 +21,6 @@ public class DetalleFactura extends javax.swing.JFrame {
     /**
      * Creates new form DetalleFactura
      */
-//    private FacturaDAO fac = new FacturaDAO();
     private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     ArrayList<Factura> listadetalle = new ArrayList<Factura>();
     Date fecha = new Date();
@@ -37,10 +33,6 @@ public class DetalleFactura extends javax.swing.JFrame {
 
     }
 
-    private void mostrarTabla() {
-        dDAO.listarDetalleFactura(tablaDetalle);
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -299,7 +291,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        dDAO.listarDetalleFactura(tablaDetalle);
+        
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**

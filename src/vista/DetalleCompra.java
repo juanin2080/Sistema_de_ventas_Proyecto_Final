@@ -31,11 +31,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    private void mostrarTabla() {
-        cDAO.listarDetalleCompra(tblDetalleCompra);
-
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +46,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -107,7 +101,7 @@ public class DetalleCompra extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(140, 10, 140, 90);
+        btnRegistrar.setBounds(250, 10, 140, 90);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -120,7 +114,7 @@ public class DetalleCompra extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(310, 10, 140, 90);
+        btnProveedor.setBounds(420, 10, 140, 90);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -133,20 +127,7 @@ public class DetalleCompra extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(490, 10, 150, 90);
-
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(690, 10, 140, 90);
+        btnProducto.setBounds(600, 10, 150, 90);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1040, 110);
@@ -384,16 +365,8 @@ public class DetalleCompra extends javax.swing.JFrame {
         adminProducto.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnProductoActionPerformed
 
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
-
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        cDAO.listarDetalleCompra(tblDetalleCompra);
+
 
     }//GEN-LAST:event_btnMostrarActionPerformed
 
@@ -434,7 +407,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnMostrar;
     private newscomponents.RSButtonBigIcon_new btnProducto;

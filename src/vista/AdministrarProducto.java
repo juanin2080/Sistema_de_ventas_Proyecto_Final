@@ -54,7 +54,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         txtid = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -130,7 +129,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(180, 30, 140, 110);
+        btnRegistrar.setBounds(280, 30, 140, 110);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -143,7 +142,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(350, 30, 140, 110);
+        btnProveedor.setBounds(450, 30, 140, 110);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -156,20 +155,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(530, 30, 150, 110);
-
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(730, 30, 140, 110);
+        btnProducto.setBounds(620, 30, 150, 110);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -721,14 +707,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnProductoActionPerformed
 
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
-
 
     private void tbtProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtProductoMouseClicked
         // TODO add your handling code here:
@@ -785,17 +763,17 @@ public class AdministrarProducto extends javax.swing.JFrame {
             Boolean ncodigo = controles.contieneSoloLetras(txtCodigo.getText());
             Boolean ncantidad = controles.contieneSoloLetras(txtCantidad.getText());;
             Boolean nprecio = controles.contieneSoloLetras(txtPrecio.getText());
-            if (lnombres == true && lmarca == true && lproveedor == true
-                    && ncodigo == false && ncantidad == false && nprecio == false) {
-                String mensaje;
-                mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-                JOptionPane.showMessageDialog(null, mensaje);
-                mostrarTabla("");
+//            if (lnombres == true && lmarca == true && lproveedor == true
+//                    && ncodigo == false && ncantidad == false && nprecio == false) {
+            String mensaje;
+            mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            JOptionPane.showMessageDialog(null, mensaje);
+            mostrarTabla("");
 
-                limpiar();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese correctamente los campos");
-            }
+            limpiar();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Ingrese correctamente los campos");
+//            }
 
         }
 
@@ -904,7 +882,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
     private rojerusan.RSButtonHover btnBuscar;
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnDarDeBaja;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
