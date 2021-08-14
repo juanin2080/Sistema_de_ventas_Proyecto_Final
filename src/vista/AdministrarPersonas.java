@@ -173,7 +173,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
         txtRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRol.setForeground(new java.awt.Color(102, 102, 102));
-        txtRol.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtRol.setBorder(null);
         txtRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtRolMouseClicked(evt);
@@ -469,7 +469,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(102, 102, 102));
-        txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtId.setBorder(null);
         txtId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtIdMouseClicked(evt);
@@ -568,24 +568,23 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (camposVacios()) {
-            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
-        } else {
-            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
-                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-                String mensaje = pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
-                JOptionPane.showMessageDialog(null, mensaje);
-                limpiarCampos();
-                mostrarTabla("");
-                cbxRol.setSelectedIndex(0);
-            } else {
-                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
-                txtavisoCed.setVisible(true);
-                txtavisoEmail.setVisible(true);
-            }
+//        if (camposVacios()) {
+//        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+//        } else {
+//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+//        JOptionPane.showMessageDialog(null, mensaje);
+        limpiarCampos();
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(0);
+//            } else {
+//            JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+        txtavisoCed.setVisible(true);
+        txtavisoEmail.setVisible(true);
+//            }
 
-        }
-
+//        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -630,10 +629,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRolMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        this.dispose();
-        inicioSesion.setVisible(true);
-        inicioSesion.setLocationRelativeTo(null);
+        MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+        dispose();
+        mpa.setLocationRelativeTo(null);
+        mpa.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void tbtPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtPersonalMouseClicked

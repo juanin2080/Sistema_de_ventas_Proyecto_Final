@@ -34,29 +34,22 @@ public class PersonaDAO {
      * @return 
      */
 
-    public String insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
-        String mensaje = "";
-        if (validar(cedula) == 1) {
-            mensaje = "Ya existe una persona con esa cedula";
-        } else {
-            try {
+    public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
+        try {
 
-                persona.setIdPersona(Long.MIN_VALUE);
-                persona.setNombres(nombres);
-                persona.setCedula(cedula);
-                persona.setDireccion(direccion);
-                persona.setTelefono(telefono);
-                persona.setEmail(email);
-                persona.setRol(rol);
-                controladorPersona.create(persona);
-                mensaje = "Persona registrada con exito";
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                mensaje = "No se pudo registrar a esa persona ";
-
-            }
+            persona.setIdPersona(Long.MIN_VALUE);
+            persona.setNombres(nombres);
+            persona.setCedula(cedula);
+            persona.setDireccion(direccion);
+            persona.setTelefono(telefono);
+            persona.setEmail(email);
+            persona.setRol(rol);
+            controladorPersona.create(persona);
+            JOptionPane.showMessageDialog(null, "Persona registrada con exito");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se pudo registrar a esa persona ");
         }
-        return mensaje;
 
     }
 
@@ -190,32 +183,6 @@ public class PersonaDAO {
         return person;
     }
 
-    public int validar(String cedula) {
-        boolean estado = true;
-        List<Persona> datos = listarPersonas("%");
-
-        System.out.println(datos.size());
-        for (Persona dato : datos) {
-            System.out.println(dato.getCedula());
-            if (dato.getCedula().equals(cedula)) {
-                estado = true;
-                break;
-            } else {
-                estado = false;
-            }
-        }
-        if (estado == true) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Buscamos a las personas a traves de la cédula
-     * @param cedula
-     * @return 
-     */
     public List<Persona> listarPersonas(String cedula) {
         EntityManager em = controladorPersona.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");

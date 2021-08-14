@@ -10,15 +10,11 @@ import controlador.DAO.DetalleFacturaDAO;
 import controlador.DAO.FacturaDAO;
 import controlador.DAO.PersonaDAO;
 import controlador.DAO.ProductoDAO;
-import controlador.DAO.RolDAO;
-import controlador.PersonaJpaController;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Persona;
 import modelo.Producto;
-import modelo.Rol;
 
 /**
  *
@@ -50,9 +46,6 @@ public class Factura extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtidPersona.setVisible(false);
-
-//        subtotal = String.valueOf(fac.calcularSubtotal()) ;
-        // txtSubtotal.setText(subtotal);
         lblAvisoFactura.setVisible(false);
         lblAvisoCedula.setVisible(false);
         lblAvisoCliente.setVisible(false);
@@ -75,6 +68,14 @@ public class Factura extends javax.swing.JFrame {
         txtnombreCliente.setText(nombre);
         id = fac.retornarId(cedula);
         txtidPersona.setText(id);
+    }
+
+    public void limpiarCampos() {
+        txtCedula.setText("");
+        txtidPersona.setText("");
+        txtSubtotal.setText("");
+        txtTotal.setText("");
+        txtnombreCliente.setText("");
     }
 
     /**
@@ -175,7 +176,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnDetalleFactura);
-        btnDetalleFactura.setBounds(140, 10, 130, 70);
+        btnDetalleFactura.setBounds(140, 10, 140, 70);
 
         btnFactura.setBackground(new java.awt.Color(0, 153, 102));
         btnFactura.setText("Factura");
@@ -270,7 +271,7 @@ public class Factura extends javax.swing.JFrame {
 
         txtidPersona.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtidPersona.setForeground(new java.awt.Color(102, 102, 102));
-        txtidPersona.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtidPersona.setBorder(null);
         txtidPersona.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtidPersonaMouseClicked(evt);
@@ -554,7 +555,7 @@ public class Factura extends javax.swing.JFrame {
         btnLimpiar.setBounds(150, 640, 130, 30);
 
         labelIcon14.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CLEAR_ALL);
+        labelIcon14.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         jPanel3.add(labelIcon14);
         labelIcon14.setBounds(110, 640, 30, 30);
 
@@ -602,9 +603,7 @@ public class Factura extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,14 +614,13 @@ public class Factura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
-        DetalleFacturaDAO det = new DetalleFacturaDAO();
-        det.copiarListaProductos(listaProductos);
+        dispose();
+        //Vista
         DetalleFactura detalle = new DetalleFactura();
         detalle.setLocationRelativeTo(null);
-        //dispose();
+        dispose();
         detalle.setVisible(true);
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnDetalleFacturaActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
@@ -695,8 +693,9 @@ public class Factura extends javax.swing.JFrame {
                     System.out.println("codigo" + listaProducto.getCodigo());
                     System.out.println("cod stock" + listaProducto.getStock());
                 }
-
                 mostrarTabla();
+                fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
+
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
             }
@@ -762,10 +761,12 @@ public class Factura extends javax.swing.JFrame {
                 String nroFactura = txtFactura.getText();
                 Boolean iva = checkBoxIVA.isSelected();
                 String formaPago = txtFormaPago.getText();
+                String idAci = "";
+                Boolean estado = false;
                 double subtotal = Double.parseDouble(txtSubtotal.getText());
                 double total = Double.parseDouble(txtTotal.getText());
-                fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona);
-                JOptionPane.showMessageDialog(rootPane, "factura agregada");
+                fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona, idAci, estado);
+                JOptionPane.showMessageDialog(rootPane, "Factura agregada");
                 mostrarTabla();
                 limpiar();
 
@@ -825,6 +826,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarCampos();
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -903,6 +905,12 @@ public class Factura extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Factura.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -26,45 +26,25 @@ public class ProveedorDAO {
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Proveedor proveedor = new Proveedor();
-//    private Persona persona = new Persona();
     private String mensaje = "";
 
-    /**
-     * Método para insertar un proveedor, el cual primero verifica si ya existe
-     * la cedula o no, en caso de no existir lo agrega a la bd.
-     * @param nombres
-     * @param cedula
-     * @param direccion
-     * @param telefono
-     * @param email
-     * @param idRol
-     * @param empresa
-     * @param ruc
-     * @return 
-     */
-    public String insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
+    public void insertarProveedor(String nombres, String cedula, String direccion, String telefono, String email, Rol idRol, String empresa, String ruc) {
 
-        if (validar(cedula) == 1) {
-            mensaje = "Ya existe un proveedor con esa cedula";
-        } else {
-            try {
-                proveedor.setNombres(nombres);
-                proveedor.setCedula(cedula);
-                proveedor.setDireccion(direccion);
-                proveedor.setTelefono(telefono);
-                proveedor.setEmail(email);
-                proveedor.setRol(idRol);
-                proveedor.setEmpresa(empresa);
-                proveedor.setRuc(ruc);
-                controladorPersona.create(proveedor);
-                mensaje = "Proveedor registrada con exito";
-            } catch (Exception e) {
-                mensaje = "No se pudo registrar el proveedor ";
-                System.out.println(e.getMessage());
-            }
+        try {
+            proveedor.setNombres(nombres);
+            proveedor.setCedula(cedula);
+            proveedor.setDireccion(direccion);
+            proveedor.setTelefono(telefono);
+            proveedor.setEmail(email);
+            proveedor.setRol(idRol);
+            proveedor.setEmpresa(empresa);
+            proveedor.setRuc(ruc);
+            controladorPersona.create(proveedor);
+            JOptionPane.showMessageDialog(null, "Proveedor registrada con exito");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo registrar el proveedor ");
+            System.out.println(e.getMessage());
         }
-
-        return mensaje;
     }
     
     /**
@@ -190,38 +170,6 @@ public class ProveedorDAO {
         return lista;
     }
 
-    /**
-     *  Metodo para validar si la cedula es verdadera o falsa.
-     * @param cedula
-     * @return 
-     */
-    public int validar(String cedula) {
-        boolean estado = true;
-        List<Persona> datos = listarProveedores("%");
-
-        System.out.println(datos.size());
-        for (Persona dato : datos) {
-            System.out.println(dato.getCedula());
-            if (dato.getCedula().equals(cedula)) {
-                estado = true;
-                break;
-            } else {
-                estado = false;
-            }
-        }
-        if (estado == true) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Metodo para buscar todos los proveedores en la bdd
-     * a traves de su cedula y luego comprobar si si la cedula ya existe o no 
-     * @param cedula
-     * @return 
-     */
     public List<Persona> listarProveedores(String cedula) {
         EntityManager em = controladorPersona.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
