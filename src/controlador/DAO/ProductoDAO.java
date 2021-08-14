@@ -11,12 +11,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 import modelo.Proveedor;
-import modelo.Rol;
 
 /**
  *
@@ -28,6 +26,18 @@ public class ProductoDAO {
     private Producto producto = new Producto();
     private ProveedorJpaController empresaPro = new ProveedorJpaController();
 
+    /**
+     * Metodo para insertar un producto en la bdd verificando que el codigo del
+     * producto no exista anteriormente.
+     *
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param Marca
+     * @param proveedor
+     * @param cantidad
+     * @return
+     */
     public String insertarProducto(String codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
 
@@ -54,6 +64,18 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    /**
+     * Método para editar los datos de un producto.
+     *
+     * @param id
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param Marca
+     * @param proveedor
+     * @param cantidad
+     * @return
+     */
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
         try {
@@ -75,6 +97,19 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    /**
+     * Metodo para dar de baja un producto, el cual solo cambiara de estado,
+     * pasará de activo a inactivo.
+     *
+     * @param id
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param Marca
+     * @param proveedor
+     * @param cantidad
+     * @return
+     */
     public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
 
@@ -98,6 +133,13 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    /**
+     * Metodo para listar o presentar en el jtable los datos de los productos
+     * que estan en la bdd, solo presentara, los productos que esten activos.
+     *
+     * @param tabla
+     * @param codigo
+     */
     public void listarProducto(JTable tabla, String codigo) {
         DefaultTableModel model;
 
@@ -139,6 +181,14 @@ public class ProductoDAO {
         return lista;
     }
 
+    /**
+     * Método para buscar todos los productos que existen en la bdd, lo
+     * utilzaremos al momento de validar si ya existe algún código de un
+     * producto.
+     *
+     * @param codigo
+     * @return
+     */
     public List<Producto> listarProductos(String codigo) {
         EntityManager em = controladorProducto.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
@@ -148,6 +198,12 @@ public class ProductoDAO {
         return lista;
     }
 
+    /**
+     * Método para validar si el código el producto ya existe o no.
+     *
+     * @param codigo
+     * @return
+     */
     public int validar(int codigo) {
         boolean estado = true;
         List<Producto> datos = listarProductos("%");
@@ -182,6 +238,7 @@ public class ProductoDAO {
         for (Proveedor dato : datos) {
             if (dato.getEmpresa().equals(empresa)) {
                 empresaCbx.setEmpresa(dato.getEmpresa());
+                empresaCbx.setIdPersona(Long.MIN_VALUE);
 
             }
         }

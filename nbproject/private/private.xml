@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Sistema_de_ventas_Proyecto_Final/src/Test/ProductoTest.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/Conexion.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarProveedor.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/utilidades/Controladores.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/PersonaDAO.java</file>
         </group>
     </open-files>
 </project-private>

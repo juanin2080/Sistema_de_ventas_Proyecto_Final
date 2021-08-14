@@ -16,8 +16,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleFactura;
 import modelo.Factura;
-import modelo.Factura_;
-import static modelo.Factura_.nroFactura;
 import modelo.Producto;
 
 /**

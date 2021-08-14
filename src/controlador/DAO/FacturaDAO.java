@@ -13,14 +13,10 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.metamodel.SingularAttribute;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Compra;
-import modelo.DetalleFactura;
 import modelo.Factura;
 import modelo.Persona;
-import static modelo.Persona_.cedula;
 import modelo.Producto;
 
 /**
@@ -47,6 +43,7 @@ public class FacturaDAO {
             factura.setNroFactura(nroFactura);
             factura.setTotal(total);
             factura.setPersona(idPersona);
+            
             Controladorfactura.create(factura);
             mensaje = "Factura registrada con exito";
         } catch (Exception e) {

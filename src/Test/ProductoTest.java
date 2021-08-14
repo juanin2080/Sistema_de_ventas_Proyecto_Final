@@ -5,12 +5,9 @@
  */
 package Test;
 
-import controlador.DAO.ProductoDAO;
-import controlador.utilidades.Controladores;
-import java.util.ArrayList;
-import java.util.List;
+
 import vista.AdministrarProducto;
-import vista.Producto;
+
 
 /**
  *

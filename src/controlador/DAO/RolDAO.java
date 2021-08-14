@@ -6,12 +6,7 @@
 package controlador.DAO;
 
 import controlador.RolJpaController;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -27,6 +22,11 @@ public class RolDAO {
     private Rol rol = new Rol();
     private RolJpaController controladorRol = new RolJpaController();
 
+    
+    /**
+     * Insertamos un rol, este servira para identificar que rol tiene cada persona.
+     * @param rolPersona 
+     */
     public void insertarRol(String rolPersona) {
         try {
             rol.setIdRol(Long.MIN_VALUE);
@@ -41,6 +41,11 @@ public class RolDAO {
 
     }
 
+    /**
+     * Modificar el rol
+     * @param id
+     * @param rolPersona 
+     */
     public void actualizarRol(Long id, String rolPersona) {
         try {
             rol.setIdRol(id);
@@ -54,6 +59,10 @@ public class RolDAO {
 
     }
 
+    /**
+     * Dar de baja al rol
+     * @param id 
+     */
     public void darDeBajaRol(Long id) {
         try {
             controladorRol.destroy(id);
@@ -65,6 +74,10 @@ public class RolDAO {
 
     }
 
+    /**
+     * Listar los datos en el jtable, para poder visualizar todos los roles que se han agregado
+     * @param tabla 
+     */
     public void listarRoles(JTable tabla) {
         DefaultTableModel modelo;
         String[] titulo = {"Rol"};
@@ -79,6 +92,10 @@ public class RolDAO {
 
     }
 
+    /**
+     * Agregar los datos datos de Rol a un combo box 
+     * @param cbxRol 
+     */
     public void listarComboBox(JComboBox cbxRol) {
         List<Rol> datos = controladorRol.findRolEntities();
         for (Rol rol : datos) {
@@ -86,6 +103,12 @@ public class RolDAO {
         }
     }
 
+    
+    /**
+     * Buscar los roles que existen en la bdd
+     * @param rol
+     * @return 
+     */
     public Rol buscarRol(String rol) {
         Rol rolCbx = new Rol();
         List<Rol> datos = controladorRol.findRolEntities();
