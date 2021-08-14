@@ -8,20 +8,15 @@ package controlador.DAO;
 import controlador.FacturaJpaController;
 import controlador.PersonaJpaController;
 import controlador.ProductoJpaController;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.metamodel.SingularAttribute;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Compra;
-import modelo.DetalleFactura;
 import modelo.Factura;
 import modelo.Persona;
-import static modelo.Persona_.cedula;
 import modelo.Producto;
 
 /**
@@ -29,7 +24,7 @@ import modelo.Producto;
  * @author María Castillo
  */
 public class FacturaDAO {
-
+    
     private FacturaJpaController Controladorfactura = new FacturaJpaController();
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private PersonaJpaController controladorPersona = new PersonaJpaController();
@@ -59,9 +54,11 @@ public class FacturaDAO {
             factura.setNroFactura(nroFactura);
             factura.setTotal(total);
             factura.setPersona(idPersona);
+            factura.setIdACI(idAci);
+            factura.setEstado(estado);
             Controladorfactura.create(factura);
             mensaje = "Factura registrada con exito";
-
+            
         } catch (Exception e) {
             mensaje = "No se pudo registrar la factura ";
             System.out.println(e.getMessage());
@@ -111,7 +108,7 @@ public class FacturaDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
+                
             }
         }
         return producto;
@@ -134,7 +131,7 @@ public class FacturaDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
+                
             }
         }
         datos.add(producto);
@@ -160,7 +157,7 @@ public class FacturaDAO {
      */
     public String listarPersona(String cedula) {
         String nombre = "";
-
+        
         DefaultTableModel model;
         List<Persona> datos = buscarCliente(cedula);
         for (Persona persona : datos) {
@@ -168,14 +165,10 @@ public class FacturaDAO {
         }
         return nombre;
     }
-    /**
-     * Método para retornar Id de la lista Persona
-     * @param cedula
-     * @return 
-     */
+    
     public String retornarId(String cedula) {
         String id = "";
-
+        
         DefaultTableModel model;
         List<Persona> datos = buscarCliente(cedula);
         for (Persona persona : datos) {
@@ -226,7 +219,7 @@ public class FacturaDAO {
                 factura.setTotal(factura1.getTotal());
                 factura.setSubtotal(factura1.getSubtotal());
                 factura.setIva(factura1.isIva());
-
+                
             }
         }
         return factura;
@@ -240,7 +233,7 @@ public class FacturaDAO {
         Producto p = new Producto();
         p = buscarProductoFactura(codigo, cantidad);
         producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-
+        
     }
-
+    
 }

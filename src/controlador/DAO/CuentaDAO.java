@@ -20,10 +20,10 @@ import modelo.Persona;
  * @author juana
  */
 public class CuentaDAO {
-    
+
     private CuentaJpaController controladorCuenta = new CuentaJpaController();
     private Cuenta cuenta = new Cuenta();
-    
+
     public void insertarCuenta(String usuario, String clave, Boolean estado, Persona persona) {
         try {
             cuenta.setIdCuenta(Long.MIN_VALUE);
@@ -37,9 +37,9 @@ public class CuentaDAO {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Hubo un error al crear su cuenta");
         }
-        
+
     }
-    
+
     public void actualizarCuenta(Long id, String usuario, String clave, Boolean estado, Persona persona) {
         try {
             cuenta.setIdCuenta(id);
@@ -53,9 +53,9 @@ public class CuentaDAO {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Hubo un error al actualizar su cuenta");
         }
-        
+
     }
-    
+
     public void eliminarCuenta(Long id) {
         try {
             controladorCuenta.destroy(id);
@@ -64,7 +64,7 @@ public class CuentaDAO {
             System.out.println("Hubo un error al eliminar la cuenta");
         }
     }
-    
+
     public void listarCuentas(JTable tabla, String usuario) {
         DefaultTableModel modelo;
         String[] titulo = {"IdCuenta", "Clave", "Usuario", "Estado", "IdPersona", "Cédula", "Nombres"};
@@ -82,7 +82,7 @@ public class CuentaDAO {
                 datosCuenta[6] = cuenta.getPersona().getNombres();
                 modelo.addRow(datosCuenta);
             }
-            
+
         }
         tabla.setModel(modelo);
         tabla.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -101,9 +101,9 @@ public class CuentaDAO {
         tabla.getColumnModel().getColumn(4).setMinWidth(0);
         tabla.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
         tabla.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
-        
+
     }
-    
+
     private List<Cuenta> buscarCuentas(String usuario) {
         EntityManager em = controladorCuenta.getEntityManager();
         Query query = em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario LIKE :usuario");
@@ -111,7 +111,7 @@ public class CuentaDAO {
         List<Cuenta> lista = query.getResultList();
         return lista;
     }
-    
+
     public void darDeBajaCuenta(Long id, String usuario, String clave, Boolean estado, Persona persona) {
         try {
             cuenta.setIdCuenta(id);
@@ -126,22 +126,26 @@ public class CuentaDAO {
             JOptionPane.showMessageDialog(null, "Hubo un error al dar de baja a su cuenta");
         }
     }
-    
+
     public Cuenta autenticacion(String usuario, String clave) {
         Cuenta cuentaPersona = new Cuenta();
         List<Cuenta> datos = controladorCuenta.findCuentaEntities();
-        for (Cuenta cuenta : datos) {
-            if (cuenta.getUsuario().equals(usuario) && cuenta.getClave().equals(clave)) {
-                cuentaPersona.setIdCuenta(cuenta.getIdCuenta());
-                cuentaPersona.setUsuario(cuenta.getUsuario());
-                cuentaPersona.setClave(cuenta.getClave());
-                cuentaPersona.setEstado(cuenta.getEstado());
-                cuentaPersona.setPersona(cuenta.getPersona());
-                System.out.println("Entro a verificar los datos");
+        try {
+            for (Cuenta cuenta : datos) {
+                if (cuenta.getUsuario().equals(usuario) && cuenta.getClave().equals(clave)) {
+                    cuentaPersona.setIdCuenta(cuenta.getIdCuenta());
+                    cuentaPersona.setUsuario(cuenta.getUsuario());
+                    cuentaPersona.setClave(cuenta.getClave());
+                    cuentaPersona.setEstado(cuenta.getEstado());
+                    cuentaPersona.setPersona(cuenta.getPersona());
+                    System.out.println("Entro a verificar los datos");
+                }
+
             }
-            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Este usuario no está registrado o su tipo de usuario no es permitido en el sistema");
         }
+
         return cuentaPersona;
     }
-    
 }

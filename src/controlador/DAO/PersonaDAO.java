@@ -7,11 +7,8 @@ package controlador.DAO;
 
 import controlador.PersonaJpaController;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -37,8 +34,10 @@ public class PersonaDAO {
             persona.setEmail(email);
             persona.setRol(rol);
             controladorPersona.create(persona);
+            JOptionPane.showMessageDialog(null, "Persona registrada con exito");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se pudo registrar a esa persona ");
         }
 
     }
@@ -140,6 +139,15 @@ public class PersonaDAO {
 
         }
         return person;
+    }
+
+    public List<Persona> listarPersonas(String cedula) {
+        EntityManager em = controladorPersona.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
+        query.setParameter("cedula", cedula + "%");
+
+        List<Persona> lista = query.getResultList();
+        return lista;
     }
 
 }

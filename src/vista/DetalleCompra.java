@@ -6,10 +6,10 @@
 package vista;
 
 import controlador.DAO.DetalleCompraDAO;
+import controlador.utilidades.Controladores;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.Compra;
-
-
 
 /**
  *
@@ -20,7 +20,12 @@ public class DetalleCompra extends javax.swing.JFrame {
     /**
      * Creates new form DetalleCompra
      */
-  
+    private DetalleCompraDAO cDAO = new DetalleCompraDAO();
+    ArrayList<Compra> listadetalle = new ArrayList<Compra>();
+    Date fecha = new Date();
+    Compra compra = new Compra();
+    Controladores controles = new Controladores();
+
     public DetalleCompra() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -41,7 +46,6 @@ public class DetalleCompra extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -57,11 +61,7 @@ public class DetalleCompra extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalleCompra = new RSMaterialComponent.RSTableMetro();
-        txtNroCompra = new javax.swing.JTextField();
-        labelIcon8 = new necesario.LabelIcon();
-        labelIcon9 = new necesario.LabelIcon();
-        bntBuscarCedulaCP = new rojerusan.RSButtonHover();
-        lblCedula1 = new javax.swing.JLabel();
+        btnMostrar = new rojerusan.RSButtonHover();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,7 +101,7 @@ public class DetalleCompra extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(140, 10, 140, 90);
+        btnRegistrar.setBounds(250, 10, 140, 90);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -114,7 +114,7 @@ public class DetalleCompra extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(310, 10, 140, 90);
+        btnProveedor.setBounds(420, 10, 140, 90);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -127,20 +127,7 @@ public class DetalleCompra extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(490, 10, 150, 90);
-
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(690, 10, 140, 90);
+        btnProducto.setBounds(600, 10, 150, 90);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1040, 110);
@@ -271,40 +258,14 @@ public class DetalleCompra extends javax.swing.JFrame {
         tblDetalleCompra.setBackgoundHead(new java.awt.Color(102, 0, 102));
         jScrollPane1.setViewportView(tblDetalleCompra);
 
-        txtNroCompra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtNroCompra.setForeground(new java.awt.Color(102, 102, 102));
-        txtNroCompra.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtNroCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtNroCompraMouseClicked(evt);
-            }
-        });
-        txtNroCompra.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setBackground(new java.awt.Color(204, 0, 255));
+        btnMostrar.setText("Mostrar");
+        btnMostrar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNroCompraActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
-
-        labelIcon8.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon8.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SEARCH);
-
-        labelIcon9.setForeground(new java.awt.Color(102, 102, 102));
-        labelIcon9.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
-        labelIcon8.add(labelIcon9);
-        labelIcon9.setBounds(580, 680, 30, 30);
-
-        bntBuscarCedulaCP.setBackground(new java.awt.Color(204, 0, 255));
-        bntBuscarCedulaCP.setText("Buscar");
-        bntBuscarCedulaCP.setColorHover(new java.awt.Color(102, 102, 102));
-        bntBuscarCedulaCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntBuscarCedulaCPActionPerformed(evt);
-            }
-        });
-
-        lblCedula1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblCedula1.setForeground(new java.awt.Color(102, 102, 102));
-        lblCedula1.setText("Número Compra:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -315,30 +276,19 @@ public class DetalleCompra extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblCedula1)
-                        .addGap(27, 27, 27)
-                        .addComponent(txtNroCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106))))
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(321, 321, 321))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNroCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntBuscarCedulaCP, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -376,7 +326,7 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
-        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt,this);
+        FiveCodMover.FiveCodMoverJFrame.MouseDraggedFrame(evt, this);
     }//GEN-LAST:event_formMouseDragged
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -393,42 +343,33 @@ public class DetalleCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        // TODO add your handling code here:
+        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        this.dispose();
+        adminProveedor.setVisible(true);
+        adminProveedor.setLocationRelativeTo(null);
+
 
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        // TODO add your handling code here:
-
+        AdministrarProducto adminProducto = new AdministrarProducto();
+        this.dispose();
+        adminProducto.setVisible(true);
+        adminProducto.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnProductoActionPerformed
 
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
 
-    private void txtNroCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNroCompraMouseClicked
 
-    }//GEN-LAST:event_txtNroCompraMouseClicked
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
-    private void txtNroCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNroCompraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNroCompraActionPerformed
-
-    private void bntBuscarCedulaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBuscarCedulaCPActionPerformed
-      
-    }//GEN-LAST:event_bntBuscarCedulaCPActionPerformed
-     private void mostrarTabla() {
-   
-
-    }
     /**
      * @param args the command line arguments
      */
@@ -466,9 +407,8 @@ public class DetalleCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSButtonHover bntBuscarCedulaCP;
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
+    private rojerusan.RSButtonHover btnMostrar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
     private newscomponents.RSButtonBigIcon_new btnProveedor;
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
@@ -484,15 +424,11 @@ public class DetalleCompra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private necesario.LabelIcon labelIcon8;
-    private necesario.LabelIcon labelIcon9;
-    private javax.swing.JLabel lblCedula1;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha2;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tblDetalleCompra;
-    private javax.swing.JTextField txtNroCompra;
     // End of variables declaration//GEN-END:variables
 }
