@@ -113,7 +113,7 @@ public class DetalleCompraDAO {
             listardetalle[2] = dato.getCompra().getTotal() + "";
             Proveedor proveedor = buscarProveedor(dato.getCompra().getExternal_IDProveedor());
             System.out.println("estoy en el listar" + proveedor.getCedula());
-            listardetalle[3] = proveedor.getCedula();
+            listardetalle[3] = proveedor.getCedula()+ "";
             model.addRow(listardetalle);
         }
         tblDetalleCompra.setModel(model);
@@ -139,7 +139,7 @@ public class DetalleCompraDAO {
     private List<Compra> buscarCompra(String nroCompra) {
         Compra pd;
         EntityManager em = detalleCom.getEntityManager();
-        Query query = em.createQuery("SELECT p FROM Compra p WHERE p.nroCompra like :nroCompra");
+        Query query = em.createQuery("SELECT c FROM Compra c WHERE c.nroCompra like :nroCompra");
         query.setParameter("nroCompra", nroCompra + "%");
         List<Compra> lista = query.getResultList();
         for (Compra compra1 : lista) {
@@ -200,7 +200,19 @@ public class DetalleCompraDAO {
         }
         return prov;
     }
+    public Compra buscarCompraBD(String nroCompra) {
+        Compra c = new Compra();
+        List<Compra> listaCompra = ControladorCompra.findCompraEntities();
+        for (Compra com : listaCompra) {
+            if (nroCompra.equals(com.getNroCompra())) {
+                c = com;
+            }
 
+        }
+        return c;
+    }
+
+    
     public ArrayList<Producto> getListaProductosCopia() {
         return listaProductosCopia;
     }

@@ -14,6 +14,7 @@ import controlador.utilidades.Controladores;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Persona;
 import modelo.Producto;
 import modelo.Proveedor;
 
@@ -38,6 +39,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     public CompraProveedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
         txtIdProveedor.setVisible(false);
         lblAvisoCompra.setVisible(false);
         lblAvisoCedula.setVisible(false);
@@ -824,9 +826,12 @@ public class CompraProveedor extends javax.swing.JFrame {
             if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
                 CompraDAO comDao = new CompraDAO();
                 Proveedor prove = new Proveedor();
+                Persona person = new Persona();
+                Date fecha = new Date();
                 String nroCompra = txtnroCompraCP.getText();
                 boolean iva = checkBoxIVACP.isSelected();
                 String fPago = txtFormaPagoCP.getText();
+                person.setIdPersona(Long.valueOf(txtIdProveedor.getText()));
                 double subtotal = Double.parseDouble(txtSubtotalCP.getText());
                 double total = Double.parseDouble(txtTotalPagarCP.getText());
 
@@ -836,11 +841,11 @@ public class CompraProveedor extends javax.swing.JFrame {
                 System.out.println("detalle compra copia" + detalleCompra.getCompraCopia().getIdCompra());
                 Producto p = new Producto();
                 p = comDao.buscarProductoC(txtCodProductoCP.getText());
-                System.out.println(p.getIdProducto());
-                System.out.println(p.getPrecio());
+                System.out.println("id Producto " + p.getIdProducto());
+                System.out.println("id Producto " + p.getPrecio());
                 detalleCompra.insertarDetalleCompra(Integer.valueOf(txtCantidad.getText()), Double.valueOf(txtTotalPagarCP.getText()), produc.getPrecio(), detalleCompra.getCompraCopia(), p);
                 //==========================================================================================
-
+                    
                 mostrarTabla();
 
             } else {
@@ -979,7 +984,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void btnDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleCompraActionPerformed
-        dispose();
+     
         DetalleCompraDAO det = new DetalleCompraDAO();
         det.setListaProductosCopia(listaProductos);
         for (Producto producto1 : det.getListaProductosCopia()) {

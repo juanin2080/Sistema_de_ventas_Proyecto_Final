@@ -395,7 +395,7 @@ public class DetalleCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        cDAO.listarDetalleCompra(tblDetalleCompra);
+        mostrarTabla();
 
     }//GEN-LAST:event_btnMostrarActionPerformed
 

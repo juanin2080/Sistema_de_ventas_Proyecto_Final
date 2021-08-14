@@ -33,8 +33,21 @@ public class CompraDAO {
     private Producto producto = new Producto();
     private Proveedor provedor = new Proveedor();
     private ProductoDAO pdao = new ProductoDAO();
-
+    private DetalleCompraDAO dcdao = new DetalleCompraDAO();
+    private ProveedorDAO prdao = new ProveedorDAO();
     private String mensaje = "";
+    
+    /**
+     * Método para insertar la compra
+     * @param nroCompra
+     * @param fecha
+     * @param iva
+     * @param fPago
+     * @param subtotal
+     * @param total
+     * @param idProveedor
+     * @return 
+     */
 
     public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
         try {
@@ -57,36 +70,12 @@ public class CompraDAO {
         return compra;
     }
 
-//    public String actualizarCompra(Long id, String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total) {
-//        try {
-//            compra.setIdCompra(id);
-//            compra.setNroCompra(nroCompra);
-//            compra.setFecha(fecha);
-//            compra.setIva(true);
-//            compra.setfPago(fPago);
-//            compra.setSubtotal(subtotal);
-//            compra.setTotal(total);
-//            compra.setExternal_IDProveedor(Long.MIN_VALUE);
-//            tjc.edit(compra);
-//            mensaje = "Actualizado correctamente";
-//        } catch (Exception e) {
-//            System.out.println("MENSAJE EN GUARDAR: " + e.getMessage());
-//            mensaje = "No se pudo actualizar la informacion";
-//        }
-//
-//        return mensaje;
-//    }
-//    public String eliminarCompra(Long id) {
-//        try {
-//            tjc.destroy(id);
-//            mensaje = "Eliminado correctamente";
-//        } catch (Exception e) {
-//            mensaje = "No se pudo eliminar la informacion";
-//            System.out.println("MENSAJE EN GUARDAR: " + e.getMessage());
-//        }
-//        return mensaje;
-//    }
-//
+    
+    /**
+     * Método para listar los productos en la tabla de compra de producto
+     * @param tablaCompra
+     * @param datos 
+     */
     public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         DefaultTableModel model;
         String[] titulo = {"CODIGO", "MARCA", "STOCK", "PRECIOUNITARIO"};
@@ -106,7 +95,14 @@ public class CompraDAO {
         }
         tablaCompra.setModel(model);
     }
-
+    
+    /**
+     * Metodo para calcular el stock, en este caso se van a agregar productos 
+     * al stock
+     * @param listaProductos
+     * @param tablaCompra
+     * @return 
+     */
     public int calcularStock(ArrayList<Producto> listaProductos, JTable tablaCompra) {
         int calcularStock = 0;
 
@@ -120,6 +116,11 @@ public class CompraDAO {
         return calcularStock;
     }
 
+    /**
+     * Método para buscar un producto en la BD
+     * @param codigo
+     * @return 
+     */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
@@ -129,6 +130,13 @@ public class CompraDAO {
         return lista;
     }
 
+    /**
+     * Métod para buscar el producto que se desea comprar, ingresando su 
+     * código y cantidad
+     * @param codigo
+     * @param cantidad
+     * @return 
+     */
     public Producto buscarProductoCompra(String codigo, int cantidad) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -148,6 +156,11 @@ public class CompraDAO {
         return producto;
     }
 
+    /**
+     * Método para agregar productos a la lista llamada datos que es de tipo Producto
+     * @param codigo
+     * @return 
+     */
     public Producto buscarProductoC(String codigo) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -168,6 +181,13 @@ public class CompraDAO {
         return producto;
     }
 
+    /**
+     * El siguiente método permite calcular el subtotal de todos los productos 
+     * de los cuales se vaya a realizar la compra
+     * @param listaProductos
+     * @param cantidad
+     * @return 
+     */
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
         for (Producto dato : listaProductos) {
@@ -176,6 +196,11 @@ public class CompraDAO {
         return subtotal;
     }
 
+    /**
+     * Método que permite realizar una búsqueda del producto por ID
+     * @param idProducto
+     * @return 
+     */
     public Producto buscarProductoID(String idProducto) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -195,9 +220,13 @@ public class CompraDAO {
         return producto;
     }
 
+    /**
+     * Método para listar el nombre del proveedor, buscándolo por cédula
+     * @param cedula
+     * @return 
+     */
     public String listarProveedor(String cedula) {
         String nombre = "";
-
         DefaultTableModel model;
         List<Proveedor> datos = buscarProveedor(cedula);
         for (Proveedor proveedor : datos) {
@@ -205,7 +234,12 @@ public class CompraDAO {
         }
         return nombre;
     }
-
+    
+    /**
+     * Método para retornar el Id de la lista de los proveedores
+     * @param cedula
+     * @return 
+     */
     public String retornarId(String cedula) {
         String id = "";
 
@@ -216,7 +250,13 @@ public class CompraDAO {
         }
         return id;
     }
-
+    
+    
+    /**
+     * Este método nos permite buscar un Proveedor por su cédula 
+     * @param cedula
+     * @return 
+     */
     private List<Proveedor> buscarProveedor(String cedula) {
         Proveedor proveedor;
         EntityManager em = controladorProveedor.getEntityManager();
@@ -226,6 +266,11 @@ public class CompraDAO {
         return lista;
     }
 
+    /**
+     * Método que nos va a permitir actualizar el stock en la BD
+     * @param codigo
+     * @param cantidad 
+     */
     public void actualizarStockBD(String codigo, int cantidad) {
         Producto p = new Producto();
         p = buscarProductoCompra(codigo, cantidad);
