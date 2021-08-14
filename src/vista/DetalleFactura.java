@@ -13,7 +13,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Persona;
 import modelo.Producto;
-import modelo.Factura;
+import vista.Factura;
 
 /**
  *
@@ -714,6 +714,9 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir1ActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
+        Factura factura =  new Factura();
+        factura.setVisible(true);
+        dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFacturaActionPerformed
 

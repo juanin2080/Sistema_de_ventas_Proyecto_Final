@@ -183,7 +183,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnFactura);
-        btnFactura.setBounds(400, 10, 100, 70);
+        btnFactura.setBounds(390, 10, 100, 70);
 
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 50, 1160, 90);
@@ -701,7 +701,8 @@ public class Factura extends javax.swing.JFrame {
             if (controles.contieneSoloLetras(txtFactura.getText()) == false && controles.contieneSoloLetras(txtFormaPago.getText()) == true) {
                 FacturaDAO fac1 = new FacturaDAO();
                 Date fecha = new Date();
-                Persona persona = new Persona();
+                    Persona persona = new Persona();
+//                Producto producto = new Producto();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
                 String nroFactura = txtFactura.getText();
                 Boolean iva = checkBoxIVA.isSelected();

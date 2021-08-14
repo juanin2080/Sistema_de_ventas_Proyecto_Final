@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/vista/Factura.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/modelo/Factura.java</file>
             <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/DetalleFacturaDAO.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/modelo/Producto.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/Conexion.java</file>
             <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/FacturaDAO.java</file>
         </group>
     </open-files>

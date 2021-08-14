@@ -35,7 +35,15 @@ public class DetalleFacturaDAO {
     private String mensaje = "";
     private ArrayList<Producto> listaProductosCopia = new ArrayList<Producto>();
     private Factura facturaCopia = new Factura();
-
+    /**
+     * Método para insertar datos correspondientes al detalle de Factura
+     * @param cantidad
+     * @param precioTotal
+     * @param precioUnitario
+     * @param factura
+     * @param producto
+     * @return 
+     */
     public String insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
         try {
             detalle.setIdDetalleFactura(Long.MIN_VALUE);
@@ -56,7 +64,12 @@ public class DetalleFacturaDAO {
         }
         return mensaje;
     }
-//buscar producto que estara en detalle F 
+
+    /**
+     * Método para buscar productos que estaran en la lista 
+     * @param lisProducto
+     * @return 
+     */
     public Producto buscarProductoDF(ArrayList<Producto> lisProducto) {
         Producto product = new Producto();
         for (Producto producto : lisProducto) {
@@ -72,8 +85,11 @@ public class DetalleFacturaDAO {
         }
         return product;
     }
-//buscar productos de la lista copiada
-
+    /**
+     * Método para buscar productos de la lista copiada
+     * @param codigo
+     * @return 
+     */
     public Producto buscarProductoenLista(String codigo) {
         List<Producto> datos = ControladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -92,8 +108,10 @@ public class DetalleFacturaDAO {
         }
         return producto;
     }
-//mostrar en detalle factura VISTA
-
+    /**
+     * Método para mostrar el detalle de factura en la Ventana
+     * @param tablaDetalle 
+     */
     public void listarDetalleFactura(JTable tablaDetalle) {
         DefaultTableModel model;
         String[] titulo = {"Fecha", "Forma de pago", "Precio Total", "Cédula cliente"};
@@ -109,11 +127,14 @@ public class DetalleFacturaDAO {
         }
         tablaDetalle.setModel(model);
     }
-
+    /**
+     * Método para buscar productos en la factura, permita crear lista detalle factura para devolver
+     * @param factura
+     * @return 
+     */
     public DetalleFactura buscarProductoF(String factura) {
         List<DetalleFactura> datos = detallefac.findDetalleFacturaEntities();
         DetalleFactura detallef = new DetalleFactura();
-        //crear lista detallefactura y devolver
         for (DetalleFactura dato : datos) {
             if (String.valueOf(dato.getFactura()).equals(factura)) {
                 detallef.setIdDetalleFactura(dato.getIdDetalleFactura());
@@ -126,7 +147,11 @@ public class DetalleFacturaDAO {
         return detallef;
 
     }
-
+    /**
+     * Método para buscar productos mediante el nroFactura de la BD
+     * @param nroFactura
+     * @return 
+     */
     private List<Factura> buscarFactura(String nroFactura) {
         Factura pd;
         EntityManager em = detallefac.getEntityManager();
@@ -139,7 +164,11 @@ public class DetalleFacturaDAO {
         }
         return lista;
     }
-
+    /**
+     * Método para buscar productos mediante código en la BD
+     * @param codigo
+     * @return 
+     */
     public List<Producto> buscarProducto(String codigo) {
         EntityManager em = ControladorProducto.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo LIKE :codigo");
@@ -147,7 +176,12 @@ public class DetalleFacturaDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
-
+    /**
+     * Método para buscar producto por ID
+     * @param idProducto
+     * @param listProducto
+     * @return 
+     */
     public Producto buscarProductoId(Long idProducto, ArrayList<Producto> listProducto) {
         Producto producto = new Producto();
 
@@ -167,7 +201,11 @@ public class DetalleFacturaDAO {
         return producto;
 
     } 
-
+    /**
+     * Método para buscar factura en la BD
+     * @param nroFactura
+     * @return 
+     */
     public Factura buscarFacturaBD(String nroFactura) {
         Factura f = new Factura();
         List<Factura> listaFactura = Controladorfactura.findFacturaEntities();
