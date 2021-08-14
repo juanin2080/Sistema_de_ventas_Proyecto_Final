@@ -29,24 +29,14 @@ public class DetalleFacturaDAO {
 
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
-    Producto produc = new Producto();
-    private String mgensaje = "";
-    private ArrayList<Producto> listaProductosCopia = new ArrayList<Producto>();
-    private Factura facturaCopia = new Factura();
-    /**
-     * Método para insertar datos correspondientes al detalle de Factura
-     * @param cantidad
-     * @param precioTotal
-     * @param precioUnitario
-     * @param factura
-     * @param producto
-     * @return 
-     */
-    public String insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+
+//    public void insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+    public void insertarDetalleFactura(String nombre, Double precioUnitario, Factura factura, Producto producto) {
         try {
             detalle.setIdDetalleFactura(Long.MIN_VALUE);
-            detalle.setCantidad(cantidad);
-            detalle.setPrecioTotal(precioTotal);
+//            detalle.setCantidad(cantidad);
+//            detalle.setPrecioTotal(precioTotal);
+            detalle.setNombreProducto(nombre);
             detalle.setPrecioUnitario(precioUnitario);
             detalle.setProducto(producto);
             detalle.setFactura(factura);

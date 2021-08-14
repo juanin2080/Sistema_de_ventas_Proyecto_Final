@@ -34,18 +34,6 @@ public class FacturaDAO {
     private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     private PersonaDAO pe = new PersonaDAO();
 
-    /**
-     * Método para insertar Datos en una Factura
-     *
-     * @param fecha
-     * @param formaPago
-     * @param iva
-     * @param nroFactura
-     * @param subtotal
-     * @param total
-     * @param idPersona
-     * @return
-     */
     public Factura insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona, String idAci, Boolean estado) {
         try {
             factura.setIdFactura(Long.MIN_VALUE);
@@ -68,12 +56,17 @@ public class FacturaDAO {
         return factura;
     }
 
-    /**
-     * Método que listar productos en la tabla leyendolos desde la BD
-     *
-     * @param tablaCompra
-     * @param datos
-     */
+    public String darDeBajaPersona(Long idFactura) {
+        try {
+            Controladorfactura.destroy(idFactura);
+            mensaje = "Eliminado correctamente";
+        } catch (Exception e) {
+            mensaje = "No se puede eliminar la informacion";
+            System.out.println("mensaje en eliminar" + e.getMessage());
+        }
+        return mensaje;
+    }
+
     public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         DefaultTableModel model;
         String[] titulo = {"CODIGO", "MARCA", "STOCK", "PRECIOUNITARIO"};
@@ -94,13 +87,6 @@ public class FacturaDAO {
         tablaCompra.setModel(model);
     }
 
-    /**
-     * Método que buscar un producto mediante el codigo del producto
-     *
-     * @param codigo
-     * @param cantidad
-     * @return
-     */
     public Producto buscarProductoFactura(String codigo, int cantidad) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -114,19 +100,11 @@ public class FacturaDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
             }
         }
         return producto;
     }
 
-    /**
-     * Método para agregar productos a la lista llamada datos que es de tipo
-     * Producto
-     *
-     * @param codigo
-     * @return
-     */
     public Producto buscarProductoF(String codigo) {
         List<Producto> datos = controladorProducto.findProductoEntities();
         Producto producto = new Producto();
@@ -140,19 +118,12 @@ public class FacturaDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
             }
         }
         datos.add(producto);
         return producto;
     }
 
-    /**
-     * Método que buscar un producto mediante codigo en la BD
-     *
-     * @param codigo
-     * @return
-     */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
@@ -162,12 +133,6 @@ public class FacturaDAO {
         return lista;
     }
 
-    /**
-     * Método para listar personas
-     *
-     * @param cedula
-     * @return
-     */
     public String listarPersona(String cedula) {
         String nombre = "";
 
@@ -190,12 +155,6 @@ public class FacturaDAO {
         return id;
     }
 
-    /**
-     * Método para buscar clientes mediante cedula en la BD
-     *
-     * @param cedula
-     * @return
-     */
     private List<Persona> buscarCliente(String cedula) {
         Persona persona;
         EntityManager em = controladorPersona.getEntityManager();
@@ -205,13 +164,6 @@ public class FacturaDAO {
         return lista;
     }
 
-    /**
-     * Método para calcular el subtotal
-     *
-     * @param listaProductos
-     * @param cantidad
-     * @return
-     */
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
         for (Producto dato : listaProductos) {
@@ -220,12 +172,6 @@ public class FacturaDAO {
         return subtotal;
     }
 
-    /**
-     * Método para buscar factura por id
-     *
-     * @param idFactura
-     * @return
-     */
     public Factura buscarFacturaId(Long idFactura) {
         Factura factura = new Factura();
         List<Factura> listafactura = Controladorfactura.findFacturaEntities();
@@ -244,28 +190,37 @@ public class FacturaDAO {
         return factura;
     }
 
-    /**
-     * Método para actualizar el Stock de productos
-     *
-     * @param codigo
-     * @param cantidad
-     */
     public void actualizarStockBD(String codigo, int cantidad) {
         Producto p = new Producto();
         p = buscarProductoFactura(codigo, cantidad);
         producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
 
     }
-//    public static void guardarDetalle(Factura factu, List<DetalleFacturaDAO>lista){
-//        for (DetalleFacturaDAO detalleFacturaDAO : lista) 
-//            FacturaDAO F=
-//            
-//        }
-//    }
-    public Factura  getFactura(){
+
+    public Factura buscarFacturaCodigo(String nroFactura) {
+        Factura factura = new Factura();
+        List<Factura> listafactura = Controladorfactura.findFacturaEntities();
+        for (Factura factura1 : listafactura) {
+            if (nroFactura == factura1.getNroFactura()) {
+                factura.setIdFactura(factura1.getIdFactura());
+                factura.setFecha(factura1.getFecha());
+                factura.setFormaPago(factura1.getFormaPago());
+                factura.setNroFactura(factura1.getNroFactura());
+                factura.setTotal(factura1.getTotal());
+                factura.setSubtotal(factura1.getSubtotal());
+                factura.setIva(factura1.isIva());
+
+            }
+        }
         return factura;
     }
-    public void setFactura(Factura factura){
-        this.factura= factura;
+
+    public Factura getFactura() {
+        return factura;
     }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
 }
