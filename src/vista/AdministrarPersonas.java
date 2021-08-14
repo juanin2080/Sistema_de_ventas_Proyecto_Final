@@ -35,6 +35,13 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         llenarCbx();
         txtId.setVisible(false);
         txtRol.setVisible(false);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoDirec.setVisible(false);
+        txtavisoEmail.setVisible(false);
+        txtavisoTlf.setVisible(false);
+        txtavisoCed.setVisible(false);
+
     }
 
     /**
@@ -51,6 +58,23 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtCedula.setEditable(true);
         cbxRol.setEnabled(true);
+    }
+
+    public boolean camposVacios() {
+        if (txtCedula.getText().equals("") || txtDireccion.getText().equals("")
+                || txtEmail.getText().equals("") || txtNombres.getText().equals("")
+                || txtTelefono.getText().equals("")) {
+
+            txtavisoNombre.setVisible(true);
+            txtavisoDirec.setVisible(true);
+            txtavisoEmail.setVisible(true);
+            txtavisoNombre.setVisible(true);
+            txtavisoTlf.setVisible(true);
+            txtavisoCed.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void mostrarTabla(String cedula) {
@@ -102,6 +126,11 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         cbxRol = new RSMaterialComponent.RSComboBoxMaterial<>();
         txtCedula = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
+        txtavisoCed = new javax.swing.JLabel();
+        txtavisoNombre = new javax.swing.JLabel();
+        txtavisoEmail = new javax.swing.JLabel();
+        txtavisoTlf = new javax.swing.JLabel();
+        txtavisoDirec = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -144,7 +173,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
         txtRol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRol.setForeground(new java.awt.Color(102, 102, 102));
-        txtRol.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtRol.setBorder(null);
         txtRol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtRolMouseClicked(evt);
@@ -156,7 +185,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtRol);
-        txtRol.setBounds(380, 310, 60, 30);
+        txtRol.setBounds(710, 580, 60, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -181,6 +210,11 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombresActionPerformed(evt);
+            }
+        });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
             }
         });
         jPanel1.add(txtNombres);
@@ -247,6 +281,11 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
         jPanel1.add(txtTelefono);
@@ -420,12 +459,17 @@ public class AdministrarPersonas extends javax.swing.JFrame {
                 txtCedulaActionPerformed(evt);
             }
         });
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCedula);
         txtCedula.setBounds(140, 280, 220, 30);
 
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(102, 102, 102));
-        txtId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
+        txtId.setBorder(null);
         txtId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtIdMouseClicked(evt);
@@ -437,7 +481,32 @@ public class AdministrarPersonas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtId);
-        txtId.setBounds(380, 260, 60, 30);
+        txtId.setBounds(620, 580, 60, 30);
+
+        txtavisoCed.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCed.setText("*");
+        jPanel1.add(txtavisoCed);
+        txtavisoCed.setBounds(380, 280, 34, 20);
+
+        txtavisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoNombre.setText("*");
+        jPanel1.add(txtavisoNombre);
+        txtavisoNombre.setBounds(380, 320, 34, 14);
+
+        txtavisoEmail.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoEmail.setText("*");
+        jPanel1.add(txtavisoEmail);
+        txtavisoEmail.setBounds(380, 360, 34, 14);
+
+        txtavisoTlf.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoTlf.setText("*");
+        jPanel1.add(txtavisoTlf);
+        txtavisoTlf.setBounds(380, 400, 34, 14);
+
+        txtavisoDirec.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoDirec.setText("*");
+        jPanel1.add(txtavisoDirec);
+        txtavisoDirec.setBounds(380, 450, 34, 14);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -471,31 +540,51 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     private void btnNuevoPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPersonalActionPerformed
         limpiarCampos();
+        txtavisoNombre.setVisible(false);
+        txtavisoDirec.setVisible(false);
+        txtavisoEmail.setVisible(false);
+        txtavisoTlf.setVisible(false);
+        txtavisoCed.setVisible(false);
     }//GEN-LAST:event_btnNuevoPersonalActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
-        Persona person = new Persona();
-        person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-        pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
-        limpiarCampos();
-        mostrarTabla("");
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos deben estar llenos");
+        } else {
+            if (controles.validarEmail(txtEmail.getText())) {
+                Persona person = new Persona();
+                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+                limpiarCampos();
+                mostrarTabla("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                txtavisoEmail.setVisible(true);
+            }
+
+        }
+
 
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+//        if (camposVacios()) {
+//        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+//        } else {
+//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+//        JOptionPane.showMessageDialog(null, mensaje);
+        limpiarCampos();
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(0);
+//            } else {
+//            JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+        txtavisoCed.setVisible(true);
+        txtavisoEmail.setVisible(true);
+//            }
 
-        if (controles.validarEmail(txtEmail.getText()) && controles.validadorDeCedula(txtCedula.getText()) && controles.contieneSoloLetras(txtNombres.getText())) {
-            rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-            pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
-            JOptionPane.showMessageDialog(rootPane, "Persona agregada correctamente");
-            limpiarCampos();
-            mostrarTabla("");
-            cbxRol.setSelectedIndex(0);
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos  No Validos");
-            limpiarCampos();
-        }
-
+//        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -540,10 +629,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRolMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        this.dispose();
-        inicioSesion.setVisible(true);
-        inicioSesion.setLocationRelativeTo(null);
+        MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+        dispose();
+        mpa.setLocationRelativeTo(null);
+        mpa.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void tbtPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtPersonalMouseClicked
@@ -578,6 +667,30 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+    public static boolean validarNombre(String nombre) {
+        return nombre.matches("^(([A-Za-z]{1})?[a-z]+[ ]?)+$");
+    }
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombresKeyTyped
 
     /**
      * @param args the command line arguments
@@ -666,5 +779,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JLabel txtavisoCed;
+    private javax.swing.JLabel txtavisoDirec;
+    private javax.swing.JLabel txtavisoEmail;
+    private javax.swing.JLabel txtavisoNombre;
+    private javax.swing.JLabel txtavisoTlf;
     // End of variables declaration//GEN-END:variables
 }

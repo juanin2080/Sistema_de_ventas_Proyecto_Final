@@ -6,13 +6,17 @@
 package controlador.DAO;
 
 import controlador.ProductoJpaController;
+import controlador.ProveedorJpaController;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
+import modelo.Proveedor;
+import modelo.Rol;
 
 /**
  *
@@ -22,12 +26,13 @@ public class ProductoDAO {
 
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private Producto producto = new Producto();
-    private String mensaje = "";
+    private ProveedorJpaController empresaPro = new ProveedorJpaController();
 
-    public void insertarProducto(int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+    public String insertarProducto(String codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+        String mensaje = "";
 
         try {
-            producto.setCodigo(codigo);
+            producto.setCodigo(Integer.parseInt(codigo));
             producto.setNombre(nombre);
             producto.setPrecio(precio);
             producto.setStock(cantidad);
@@ -41,10 +46,12 @@ public class ProductoDAO {
             System.out.println("mensaje en guardar: " + e.getMessage());
             mensaje = "No se pudo registrar el producto ";
         }
-        JOptionPane.showMessageDialog(null, mensaje);
+
+        return mensaje;
     }
 
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+        String mensaje = "";
         try {
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
@@ -65,7 +72,10 @@ public class ProductoDAO {
     }
 
     public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
+        String mensaje = "";
+
         try {
+
             producto.setIdProducto(id);
             producto.setCodigo(codigo);
             producto.setNombre(nombre);
@@ -103,8 +113,10 @@ public class ProductoDAO {
                 listarProducto[4] = product.getProveedor();
                 listarProducto[5] = product.getStock() + "";
                 listarProducto[6] = product.getIdProducto() + "";
+
                 model.addRow(listarProducto);
             }
+
         }
         tabla.setModel(model);
         tabla.getColumnModel().getColumn(6).setMaxWidth(0);
@@ -122,23 +134,35 @@ public class ProductoDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
-//    public String actualizarStockBD(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int stock, int cantidad) {
-//        try {
-//            producto.setIdProducto(id);
-//            producto.setCodigo(codigo);
-//            producto.setNombre(nombre);
-//            producto.setPrecio(precio);
-//            producto.setStock(stock+cantidad);
-//            producto.setMarca(Marca);
-//            producto.setEstado(true);
-//            producto.setProveedor(proveedor);
-//            controladorProducto.edit(producto);
-//
-//            mensaje = "Producto actualizado con exito";
-//        } catch (Exception e) {
-//            System.out.println("mensaje en guardar: " + e.getMessage());
-//            mensaje = "No se pudo actualizar el producto ";
-//        }
-//        return mensaje;
-//    }
+
+    public List<Producto> listarProductos(String codigo) {
+        EntityManager em = controladorProducto.getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
+        query.setParameter("codigo", codigo + "%");
+
+        List<Producto> lista = query.getResultList();
+        return lista;
+    }
+
+    public void listarComboBox(JComboBox cbxEmpresa) {
+        List<Proveedor> datos = empresaPro.findProveedorEntities();
+        for (Proveedor dato : datos) {
+            cbxEmpresa.addItem(dato.getEmpresa());
+        }
+    }
+
+    public Proveedor buscarEmpresa(String empresa) {
+        Proveedor empresaCbx = new Proveedor();
+        List<Proveedor> datos = this.empresaPro.findProveedorEntities();
+
+        for (Proveedor dato : datos) {
+            if (dato.getEmpresa().equals(empresa)) {
+                empresaCbx.setEmpresa(dato.getEmpresa());
+
+            }
+        }
+        return empresaCbx;
+
+    }
+
 }

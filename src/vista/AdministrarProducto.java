@@ -6,8 +6,11 @@
 package vista;
 
 import controlador.DAO.ProductoDAO;
+import controlador.utilidades.Controladores;
+import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Producto;
+import modelo.Proveedor;
 
 /**
  *
@@ -19,12 +22,21 @@ public class AdministrarProducto extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     ProductoDAO pDao = new ProductoDAO();
+    Controladores controles = new Controladores();
+    Proveedor proveedor = new Proveedor();
 
     public AdministrarProducto() {
         initComponents();
         this.setLocationRelativeTo(null);
         mostrarTabla("");
         txtid.setVisible(false);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoCantidad.setVisible(false);
+        txtavisoCod.setVisible(false);
+        txtavisoMarca.setVisible(false);
+        txtavisoPrecio.setVisible(false);
+        txtavisoProveedor.setVisible(false);
     }
 
     /**
@@ -42,7 +54,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         txtid = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -76,6 +87,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         btnGuardar = new rojerusan.RSButtonHover();
+        txtavisoMarca = new javax.swing.JLabel();
+        txtavisoPrecio = new javax.swing.JLabel();
+        txtavisoNombre = new javax.swing.JLabel();
+        txtavisoCod = new javax.swing.JLabel();
+        txtavisoCantidad = new javax.swing.JLabel();
+        txtavisoProveedor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -112,7 +129,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(180, 30, 140, 110);
+        btnRegistrar.setBounds(280, 30, 140, 110);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -125,7 +142,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(350, 30, 140, 110);
+        btnProveedor.setBounds(450, 30, 140, 110);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -138,20 +155,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(530, 30, 150, 110);
-
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(730, 30, 140, 110);
+        btnProducto.setBounds(620, 30, 150, 110);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -230,6 +234,11 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
+            }
+        });
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
             }
         });
         jPanel1.add(txtPrecio);
@@ -456,6 +465,9 @@ public class AdministrarProducto extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
         });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(140, 280, 150, 30);
@@ -479,6 +491,11 @@ public class AdministrarProducto extends javax.swing.JFrame {
                 txtCantidadActionPerformed(evt);
             }
         });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCantidad);
         txtCantidad.setBounds(140, 460, 220, 30);
 
@@ -493,6 +510,36 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jPanel1.add(btnGuardar);
         btnGuardar.setBounds(60, 550, 130, 30);
 
+        txtavisoMarca.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoMarca.setText("*");
+        jPanel1.add(txtavisoMarca);
+        txtavisoMarca.setBounds(360, 410, 34, 14);
+
+        txtavisoPrecio.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoPrecio.setText("*");
+        jPanel1.add(txtavisoPrecio);
+        txtavisoPrecio.setBounds(360, 370, 34, 14);
+
+        txtavisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoNombre.setText("*");
+        jPanel1.add(txtavisoNombre);
+        txtavisoNombre.setBounds(360, 330, 34, 14);
+
+        txtavisoCod.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCod.setText("*");
+        jPanel1.add(txtavisoCod);
+        txtavisoCod.setBounds(290, 280, 34, 20);
+
+        txtavisoCantidad.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoCantidad.setText("*");
+        jPanel1.add(txtavisoCantidad);
+        txtavisoCantidad.setBounds(360, 470, 34, 14);
+
+        txtavisoProveedor.setForeground(new java.awt.Color(255, 0, 0));
+        txtavisoProveedor.setText("*");
+        jPanel1.add(txtavisoProveedor);
+        txtavisoProveedor.setBounds(360, 510, 34, 14);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -501,7 +548,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -534,18 +581,39 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtCantidad.setText("");
 
         txtCodigo.setEditable(true);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoCantidad.setVisible(false);
+        txtavisoCod.setVisible(false);
+        txtavisoMarca.setVisible(false);
+        txtavisoPrecio.setVisible(false);
+        txtavisoProveedor.setVisible(false);
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
+    public boolean camposVacios() {
+        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
+                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+
+            txtavisoNombre.setVisible(true);
+            txtavisoCantidad.setVisible(true);
+            txtavisoCod.setVisible(true);
+            txtavisoMarca.setVisible(true);
+            txtavisoPrecio.setVisible(true);
+            txtavisoProveedor.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
         // TODO add your handling code here:
 
-        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
             String mensaje = "";
             mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-            
+
             JOptionPane.showMessageDialog(null, mensaje);
             mostrarTabla("");
         }
@@ -554,8 +622,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         // TODO add your handling code here:
-        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
             String mensaje = "";
@@ -569,7 +636,13 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        mostrarTabla(txtCodigo.getText());
+        if (txtCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "LLene el campo código");
+            txtavisoCod.setVisible(true);
+        } else {
+            mostrarTabla(txtCodigo.getText());
+        }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -603,14 +676,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorMouseClicked
-
-    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorActionPerformed
-
     private void txtMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMarcaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMarcaMouseClicked
@@ -635,20 +700,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        AdministrarProveedor adminProveedor = new AdministrarProveedor();
+        AdministrarProducto adminProducto = new AdministrarProducto();
         this.dispose();
-        adminProveedor.setVisible(true);
-        adminProveedor.setLocationRelativeTo(null);
+        adminProducto.setVisible(true);
+        adminProducto.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnProductoActionPerformed
-
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
 
 
     private void tbtProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtProductoMouseClicked
@@ -695,29 +752,77 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
-        if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+
+        if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
-            txtCodigo.setText("");
-            txtNombres.setText("");
-            txtPrecio.setText("");
-            txtMarca.setText("");
-            txtProveedor.setText("");
-            txtCantidad.setText("");
+            limpiar();
         } else {
-            pDao.insertarProducto(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            Boolean lnombres = controles.contieneSoloLetras(txtNombres.getText());
+            Boolean lmarca = controles.contieneSoloLetras(txtMarca.getText());
+            Boolean lproveedor = controles.contieneSoloLetras(txtProveedor.getText());
+            Boolean ncodigo = controles.contieneSoloLetras(txtCodigo.getText());
+            Boolean ncantidad = controles.contieneSoloLetras(txtCantidad.getText());;
+            Boolean nprecio = controles.contieneSoloLetras(txtPrecio.getText());
+//            if (lnombres == true && lmarca == true && lproveedor == true
+//                    && ncodigo == false && ncantidad == false && nprecio == false) {
+            String mensaje;
+            mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            JOptionPane.showMessageDialog(null, mensaje);
             mostrarTabla("");
-            txtCodigo.setText("");
-            txtNombres.setText("");
-            txtPrecio.setText("");
-            txtMarca.setText("");
-            txtProveedor.setText("");
-            txtCantidad.setText("");
+
+            limpiar();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Ingrese correctamente los campos");
+//            }
+
         }
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        char caracteres = evt.getKeyChar();
+
+        if (caracteres < '0' || caracteres > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorActionPerformed
+
+    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProveedorMouseClicked
+
+    private void limpiar() {
+        txtCodigo.setText("");
+        txtNombres.setText("");
+        txtPrecio.setText("");
+        txtMarca.setText("");
+        txtProveedor.setText("");
+        txtCantidad.setText("");
+    }
 
     private void mostrarTabla(String codigo) {
         pDao.listarProducto(tbtProducto, codigo);
@@ -777,7 +882,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
     private rojerusan.RSButtonHover btnBuscar;
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private rojerusan.RSButtonHover btnDarDeBaja;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
@@ -814,6 +918,12 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProveedor;
+    private javax.swing.JLabel txtavisoCantidad;
+    private javax.swing.JLabel txtavisoCod;
+    private javax.swing.JLabel txtavisoMarca;
+    private javax.swing.JLabel txtavisoNombre;
+    private javax.swing.JLabel txtavisoPrecio;
+    private javax.swing.JLabel txtavisoProveedor;
     private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

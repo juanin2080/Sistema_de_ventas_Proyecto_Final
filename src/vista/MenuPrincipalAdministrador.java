@@ -16,7 +16,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarPersonal
      */
-
     public MenuPrincipalAdministrador() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -37,7 +36,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnConfiguración = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -83,7 +81,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(120, 20, 140, 120);
+        btnRegistrar.setBounds(240, 20, 140, 120);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -96,7 +94,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(310, 20, 140, 120);
+        btnProveedor.setBounds(430, 20, 140, 120);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -109,20 +107,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(500, 20, 150, 120);
-
-        btnConfiguración.setBackground(new java.awt.Color(0, 153, 102));
-        btnConfiguración.setText("Configuración");
-        btnConfiguración.setBgHover(new java.awt.Color(102, 102, 102));
-        btnConfiguración.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SETTINGS);
-        btnConfiguración.setSizeIcon(50.0F);
-        btnConfiguración.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguraciónActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfiguración);
-        btnConfiguración.setBounds(710, 20, 140, 120);
+        btnProducto.setBounds(620, 20, 150, 120);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -228,13 +213,13 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
-    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {                                    
+    private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {
 
-    }                                   
+    }
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                      
+    }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         InicioSesion inicioSesion = new InicioSesion();
@@ -243,15 +228,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnConfiguraciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraciónActionPerformed
-        // TODO add your handling code here:
-        Configuracion conf = new Configuracion();
-        this.dispose();
-        conf.setVisible(true);
-        conf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnConfiguraciónActionPerformed
-
-                                     
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         AdministrarPersonas adminPersonas = new AdministrarPersonas();
@@ -567,7 +543,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonBigIcon_new btnConfiguración;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
     private newscomponents.RSButtonBigIcon_new btnProveedor;

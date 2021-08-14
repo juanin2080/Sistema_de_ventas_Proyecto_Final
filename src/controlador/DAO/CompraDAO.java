@@ -25,46 +25,31 @@ import modelo.Proveedor;
  * @author USUARIO
  */
 public class CompraDAO {
-
+    
     private CompraJpaController tjc = new CompraJpaController();
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
     private Compra compra = new Compra();
-    private Producto producto = new Producto();
-    private Proveedor provedor = new Proveedor();
     private ProductoDAO pdao = new ProductoDAO();
-    private DetalleCompraDAO dcdao = new DetalleCompraDAO();
-    private ProveedorDAO prdao = new ProveedorDAO();
+    
     private String mensaje = "";
     
-    /**
-     * Método para insertar la compra
-     * @param nroCompra
-     * @param fecha
-     * @param iva
-     * @param fPago
-     * @param subtotal
-     * @param total
-     * @param idProveedor
-     * @return 
-     */
-
-    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
+    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor, String idAci, Boolean estado) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
             compra.setNroCompra(nroCompra);
             compra.setFecha(fecha);
             compra.setIva(true);
-            compra.setfPago(fPago);
+            compra.setFormaPago(fPago);
             compra.setSubtotal(subtotal);
             compra.setTotal(total);
             compra.setExternal_IDProveedor(Long.valueOf(idProveedor));
+            compra.setIdACI(idAci);
+            compra.setEstado(estado);
             tjc.create(compra);
-            mensaje = "Guardado correctamente";
             JOptionPane.showMessageDialog(null, "Guardado correctamente");
         } catch (Exception e) {
             System.out.println("MENSAJE EN GUARDAR: " + e.getMessage());
-            mensaje = "No se pudo guardar la informacion";
             JOptionPane.showMessageDialog(null, "No se pudo guardar la informacion");
         }
         return compra;
@@ -105,13 +90,13 @@ public class CompraDAO {
      */
     public int calcularStock(ArrayList<Producto> listaProductos, JTable tablaCompra) {
         int calcularStock = 0;
-
+        
         for (Producto dato : listaProductos) {
             if (true) {
-
+                
             }
             calcularStock += dato.getStock() + 1;
-
+            
         }
         return calcularStock;
     }
@@ -150,7 +135,7 @@ public class CompraDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
+                
             }
         }
         return producto;
@@ -174,7 +159,7 @@ public class CompraDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
+                
             }
         }
         datos.add(producto);
@@ -214,7 +199,7 @@ public class CompraDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-
+                
             }
         }
         return producto;
@@ -242,7 +227,7 @@ public class CompraDAO {
      */
     public String retornarId(String cedula) {
         String id = "";
-
+        
         DefaultTableModel model;
         List<Proveedor> datos = buscarProveedor(cedula);
         for (Proveedor proveedor : datos) {
@@ -275,6 +260,6 @@ public class CompraDAO {
         Producto p = new Producto();
         p = buscarProductoCompra(codigo, cantidad);
         pdao.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-
+        
     }
 }
