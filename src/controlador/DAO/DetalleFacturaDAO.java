@@ -24,12 +24,13 @@ import modelo.Producto;
  *
  * @author María Castillo
  */
+
 public class DetalleFacturaDAO {
 
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
     Producto produc = new Producto();
-    private String mensaje = "";
+    private String mgensaje = "";
     private ArrayList<Producto> listaProductosCopia = new ArrayList<Producto>();
     private Factura facturaCopia = new Factura();
     /**
@@ -57,5 +58,6 @@ public class DetalleFacturaDAO {
             System.out.println("No se pudo registrar el Detalle de Factura ");
             System.out.println(e.getMessage());
         }
+        return null;
     }
 }

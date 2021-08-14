@@ -756,7 +756,7 @@ public class Factura extends javax.swing.JFrame {
             if (controles.contieneSoloLetras(txtFactura.getText()) == false && controles.contieneSoloLetras(txtFormaPago.getText()) == true) {
                 FacturaDAO fac1 = new FacturaDAO();
                 Date fecha = new Date();
-                    Persona persona = new Persona();
+                Persona persona = new Persona();
 //                Producto producto = new Producto();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
                 String nroFactura = txtFactura.getText();
@@ -768,6 +768,10 @@ public class Factura extends javax.swing.JFrame {
                 double total = Double.parseDouble(txtTotal.getText());
                 fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona, idAci, estado);
                 JOptionPane.showMessageDialog(rootPane, "Factura agregada");
+                for (Producto listaProducto : listaProductos) {
+////                    detalleFactura.insertarDetalleFactura(WIDTH, total, total, factura, produc)
+//                    detalleFactura.insertarDetalleFactura(txtCantidadProducto.getText(),txtCodigo.getText()) * listaProducto.getPrecio(), fac1.getFactura(), listaProducto));
+                }
                 mostrarTabla();
                 limpiar();
 

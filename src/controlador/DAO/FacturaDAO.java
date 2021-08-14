@@ -24,7 +24,7 @@ import modelo.Producto;
  * @author María Castillo
  */
 public class FacturaDAO {
-    
+
     private FacturaJpaController Controladorfactura = new FacturaJpaController();
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private PersonaJpaController controladorPersona = new PersonaJpaController();
@@ -33,8 +33,10 @@ public class FacturaDAO {
     private ProductoDAO producto = new ProductoDAO();
     private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     private PersonaDAO pe = new PersonaDAO();
+
     /**
      * Método para insertar Datos en una Factura
+     *
      * @param fecha
      * @param formaPago
      * @param iva
@@ -42,9 +44,9 @@ public class FacturaDAO {
      * @param subtotal
      * @param total
      * @param idPersona
-     * @return 
+     * @return
      */
-    public Factura insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona) {
+    public Factura insertarFactura(Date fecha, String formaPago, Boolean iva, String nroFactura, Double subtotal, Double total, Persona idPersona, String idAci, Boolean estado) {
         try {
             factura.setIdFactura(Long.MIN_VALUE);
             factura.setFecha(fecha);
@@ -58,17 +60,19 @@ public class FacturaDAO {
             factura.setEstado(estado);
             Controladorfactura.create(factura);
             mensaje = "Factura registrada con exito";
-            
+
         } catch (Exception e) {
             mensaje = "No se pudo registrar la factura ";
             System.out.println(e.getMessage());
         }
         return factura;
     }
+
     /**
      * Método que listar productos en la tabla leyendolos desde la BD
+     *
      * @param tablaCompra
-     * @param datos 
+     * @param datos
      */
     public void listarProducto(JTable tablaCompra, ArrayList<Producto> datos) {
         DefaultTableModel model;
@@ -89,11 +93,13 @@ public class FacturaDAO {
         }
         tablaCompra.setModel(model);
     }
+
     /**
      * Método que buscar un producto mediante el codigo del producto
+     *
      * @param codigo
      * @param cantidad
-     * @return 
+     * @return
      */
     public Producto buscarProductoFactura(String codigo, int cantidad) {
         List<Producto> datos = controladorProducto.findProductoEntities();
@@ -108,15 +114,18 @@ public class FacturaDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-                
+
             }
         }
         return producto;
     }
+
     /**
-     * Método para agregar productos a la lista llamada datos que es de tipo Producto
+     * Método para agregar productos a la lista llamada datos que es de tipo
+     * Producto
+     *
      * @param codigo
-     * @return 
+     * @return
      */
     public Producto buscarProductoF(String codigo) {
         List<Producto> datos = controladorProducto.findProductoEntities();
@@ -131,16 +140,18 @@ public class FacturaDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-                
+
             }
         }
         datos.add(producto);
         return producto;
     }
+
     /**
      * Método que buscar un producto mediante codigo en la BD
+     *
      * @param codigo
-     * @return 
+     * @return
      */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
@@ -150,14 +161,16 @@ public class FacturaDAO {
         List<Producto> lista = query.getResultList();
         return lista;
     }
+
     /**
-     * Método para listar personas 
+     * Método para listar personas
+     *
      * @param cedula
-     * @return 
+     * @return
      */
     public String listarPersona(String cedula) {
         String nombre = "";
-        
+
         DefaultTableModel model;
         List<Persona> datos = buscarCliente(cedula);
         for (Persona persona : datos) {
@@ -165,10 +178,10 @@ public class FacturaDAO {
         }
         return nombre;
     }
-    
+
     public String retornarId(String cedula) {
         String id = "";
-        
+
         DefaultTableModel model;
         List<Persona> datos = buscarCliente(cedula);
         for (Persona persona : datos) {
@@ -176,10 +189,12 @@ public class FacturaDAO {
         }
         return id;
     }
+
     /**
      * Método para buscar clientes mediante cedula en la BD
+     *
      * @param cedula
-     * @return 
+     * @return
      */
     private List<Persona> buscarCliente(String cedula) {
         Persona persona;
@@ -189,11 +204,13 @@ public class FacturaDAO {
         List<Persona> lista = query.getResultList();
         return lista;
     }
+
     /**
-     * Método para calcular el subtotal 
+     * Método para calcular el subtotal
+     *
      * @param listaProductos
      * @param cantidad
-     * @return 
+     * @return
      */
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
@@ -202,10 +219,12 @@ public class FacturaDAO {
         }
         return subtotal;
     }
+
     /**
      * Método para buscar factura por id
+     *
      * @param idFactura
-     * @return 
+     * @return
      */
     public Factura buscarFacturaId(Long idFactura) {
         Factura factura = new Factura();
@@ -219,21 +238,34 @@ public class FacturaDAO {
                 factura.setTotal(factura1.getTotal());
                 factura.setSubtotal(factura1.getSubtotal());
                 factura.setIva(factura1.isIva());
-                
+
             }
         }
         return factura;
     }
+
     /**
      * Método para actualizar el Stock de productos
+     *
      * @param codigo
-     * @param cantidad 
+     * @param cantidad
      */
     public void actualizarStockBD(String codigo, int cantidad) {
         Producto p = new Producto();
         p = buscarProductoFactura(codigo, cantidad);
         producto.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-        
+
     }
-    
+//    public static void guardarDetalle(Factura factu, List<DetalleFacturaDAO>lista){
+//        for (DetalleFacturaDAO detalleFacturaDAO : lista) 
+//            FacturaDAO F=
+//            
+//        }
+//    }
+    public Factura  getFactura(){
+        return factura;
+    }
+    public void setFactura(Factura factura){
+        this.factura= factura;
+    }
 }
