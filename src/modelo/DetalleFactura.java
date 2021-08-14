@@ -34,16 +34,26 @@ public class DetalleFactura implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalleFactura;
-    @Column(length = 10, unique = true)
-    private int cantidad;
+//    private int cantidad;
+    //================================================
+    private String nombreProducto;
+    //================================================
     private double precioUnitario;
-    private double precioTotal;
+//    private double precioTotal;
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFactura", nullable = false, referencedColumnName = "idFactura")
     private Factura factura;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto", nullable = false, referencedColumnName = "idProducto")
     private Producto producto;
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
 
     public Producto getProducto() {
         return producto;
@@ -69,14 +79,13 @@ public class DetalleFactura implements Serializable {
         this.idDetalleFactura = idDetalleFactura;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
+//    public int getCantidad() {
+//        return cantidad;
+//    }
+//
+//    public void setCantidad(int cantidad) {
+//        this.cantidad = cantidad;
+//    }
     public double getPrecioUnitario() {
         return precioUnitario;
     }
@@ -85,14 +94,13 @@ public class DetalleFactura implements Serializable {
         this.precioUnitario = precioUnitario;
     }
 
-    public double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
-    }
-
+//    public double getPrecioTotal() {
+//        return precioTotal;
+//    }
+//
+//    public void setPrecioTotal(double precioTotal) {
+//        this.precioTotal = precioTotal;
+//    }
     @Override
     public int hashCode() {
         int hash = 0;

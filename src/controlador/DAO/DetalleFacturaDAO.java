@@ -28,14 +28,14 @@ public class DetalleFacturaDAO {
 
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
-//    Producto produc = new Producto();
-//    private String mensaje = "";
 
-    public void insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+//    public void insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+    public void insertarDetalleFactura(String nombre, Double precioUnitario, Factura factura, Producto producto) {
         try {
             detalle.setIdDetalleFactura(Long.MIN_VALUE);
-            detalle.setCantidad(cantidad);
-            detalle.setPrecioTotal(precioTotal);
+//            detalle.setCantidad(cantidad);
+//            detalle.setPrecioTotal(precioTotal);
+            detalle.setNombreProducto(nombre);
             detalle.setPrecioUnitario(precioUnitario);
             detalle.setProducto(producto);
             detalle.setFactura(factura);
