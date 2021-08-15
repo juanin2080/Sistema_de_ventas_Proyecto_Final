@@ -824,12 +824,11 @@ public class Factura extends javax.swing.JFrame {
         }
     }
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-          FacturaDAO fac1 = new FacturaDAO();
+    FacturaDAO fac1 = new FacturaDAO();
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.Numero(txtFactura.getText())) {
-              
                 Date fecha = new Date();
                 Persona persona = new Persona();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
@@ -849,7 +848,7 @@ public class Factura extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
-            dDAO.listarPersonas(tbtDetalleFactura, fac1.getFactura().getIdFactura());
+            dDAO.listarFactura(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
             formaPago = "";
         }
