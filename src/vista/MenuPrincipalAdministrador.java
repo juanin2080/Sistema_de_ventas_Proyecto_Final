@@ -36,6 +36,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
+        btnCompraProveedor = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -44,7 +45,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
         rSLabelImage3 = new necesario.RSLabelImage();
-        jLabel1 = new javax.swing.JLabel();
+        txtBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -81,7 +82,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(240, 20, 140, 120);
+        btnRegistrar.setBounds(110, 20, 140, 120);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -94,7 +95,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(430, 20, 140, 120);
+        btnProveedor.setBounds(270, 20, 140, 120);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -107,7 +108,20 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(620, 20, 150, 120);
+        btnProducto.setBounds(590, 20, 150, 120);
+
+        btnCompraProveedor.setBackground(new java.awt.Color(0, 153, 102));
+        btnCompraProveedor.setText("Compra ");
+        btnCompraProveedor.setBgHover(new java.awt.Color(102, 102, 102));
+        btnCompraProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
+        btnCompraProveedor.setSizeIcon(50.0F);
+        btnCompraProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraProveedorActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCompraProveedor);
+        btnCompraProveedor.setBounds(430, 20, 140, 120);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -175,11 +189,11 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         jPanel1.add(rSLabelImage3);
         rSLabelImage3.setBounds(10, 10, 50, 40);
 
-        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Hola, NombreAdmin escoge una opción de nuestro menú");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 220, 500, 70);
+        txtBienvenida.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        txtBienvenida.setForeground(new java.awt.Color(51, 51, 51));
+        txtBienvenida.setText("Hola, NombreAdmin escoge una opción de nuestro menú");
+        jPanel1.add(txtBienvenida);
+        txtBienvenida.setBounds(10, 220, 500, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,6 +265,13 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         adminProveedor.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnProveedorActionPerformed
+
+    private void btnCompraProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraProveedorActionPerformed
+        CompraProveedor cp = new CompraProveedor();
+        this.dispose();
+        cp.setVisible(true);
+        cp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCompraProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -543,13 +564,13 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private newscomponents.RSButtonBigIcon_new btnCompraProveedor;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
     private newscomponents.RSButtonBigIcon_new btnProveedor;
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -558,5 +579,6 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
+    private javax.swing.JLabel txtBienvenida;
     // End of variables declaration//GEN-END:variables
 }

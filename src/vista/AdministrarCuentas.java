@@ -475,6 +475,7 @@ public class AdministrarCuentas extends javax.swing.JFrame {
 //        cuentaP.setPersona(person);
             Boolean estado = false;
             cDAO.darDeBajaCuenta(Long.valueOf(txtIdCuenta.getText()), txtUsuario.getText(), txtClave.getText(), estado, person);
+            mostrarTabla("");
         }
 
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
@@ -501,13 +502,11 @@ public class AdministrarCuentas extends javax.swing.JFrame {
                 mostrarTabla("");
                 LimpiarCampos();
             } else {
-                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
                 txtavisoCed.setVisible(true);
-                txtavisoClave.setVisible(true);
-                txtavisoNombre.setVisible(true);
-                txtavisoUsuario.setVisible(true);
             }
         }
+
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 

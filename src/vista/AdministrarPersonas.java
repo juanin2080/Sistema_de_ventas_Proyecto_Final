@@ -58,6 +58,12 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtCedula.setEditable(true);
         cbxRol.setEnabled(true);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoDirec.setVisible(false);
+        txtavisoEmail.setVisible(false);
+        txtavisoTlf.setVisible(false);
+        txtavisoCed.setVisible(false);
     }
 
     public boolean camposVacios() {
@@ -107,7 +113,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtPersonal = new RSMaterialComponent.RSTableMetro();
-        btnGuardar = new rojerusan.RSButtonHover();
+        btnRegistrarRoles = new rojerusan.RSButtonHover();
         labelIcon5 = new necesario.LabelIcon();
         labelIcon6 = new necesario.LabelIcon();
         btnActualizarDatos = new rojerusan.RSButtonHover();
@@ -131,6 +137,8 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtavisoEmail = new javax.swing.JLabel();
         txtavisoTlf = new javax.swing.JLabel();
         txtavisoDirec = new javax.swing.JLabel();
+        btnGuardar1 = new rojerusan.RSButtonHover();
+        labelIcon7 = new necesario.LabelIcon();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -310,21 +318,21 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(452, 240, 700, 330);
 
-        btnGuardar.setBackground(new java.awt.Color(0, 204, 51));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setColorHover(new java.awt.Color(102, 102, 102));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarRoles.setBackground(new java.awt.Color(0, 204, 51));
+        btnRegistrarRoles.setText("Registrar rol");
+        btnRegistrarRoles.setColorHover(new java.awt.Color(102, 102, 102));
+        btnRegistrarRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnRegistrarRolesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar);
-        btnGuardar.setBounds(60, 560, 130, 30);
+        jPanel1.add(btnRegistrarRoles);
+        btnRegistrarRoles.setBounds(930, 600, 130, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel1.add(labelIcon5);
-        labelIcon5.setBounds(20, 560, 30, 30);
+        labelIcon5.setBounds(890, 600, 30, 30);
 
         labelIcon6.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.UPDATE);
@@ -508,6 +516,22 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jPanel1.add(txtavisoDirec);
         txtavisoDirec.setBounds(380, 450, 34, 14);
 
+        btnGuardar1.setBackground(new java.awt.Color(0, 204, 51));
+        btnGuardar1.setText("Guardar");
+        btnGuardar1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar1);
+        btnGuardar1.setBounds(60, 560, 130, 30);
+
+        labelIcon7.setForeground(new java.awt.Color(102, 102, 102));
+        labelIcon7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
+        jPanel1.add(labelIcon7);
+        labelIcon7.setBounds(20, 560, 30, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -540,52 +564,95 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     private void btnNuevoPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPersonalActionPerformed
         limpiarCampos();
-        txtavisoNombre.setVisible(false);
-        txtavisoDirec.setVisible(false);
-        txtavisoEmail.setVisible(false);
-        txtavisoTlf.setVisible(false);
-        txtavisoCed.setVisible(false);
+
     }//GEN-LAST:event_btnNuevoPersonalActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos deben estar llenos");
         } else {
-            if (controles.validarEmail(txtEmail.getText())) {
-                Persona person = new Persona();
-                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
-                limpiarCampos();
-                mostrarTabla("");
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarEmail(txtEmail.getText())) {
+                        if (controles.validarCelular(txtTelefono.getText())) {
+                            if (controles.validarNombre(txtDireccion.getText())) {
+//                                Persona person = new Persona();
+//                                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+//                                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+//                                limpiarCampos();
+//                                mostrarTabla("");
+
+                                Persona person = new Persona();
+                                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+                                limpiarCampos();
+                                mostrarTabla("");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                                txtDireccion.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                            txtavisoTlf.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                        txtavisoEmail.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                    txtavisoNombre.setVisible(true);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
-                txtavisoEmail.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
+                txtavisoCed.setVisible(true);
             }
-
         }
-
-
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
+    private void btnRegistrarRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarRolesActionPerformed
+        AdministrarRoles ar = new AdministrarRoles();
+        this.dispose();
+        ar.setVisible(true);
+        ar.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistrarRolesActionPerformed
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//        if (camposVacios()) {
-//        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
-//        } else {
-//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
-        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
-//        JOptionPane.showMessageDialog(null, mensaje);
-        limpiarCampos();
-        mostrarTabla("");
-        cbxRol.setSelectedIndex(0);
-//            } else {
-//            JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
-        txtavisoCed.setVisible(true);
-        txtavisoEmail.setVisible(true);
-//            }
 
-//        }
-
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+        } else {
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarEmail(txtEmail.getText())) {
+                        if (controles.validarCelular(txtTelefono.getText())) {
+                            if (controles.validarNombre(txtDireccion.getText())) {
+//                                
+                                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+                                pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+                                limpiarCampos();
+                                mostrarTabla("");
+                                cbxRol.setSelectedIndex(0);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                                txtDireccion.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                            txtavisoTlf.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                        txtavisoEmail.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                    txtavisoNombre.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
+                txtavisoCed.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -692,6 +759,27 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresKeyTyped
 
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+//        if (camposVacios()) {
+//        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+//        } else {
+//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
+        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+        pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+//        JOptionPane.showMessageDialog(null, mensaje);
+        limpiarCampos();
+        mostrarTabla("");
+        cbxRol.setSelectedIndex(0);
+//            } else {
+//            JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
+        txtavisoCed.setVisible(true);
+        txtavisoEmail.setVisible(true);
+//            }
+
+//        }
+
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -744,9 +832,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos;
-    private rojerusan.RSButtonHover btnGuardar;
+    private rojerusan.RSButtonHover btnGuardar1;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoPersonal;
+    private rojerusan.RSButtonHover btnRegistrarRoles;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
     private RSMaterialComponent.RSComboBoxMaterial<Rol> cbxRol;
@@ -767,6 +856,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private necesario.LabelIcon labelIcon10;
     private necesario.LabelIcon labelIcon5;
     private necesario.LabelIcon labelIcon6;
+    private necesario.LabelIcon labelIcon7;
     private rojeru_san.rsdate.RSLabelFecha rSLabelFecha1;
     private rojeru_san.rsdate.RSLabelHora rSLabelHora1;
     private necesario.RSLabelImage rSLabelImage2;

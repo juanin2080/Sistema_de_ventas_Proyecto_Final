@@ -34,12 +34,8 @@ public class DetalleFactura implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalleFactura;
-//    private int cantidad;
-    //================================================
     private String nombreProducto;
-    //================================================
     private double precioUnitario;
-//    private double precioTotal;
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idFactura", nullable = false, referencedColumnName = "idFactura")
     private Factura factura;

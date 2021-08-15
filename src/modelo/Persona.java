@@ -56,6 +56,7 @@ public class Persona implements Serializable {
 
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cuenta cuenta;
+
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Factura> listaFactura = new ArrayList<Factura>();
 

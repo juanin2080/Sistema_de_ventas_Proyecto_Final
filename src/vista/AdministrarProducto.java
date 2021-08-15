@@ -7,14 +7,13 @@ package vista;
 
 import controlador.DAO.ProductoDAO;
 import controlador.utilidades.Controladores;
-import java.util.List;
 import javax.swing.JOptionPane;
-import modelo.Producto;
 import modelo.Proveedor;
+import modelo.Rol;
 
 /**
  *
- * @author juana
+ * @author CRCR
  */
 public class AdministrarProducto extends javax.swing.JFrame {
 
@@ -30,6 +29,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         mostrarTabla("");
         txtid.setVisible(false);
+        llenarCbx();
 
         txtavisoNombre.setVisible(false);
         txtavisoCantidad.setVisible(false);
@@ -81,7 +81,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
         jLabel8 = new javax.swing.JLabel();
-        txtProveedor = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -93,6 +92,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtavisoCod = new javax.swing.JLabel();
         txtavisoCantidad = new javax.swing.JLabel();
         txtavisoProveedor = new javax.swing.JLabel();
+        cbxEmpresa = new RSMaterialComponent.RSComboBoxMaterial<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -416,22 +416,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(20, 410, 80, 30);
 
-        txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtProveedor.setForeground(new java.awt.Color(102, 102, 102));
-        txtProveedor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtProveedorMouseClicked(evt);
-            }
-        });
-        txtProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProveedorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtProveedor);
-        txtProveedor.setBounds(140, 500, 220, 30);
-
         txtMarca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMarca.setForeground(new java.awt.Color(102, 102, 102));
         txtMarca.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
@@ -540,6 +524,17 @@ public class AdministrarProducto extends javax.swing.JFrame {
         jPanel1.add(txtavisoProveedor);
         txtavisoProveedor.setBounds(360, 510, 34, 14);
 
+        cbxEmpresa.setForeground(new java.awt.Color(102, 102, 102));
+        cbxEmpresa.setColorMaterial(new java.awt.Color(102, 102, 102));
+        cbxEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxEmpresaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbxEmpresa);
+        cbxEmpresa.setBounds(140, 500, 220, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -577,7 +572,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtNombres.setText("");
         txtPrecio.setText("");
         txtMarca.setText("");
-        txtProveedor.setText("");
         txtCantidad.setText("");
 
         txtCodigo.setEditable(true);
@@ -590,9 +584,15 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtavisoProveedor.setVisible(false);
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
+    public void llenarCbx() {
+        cbxEmpresa.removeAllItems();
+        pDao.listarComboBox(cbxEmpresa);
+    }
+
     public boolean camposVacios() {
         if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") || txtProveedor.getText().equals("")) {
+                || txtPrecio.getText().equals("") //|| txtProveedor.getText().equals("")
+                ) {
 
             txtavisoNombre.setVisible(true);
             txtavisoCantidad.setVisible(true);
@@ -611,11 +611,31 @@ public class AdministrarProducto extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
-            String mensaje = "";
-            mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
+            if (controles.validarNombre(txtNombres.getText())) {
+                if (controles.validarNumeroDecimal(txtPrecio.getText())) {
+                    if (controles.validarNombre(txtMarca.getText())) {
+                        if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                            String mensaje = "";
+                            mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
 
-            JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("");
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            mostrarTabla("");
+                        } else {
+                            txtavisoCantidad.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
+                        }
+                    } else {
+                        txtavisoMarca.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                    }
+                } else {
+                    txtavisoPrecio.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Precio Incorrecto");
+                }
+            } else {
+                txtavisoNombre.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+            }
         }
 
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
@@ -625,23 +645,38 @@ public class AdministrarProducto extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
-            String mensaje = "";
-            mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-            JOptionPane.showMessageDialog(null, mensaje);
-
-            mostrarTabla("");
+            if (controles.validarNombre(txtNombres.getText())) {
+                if (controles.validarNumeroDecimal(txtPrecio.getText())) {
+                    if (controles.validarNombre(txtMarca.getText())) {
+                        if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                            String mensaje = "";
+                            mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            mostrarTabla("");
+                        } else {
+                            txtavisoCantidad.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
+                        }
+                    } else {
+                        txtavisoMarca.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                    }
+                } else {
+                    txtavisoPrecio.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Precio Incorrecto");
+                }
+            } else {
+                txtavisoNombre.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+            }
         }
 
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        if (txtCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "LLene el campo código");
-            txtavisoCod.setVisible(true);
-        } else {
-            mostrarTabla(txtCodigo.getText());
-        }
+        mostrarTabla(txtCodigo.getText());
+//        
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -717,7 +752,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtNombres.setText(tbtProducto.getValueAt(select, 1) + "");
         txtPrecio.setText(tbtProducto.getValueAt(select, 2) + "");
         txtMarca.setText(tbtProducto.getValueAt(select, 3) + "");
-        txtProveedor.setText(tbtProducto.getValueAt(select, 4) + "");
+        cbxEmpresa.setSelectedItem(tbtProducto.getValueAt(select, 4));
         txtCantidad.setText((String) tbtProducto.getValueAt(select, 5));
         txtid.setText(tbtProducto.getValueAt(select, 6) + "");
         txtCodigo.setEditable(false);
@@ -757,45 +792,50 @@ public class AdministrarProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
             limpiar();
         } else {
-            Boolean lnombres = controles.contieneSoloLetras(txtNombres.getText());
-            Boolean lmarca = controles.contieneSoloLetras(txtMarca.getText());
-            Boolean lproveedor = controles.contieneSoloLetras(txtProveedor.getText());
-            Boolean ncodigo = controles.contieneSoloLetras(txtCodigo.getText());
-            Boolean ncantidad = controles.contieneSoloLetras(txtCantidad.getText());;
-            Boolean nprecio = controles.contieneSoloLetras(txtPrecio.getText());
-//            if (lnombres == true && lmarca == true && lproveedor == true
-//                    && ncodigo == false && ncantidad == false && nprecio == false) {
-            String mensaje;
-            mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-            JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("");
-
-            limpiar();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Ingrese correctamente los campos");
-//            }
-
+            if (controles.validarNumeroEntero(txtCodigo.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarNumeroDecimal(txtPrecio.getText())) {
+                        if (controles.validarNombre(txtMarca.getText())) {
+                            if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                                String mensaje;
+                                mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
+                                JOptionPane.showMessageDialog(null, mensaje);
+                                mostrarTabla("");
+                                limpiar();
+                            } else {
+                                txtavisoCantidad.setVisible(true);
+                                JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
+                            }
+                        } else {
+                            txtavisoMarca.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                        }
+                    } else {
+                        txtavisoPrecio.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Precio Incorrecto");
+                    }
+                } else {
+                    txtavisoNombre.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                }
+            } else {
+                txtavisoCod.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Código Incorrecto");
+            }
         }
 
+//        
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         // TODO add your handling code here:
-        char caracteres = evt.getKeyChar();
 
-        if (caracteres < '0' || caracteres > '9') {
-            evt.consume();
-        }
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
         // TODO add your handling code here:
-        char caracteres = evt.getKeyChar();
 
-        if (caracteres < '0' || caracteres > '9') {
-            evt.consume();
-        }
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
@@ -807,20 +847,15 @@ public class AdministrarProducto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCantidadKeyTyped
 
-    private void txtProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorActionPerformed
+    private void cbxEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEmpresaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorActionPerformed
-
-    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProveedorMouseClicked
+    }//GEN-LAST:event_cbxEmpresaActionPerformed
 
     private void limpiar() {
         txtCodigo.setText("");
         txtNombres.setText("");
         txtPrecio.setText("");
         txtMarca.setText("");
-        txtProveedor.setText("");
         txtCantidad.setText("");
     }
 
@@ -891,6 +926,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private RSMaterialComponent.RSComboBoxMaterial<Rol> cbxEmpresa;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -917,7 +953,6 @@ public class AdministrarProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtProveedor;
     private javax.swing.JLabel txtavisoCantidad;
     private javax.swing.JLabel txtavisoCod;
     private javax.swing.JLabel txtavisoMarca;

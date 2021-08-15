@@ -6,8 +6,8 @@
 package vista;
 
 import controlador.DAO.RolDAO;
+import controlador.utilidades.Controladores;
 import javax.swing.JOptionPane;
-import modelo.Rol;
 
 /**
  *
@@ -19,6 +19,7 @@ public class AdministrarRoles extends javax.swing.JFrame {
      * Creates new form RegistrarPersonal
      */
     RolDAO rDAO = new RolDAO();
+    Controladores control = new Controladores();
 
     public AdministrarRoles() {
         initComponents();
@@ -268,9 +269,14 @@ public class AdministrarRoles extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "LLene todos los campos");
             txtavisoRol.setVisible(true);
         } else {
-            rDAO.insertarRol(txtRol.getText());
-            limpiarCampos();
-            mostrarTabla();
+            if (control.validarNombre(txtRol.getText())) {
+                rDAO.insertarRol(txtRol.getText());
+                limpiarCampos();
+                mostrarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Rol Incorrecto");
+            }
+
         }
 
 
