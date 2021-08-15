@@ -767,14 +767,6 @@ public class Factura extends javax.swing.JFrame {
                     listaProductos.add(produc);
                     calcularSubtotal();
                     txtSubtotal.setText(String.valueOf(subtotal));
-
-                    for (Producto listaProducto : listaProductos) {
-                        listaProducto.getCodigo();
-                        listaProducto.getStock();
-                        System.out.println("id" + listaProducto.getIdProducto());
-                        System.out.println("codigo" + listaProducto.getCodigo());
-                        System.out.println("cod stock" + listaProducto.getStock());
-                    }
                     mostrarTabla();
                     fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
 
@@ -848,10 +840,10 @@ public class Factura extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
-            dDAO.listarPersonas(tbtDetalleFactura, fac1.getFactura().getIdFactura());
+            dDAO.listarFactura(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
             formaPago = "";
-        }
+        }   
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar1ActionPerformed
@@ -967,7 +959,8 @@ public class Factura extends javax.swing.JFrame {
         txtCantidadProducto.setText("");
         txtSubtotal.setText("");
         txtTotal.setText("");
-
+        txtIdACI.setText("");
+        txtCodACI.setText("");
         lblAvisoCedula.setVisible(false);
         lblAvisoCliente.setVisible(false);
         lblAvisoCodigo.setVisible(false);

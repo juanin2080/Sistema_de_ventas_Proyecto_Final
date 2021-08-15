@@ -50,14 +50,8 @@ public class Controladores {
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
         } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion" + err.getMessage());
             cedulaCorrecta = false;
-        }
-
-        if (!cedulaCorrecta) {
-            System.out.println("La Cédula ingresada es Incorrecta");
-        } else {
-            System.out.println("La Cédula ingresada es correcta");
         }
         return cedulaCorrecta;
     }
@@ -81,7 +75,7 @@ public class Controladores {
     public static boolean validarNumeroDecimal(String numero) {
         return numero.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
     }
-    
+
     public static boolean Numero(String numero) {
         return numero.matches("^[0-9]{5}+$");
     }

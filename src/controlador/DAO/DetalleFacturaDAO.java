@@ -45,7 +45,7 @@ public class DetalleFacturaDAO {
         }
     }
 
-    public void listarPersonas(JTable tabla, Long id) {
+    public void listarFactura(JTable tabla, Long id) {
         DefaultTableModel modelo;
         String[] titulo = {"IdDetalleFactura", "Nombre producto", "Precio Unitario", "Nro Factura", "idProducto", "idFactura"};
         modelo = new DefaultTableModel(null, titulo);

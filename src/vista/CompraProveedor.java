@@ -797,7 +797,6 @@ public class CompraProveedor extends javax.swing.JFrame {
 
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
-
         } else {
             //            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
             CompraDAO comDao = new CompraDAO();

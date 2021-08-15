@@ -37,7 +37,6 @@ public class Aci_Servicio_Web {
         InputStream input = new BufferedInputStream(urlConecction.getInputStream());
     }
 
-    // valor 12.00
     private String llenarCeros(String valor) {
         String aux = "";
         boolean band = false;
@@ -149,20 +148,4 @@ public class Aci_Servicio_Web {
         return aux;
     }
 
-//    public static void main(String[] args) {
-//        Aci_Servicio_Web aci = new Aci_Servicio_Web();
-//        try {
-//            HashMap mapa = aci.request(120.00, "CD");
-//            System.out.println(mapa.toString());
-//            String id = "";
-//            try {
-//                java.awt.Desktop.getDesktop().browse(new URI("http://localhost/pago/pago.html"));
-//            } catch (Exception e) {
-//            }
-////            HashMap res = aci.checkPago("F77E1A07C58466F3A6B843734C514E87.uat01-vm-tx02");
-////            System.out.println(res.toString());
-//        } catch (Exception e) {
-//            System.out.println("Excepciones " + e.getMessage());
-//        }
-//    }
 }
