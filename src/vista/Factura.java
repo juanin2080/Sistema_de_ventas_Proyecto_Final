@@ -20,14 +20,14 @@ import modelo.Producto;
  * @author María Castillo
  */
 public class Factura extends javax.swing.JFrame {
-    
+
     Controladores controles = new Controladores();
     private FacturaDAO fac = new FacturaDAO();
     private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     /**
      * Creates new form Factura
      */
-    
+
     ArrayList<Producto> listaProductos = new ArrayList<Producto>();
     Date fecha = new Date();
     String nombre = "";
@@ -36,11 +36,11 @@ public class Factura extends javax.swing.JFrame {
     Boolean efectivo = false;
     Boolean Tarjeta = false;
     String formaPago = "";
-    
+
     Producto produc = new Producto();
-    
+
     public Factura() {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
         txtidPersona.setVisible(false);
@@ -51,9 +51,9 @@ public class Factura extends javax.swing.JFrame {
         lblAvisoCantidad.setVisible(false);
         lblAvisoSubtotal.setVisible(false);
         lblAvisoTotal.setVisible(false);
-        
+
     }
-    
+
     void limpiaTabla() {
         DefaultTableModel temp;
         try {
@@ -67,12 +67,12 @@ public class Factura extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-    
+
     private void mostrarTabla() {
-        
+
         fac.listarProducto(tablaFactura, listaProductos);
     }
-    
+
     private void mostrarNombreCliente(String cedula) {
         nombre = fac.listarPersona(cedula);
         txtnombreCliente.setText(nombre);
@@ -712,7 +712,7 @@ public class Factura extends javax.swing.JFrame {
         //subtotal();
         if (txtSubtotal.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese los productos que desea vender");
-            
+
         } else {
             calcularIva();
         }
@@ -729,27 +729,31 @@ public class Factura extends javax.swing.JFrame {
             if (controles.validarNumeroEntero(txtCodigo.getText())) {
                 if (controles.validarNumeroEntero(txtCantidadProducto.getText())) {
                     produc = fac.buscarProductoFactura(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-                    listaProductos.add(produc);
-                    calcularSubtotal();
-                    txtSubtotal.setText(String.valueOf(subtotal));
-                    
-                    for (Producto listaProducto : listaProductos) {
-                        listaProducto.getCodigo();
-                        listaProducto.getStock();
-                        System.out.println("id" + listaProducto.getIdProducto());
-                        System.out.println("codigo" + listaProducto.getCodigo());
-                        System.out.println("cod stock" + listaProducto.getStock());
+                    if (produc.getIdProducto() == null) {
+                        JOptionPane.showMessageDialog(null, "Código no encontrado");
+                    } else {
+                        listaProductos.add(produc);
+                        calcularSubtotal();
+                        txtSubtotal.setText(String.valueOf(subtotal));
+
+                        for (Producto listaProducto : listaProductos) {
+                            listaProducto.getCodigo();
+                            listaProducto.getStock();
+                            System.out.println("id" + listaProducto.getIdProducto());
+                            System.out.println("codigo" + listaProducto.getCodigo());
+                            System.out.println("cod stock" + listaProducto.getStock());
+                        }
+                        mostrarTabla();
+                        fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
+
                     }
-                    mostrarTabla();
-                    fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Código del Producto Incorrecto");
             }
-            
+
         }
 
     }//GEN-LAST:event_btnBuscarProducto1ActionPerformed
@@ -770,12 +774,12 @@ public class Factura extends javax.swing.JFrame {
     private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
-    
+
     public boolean camposVacios() {
         if (txtFactura.getText().equals("") || txtCedula.getText().equals("") || txtnombreCliente.getText().equals("")
                 || txtCodigo.getText().equals("") || txtCantidadProducto.getText().equals("")
                 || txtSubtotal.getText().equals("") || txtTotal.getText().equals("")) {
-            
+
             lblAvisoCedula.setVisible(true);
             lblAvisoCliente.setVisible(true);
             lblAvisoCodigo.setVisible(true);
@@ -789,12 +793,12 @@ public class Factura extends javax.swing.JFrame {
         }
     }
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-          FacturaDAO fac1 = new FacturaDAO();
+        FacturaDAO fac1 = new FacturaDAO();
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.Numero(txtFactura.getText())) {
-              
+
                 Date fecha = new Date();
                 Persona persona = new Persona();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
@@ -807,13 +811,13 @@ public class Factura extends javax.swing.JFrame {
                 double total = Double.parseDouble(txtTotal.getText());
                 fac1.insertarFactura(fecha, formaPago, iva, nroFactura, subtotal, total, persona, idAci, estado);
                 JOptionPane.showMessageDialog(rootPane, "Factura agregada");
+                for (Producto listaProducto : listaProductos) {
+                    dDAO.insertarDetalleFactura(listaProducto.getNombre(), listaProducto.getPrecio(), fac1.getFactura(), listaProducto);
+                }
                 mostrarTabla();
-                limpiar();
-                
             } else {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
-            //============================================================================
             dDAO.listarFactura(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
             formaPago = "";
@@ -898,18 +902,18 @@ public class Factura extends javax.swing.JFrame {
             total = subtotal + resta;
             double roundDbl = Math.round(total * 100.0) / 100.0;
             txtTotal.setText(String.valueOf(roundDbl));
-            
+
         } else {
             total = subtotal;
             txtTotal.setText(String.valueOf(total));
         }
     }
-    
+
     public void calcularSubtotal() {
         subtotal += fac.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidadProducto.getText()));
-        
+
     }
-    
+
     private void limpiar() {
         txtFactura.setText("");
         txtCedula.setText("");
@@ -918,7 +922,7 @@ public class Factura extends javax.swing.JFrame {
         txtCantidadProducto.setText("");
         txtSubtotal.setText("");
         txtTotal.setText("");
-        
+
         lblAvisoCedula.setVisible(false);
         lblAvisoCliente.setVisible(false);
         lblAvisoCodigo.setVisible(false);
