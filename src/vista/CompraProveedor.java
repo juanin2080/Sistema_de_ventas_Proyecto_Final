@@ -799,26 +799,26 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProveedorCPMouseClicked
 
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
+    if (camposVacios()) {
+                JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
 
-        if (camposVacios()) {
-            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
-
-        } else {
-            //            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
-            CompraDAO comDao = new CompraDAO();
-            String nroCompra = txtnroCompraCP.getText();
-            boolean iva = checkBoxIVACP.isSelected();
-            String fPago = "Efectivo";
-            double subtotal = Double.parseDouble(txtSubtotalCP.getText());
-            double total = Double.parseDouble(txtTotalPagarCP.getText());
-            comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
-            for (Producto listaProducto : listaProductos) {
-                detalleCompra.insertarDetalleCompra(listaProducto.getNombre(), listaProducto.getPrecio(), comDao.getCompra(), listaProducto);
+            } else {
+                //            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
+                CompraDAO comDao = new CompraDAO();
+                String nroCompra = txtnroCompraCP.getText();
+                boolean iva = checkBoxIVACP.isSelected();
+                String fPago = "Efectivo";
+                double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+                double total = Double.parseDouble(txtTotalPagarCP.getText());
+                comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
+                for (Producto listaProducto : listaProductos) {
+                    detalleCompra.insertarDetalleCompra(listaProducto.getNombre(), listaProducto.getPrecio(), comDao.getCompra(), listaProducto);
+                }
+                detalleCompra.listarCompra(tbtDetalleCompra, comDao.getCompra().getIdCompra());
+                mostrarTabla();
+    //            limpiar();
             }
-            detalleCompra.listarCompra(tbtDetalleCompra, comDao.getCompra().getIdCompra());
-            mostrarTabla();
-//            limpiar();
-        }
+        
     }//GEN-LAST:event_btnGuardarCPActionPerformed
 
 
