@@ -58,8 +58,6 @@ public class CompraDAO {
             compra.setSubtotal(subtotal);
             compra.setTotal(total);
             compra.setExternal_IDProveedor(Long.valueOf(idProveedor));
-            compra.setIdACI(idAci);
-            compra.setEstado(estado);
             tjc.create(compra);
             JOptionPane.showMessageDialog(null, "Guardado correctamente");
         } catch (Exception e) {

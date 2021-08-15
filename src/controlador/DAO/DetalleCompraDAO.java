@@ -12,7 +12,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleCompra;
 import modelo.Compra;
-import modelo.DetalleFactura;
 import modelo.Producto;
 
 /**
