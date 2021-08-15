@@ -825,7 +825,6 @@ public class Factura extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.Numero(txtFactura.getText())) {
-
                 Date fecha = new Date();
                 Persona persona = new Persona();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
