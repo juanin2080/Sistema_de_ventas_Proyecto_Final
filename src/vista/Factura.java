@@ -803,7 +803,6 @@ public class Factura extends javax.swing.JFrame {
               
                 Date fecha = new Date();
                 Persona persona = new Persona();
-//                Producto producto = new Producto();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
                 String nroFactura = txtFactura.getText();
                 Boolean iva = checkBoxIVA.isSelected();
@@ -821,13 +820,11 @@ public class Factura extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
             //============================================================================
-            dDAO.listarPersonas(tbtDetalleFactura, fac1.getFactura().getIdFactura());
+            dDAO.listarFactura(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
-//            limpiar();
+
             formaPago = "";
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");
-//            }
+
 
         }
 
