@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Compra;
+import modelo.DetalleCompra;
 import modelo.Producto;
 import modelo.Proveedor;
 

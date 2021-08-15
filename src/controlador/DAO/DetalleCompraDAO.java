@@ -5,6 +5,7 @@
  */
 package controlador.DAO;
 
+import controlador.CompraJpaController;
 import controlador.DetalleCompraJpaController;
 import java.util.List;
 import javax.swing.JTable;
