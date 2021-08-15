@@ -25,6 +25,13 @@ public class DetalleCompraDAO {
     private CompraJpaController cjpac = new CompraJpaController();
     private DetalleCompra detalle = new DetalleCompra();
 
+    /**
+     * Método para insertar los datos que pertenecen al detalle de la compra
+     * @param nombreProducto
+     * @param precioUnitario
+     * @param compra
+     * @param producto 
+     */
     public void insertarDetalleCompra(String nombreProducto, Double precioUnitario, Compra compra, Producto producto) {
         try {
             detalle.setIdDCompra(Long.MIN_VALUE);
@@ -42,9 +49,14 @@ public class DetalleCompraDAO {
         }
     }
 
-    public void listarPersonas(JTable tabla, Long id) {
+    /**
+     * Método para listar las compras en un JTable
+     * @param tabla
+     * @param id 
+     */
+    public void listarCompra(JTable tabla, Long id) {
         DefaultTableModel modelo;
-        String[] titulo = {"IdDetalleFactura", "Nombre producto", "Precio Unitario", "Nro Compra", "idProducto", "Compra"};
+        String[] titulo = {"IdDetalleCompra", "Nombre producto", "Precio Unitario", "Nro Compra", "idProducto", "Compra"};
         modelo = new DefaultTableModel(null, titulo);
         List<DetalleCompra> datos = detalleCom.findDetalleCompraEntities();
         String[] listarDetalle = new String[6];
