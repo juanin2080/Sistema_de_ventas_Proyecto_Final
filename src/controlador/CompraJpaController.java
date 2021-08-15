@@ -22,8 +22,10 @@ import modelo.Compra;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
+
+
 public class CompraJpaController implements Serializable {
 
     public CompraJpaController(EntityManagerFactory emf) {
@@ -37,7 +39,12 @@ public class CompraJpaController implements Serializable {
 
     public CompraJpaController() {
     }
-    
+
+    /**
+     *Método create, crea una compra en la base de datos
+     * @param compra 
+     */
+
     public void create(Compra compra) {
         if (compra.getListaDCompra() == null) {
             compra.setListaDCompra(new ArrayList<DetalleCompra>());
@@ -69,7 +76,15 @@ public class CompraJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param compra
+     * @throws IllegalOrphanException El Flujo de ejecución se detiene
+     * inmediatamente despues de la sentencia throw, nunca se llega a la
+     * siguiente sentencia
+     * @throws NonexistentEntityException encargado de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(Compra compra) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -126,6 +141,12 @@ public class CompraJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException
+     */
     public void destroy(Long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -165,7 +186,13 @@ public class CompraJpaController implements Serializable {
     public List<Compra> findCompraEntities(int maxResults, int firstResult) {
         return findCompraEntities(false, maxResults, firstResult);
     }
-
+    /**
+     * Metodo FindCompraEntities se utilizapara recuperarla entidad de la base de datos
+     * @param all
+     * @param maxResults
+     * @param firstResult
+     * @return 
+     */
     private List<Compra> findCompraEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
@@ -182,6 +209,11 @@ public class CompraJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método findCompra busca el patrón especificado o la expresión en la subsecuencia daba por caracteres
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia
+     */
     public Compra findCompra(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -190,7 +222,10 @@ public class CompraJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Metodo CompraCount devuelve el recuento de elementos en la secuencia 
+     * @return  Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia
+     */
     public int getCompraCount() {
         EntityManager em = getEntityManager();
         try {
@@ -203,5 +238,5 @@ public class CompraJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

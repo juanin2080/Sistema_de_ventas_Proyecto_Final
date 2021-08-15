@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 @Entity
 @Table(name = "proveedor")

@@ -21,7 +21,7 @@ import modelo.Producto;
 
 /**
  *
- * @author María Castillo
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class Factura extends javax.swing.JFrame {
 
@@ -764,12 +764,16 @@ public class Factura extends javax.swing.JFrame {
             if (controles.validarNumeroEntero(txtCodigo.getText())) {
                 if (controles.validarNumeroEntero(txtCantidadProducto.getText())) {
                     produc = fac.buscarProductoFactura(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-                    listaProductos.add(produc);
-                    calcularSubtotal();
-                    txtSubtotal.setText(String.valueOf(subtotal));
-                    mostrarTabla();
-                    fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
+                    if (produc.getIdProducto() == null) {
+                        JOptionPane.showMessageDialog(null, "Código no encontrado");
+                    } else {
+                        listaProductos.add(produc);
+                        calcularSubtotal();
+                        txtSubtotal.setText(String.valueOf(subtotal));
+                        mostrarTabla();
+                        fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
 
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
                 }

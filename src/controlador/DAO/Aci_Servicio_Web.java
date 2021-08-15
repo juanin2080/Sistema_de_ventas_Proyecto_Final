@@ -24,8 +24,10 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
+
+
 public class Aci_Servicio_Web {
 
     private Gson gson = new Gson();
@@ -37,6 +39,13 @@ public class Aci_Servicio_Web {
         InputStream input = new BufferedInputStream(urlConecction.getInputStream());
     }
 
+    // valor 12.00
+    
+    /**
+     * Método para llenar Ceros
+     * @param valor
+     * @return Retorna un valor
+     */
     private String llenarCeros(String valor) {
         String aux = "";
         boolean band = false;
@@ -53,7 +62,13 @@ public class Aci_Servicio_Web {
         }
         return valor;
     }
-
+    /**
+     * Método HashMap convierte la opción que se utilizará para crear una carga útil JSON.
+     * @param pago
+     * @param tipo
+     * @return Retorna un valor de tipo HashMap
+     * @throws IOException errores que no puede evitar el programador generalmente relacionados con la entrada y salida del programa.
+     */
     private HashMap request(Double pago, String tipo) throws IOException {
         URL url = new URL("https://test.oppwa.com/v1/checkouts");
 
@@ -98,6 +113,12 @@ public class Aci_Servicio_Web {
         return mapa;
     }
 
+    /**
+     * Método HashMap CheckPago convierte la opción que se utilizará para crear una carga útil JSON.
+     * @param id
+     * @return Retorna un valor de tipo HashMap
+     * @throws IOException errores que no puede evitar el programador generalmente relacionados con la entrada y salida del programa.
+     */
     private HashMap checkPago(String id) throws IOException {
         URL url = new URL("https://test.oppwa.com/v1/checkouts/" + id + "/payment?" + "entityId=8a8294175d602369015d73bf009f1808");
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
@@ -115,7 +136,11 @@ public class Aci_Servicio_Web {
         HashMap mapa = gson.fromJson(result, HashMap.class);
         return mapa;
     }
-
+    /**
+     * Método para facturar los productos mediante el servicio Web Aci
+     * @param total
+     * @return Retorna Id para realizar la verificación del pago
+     */
     public String facturar(Double total) {
         Aci_Servicio_Web aci = new Aci_Servicio_Web();
         String id = "";
@@ -133,7 +158,12 @@ public class Aci_Servicio_Web {
         }
         return id;
     }
-
+    /**
+     * Método para verificar Pago en en Servicio Web 
+     * @param id
+     * @return Retorna un mensaje el cual presenta si los productos solicitados ya estan pagados.
+     * @throws IOException errores que no puede evitar el programador generalmente relacionados con la entrada y salida del programa.
+     */
     public String verificarPago(String id) throws IOException {
         Aci_Servicio_Web aci = new Aci_Servicio_Web();
         String aux = "";

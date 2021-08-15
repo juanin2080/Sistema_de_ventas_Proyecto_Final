@@ -19,7 +19,7 @@ import modelo.Rol;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class RolJpaController implements Serializable {
 
@@ -34,7 +34,10 @@ public class RolJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    /**
+     * Método create Crea un rol en la base de datos
+     * @param rol 
+     */
     public void create(Rol rol) {
         EntityManager em = null;
         try {
@@ -48,7 +51,12 @@ public class RolJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param rol
+     * @throws NonexistentEntityException encargado de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(Rol rol) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -69,7 +77,11 @@ public class RolJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws NonexistentEntityException  encargado de controlar los posibles errores nacientes al conectar a la base de datos.
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -114,7 +126,11 @@ public class RolJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Método findRol busca el patrón especificado o la expresión en la subsecuencia daba por caracteres.
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public Rol findRol(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -123,7 +139,10 @@ public class RolJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Metodo RolCount devuelve el recuento de elementos en la secuencia.
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public int getRolCount() {
         EntityManager em = getEntityManager();
         try {

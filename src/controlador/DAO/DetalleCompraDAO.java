@@ -5,6 +5,7 @@
  */
 package controlador.DAO;
 
+import controlador.CompraJpaController;
 import controlador.DetalleCompraJpaController;
 import java.util.List;
 import javax.swing.JTable;
@@ -15,13 +16,21 @@ import modelo.Producto;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class DetalleCompraDAO {
 
     private DetalleCompraJpaController detalleCom = new DetalleCompraJpaController();
+    private CompraJpaController cjpac = new CompraJpaController();
     private DetalleCompra detalle = new DetalleCompra();
 
+    /**
+     * Método para insertar los datos que pertenecen al detalle de la compra
+     * @param nombreProducto
+     * @param precioUnitario
+     * @param compra
+     * @param producto 
+     */
     public void insertarDetalleCompra(String nombreProducto, Double precioUnitario, Compra compra, Producto producto) {
         try {
             detalle.setIdDCompra(Long.MIN_VALUE);
@@ -39,6 +48,11 @@ public class DetalleCompraDAO {
         }
     }
 
+    /**
+     * Método para listar las compras en un JTable
+     * @param tabla
+     * @param id 
+     */
     public void listarCompra(JTable tabla, Long id) {
         DefaultTableModel modelo;
         String[] titulo = {"IdDetalleCompra", "Nombre producto", "Precio Unitario", "Nro Compra", "idProducto", "Compra"};

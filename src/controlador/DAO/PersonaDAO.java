@@ -16,7 +16,7 @@ import modelo.*;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class PersonaDAO {
 
@@ -31,7 +31,6 @@ public class PersonaDAO {
      * @param telefono
      * @param email
      * @param rol
-     * @return 
      */
 
     public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {

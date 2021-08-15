@@ -13,7 +13,7 @@ import modelo.Rol;
 
 /**
  *
- * @author CRCR
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class AdministrarProducto extends javax.swing.JFrame {
 
@@ -667,6 +667,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
                             mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
                             JOptionPane.showMessageDialog(null, mensaje);
                             mostrarTabla("");
+                            limpiar();
                         } else {
                             txtavisoCantidad.setVisible(true);
                             JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
@@ -822,7 +823,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
                             }
                         } else {
                             txtavisoMarca.setVisible(true);
-                            JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                            JOptionPane.showMessageDialog(null, "Marca Incorrecta");
                         }
                     } else {
                         txtavisoPrecio.setVisible(true);

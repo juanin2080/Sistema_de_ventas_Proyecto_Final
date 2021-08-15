@@ -23,7 +23,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Usuario
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 @Entity
 @Table(name = "Producto")
@@ -40,11 +40,9 @@ public class Producto implements Serializable {
     private int stock;
     private String marca;
     private Boolean estado;
-    private String proveedor;
-
+    private String proveedor;   
     @OneToMany(mappedBy = "Producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ArrayList<DetalleFactura> listaDetalleFactura = new ArrayList<DetalleFactura>();
-
     public ArrayList<DetalleFactura> getListaDetalleFactura() {
         return listaDetalleFactura;
     }

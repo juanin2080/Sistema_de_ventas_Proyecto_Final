@@ -18,33 +18,40 @@ import modelo.Producto;
 
 /**
  *
- * @author María Castillo
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class DetalleFacturaDAO {
 
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
 
-//    public void insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+    /**
+     * Método para insertar datos correspondientes al detalle de factura a la BD
+     * @param nombre
+     * @param precioUnitario
+     * @param factura
+     * @param producto
+     */
     public void insertarDetalleFactura(String nombre, Double precioUnitario, Factura factura, Producto producto) {
         try {
             detalle.setIdDetalleFactura(Long.MIN_VALUE);
-//            detalle.setCantidad(cantidad);
-//            detalle.setPrecioTotal(precioTotal);
             detalle.setNombreProducto(nombre);
             detalle.setPrecioUnitario(precioUnitario);
             detalle.setProducto(producto);
             detalle.setFactura(factura);
             detallefac.create(detalle);
-//            JOptionPane.showMessageDialog(null, "Detalle de Factura  registrada con exito");
             System.out.println("Detalle de Factura  registrada con exito");
         } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "No se pudo registrar el Detalle de Factura ");
             System.out.println("No se pudo registrar el Detalle de Factura ");
             System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * Método para listar personas en un JTable
+     * @param tabla
+     * @param id
+     */
     public void listarFactura(JTable tabla, Long id) {
         DefaultTableModel modelo;
         String[] titulo = {"IdDetalleFactura", "Nombre producto", "Precio Unitario", "Nro Factura", "idProducto", "idFactura"};

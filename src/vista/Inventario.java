@@ -10,7 +10,7 @@ import controlador.DAO.ProductoDAO;
 
 /**
  *
- * @author Usuario
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class Inventario extends javax.swing.JFrame {
 

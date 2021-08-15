@@ -14,12 +14,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Compra;
+import modelo.DetalleCompra;
 import modelo.Producto;
 import modelo.Proveedor;
 
 /**
  *
- * @author USUARIO
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class CompraProveedor extends javax.swing.JFrame {
 
@@ -30,6 +32,8 @@ public class CompraProveedor extends javax.swing.JFrame {
     Controladores controles = new Controladores();
     private DetalleCompraDAO detalleCompra = new DetalleCompraDAO();
     ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+    DetalleCompra dc = new DetalleCompra();
+    Compra compra = new Compra();
     Date fecha = new Date();
     Double subtotal = 0.0;
     String nombre = "";
@@ -40,6 +44,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     public CompraProveedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
         txtIdProveedor.setVisible(false);
         lblAvisoCompra.setVisible(false);
         lblAvisoCedula.setVisible(false);
@@ -771,11 +776,16 @@ public class CompraProveedor extends javax.swing.JFrame {
             if (controles.validarNumeroEntero(txtCodProductoCP.getText())) {
                 if (controles.validarNumeroEntero(txtCantidad.getText())) {
                     producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
-                    listaProductos.add(producto);
-                    calcularSubtotal();
-                    txtSubtotalCP.setText(String.valueOf(subtotal));
-                    mostrarTabla();
-                    cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                    System.out.println(producto.getIdProducto());
+                    if (producto.getIdProducto() == null) {
+                        JOptionPane.showMessageDialog(null, "Código no encontrado");
+                    } else {
+                        listaProductos.add(producto);
+                        calcularSubtotal();
+                        txtSubtotalCP.setText(String.valueOf(subtotal));
+                        mostrarTabla();
+                        cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
                 }
@@ -794,25 +804,26 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProveedorCPMouseClicked
 
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
+    if (camposVacios()) {
+                JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
 
-        if (camposVacios()) {
-            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
-        } else {
-            //            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
-            CompraDAO comDao = new CompraDAO();
-            String nroCompra = txtnroCompraCP.getText();
-            boolean iva = checkBoxIVACP.isSelected();
-            String fPago = "Efectivo";
-            double subtotal = Double.parseDouble(txtSubtotalCP.getText());
-            double total = Double.parseDouble(txtTotalPagarCP.getText());
-            comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
-            for (Producto listaProducto : listaProductos) {
-                detalleCompra.insertarDetalleCompra(listaProducto.getNombre(), listaProducto.getPrecio(), comDao.getCompra(), listaProducto);
+            } else {
+                //            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
+                CompraDAO comDao = new CompraDAO();
+                String nroCompra = txtnroCompraCP.getText();
+                boolean iva = checkBoxIVACP.isSelected();
+                String fPago = "Efectivo";
+                double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+                double total = Double.parseDouble(txtTotalPagarCP.getText());
+                comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
+                for (Producto listaProducto : listaProductos) {
+                    detalleCompra.insertarDetalleCompra(listaProducto.getNombre(), listaProducto.getPrecio(), comDao.getCompra(), listaProducto);
+                }
+                detalleCompra.listarCompra(tbtDetalleCompra, comDao.getCompra().getIdCompra());
+                mostrarTabla();
+    //            limpiar();
             }
-            detalleCompra.listarCompra(tbtDetalleCompra, comDao.getCompra().getIdCompra());
-            mostrarTabla();
-//            limpiar();
-        }
+        
     }//GEN-LAST:event_btnGuardarCPActionPerformed
 
 
@@ -833,7 +844,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalPagarCPActionPerformed
 
     private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_checkBoxIVACPActionPerformed
 
     private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
@@ -984,6 +995,17 @@ public class CompraProveedor extends javax.swing.JFrame {
             return true;
         } else {
             return false;
+        }
+
+    }
+
+    public void guardarDetalle() {
+        Producto codP = cdao.buscarProductoC(nombre);
+        //  int codigoP = Integer.parseInt(codP);
+        for (int i = 0; i < tblProductoCP.getRowCount(); i++) {
+            int cdp = Integer.parseInt(tblProductoCP.getValueAt(i, 0).toString());
+            double pre = Integer.parseInt(tblProductoCP.getValueAt(i, 3).toString());
+
         }
 
     }
