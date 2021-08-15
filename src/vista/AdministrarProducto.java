@@ -591,8 +591,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
     public boolean camposVacios() {
         if (txtCodigo.getText().equals("") || txtCantidad.getText().equals("") || txtMarca.getText().equals("") || txtNombres.getText().equals("")
-                || txtPrecio.getText().equals("") 
-                //|| txtProveedor.getText().equals("")
+                || txtPrecio.getText().equals("") //|| txtProveedor.getText().equals("")
                 ) {
 
             txtavisoNombre.setVisible(true);
@@ -612,11 +611,31 @@ public class AdministrarProducto extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
-            String mensaje = "";
-            mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
+            if (controles.validarNombre(txtNombres.getText())) {
+                if (controles.validarNumeroDecimal(txtPrecio.getText())) {
+                    if (controles.validarNombre(txtMarca.getText())) {
+                        if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                            String mensaje = "";
+                            mensaje = pDao.dardeBaja(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
 
-            JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("");
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            mostrarTabla("");
+                        } else {
+                            txtavisoCantidad.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
+                        }
+                    } else {
+                        txtavisoMarca.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                    }
+                } else {
+                    txtavisoPrecio.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Precio Incorrecto");
+                }
+            } else {
+                txtavisoNombre.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+            }
         }
 
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
@@ -626,23 +645,38 @@ public class AdministrarProducto extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
         } else {
-            String mensaje = "";
-            mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(),cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
-            JOptionPane.showMessageDialog(null, mensaje);
-
-            mostrarTabla("");
+            if (controles.validarNombre(txtNombres.getText())) {
+                if (controles.validarNumeroDecimal(txtPrecio.getText())) {
+                    if (controles.validarNombre(txtMarca.getText())) {
+                        if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                            String mensaje = "";
+                            mensaje = pDao.editar(Long.valueOf(txtid.getText()), Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            mostrarTabla("");
+                        } else {
+                            txtavisoCantidad.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
+                        }
+                    } else {
+                        txtavisoMarca.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                    }
+                } else {
+                    txtavisoPrecio.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Precio Incorrecto");
+                }
+            } else {
+                txtavisoNombre.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+            }
         }
 
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        if (txtCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "LLene el campo código");
-            txtavisoCod.setVisible(true);
-        } else {
-            mostrarTabla(txtCodigo.getText());
-        }
+        mostrarTabla(txtCodigo.getText());
+//        
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -718,7 +752,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
         txtNombres.setText(tbtProducto.getValueAt(select, 1) + "");
         txtPrecio.setText(tbtProducto.getValueAt(select, 2) + "");
         txtMarca.setText(tbtProducto.getValueAt(select, 3) + "");
-//        cbxEmpresa.setText(tbtProducto.getValueAt(select, 4) + "");
+        cbxEmpresa.setSelectedItem(tbtProducto.getValueAt(select, 4));
         txtCantidad.setText((String) tbtProducto.getValueAt(select, 5));
         txtid.setText(tbtProducto.getValueAt(select, 6) + "");
         txtCodigo.setEditable(false);
@@ -758,46 +792,50 @@ public class AdministrarProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
             limpiar();
         } else {
-            
-            Boolean lnombres = controles.contieneSoloLetras(txtNombres.getText());
-            Boolean lmarca = controles.contieneSoloLetras(txtMarca.getText());
-//            Boolean lproveedor = controles.contieneSoloLetras(txtProveedor.getText());
-            Boolean ncodigo = controles.contieneSoloLetras(txtCodigo.getText());
-            Boolean ncantidad = controles.contieneSoloLetras(txtCantidad.getText());;
-            Boolean nprecio = controles.contieneSoloLetras(txtPrecio.getText());
-//            if (lnombres == true && lmarca == true && lproveedor == true
-//                    && ncodigo == false && ncantidad == false && nprecio == false) {
-            String mensaje;
-            mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), txtProveedor.getText(), Integer.parseInt(txtCantidad.getText()));
-            JOptionPane.showMessageDialog(null, mensaje);
-            mostrarTabla("");
-
-            limpiar();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Ingrese correctamente los campos");
-//            }
-
+            if (controles.validarNumeroEntero(txtCodigo.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarNumeroDecimal(txtPrecio.getText())) {
+                        if (controles.validarNombre(txtMarca.getText())) {
+                            if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                                String mensaje;
+                                mensaje = pDao.insertarProducto(txtCodigo.getText(), txtNombres.getText(), Double.valueOf(txtPrecio.getText()), txtMarca.getText(), cbxEmpresa.getSelectedItem().toString(), Integer.parseInt(txtCantidad.getText()));
+                                JOptionPane.showMessageDialog(null, mensaje);
+                                mostrarTabla("");
+                                limpiar();
+                            } else {
+                                txtavisoCantidad.setVisible(true);
+                                JOptionPane.showMessageDialog(null, "Cantidad Incorrecta");
+                            }
+                        } else {
+                            txtavisoMarca.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Marca Incorrecto");
+                        }
+                    } else {
+                        txtavisoPrecio.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Precio Incorrecto");
+                    }
+                } else {
+                    txtavisoNombre.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                }
+            } else {
+                txtavisoCod.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Código Incorrecto");
+            }
         }
 
+//        
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         // TODO add your handling code here:
-        char caracteres = evt.getKeyChar();
 
-        if (caracteres < '0' || caracteres > '9') {
-            evt.consume();
-        }
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
         // TODO add your handling code here:
-        char caracteres = evt.getKeyChar();
 
-        if (caracteres < '0' || caracteres > '9') {
-            evt.consume();
-        }
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped

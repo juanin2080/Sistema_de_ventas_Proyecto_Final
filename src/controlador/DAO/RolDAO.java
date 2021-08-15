@@ -107,7 +107,7 @@ public class RolDAO {
     /**
      * Buscar los roles que existen en la bdd
      * @param rol
-     * @return 
+     * @return un dato de tipo Rol
      */
     public Rol buscarRol(String rol) {
         Rol rolCbx = new Rol();

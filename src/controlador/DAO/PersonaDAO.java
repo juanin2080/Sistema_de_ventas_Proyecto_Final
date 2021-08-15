@@ -24,7 +24,7 @@ public class PersonaDAO {
     private Persona persona = new Persona();
     
     /**
-     * Insertamos los datos de las persinas en la bdd
+     * Insertamos los datos de las personas en la bdd
      * @param nombres
      * @param cedula
      * @param direccion
@@ -82,7 +82,7 @@ public class PersonaDAO {
     }
 
     /**
-     * Damos de baja a una persona, es decir que lo eliminamos
+     * Damos de baja a una persona, es decir que lo eliminamos de la bd
      * @param id 
      */
     public void darDeBajaPersona(Long id) {
@@ -97,7 +97,7 @@ public class PersonaDAO {
 
     
     /**
-     * Listamos los datos de las personas en jtable
+     * Listamos los datos de las personas que estan en la bd en el jtable
      * @param tabla
      * @param cedula 
      */
@@ -132,7 +132,7 @@ public class PersonaDAO {
     /**
      * Buscamos una persona por medio de su cédula
      * @param cedula
-     * @return 
+     * @return  retorna una lista de tipo persona
      */
     private List<Persona> buscarPersona(String cedula) {
         EntityManager em = controladorPersona.getEntityManager();
@@ -143,9 +143,9 @@ public class PersonaDAO {
     }
 
     /**
-     * Buscamos los roles de las personas
+     * Buscamos los roles de las personas por medio de su id
      * @param id
-     * @return 
+     * @return un dato de tipo persona
      */
     public Persona buscarRolPersona(Long id) {
         List<Persona> datos = controladorPersona.findPersonaEntities();
@@ -165,6 +165,12 @@ public class PersonaDAO {
         return persona;
 
     }
+    
+    /**
+     * Buscamos la cuenta de una persona
+     * @param cedula
+     * @return un dato de tipo persona
+     */
 
     public Persona BuscarCuentaPersona(String cedula) {
         Persona person = new Persona();
@@ -182,14 +188,14 @@ public class PersonaDAO {
         }
         return person;
     }
-
-    public List<Persona> listarPersonas(String cedula) {
-        EntityManager em = controladorPersona.getEntityManager();
-        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
-        query.setParameter("cedula", cedula + "%");
-
-        List<Persona> lista = query.getResultList();
-        return lista;
-    }
+//
+//    public List<Persona> listarPersonas(String cedula) {
+//        EntityManager em = controladorPersona.getEntityManager();
+//        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
+//        query.setParameter("cedula", cedula + "%");
+//
+//        List<Persona> lista = query.getResultList();
+//        return lista;
+//    }
 
 }

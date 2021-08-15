@@ -5,22 +5,12 @@
  */
 package controlador.DAO;
 
-import controlador.CompraJpaController;
 import controlador.DetalleCompraJpaController;
-import controlador.ProductoJpaController;
-import controlador.ProveedorJpaController;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import modelo.DetalleCompra;
 
 import modelo.Compra;
 import modelo.Producto;
-import modelo.Proveedor;
 
 /**
  *

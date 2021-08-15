@@ -61,22 +61,29 @@ public class Controladores {
         }
         return cedulaCorrecta;
     }
-        
-   public boolean contieneSoloLetras(String cadena) {
-        for (int x = 0; x < cadena.length(); x++) {
-            char c = cadena.charAt(x);
-            // Si no está entre a y z, ni entre A y Z, ni es un espacio
-            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public boolean validarEmail(String email) {
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)(\\.[A-Za-z]{2,})$");
-        Matcher matcher = pattern.matcher(email);
-        return matcher.find();
+        return email.matches("^(([^<>()\\[\\]\\\\.,;:\\s@”]+(\\.[^<>()\\[\\]\\\\.,;:\\s@”]+)*)|(“.+”))@((\\[[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}])|(([a-zA-Z\\-0–9]+\\.)+[a-zA-Z]{2,}))$");
+    }
+
+    public static boolean validarNumeroEntero(String numero) {
+        return numero.matches("^[0-9]+$");
+    }
+
+    public static boolean validarNombre(String nombre) {
+        return nombre.matches("^(([A-Za-z]{1})?[a-z]+[ ]?)+$");
+    }
+
+    public static boolean validarCelular(String numero) {
+        return numero.matches("^[0-9]{2}[0-9]{8}$");
+    }
+
+    public static boolean validarNumeroDecimal(String numero) {
+        return numero.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
+    }
+    
+    public static boolean Numero(String numero) {
+        return numero.matches("^[0-9]{5}+$");
     }
 
 }

@@ -27,8 +27,7 @@ public class ProductoDAO {
     private ProveedorJpaController empresaPro = new ProveedorJpaController();
 
     /**
-     * Metodo para insertar un producto en la bdd verificando que el codigo del
-     * producto no exista anteriormente.
+     * Metodo para insertar un producto en la bdd.
      *
      * @param codigo
      * @param nombre
@@ -36,7 +35,7 @@ public class ProductoDAO {
      * @param Marca
      * @param proveedor
      * @param cantidad
-     * @return
+     * @return un mensaje de confirmación de registro
      */
     public String insertarProducto(String codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
@@ -70,7 +69,7 @@ public class ProductoDAO {
      * @param Marca
      * @param proveedor
      * @param cantidad
-     * @return
+     * @return un mensaje de confirmación de actualización
      */
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
@@ -104,7 +103,7 @@ public class ProductoDAO {
      * @param Marca
      * @param proveedor
      * @param cantidad
-     * @return
+     * @return un mensaje de confirmación de dado de baja
      */
     public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
@@ -167,6 +166,12 @@ public class ProductoDAO {
         tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
 
+    
+    /**
+     * Buscamos los datos en la bdd 
+     * @param codigo
+     * @return una lista de tipo Producto
+     */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
@@ -178,42 +183,14 @@ public class ProductoDAO {
     }
 
     /**
-     * Método para buscar todos los productos que existen en la bdd, lo
-     * utilzaremos al momento de validar si ya existe algún código de un
-     * producto.
-     *
-     * @param codigo
-     * @return
+     * Listamos un combo box de todas las empresas que son proveedores
+     * @param cbxEmpresa 
      */
-    public List<Producto> listarProductos(String codigo) {
-        EntityManager em = controladorProducto.getEntityManager();
-        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
-        query.setParameter("codigo", codigo + "%");
-
-        List<Producto> lista = query.getResultList();
-        return lista;
-    }
-
     public void listarComboBox(JComboBox cbxEmpresa) {
         List<Proveedor> datos = empresaPro.findProveedorEntities();
         for (Proveedor dato : datos) {
             cbxEmpresa.addItem(dato.getEmpresa());
         }
-    }
-
-    public Proveedor buscarEmpresa(String empresa) {
-        Proveedor empresaCbx = new Proveedor();
-        List<Proveedor> datos = this.empresaPro.findProveedorEntities();
-
-        for (Proveedor dato : datos) {
-            if (dato.getEmpresa().equals(empresa)) {
-                empresaCbx.setEmpresa(dato.getEmpresa());
-                empresaCbx.setIdPersona(Long.MIN_VALUE);
-
-            }
-        }
-        return empresaCbx;
-
     }
 
 }
