@@ -764,20 +764,24 @@ public class Factura extends javax.swing.JFrame {
             if (controles.validarNumeroEntero(txtCodigo.getText())) {
                 if (controles.validarNumeroEntero(txtCantidadProducto.getText())) {
                     produc = fac.buscarProductoFactura(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-                    listaProductos.add(produc);
-                    calcularSubtotal();
-                    txtSubtotal.setText(String.valueOf(subtotal));
+                    if (produc.getIdProducto() == null) {
+                        JOptionPane.showMessageDialog(null, "Código no encontrado");
+                    } else {
+                        listaProductos.add(produc);
+                        calcularSubtotal();
+                        txtSubtotal.setText(String.valueOf(subtotal));
 
-                    for (Producto listaProducto : listaProductos) {
-                        listaProducto.getCodigo();
-                        listaProducto.getStock();
-                        System.out.println("id" + listaProducto.getIdProducto());
-                        System.out.println("codigo" + listaProducto.getCodigo());
-                        System.out.println("cod stock" + listaProducto.getStock());
+                        for (Producto listaProducto : listaProductos) {
+                            listaProducto.getCodigo();
+                            listaProducto.getStock();
+                            System.out.println("id" + listaProducto.getIdProducto());
+                            System.out.println("codigo" + listaProducto.getCodigo());
+                            System.out.println("cod stock" + listaProducto.getStock());
+                        }
+                        mostrarTabla();
+                        fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
+
                     }
-                    mostrarTabla();
-                    fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
                 }
@@ -829,6 +833,7 @@ public class Factura extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.Numero(txtFactura.getText())) {
+
                 Date fecha = new Date();
                 Persona persona = new Persona();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
@@ -848,7 +853,7 @@ public class Factura extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
-            dDAO.listarPersonas(tbtDetalleFactura, fac1.getFactura().getIdFactura());
+            dDAO.listarFactura(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
             formaPago = "";
         }

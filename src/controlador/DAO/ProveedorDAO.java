@@ -52,7 +52,7 @@ public class ProveedorDAO {
             proveedor.setEmpresa(empresa);
             proveedor.setRuc(ruc);
             controladorPersona.create(proveedor);
-            JOptionPane.showMessageDialog(null, "Proveedor registrada con exito");
+            JOptionPane.showMessageDialog(null, "Proveedor registrado con exito");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo registrar el proveedor ");
             System.out.println(e.getMessage());

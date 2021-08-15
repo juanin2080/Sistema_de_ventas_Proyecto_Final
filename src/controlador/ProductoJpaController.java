@@ -38,7 +38,10 @@ public class ProductoJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    /**
+     * Método create Crea un producto en la base de datos
+     * @param producto 
+     */
     public void create(Producto producto) {
         if (producto.getListaDetalleFactura() == null) {
             producto.setListaDetalleFactura(new ArrayList<DetalleFactura>());
@@ -88,7 +91,13 @@ public class ProductoJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param producto
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(Producto producto) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -172,7 +181,12 @@ public class ProductoJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException 
+     */
     public void destroy(Long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -235,7 +249,11 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Método findProducto busca el patrón especificado o la expresión en la subsecuencia daba por caracteres.
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public Producto findProducto(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -244,7 +262,11 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * 
+     * 
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public int getProductoCount() {
         EntityManager em = getEntityManager();
         try {

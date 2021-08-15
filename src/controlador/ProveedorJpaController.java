@@ -39,7 +39,10 @@ public class ProveedorJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    /**
+     * Método create Crea un Proveedor en la base de datos
+     * @param proveedor 
+     */
     public void create(Proveedor proveedor) {
         if (proveedor.getListaFactura() == null) {
             proveedor.setListaFactura(new ArrayList<Factura>());
@@ -85,7 +88,13 @@ public class ProveedorJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param proveedor
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(Proveedor proveedor) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -186,7 +195,12 @@ public class ProveedorJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException 
+     */
     public void destroy(Long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -249,7 +263,11 @@ public class ProveedorJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Método findProveedor busca el patrón especificado o la expresión en la subsecuencia daba por caracteres.
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public Proveedor findProveedor(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -258,7 +276,10 @@ public class ProveedorJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Metodo ProveedorCount devuelve el recuento de elementos en la secuencia.
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public int getProveedorCount() {
         EntityManager em = getEntityManager();
         try {

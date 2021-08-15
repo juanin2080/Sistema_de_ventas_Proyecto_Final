@@ -37,7 +37,6 @@ public class Aci_Servicio_Web {
         InputStream input = new BufferedInputStream(urlConecction.getInputStream());
     }
 
-    // valor 12.00
     private String llenarCeros(String valor) {
         String aux = "";
         boolean band = false;
