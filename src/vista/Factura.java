@@ -815,12 +815,7 @@ public class Factura extends javax.swing.JFrame {
             //============================================================================
             dDAO.listarPersonas(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
-//            limpiar();
             formaPago = "";
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Factura y forma de pago  que sean correctos");
-//            }
-
         }
 
 // TODO add your handling code here:
