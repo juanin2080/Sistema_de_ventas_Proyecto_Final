@@ -834,7 +834,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                 Proveedor prove = new Proveedor();
                 String nroCompra = txtnroCompraCP.getText();
                 boolean iva = checkBoxIVACP.isSelected();
-                String fPago = txtFormaPagoCP.getText();
+                String fPago = formaPago;
                 double subtotal = Double.parseDouble(txtSubtotalCP.getText());
                 double total = Double.parseDouble(txtTotalPagarCP.getText());
                 String idAci = "";

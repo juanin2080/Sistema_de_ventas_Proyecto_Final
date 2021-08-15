@@ -795,17 +795,18 @@ public class Factura extends javax.swing.JFrame {
         }
     }
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        FacturaDAO fac1 = new FacturaDAO();
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.Numero(txtFactura.getText())) {
-                FacturaDAO fac1 = new FacturaDAO();
+                
                 Date fecha = new Date();
                 Persona persona = new Persona();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
                 String nroFactura = txtFactura.getText();
                 Boolean iva = checkBoxIVA.isSelected();
-                String formaPago = txtFormaPago.getText();
+                String formaPago = this.formaPago;
                 String idAci = "";
                 Boolean estado = false;
                 double subtotal = Double.parseDouble(txtSubtotal.getText());
