@@ -6,8 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,10 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-//import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-//import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,15 +28,22 @@ public class DetalleCompra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDCompra;
-    private int cantidad;
+    private String nombreProducto;
     private double precioUnitario;
-    private double precioTotal;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idCompra", nullable = false, referencedColumnName = "idCompra")
     private Compra compra;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto", nullable = false, referencedColumnName = "idProducto")
     private Producto producto;
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
 
     public Producto getProducto() {
         return producto;
@@ -51,6 +52,7 @@ public class DetalleCompra implements Serializable {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
+
     public Long getIdDCompra() {
         return idDCompra;
     }
@@ -59,28 +61,12 @@ public class DetalleCompra implements Serializable {
         this.idDCompra = idDCompra;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public double getPrecioUnitario() {
         return precioUnitario;
     }
 
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
-    }
-
-    public double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
     }
 
     public Compra getCompra() {

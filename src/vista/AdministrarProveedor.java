@@ -35,11 +35,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         mostrarTabla("");
         txtRol.setVisible(false);
         txtId.setVisible(false);
-
         llenarCbx();
         cbxRol.setSelectedIndex(2);
         cbxRol.setEnabled(false);
-
         txtavisoNombre.setVisible(false);
         txtavisoDirec.setVisible(false);
         txtavisoEmail.setVisible(false);

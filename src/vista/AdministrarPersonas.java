@@ -551,16 +551,16 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos deben estar llenos");
         } else {
-            if (controles.validarEmail(txtEmail.getText())) {
-                Persona person = new Persona();
-                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
-                limpiarCampos();
-                mostrarTabla("");
-            } else {
-                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
-                txtavisoEmail.setVisible(true);
-            }
+//            if (controles.validarEmail(txtEmail.getText())) {
+            Persona person = new Persona();
+            person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+            pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+            limpiarCampos();
+            mostrarTabla("");
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+//                txtavisoEmail.setVisible(true);
+//            }
 
         }
 
