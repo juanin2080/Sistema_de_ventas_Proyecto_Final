@@ -64,6 +64,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
+        btnCompraProveedor = new newscomponents.RSButtonBigIcon_new();
         txtCedula = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -163,7 +164,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(310, 20, 140, 120);
+        btnRegistrar.setBounds(250, 20, 140, 120);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -176,7 +177,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(470, 20, 140, 120);
+        btnProveedor.setBounds(400, 20, 140, 120);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -189,7 +190,20 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(630, 20, 150, 120);
+        btnProducto.setBounds(700, 20, 150, 120);
+
+        btnCompraProveedor.setBackground(new java.awt.Color(0, 153, 102));
+        btnCompraProveedor.setText("Compra ");
+        btnCompraProveedor.setBgHover(new java.awt.Color(102, 102, 102));
+        btnCompraProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
+        btnCompraProveedor.setSizeIcon(50.0F);
+        btnCompraProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraProveedorActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCompraProveedor);
+        btnCompraProveedor.setBounds(550, 20, 140, 120);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -736,10 +750,10 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        this.dispose();
-        inicioSesion.setVisible(true);
-        inicioSesion.setLocationRelativeTo(null);
+        MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+        dispose();
+        mpa.setLocationRelativeTo(null);
+        mpa.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 
@@ -924,6 +938,13 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void btnCompraProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraProveedorActionPerformed
+        CompraProveedor cp = new CompraProveedor();
+        this.dispose();
+        cp.setVisible(true);
+        cp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCompraProveedorActionPerformed
     private void mostrarTabla(String cedula) {
         pdao.listarPersonas(tbtProveedor, cedula);
     }
@@ -1001,6 +1022,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos1;
+    private newscomponents.RSButtonBigIcon_new btnCompraProveedor;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoProveedor;

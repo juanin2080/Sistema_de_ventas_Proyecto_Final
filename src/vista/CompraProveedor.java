@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Compra;
+import modelo.DetalleCompra;
 import modelo.Producto;
 import modelo.Proveedor;
 
@@ -22,7 +24,7 @@ import modelo.Proveedor;
  * @author USUARIO
  */
 public class CompraProveedor extends javax.swing.JFrame {
-
+    
     private CompraDAO cdao = new CompraDAO();
     private ProductoDAO pdao = new ProductoDAO();
     private Producto producto = new Producto();
@@ -30,6 +32,8 @@ public class CompraProveedor extends javax.swing.JFrame {
     Controladores controles = new Controladores();
     private DetalleCompraDAO detalleCompra = new DetalleCompraDAO();
     ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+    DetalleCompra dc = new DetalleCompra();
+    Compra compra = new Compra();
     Date fecha = new Date();
     Double subtotal = 0.0;
     String nombre = "";
@@ -41,6 +45,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     public CompraProveedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
         txtIdProveedor.setVisible(false);
         lblAvisoCompra.setVisible(false);
         lblAvisoCedula.setVisible(false);
@@ -66,7 +71,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
-        btnDetalleCompra = new newscomponents.RSButtonBigIcon_new();
+        btnCompraProveedor = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -164,7 +169,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(510, 10, 140, 80);
+        btnProveedor.setBounds(280, 10, 140, 80);
 
         btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistrar.setText("Registrar");
@@ -177,7 +182,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(350, 10, 140, 80);
+        btnRegistrar.setBounds(120, 10, 140, 80);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -190,20 +195,20 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(670, 10, 140, 80);
+        btnProducto.setBounds(580, 10, 140, 80);
 
-        btnDetalleCompra.setBackground(new java.awt.Color(0, 153, 102));
-        btnDetalleCompra.setText("Detalle Compra");
-        btnDetalleCompra.setBgHover(new java.awt.Color(102, 102, 102));
-        btnDetalleCompra.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NOTE);
-        btnDetalleCompra.setSizeIcon(30.0F);
-        btnDetalleCompra.addActionListener(new java.awt.event.ActionListener() {
+        btnCompraProveedor.setBackground(new java.awt.Color(0, 153, 102));
+        btnCompraProveedor.setText("Compra ");
+        btnCompraProveedor.setBgHover(new java.awt.Color(102, 102, 102));
+        btnCompraProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
+        btnCompraProveedor.setSizeIcon(50.0F);
+        btnCompraProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetalleCompraActionPerformed(evt);
+                btnCompraProveedorActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDetalleCompra);
-        btnDetalleCompra.setBounds(190, 10, 140, 80);
+        jPanel2.add(btnCompraProveedor);
+        btnCompraProveedor.setBounds(430, 10, 140, 80);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 40, 1040, 100);
@@ -778,8 +783,10 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-
-        // TODO add your handling code here:
+        MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+        dispose();
+        mpa.setLocationRelativeTo(null);
+        mpa.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void bntCalcularIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCalcularIvaActionPerformed
@@ -842,7 +849,7 @@ public class CompraProveedor extends javax.swing.JFrame {
                 comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText()), idAci, estado);
                 mostrarTabla();
                 limpiar();
-            }  else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Numero de compra incorrecto");
             }
         }
@@ -866,7 +873,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalPagarCPActionPerformed
 
     private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
-        // TODO add your handling code here:
+               
     }//GEN-LAST:event_checkBoxIVACPActionPerformed
 
     private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
@@ -958,16 +965,6 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtCantidadKeyTyped
 
-    private void btnDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleCompraActionPerformed
-        dispose();
-        //Vista
-        DetalleCompra detalle = new DetalleCompra();
-        detalle.setLocationRelativeTo(null);
-        dispose();
-        detalle.setVisible(true);
-
-    }//GEN-LAST:event_btnDetalleCompraActionPerformed
-
     private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
         Tarjeta = true;
         formaPago = "Tarjeta C/D";
@@ -977,6 +974,13 @@ public class CompraProveedor extends javax.swing.JFrame {
         efectivo = true;
         formaPago = "Efectivo";
     }//GEN-LAST:event_btnEfectivo1ActionPerformed
+
+    private void btnCompraProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraProveedorActionPerformed
+        CompraProveedor cp = new CompraProveedor();
+        this.dispose();
+        cp.setVisible(true);
+        cp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCompraProveedorActionPerformed
 
     private void calcularIva() {
         double subtotal = Double.parseDouble(txtSubtotalCP.getText());
@@ -1033,7 +1037,18 @@ public class CompraProveedor extends javax.swing.JFrame {
         }
 
     }
-
+    public void guardarDetalle(){
+        Producto codP = cdao.buscarProductoC(nombre);
+      //  int codigoP = Integer.parseInt(codP);
+        for (int i = 0; i < tblProductoCP.getRowCount(); i++) {
+            int cdp = Integer.parseInt(tblProductoCP.getValueAt(i, 0).toString());
+            double pre = Integer.parseInt(tblProductoCP.getValueAt(i, 3).toString());
+            
+            
+        }
+      
+        
+                }
     private void limpiar() {
 
         txtnroCompraCP.setText("");
@@ -1141,9 +1156,8 @@ public class CompraProveedor extends javax.swing.JFrame {
     private rojerusan.RSButtonHover bntCalcularIva;
     private rojerusan.RSButtonHover btnBuscarCedulaCP1;
     private rojerusan.RSButtonHover btnBuscarCodProductoCP;
-    private newscomponents.RSButtonBigIcon_new btnDetalleCompra;
+    private newscomponents.RSButtonBigIcon_new btnCompraProveedor;
     private rojerusan.RSButtonHover btnEfectivo1;
-    private rojerusan.RSButtonHover btnGuardar;
     private rojerusan.RSButtonHover btnGuardarCP;
     private rojerusan.RSButtonHover btnLimpiar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;

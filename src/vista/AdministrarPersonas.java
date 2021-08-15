@@ -696,10 +696,10 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRolMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
-        dispose();
-        mpa.setLocationRelativeTo(null);
-        mpa.setVisible(true);
+        InicioSesion inicioSesion = new InicioSesion();
+        this.dispose();
+        inicioSesion.setVisible(true);
+        inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void tbtPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtPersonalMouseClicked
