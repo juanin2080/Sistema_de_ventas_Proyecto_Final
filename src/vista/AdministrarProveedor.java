@@ -652,23 +652,52 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-//        if (camposVacios()) {
-//            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
-//        } else {
-//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
-        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
-        mostrarTabla("");
-        cbxRol.setSelectedIndex(2);
-        limpiar();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
-//                txtavisoCed.setVisible(true);
-//                txtavisoEmail.setVisible(true);
-//            }
-//        }
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
 
+        } else {
 
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarEmail(txtEmail.getText())) {
+                        if (controles.validarCelular(txtTelefono.getText())) {
+                            if (controles.validarNombre(txtDireccion.getText())) {
+                                if (controles.validarNumeroEntero(txtRuc.getText())) {
+                                    if (controles.validarNombre(txtEmpresa.getText())) {
+                                        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+                                        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+                                        mostrarTabla("");
+                                        cbxRol.setSelectedIndex(2);
+                                        limpiar();
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Empresa Incorrecta");
+                                        txtavisoEmpresa.setVisible(true);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Ruc Incorrecto");
+                                    txtavisoRuc.setVisible(true);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                                txtDireccion.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                            txtavisoTlf.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                        txtavisoEmail.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                    txtavisoNombre.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
+                txtavisoCed.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public boolean camposVacios() {
@@ -735,17 +764,42 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
         } else {
-            if (controles.validarEmail(txtEmail.getText())) {
-                String mensaje = "";
-                Persona person = new Persona();
-                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-                mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
-                JOptionPane.showMessageDialog(null, mensaje);
-                mostrarTabla("");
-                limpiar();
+            if (controles.validarNombre(txtNombres.getText())) {
+                if (controles.validarEmail(txtEmail.getText())) {
+                    if (controles.validarCelular(txtTelefono.getText())) {
+                        if (controles.validarNombre(txtDireccion.getText())) {
+                            if (controles.validarNumeroEntero(txtRuc.getText())) {
+                                if (controles.validarNombre(txtEmpresa.getText())) {
+                                    String mensaje = "";
+                                    Persona person = new Persona();
+                                    person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                                    mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
+                                    JOptionPane.showMessageDialog(null, mensaje);
+                                    mostrarTabla("");
+                                    limpiar();
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Empresa Incorrecta");
+                                    txtavisoEmpresa.setVisible(true);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Ruc Incorrecto");
+                                txtavisoRuc.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                            txtDireccion.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                        txtavisoTlf.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                    txtavisoEmail.setVisible(true);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
-                txtavisoEmail.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                txtavisoNombre.setVisible(true);
             }
         }
 

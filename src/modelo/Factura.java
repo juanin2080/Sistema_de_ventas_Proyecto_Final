@@ -44,7 +44,6 @@ public class Factura implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona")
     private Persona persona;
-
     public Persona getPersona() {
         return persona;
     }

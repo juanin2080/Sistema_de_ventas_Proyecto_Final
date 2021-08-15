@@ -27,7 +27,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     private ProductoDAO pdao = new ProductoDAO();
     private Producto producto = new Producto();
     private ProveedorDAO proveedor = new ProveedorDAO();
-    Controladores controladores = new Controladores();
+    Controladores controles = new Controladores();
     private DetalleCompraDAO detalleCompra = new DetalleCompraDAO();
     ArrayList<Producto> listaProductos = new ArrayList<Producto>();
     Date fecha = new Date();
@@ -798,20 +798,21 @@ public class CompraProveedor extends javax.swing.JFrame {
             lblAvisoCantidad.setVisible(true);
             JOptionPane.showMessageDialog(null, "Por favor, ingrese el código de producto y la cantidad");
         } else {
-//            if (controladores.contieneSoloLetras(txtCodProductoCP.getText()) == false && controladores.contieneSoloLetras(txtCantidad.getText()) == false) {
-            producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
-            listaProductos.add(producto);
-            calcularSubtotal();
-            txtSubtotalCP.setText(String.valueOf(subtotal));
-            mostrarTabla();
-            cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Por favor, verifique el código de producto y la cantidad contengan solo números");
-//            }
-
+            if (controles.validarNumeroEntero(txtCodProductoCP.getText())) {
+                if (controles.validarNumeroEntero(txtCantidad.getText())) {
+                    producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                    listaProductos.add(producto);
+                    calcularSubtotal();
+                    txtSubtotalCP.setText(String.valueOf(subtotal));
+                    mostrarTabla();
+                    cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Código del Producto Incorrecto");
+            }
         }
-
-
     }//GEN-LAST:event_btnBuscarCodProductoCPActionPerformed
 
     private void txtCedulaCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaCPMouseClicked
@@ -828,31 +829,23 @@ public class CompraProveedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
 
         } else {
-
-//            if (controladores.contieneSoloLetras(txtnroCompraCP.getText()) == false && controladores.contieneSoloLetras(txtFormaPagoCP.getText()) == true) {
-            CompraDAO comDao = new CompraDAO();
-            String nroCompra = txtnroCompraCP.getText();
-            boolean iva = checkBoxIVACP.isSelected();
-            String fPago = formaPago;
-            double subtotal = Double.parseDouble(txtSubtotalCP.getText());
-            double total = Double.parseDouble(txtTotalPagarCP.getText());
-            String idAci = "";
-            Boolean estado = false;
-            comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText()), idAci, estado));
-            for (Producto listaProducto : listaProductos) {
-                detalleCompra.insertarDetalleCompra(listaProducto.getNombre(), listaProducto.getPrecio(), comDao.getCompra(), listaProducto);
+            if (controles.Numero(txtnroCompraCP.getText())) {
+                CompraDAO comDao = new CompraDAO();
+                Proveedor prove = new Proveedor();
+                String nroCompra = txtnroCompraCP.getText();
+                boolean iva = checkBoxIVACP.isSelected();
+                String fPago = txtFormaPagoCP.getText();
+                double subtotal = Double.parseDouble(txtSubtotalCP.getText());
+                double total = Double.parseDouble(txtTotalPagarCP.getText());
+                String idAci = "";
+                Boolean estado = false;
+                comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText()), idAci, estado);
+                mostrarTabla();
+                limpiar();
+            }  else {
+                JOptionPane.showMessageDialog(null, "Numero de compra incorrecto");
             }
-            detalleCompra.listarPersonas(tbtDetalleCompra, comDao.getCompra().getIdCompra());
-            mostrarTabla();
-//            limpiar();
-            formaPago = "";
-
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Compra y forma de pago sean correctos");
-//            }
         }
-
-
     }//GEN-LAST:event_btnGuardarCPActionPerformed
 
 
@@ -877,15 +870,11 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxIVACPActionPerformed
 
     private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
-        if (txtCedulaCP.getText().equals("")) {
+        if (txtCedulaCP.getText().equals("") || txtCedulaCP.getText().length() != 10) {
             lblAvisoCedula.setVisible(true);
             JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula del Proveedor");
         } else {
-            if (controladores.validadorDeCedula(txtCedulaCP.getText())) {
-                mostrarNombreProveedor(txtCedulaCP.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula válida");
-            }
+            mostrarNombreProveedor(txtCedulaCP.getText());
         }
     }//GEN-LAST:event_btnBuscarCedulaCP1ActionPerformed
 

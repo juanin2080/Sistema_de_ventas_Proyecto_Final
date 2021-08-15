@@ -21,6 +21,12 @@ public class InventarioDAO {
 
     private ProductoJpaController controladorProducto = new ProductoJpaController();
 
+    /**
+     * Método para listar los productos en el jtable de la vista Inventario.
+     *
+     * @param tabla
+     * @param codigo
+     */
     public void listarProducto(JTable tabla, String codigo) {
         DefaultTableModel model;
 
@@ -52,6 +58,12 @@ public class InventarioDAO {
         tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
 
+    /**
+     * Método para capturar los datos que se encuentran en la bd.
+     *
+     * @param codigo
+     * @return
+     */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();

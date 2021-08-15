@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.DAO.InventarioDAO;
 import controlador.DAO.ProductoDAO;
 
 /**
@@ -13,7 +14,7 @@ import controlador.DAO.ProductoDAO;
  */
 public class Inventario extends javax.swing.JFrame {
 
-    ProductoDAO pDao = new ProductoDAO();
+    InventarioDAO pDao = new InventarioDAO();
 
     /**
      * Creates new form Inventario

@@ -58,6 +58,12 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtCedula.setEditable(true);
         cbxRol.setEnabled(true);
+
+        txtavisoNombre.setVisible(false);
+        txtavisoDirec.setVisible(false);
+        txtavisoEmail.setVisible(false);
+        txtavisoTlf.setVisible(false);
+        txtavisoCed.setVisible(false);
     }
 
     public boolean camposVacios() {
@@ -558,31 +564,50 @@ public class AdministrarPersonas extends javax.swing.JFrame {
 
     private void btnNuevoPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPersonalActionPerformed
         limpiarCampos();
-        txtavisoNombre.setVisible(false);
-        txtavisoDirec.setVisible(false);
-        txtavisoEmail.setVisible(false);
-        txtavisoTlf.setVisible(false);
-        txtavisoCed.setVisible(false);
+
     }//GEN-LAST:event_btnNuevoPersonalActionPerformed
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos deben estar llenos");
         } else {
-//            if (controles.validarEmail(txtEmail.getText())) {
-            Persona person = new Persona();
-            person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-            pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
-            limpiarCampos();
-            mostrarTabla("");
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
-//                txtavisoEmail.setVisible(true);
-//            }
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarEmail(txtEmail.getText())) {
+                        if (controles.validarCelular(txtTelefono.getText())) {
+                            if (controles.validarNombre(txtDireccion.getText())) {
+//                                Persona person = new Persona();
+//                                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+//                                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+//                                limpiarCampos();
+//                                mostrarTabla("");
 
+                                Persona person = new Persona();
+                                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                                pDAO.actualizarPersona(txtCedula.getText(), txtNombres.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), Long.valueOf(txtId.getText()), person.getRol());
+                                limpiarCampos();
+                                mostrarTabla("");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                                txtDireccion.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                            txtavisoTlf.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                        txtavisoEmail.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                    txtavisoNombre.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
+                txtavisoCed.setVisible(true);
+            }
         }
-
-
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
     private void btnRegistrarRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarRolesActionPerformed
@@ -591,6 +616,44 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         ar.setVisible(true);
         ar.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarRolesActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
+        } else {
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarEmail(txtEmail.getText())) {
+                        if (controles.validarCelular(txtTelefono.getText())) {
+                            if (controles.validarNombre(txtDireccion.getText())) {
+//                                
+                                rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+                                pDAO.insertarPersona(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol);
+                                limpiarCampos();
+                                mostrarTabla("");
+                                cbxRol.setSelectedIndex(0);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                                txtDireccion.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                            txtavisoTlf.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                        txtavisoEmail.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                    txtavisoNombre.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
+                txtavisoCed.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
