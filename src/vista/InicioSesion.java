@@ -267,7 +267,6 @@ public class InicioSesion extends javax.swing.JFrame {
         this.dispose();
         ac.setVisible(true);
         ac.setLocationRelativeTo(null);
-
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     public boolean camposVacios() {

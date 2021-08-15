@@ -33,21 +33,8 @@ public class CompraDAO {
     private ProductoDAO pdao = new ProductoDAO();
 
     private String mensaje = "";
-    
-    /**
-     * Metodo para insertar la Compra 
-     * @param nroCompra
-     * @param fecha
-     * @param iva
-     * @param fPago
-     * @param subtotal
-     * @param total
-     * @param idProveedor
-     * @param idAci
-     * @param estado
-     * @return Este método retorna la compra con todos los parámetros ingresados
-     */
-    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor, String idAci, Boolean estado) {
+
+    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
             compra.setNroCompra(nroCompra);
@@ -57,8 +44,6 @@ public class CompraDAO {
             compra.setSubtotal(subtotal);
             compra.setTotal(total);
             compra.setExternal_IDProveedor(Long.valueOf(idProveedor));
-            compra.setIdACI(idAci);
-            compra.setEstado(estado);
             tjc.create(compra);
             JOptionPane.showMessageDialog(null, "Guardado correctamente");
         } catch (Exception e) {
