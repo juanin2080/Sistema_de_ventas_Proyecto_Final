@@ -187,14 +187,6 @@ public class PersonaDAO {
         }
         return person;
     }
-//
-//    public List<Persona> listarPersonas(String cedula) {
-//        EntityManager em = controladorPersona.getEntityManager();
-//        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
-//        query.setParameter("cedula", cedula + "%");
-//
-//        List<Persona> lista = query.getResultList();
-//        return lista;
-//    }
+
 
 }
