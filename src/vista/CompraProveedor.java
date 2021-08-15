@@ -24,7 +24,7 @@ import modelo.Proveedor;
  * @author USUARIO
  */
 public class CompraProveedor extends javax.swing.JFrame {
-    
+
     private CompraDAO cdao = new CompraDAO();
     private ProductoDAO pdao = new ProductoDAO();
     private Producto producto = new Producto();
@@ -808,11 +808,16 @@ public class CompraProveedor extends javax.swing.JFrame {
             if (controles.validarNumeroEntero(txtCodProductoCP.getText())) {
                 if (controles.validarNumeroEntero(txtCantidad.getText())) {
                     producto = cdao.buscarProductoCompra(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
-                    listaProductos.add(producto);
-                    calcularSubtotal();
-                    txtSubtotalCP.setText(String.valueOf(subtotal));
-                    mostrarTabla();
-                    cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                    System.out.println(producto.getIdProducto());
+                    if (producto.getIdProducto() == null) {
+                        JOptionPane.showMessageDialog(null, "Código no encontrado");
+                    } else {
+                        listaProductos.add(producto);
+                        calcularSubtotal();
+                        txtSubtotalCP.setText(String.valueOf(subtotal));
+                        mostrarTabla();
+                        cdao.actualizarStockBD(txtCodProductoCP.getText(), Integer.valueOf(txtCantidad.getText()));
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
                 }
@@ -873,7 +878,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalPagarCPActionPerformed
 
     private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
-               
+
     }//GEN-LAST:event_checkBoxIVACPActionPerformed
 
     private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
@@ -1037,18 +1042,18 @@ public class CompraProveedor extends javax.swing.JFrame {
         }
 
     }
-    public void guardarDetalle(){
+
+    public void guardarDetalle() {
         Producto codP = cdao.buscarProductoC(nombre);
-      //  int codigoP = Integer.parseInt(codP);
+        //  int codigoP = Integer.parseInt(codP);
         for (int i = 0; i < tblProductoCP.getRowCount(); i++) {
             int cdp = Integer.parseInt(tblProductoCP.getValueAt(i, 0).toString());
             double pre = Integer.parseInt(tblProductoCP.getValueAt(i, 3).toString());
-            
-            
+
         }
-      
-        
-                }
+
+    }
+
     private void limpiar() {
 
         txtnroCompraCP.setText("");

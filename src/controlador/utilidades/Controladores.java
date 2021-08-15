@@ -55,9 +55,7 @@ public class Controladores {
         }
 
         if (!cedulaCorrecta) {
-            System.out.println("La Cédula ingresada es Incorrecta");
         } else {
-            System.out.println("La Cédula ingresada es correcta");
         }
         return cedulaCorrecta;
     }

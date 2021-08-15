@@ -263,10 +263,11 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        AdministrarCuentas ac = new AdministrarCuentas();
         this.dispose();
-        adminPersonas.setVisible(true);
-        adminPersonas.setLocationRelativeTo(null);
+        ac.setVisible(true);
+        ac.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     public boolean camposVacios() {
