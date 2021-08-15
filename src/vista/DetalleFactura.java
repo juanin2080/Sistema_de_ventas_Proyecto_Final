@@ -291,7 +291,7 @@ public class DetalleFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        
+         
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**

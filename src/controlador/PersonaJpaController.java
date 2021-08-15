@@ -26,7 +26,7 @@ import modelo.Persona;
  * @author juana
  */
 public class PersonaJpaController implements Serializable {
-
+    
     public PersonaJpaController() {
     }
 
@@ -38,7 +38,10 @@ public class PersonaJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    /**
+     * Método create Crea una Persona en la base de datos
+     * @param persona 
+     */
     public void create(Persona persona) {
         if (persona.getListaFactura() == null) {
             persona.setListaFactura(new ArrayList<Factura>());
@@ -84,7 +87,13 @@ public class PersonaJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param persona
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(Persona persona) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -158,7 +167,12 @@ public class PersonaJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException 
+     */
     public void destroy(Long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -221,7 +235,11 @@ public class PersonaJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Método findPersona busca el patrón especificado o la expresión en la subsecuencia daba por caracteres.
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public Persona findPersona(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -230,7 +248,10 @@ public class PersonaJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Metodo PersonaCount devuelve el recuento de elementos en la secuencia.
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public int getPersonaCount() {
         EntityManager em = getEntityManager();
         try {

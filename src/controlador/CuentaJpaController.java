@@ -37,7 +37,11 @@ public class CuentaJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    /**
+     * Método create Crea una compra en la base de datos
+     * @param cuenta
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     */
     public void create(Cuenta cuenta) throws IllegalOrphanException {
         List<String> illegalOrphanMessages = null;
         Persona personaOrphanCheck = cuenta.getPersona();
@@ -74,7 +78,13 @@ public class CuentaJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param cuenta
+     * @throws IllegalOrphanException encargados de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws NonexistentEntityException
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(Cuenta cuenta) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -125,7 +135,11 @@ public class CuentaJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws NonexistentEntityException encargado de controlar los posibles errores nacientes al conectar a la base de datos.
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -175,7 +189,11 @@ public class CuentaJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Método findCuenta busca el patrón especificado o la expresión en la subsecuencia daba por caracteres.
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public Cuenta findCuenta(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -184,7 +202,10 @@ public class CuentaJpaController implements Serializable {
             em.close();
         }
     }
-
+  /**
+     * Metodo CuentaCount devuelve el recuento de elementos en la secuencia. 
+     * @return  el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public int getCuentaCount() {
         EntityManager em = getEntityManager();
         try {

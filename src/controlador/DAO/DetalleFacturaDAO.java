@@ -29,8 +29,13 @@ public class DetalleFacturaDAO {
 
     private DetalleFacturaJpaController detallefac = new DetalleFacturaJpaController();
     private DetalleFactura detalle = new DetalleFactura();
-
-//    public void insertarDetalleFactura(int cantidad, Double precioTotal, Double precioUnitario, Factura factura, Producto producto) {
+    /**
+     * Método para insertar datos correspondientes al detalle de factura a la BD
+     * @param nombre
+     * @param precioUnitario
+     * @param factura
+     * @param producto 
+     */
     public void insertarDetalleFactura(String nombre, Double precioUnitario, Factura factura, Producto producto) {
         try {
             detalle.setIdDetalleFactura(Long.MIN_VALUE);
@@ -48,6 +53,5 @@ public class DetalleFacturaDAO {
             System.out.println("No se pudo registrar el Detalle de Factura ");
             System.out.println(e.getMessage());
         }
-        return null;
     }
 }

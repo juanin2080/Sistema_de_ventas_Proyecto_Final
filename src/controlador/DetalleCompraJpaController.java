@@ -42,7 +42,10 @@ public class DetalleCompraJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    /**
+     * Método create Crea un detalle de compras en la base de datos
+     * @param detalleCompra 
+     */
 
     public void create(DetalleCompra detalleCompra) {
         EntityManager em = null;
@@ -75,7 +78,12 @@ public class DetalleCompraJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método edit edita una cláusula catch (reemplazable), el método no verifica si la entidad ya existe, sino que agrega una nueva entidad.
+     * @param detalleCompra
+     * @throws NonexistentEntityException encargado de controlar los posibles errores nacientes al conectar a la base de datos.
+     * @throws Exception Representa errores que no son críticos y por lo tanto pueden ser tratados y continuar la ejecución de la aplicación.
+     */
     public void edit(DetalleCompra detalleCompra) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -127,7 +135,11 @@ public class DetalleCompraJpaController implements Serializable {
             }
         }
     }
-
+    /**
+     * Método para destruir un grupo de subprocesos, indica que todos los subprocesos se han detenido desde entonces.
+     * @param id
+     * @throws NonexistentEntityException encargado de controlar los posibles errores nacientes al conectar a la base de datos.
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -182,7 +194,11 @@ public class DetalleCompraJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Método findDetalleCompra busca el patrón especificado o la expresión en la subsecuencia daba por caracteres.
+     * @param id
+     * @return Retorna el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public DetalleCompra findDetalleCompra(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -191,7 +207,10 @@ public class DetalleCompraJpaController implements Serializable {
             em.close();
         }
     }
-
+    /**
+     * Metodo DetalleCompraCount devuelve el recuento de elementos en la secuencia.
+     * @return el valor de retorno de la operación es el recuento de elementos en la secuencia.
+     */
     public int getDetalleCompraCount() {
         EntityManager em = getEntityManager();
         try {
