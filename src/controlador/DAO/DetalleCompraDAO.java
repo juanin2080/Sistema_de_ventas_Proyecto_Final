@@ -5,22 +5,14 @@
  */
 package controlador.DAO;
 
-import controlador.CompraJpaController;
 import controlador.DetalleCompraJpaController;
-import controlador.ProductoJpaController;
-import controlador.ProveedorJpaController;
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleCompra;
-
 import modelo.Compra;
+import modelo.DetalleFactura;
 import modelo.Producto;
-import modelo.Proveedor;
 
 /**
  *
@@ -31,40 +23,57 @@ public class DetalleCompraDAO {
     private DetalleCompraJpaController detalleCom = new DetalleCompraJpaController();
     private CompraJpaController cjpac = new CompraJpaController();
     private DetalleCompra detalle = new DetalleCompra();
-    private Compra compra = new Compra();
-    public void insertarDetalleCompra(int cantidad, Double precioTotal, Double precioUnitario, Compra compra, Producto producto) {
+
+    public void insertarDetalleCompra(String nombreProducto, Double precioUnitario, Compra compra, Producto producto) {
         try {
             detalle.setIdDCompra(Long.MIN_VALUE);
-            detalle.setCantidad(cantidad);
-            detalle.setPrecioTotal(precioTotal);
+            detalle.setNombreProducto(nombreProducto);
             detalle.setPrecioUnitario(precioUnitario);
             detalle.setCompra(compra);
             detalle.setProducto(producto);
             detalleCom.create(detalle);
-
-            JOptionPane.showMessageDialog(null, "Detalle de Compra    registrada con exito");
+//            JOptionPane.showMessageDialog(null, "Detalle de Compra    registrada con exito");
             System.out.println("Detalle de Compra  registrada con exito");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo registrar el Detalle de Compra  ");
+//            JOptionPane.showMessageDialog(null, "No se pudo registrar el Detalle de Compra  ");
             System.out.println("No se pudo registrar el Detalle de Compra  ");
             System.out.println(e.getMessage());
         }
     }
-       public void listarCompras(JTable tblListaCompras) {
-        DefaultTableModel model;
-        String[] titulo = {"FECHA","NROCOMPRA", "FORMA DE PAGO", "IVA", "TOTAL"};
-        model = new DefaultTableModel(null, titulo);
-        List<Compra> datos = cjpac.findCompraEntities();
-        String[] listarCompra = new String[5];
-        
-        for (Compra dato : datos) {
-            listarCompra[0] = dato.getFecha() + "";
-            listarCompra[1] = dato.getNroCompra();
-            listarCompra[2] = dato.getFormaPago() + "";          
-            listarCompra[3] = dato.isIva() + "";
-            listarCompra[4] = dato.getTotal() + "";
-            model.addRow(listarCompra);
+
+    public void listarPersonas(JTable tabla, Long id) {
+        DefaultTableModel modelo;
+        String[] titulo = {"IdDetalleFactura", "Nombre producto", "Precio Unitario", "Nro Compra", "idProducto", "Compra"};
+        modelo = new DefaultTableModel(null, titulo);
+        List<DetalleCompra> datos = detalleCom.findDetalleCompraEntities();
+        String[] listarDetalle = new String[6];
+        for (DetalleCompra detalle : datos) {
+            if (detalle.getCompra().getIdCompra() == id) {
+                listarDetalle[0] = String.valueOf(detalle.getIdDCompra());
+                listarDetalle[1] = detalle.getNombreProducto();
+                listarDetalle[2] = String.valueOf(detalle.getPrecioUnitario());
+                listarDetalle[3] = String.valueOf(detalle.getCompra().getNroCompra());
+                listarDetalle[4] = String.valueOf(detalle.getProducto());
+                listarDetalle[5] = String.valueOf(detalle.getCompra());
+                modelo.addRow(listarDetalle);
+
+            }
+
         }
-        tblListaCompras.setModel(model);
+        tabla.setModel(modelo);
+        tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(4).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMinWidth(0);
+
     }
+
 }

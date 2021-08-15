@@ -35,11 +35,9 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         mostrarTabla("");
         txtRol.setVisible(false);
         txtId.setVisible(false);
-
         llenarCbx();
         cbxRol.setSelectedIndex(2);
         cbxRol.setEnabled(false);
-
         txtavisoNombre.setVisible(false);
         txtavisoDirec.setVisible(false);
         txtavisoEmail.setVisible(false);
@@ -66,6 +64,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
+        btnCompraProveedor = new newscomponents.RSButtonBigIcon_new();
         txtCedula = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -165,7 +164,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(310, 20, 140, 120);
+        btnRegistrar.setBounds(250, 20, 140, 120);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -178,7 +177,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(470, 20, 140, 120);
+        btnProveedor.setBounds(400, 20, 140, 120);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -191,7 +190,20 @@ public class AdministrarProveedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(630, 20, 150, 120);
+        btnProducto.setBounds(700, 20, 150, 120);
+
+        btnCompraProveedor.setBackground(new java.awt.Color(0, 153, 102));
+        btnCompraProveedor.setText("Compra ");
+        btnCompraProveedor.setBgHover(new java.awt.Color(102, 102, 102));
+        btnCompraProveedor.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
+        btnCompraProveedor.setSizeIcon(50.0F);
+        btnCompraProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraProveedorActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCompraProveedor);
+        btnCompraProveedor.setBounds(550, 20, 140, 120);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -654,23 +666,52 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-//        if (camposVacios()) {
-//            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
-//        } else {
-//            if (controles.validadorDeCedula(txtCedula.getText()) && controles.validarEmail(txtEmail.getText())) {
-        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
-        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
-        mostrarTabla("");
-        cbxRol.setSelectedIndex(2);
-        limpiar();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Tiene Errores en algunos campos");
-//                txtavisoCed.setVisible(true);
-//                txtavisoEmail.setVisible(true);
-//            }
-//        }
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
 
+        } else {
 
+            if (controles.validadorDeCedula(txtCedula.getText())) {
+                if (controles.validarNombre(txtNombres.getText())) {
+                    if (controles.validarEmail(txtEmail.getText())) {
+                        if (controles.validarCelular(txtTelefono.getText())) {
+                            if (controles.validarNombre(txtDireccion.getText())) {
+                                if (controles.validarNumeroEntero(txtRuc.getText())) {
+                                    if (controles.validarNombre(txtEmpresa.getText())) {
+                                        rol = rDAO.buscarRol(cbxRol.getSelectedItem().toString());
+                                        pdao.insertarProveedor(txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), rol, txtEmpresa.getText(), txtRuc.getText());
+                                        mostrarTabla("");
+                                        cbxRol.setSelectedIndex(2);
+                                        limpiar();
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Empresa Incorrecta");
+                                        txtavisoEmpresa.setVisible(true);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Ruc Incorrecto");
+                                    txtavisoRuc.setVisible(true);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                                txtDireccion.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                            txtavisoTlf.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                        txtavisoEmail.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                    txtavisoNombre.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Cédula Incorrecta");
+                txtavisoCed.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public boolean camposVacios() {
@@ -709,10 +750,10 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        this.dispose();
-        inicioSesion.setVisible(true);
-        inicioSesion.setLocationRelativeTo(null);
+        MenuPrincipalAdministrador mpa = new MenuPrincipalAdministrador();
+        dispose();
+        mpa.setLocationRelativeTo(null);
+        mpa.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 
@@ -737,17 +778,42 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
         } else {
-            if (controles.validarEmail(txtEmail.getText())) {
-                String mensaje = "";
-                Persona person = new Persona();
-                person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
-                mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
-                JOptionPane.showMessageDialog(null, mensaje);
-                mostrarTabla("");
-                limpiar();
+            if (controles.validarNombre(txtNombres.getText())) {
+                if (controles.validarEmail(txtEmail.getText())) {
+                    if (controles.validarCelular(txtTelefono.getText())) {
+                        if (controles.validarNombre(txtDireccion.getText())) {
+                            if (controles.validarNumeroEntero(txtRuc.getText())) {
+                                if (controles.validarNombre(txtEmpresa.getText())) {
+                                    String mensaje = "";
+                                    Persona person = new Persona();
+                                    person = pDAO.buscarRolPersona(Long.valueOf(txtId.getText()));
+                                    mensaje = pdao.actualizarDatos(Long.valueOf(txtId.getText()), txtNombres.getText(), txtCedula.getText(), txtDireccion.getText(), txtTelefono.getText(), txtEmail.getText(), person.getRol(), txtEmpresa.getText(), txtRuc.getText());
+                                    JOptionPane.showMessageDialog(null, mensaje);
+                                    mostrarTabla("");
+                                    limpiar();
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Empresa Incorrecta");
+                                    txtavisoEmpresa.setVisible(true);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Ruc Incorrecto");
+                                txtavisoRuc.setVisible(true);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Dirección Incorrecta");
+                            txtDireccion.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Teléfono Incorrecto");
+                        txtavisoTlf.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Correo Incorrecto");
+                    txtavisoEmail.setVisible(true);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Correo Incorrecto");
-                txtavisoEmail.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                txtavisoNombre.setVisible(true);
             }
         }
 
@@ -872,6 +938,13 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void btnCompraProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraProveedorActionPerformed
+        CompraProveedor cp = new CompraProveedor();
+        this.dispose();
+        cp.setVisible(true);
+        cp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCompraProveedorActionPerformed
     private void mostrarTabla(String cedula) {
         pdao.listarPersonas(tbtProveedor, cedula);
     }
@@ -949,6 +1022,7 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonHover btnActualizarDatos1;
+    private newscomponents.RSButtonBigIcon_new btnCompraProveedor;
     private rojerusan.RSButtonHover btnGuardar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoProveedor;

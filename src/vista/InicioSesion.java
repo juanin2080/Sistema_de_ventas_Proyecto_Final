@@ -263,12 +263,10 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        if (camposVacios()) {
-            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
-        } else {
-            JOptionPane.showMessageDialog(null, "Registro Exitoso");
-
-        }
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     public boolean camposVacios() {

@@ -24,6 +24,14 @@ public class CuentaDAO {
     private CuentaJpaController controladorCuenta = new CuentaJpaController();
     private Cuenta cuenta = new Cuenta();
 
+    
+    /**
+     * Método para crear una cuenta.
+     * @param usuario
+     * @param clave
+     * @param estado
+     * @param persona 
+     */
     public void insertarCuenta(String usuario, String clave, Boolean estado, Persona persona) {
         try {
             cuenta.setIdCuenta(Long.MIN_VALUE);
@@ -40,6 +48,14 @@ public class CuentaDAO {
 
     }
 
+    /**
+     * Método para actualizar los datos de la cuenta
+     * @param id
+     * @param usuario
+     * @param clave
+     * @param estado
+     * @param persona 
+     */
     public void actualizarCuenta(Long id, String usuario, String clave, Boolean estado, Persona persona) {
         try {
             cuenta.setIdCuenta(id);
@@ -56,6 +72,11 @@ public class CuentaDAO {
 
     }
 
+    
+    /**
+     * Método para eliminar la cuenta de la bd
+     * @param id 
+     */
     public void eliminarCuenta(Long id) {
         try {
             controladorCuenta.destroy(id);
@@ -65,6 +86,11 @@ public class CuentaDAO {
         }
     }
 
+    /**
+     * Método para listar los datos de la bd en un jtable 
+     * @param tabla
+     * @param usuario 
+     */
     public void listarCuentas(JTable tabla, String usuario) {
         DefaultTableModel modelo;
         String[] titulo = {"IdCuenta", "Clave", "Usuario", "Estado", "IdPersona", "Cédula", "Nombres"};
@@ -104,6 +130,11 @@ public class CuentaDAO {
 
     }
 
+    /**
+     * Buscamos las cuentas en la bd
+     * @param usuario
+     * @return 
+     */
     private List<Cuenta> buscarCuentas(String usuario) {
         EntityManager em = controladorCuenta.getEntityManager();
         Query query = em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario LIKE :usuario");
@@ -112,6 +143,15 @@ public class CuentaDAO {
         return lista;
     }
 
+    
+    /**
+     * Método para dar de baja una cuenta
+     * @param id
+     * @param usuario
+     * @param clave
+     * @param estado
+     * @param persona 
+     */
     public void darDeBajaCuenta(Long id, String usuario, String clave, Boolean estado, Persona persona) {
         try {
             cuenta.setIdCuenta(id);
@@ -127,6 +167,13 @@ public class CuentaDAO {
         }
     }
 
+    
+    /**
+     * Método para autenticar una cuenta
+     * @param usuario
+     * @param clave
+     * @return 
+     */
     public Cuenta autenticacion(String usuario, String clave) {
         Cuenta cuentaPersona = new Cuenta();
         List<Cuenta> datos = controladorCuenta.findCuentaEntities();

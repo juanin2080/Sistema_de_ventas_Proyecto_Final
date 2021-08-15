@@ -11,12 +11,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 import modelo.Proveedor;
-import modelo.Rol;
 
 /**
  *
@@ -28,6 +26,17 @@ public class ProductoDAO {
     private Producto producto = new Producto();
     private ProveedorJpaController empresaPro = new ProveedorJpaController();
 
+    /**
+     * Metodo para insertar un producto en la bdd.
+     *
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param Marca
+     * @param proveedor
+     * @param cantidad
+     * @return un mensaje de confirmación de registro
+     */
     public String insertarProducto(String codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
 
@@ -50,6 +59,18 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    /**
+     * Método para editar los datos de un producto.
+     *
+     * @param id
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param Marca
+     * @param proveedor
+     * @param cantidad
+     * @return un mensaje de confirmación de actualización
+     */
     public String editar(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
         try {
@@ -71,6 +92,19 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    /**
+     * Metodo para dar de baja un producto, el cual solo cambiara de estado,
+     * pasará de activo a inactivo.
+     *
+     * @param id
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param Marca
+     * @param proveedor
+     * @param cantidad
+     * @return un mensaje de confirmación de dado de baja
+     */
     public String dardeBaja(Long id, int codigo, String nombre, Double precio, String Marca, String proveedor, int cantidad) {
         String mensaje = "";
 
@@ -94,6 +128,13 @@ public class ProductoDAO {
         return mensaje;
     }
 
+    /**
+     * Metodo para listar o presentar en el jtable los datos de los productos
+     * que estan en la bdd, solo presentara, los productos que esten activos.
+     *
+     * @param tabla
+     * @param codigo
+     */
     public void listarProducto(JTable tabla, String codigo) {
         DefaultTableModel model;
 
@@ -125,6 +166,12 @@ public class ProductoDAO {
         tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
 
+    
+    /**
+     * Buscamos los datos en la bdd 
+     * @param codigo
+     * @return una lista de tipo Producto
+     */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
         EntityManager em = controladorProducto.getEntityManager();
@@ -135,34 +182,15 @@ public class ProductoDAO {
         return lista;
     }
 
-    public List<Producto> listarProductos(String codigo) {
-        EntityManager em = controladorProducto.getEntityManager();
-        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codigo like :codigo");
-        query.setParameter("codigo", codigo + "%");
-
-        List<Producto> lista = query.getResultList();
-        return lista;
-    }
-
+    /**
+     * Listamos un combo box de todas las empresas que son proveedores
+     * @param cbxEmpresa 
+     */
     public void listarComboBox(JComboBox cbxEmpresa) {
         List<Proveedor> datos = empresaPro.findProveedorEntities();
         for (Proveedor dato : datos) {
             cbxEmpresa.addItem(dato.getEmpresa());
         }
-    }
-
-    public Proveedor buscarEmpresa(String empresa) {
-        Proveedor empresaCbx = new Proveedor();
-        List<Proveedor> datos = this.empresaPro.findProveedorEntities();
-
-        for (Proveedor dato : datos) {
-            if (dato.getEmpresa().equals(empresa)) {
-                empresaCbx.setEmpresa(dato.getEmpresa());
-
-            }
-        }
-        return empresaCbx;
-
     }
 
 }

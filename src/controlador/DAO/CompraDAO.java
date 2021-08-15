@@ -26,13 +26,13 @@ import modelo.Proveedor;
  * @author USUARIO
  */
 public class CompraDAO {
-    
+
     private CompraJpaController tjc = new CompraJpaController();
     private ProductoJpaController controladorProducto = new ProductoJpaController();
     private ProveedorJpaController controladorProveedor = new ProveedorJpaController();
     private Compra compra = new Compra();
     private ProductoDAO pdao = new ProductoDAO();
-    
+
     private String mensaje = "";
     
     /**
@@ -104,13 +104,13 @@ public class CompraDAO {
      */
     public int calcularStock(ArrayList<Producto> listaProductos, JTable tablaCompra) {
         int calcularStock = 0;
-        
+
         for (Producto dato : listaProductos) {
             if (true) {
-                
+
             }
             calcularStock += dato.getStock() + 1;
-            
+
         }
         return calcularStock;
     }
@@ -151,7 +151,7 @@ public class CompraDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-                
+
             }
         }
         return producto;
@@ -175,7 +175,7 @@ public class CompraDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-                
+
             }
         }
         datos.add(producto);
@@ -215,7 +215,7 @@ public class CompraDAO {
                 producto.setMarca(dato.getMarca());
                 producto.setEstado(dato.getEstado());
                 producto.setProveedor(dato.getProveedor());
-                
+
             }
         }
         return producto;
@@ -243,7 +243,7 @@ public class CompraDAO {
      */
     public String retornarId(String cedula) {
         String id = "";
-        
+
         DefaultTableModel model;
         List<Proveedor> datos = buscarProveedor(cedula);
         for (Proveedor proveedor : datos) {
@@ -276,13 +276,17 @@ public class CompraDAO {
         Producto p = new Producto();
         p = buscarProductoCompra(codigo, cantidad);
         pdao.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
-        
+
     }
-    
-     
-    
- 
-            
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+
 }
     
 

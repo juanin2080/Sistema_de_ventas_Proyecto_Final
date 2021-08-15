@@ -22,10 +22,20 @@ public class PersonaDAO {
 
     private PersonaJpaController controladorPersona = new PersonaJpaController();
     private Persona persona = new Persona();
+    
+    /**
+     * Insertamos los datos de las personas en la bdd
+     * @param nombres
+     * @param cedula
+     * @param direccion
+     * @param telefono
+     * @param email
+     * @param rol
+     * @return 
+     */
 
     public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
-
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
             persona.setCedula(cedula);
@@ -42,6 +52,16 @@ public class PersonaDAO {
 
     }
 
+    /**
+     * Actualizamos los datos de la persona en la bdd
+     * @param cedula
+     * @param nombres
+     * @param direccion
+     * @param telefono
+     * @param email
+     * @param id
+     * @param rol 
+     */
     public void actualizarPersona(String cedula, String nombres, String direccion, String telefono, String email, Long id, Rol rol) {
         try {
             persona.setIdPersona(id);
@@ -60,6 +80,10 @@ public class PersonaDAO {
 
     }
 
+    /**
+     * Damos de baja a una persona, es decir que lo eliminamos de la bd
+     * @param id 
+     */
     public void darDeBajaPersona(Long id) {
         try {
             controladorPersona.destroy(id);
@@ -70,6 +94,12 @@ public class PersonaDAO {
 
     }
 
+    
+    /**
+     * Listamos los datos de las personas que estan en la bd en el jtable
+     * @param tabla
+     * @param cedula 
+     */
     public void listarPersonas(JTable tabla, String cedula) {
         DefaultTableModel modelo;
         String[] titulo = {"Cédula", "Nombres", "Teléfono", "Dirección", "Email", "Id", "Rol"};
@@ -97,6 +127,12 @@ public class PersonaDAO {
         tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
     }
 
+    
+    /**
+     * Buscamos una persona por medio de su cédula
+     * @param cedula
+     * @return  retorna una lista de tipo persona
+     */
     private List<Persona> buscarPersona(String cedula) {
         EntityManager em = controladorPersona.getEntityManager();
         Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula LIKE :cedula");
@@ -105,6 +141,11 @@ public class PersonaDAO {
         return lista;
     }
 
+    /**
+     * Buscamos los roles de las personas por medio de su id
+     * @param id
+     * @return un dato de tipo persona
+     */
     public Persona buscarRolPersona(Long id) {
         List<Persona> datos = controladorPersona.findPersonaEntities();
         Persona persona = new Persona();
@@ -123,6 +164,12 @@ public class PersonaDAO {
         return persona;
 
     }
+    
+    /**
+     * Buscamos la cuenta de una persona
+     * @param cedula
+     * @return un dato de tipo persona
+     */
 
     public Persona BuscarCuentaPersona(String cedula) {
         Persona person = new Persona();
@@ -140,14 +187,14 @@ public class PersonaDAO {
         }
         return person;
     }
-
-    public List<Persona> listarPersonas(String cedula) {
-        EntityManager em = controladorPersona.getEntityManager();
-        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
-        query.setParameter("cedula", cedula + "%");
-
-        List<Persona> lista = query.getResultList();
-        return lista;
-    }
+//
+//    public List<Persona> listarPersonas(String cedula) {
+//        EntityManager em = controladorPersona.getEntityManager();
+//        Query query = em.createQuery("SELECT p FROM Persona p WHERE p.cedula like :cedula");
+//        query.setParameter("cedula", cedula + "%");
+//
+//        List<Persona> lista = query.getResultList();
+//        return lista;
+//    }
 
 }
