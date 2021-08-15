@@ -853,7 +853,7 @@ public class Factura extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
-            dDAO.listarPersonas(tbtDetalleFactura, fac1.getFactura().getIdFactura());
+            dDAO.listarFactura(tbtDetalleFactura, fac1.getFactura().getIdFactura());
             mostrarTabla();
             formaPago = "";
         }

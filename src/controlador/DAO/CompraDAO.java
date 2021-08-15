@@ -34,6 +34,17 @@ public class CompraDAO {
 
     private String mensaje = "";
 
+    /**
+     * Metodo para insertar la Compra 
+     * @param nroCompra
+     * @param fecha
+     * @param iva
+     * @param fPago
+     * @param subtotal
+     * @param total
+     * @param idProveedor
+     * @return Este método retorna la compra con todos los parámetros ingresados
+     */
     public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
