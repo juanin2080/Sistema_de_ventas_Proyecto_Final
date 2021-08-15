@@ -23,7 +23,7 @@ import modelo.DetalleFactura;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class DetalleFacturaJpaController implements Serializable {
 

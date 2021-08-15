@@ -18,7 +18,7 @@ import modelo.Producto;
 
 /**
  *
- * @author María Castillo
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class DetalleFacturaDAO {
 
@@ -27,7 +27,6 @@ public class DetalleFacturaDAO {
 
     /**
      * Método para insertar datos correspondientes al detalle de factura a la BD
-     *
      * @param nombre
      * @param precioUnitario
      * @param factura

@@ -14,7 +14,7 @@ import modelo.Persona;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class AdministrarCuentas extends javax.swing.JFrame {
 

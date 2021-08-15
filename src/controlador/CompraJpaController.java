@@ -22,7 +22,7 @@ import modelo.Compra;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 
 
@@ -42,7 +42,7 @@ public class CompraJpaController implements Serializable {
 
     /**
      *Método create, crea una compra en la base de datos
-     * @param compra
+     * @param compra 
      */
 
     public void create(Compra compra) {

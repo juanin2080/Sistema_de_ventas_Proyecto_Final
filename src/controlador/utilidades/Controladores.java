@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author USUARIO
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class Controladores {
 

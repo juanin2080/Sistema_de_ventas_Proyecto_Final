@@ -13,7 +13,7 @@ import modelo.Rol;
 
 /**
  *
- * @author CRCR
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class AdministrarProducto extends javax.swing.JFrame {
 

@@ -21,7 +21,7 @@ import modelo.Proveedor;
 
 /**
  *
- * @author USUARIO
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class CompraProveedor extends javax.swing.JFrame {
 

@@ -19,7 +19,7 @@ import modelo.Rol;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class RolJpaController implements Serializable {
 
