@@ -44,8 +44,6 @@ public class CompraDAO {
      * @param subtotal
      * @param total
      * @param idProveedor
-     * @param idAci
-     * @param estado
      * @return Este método retorna la compra con todos los parámetros ingresados
      */
     public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
