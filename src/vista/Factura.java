@@ -20,14 +20,14 @@ import modelo.Producto;
  * @author María Castillo
  */
 public class Factura extends javax.swing.JFrame {
-
+    
     Controladores controles = new Controladores();
     private FacturaDAO fac = new FacturaDAO();
     private DetalleFacturaDAO dDAO = new DetalleFacturaDAO();
     /**
      * Creates new form Factura
      */
-
+    
     ArrayList<Producto> listaProductos = new ArrayList<Producto>();
     Date fecha = new Date();
     String nombre = "";
@@ -36,11 +36,11 @@ public class Factura extends javax.swing.JFrame {
     Boolean efectivo = false;
     Boolean Tarjeta = false;
     String formaPago = "";
-
+    
     Producto produc = new Producto();
-
+    
     public Factura() {
-
+        
         initComponents();
         this.setLocationRelativeTo(null);
         txtidPersona.setVisible(false);
@@ -51,9 +51,9 @@ public class Factura extends javax.swing.JFrame {
         lblAvisoCantidad.setVisible(false);
         lblAvisoSubtotal.setVisible(false);
         lblAvisoTotal.setVisible(false);
-
+        
     }
-
+    
     void limpiaTabla() {
         DefaultTableModel temp;
         try {
@@ -67,12 +67,12 @@ public class Factura extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-
+    
     private void mostrarTabla() {
-
+        
         fac.listarProducto(tablaFactura, listaProductos);
     }
-
+    
     private void mostrarNombreCliente(String cedula) {
         nombre = fac.listarPersona(cedula);
         txtnombreCliente.setText(nombre);
@@ -92,8 +92,8 @@ public class Factura extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         rSLabelImage5 = new necesario.RSLabelImage();
-        btnDetalleFactura = new newscomponents.RSButtonBigIcon_new();
         btnFactura = new newscomponents.RSButtonBigIcon_new();
+        btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnGuardar1 = new rojerusan.RSButtonHover();
         labelIcon13 = new necesario.LabelIcon();
         btnMinimizar1 = new RSMaterialComponent.RSButtonIconDos();
@@ -172,31 +172,31 @@ public class Factura extends javax.swing.JFrame {
         jPanel4.add(rSLabelImage5);
         rSLabelImage5.setBounds(600, 10, 160, 70);
 
-        btnDetalleFactura.setBackground(new java.awt.Color(0, 153, 102));
-        btnDetalleFactura.setText("Detalle Factura");
-        btnDetalleFactura.setBgHover(new java.awt.Color(102, 102, 102));
-        btnDetalleFactura.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NOTE);
-        btnDetalleFactura.setSizeIcon(30.0F);
-        btnDetalleFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetalleFacturaActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnDetalleFactura);
-        btnDetalleFactura.setBounds(140, 10, 140, 70);
-
         btnFactura.setBackground(new java.awt.Color(0, 153, 102));
         btnFactura.setText("Factura");
         btnFactura.setBgHover(new java.awt.Color(102, 102, 102));
         btnFactura.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
-        btnFactura.setSizeIcon(30.0F);
+        btnFactura.setSizeIcon(50.0F);
         btnFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFacturaActionPerformed(evt);
             }
         });
         jPanel4.add(btnFactura);
-        btnFactura.setBounds(400, 10, 100, 70);
+        btnFactura.setBounds(370, 0, 120, 80);
+
+        btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setBgHover(new java.awt.Color(102, 102, 102));
+        btnRegistrar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PERSON_ADD);
+        btnRegistrar.setSizeIcon(50.0F);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnRegistrar);
+        btnRegistrar.setBounds(220, 0, 120, 80);
 
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 50, 1160, 90);
@@ -659,18 +659,12 @@ public class Factura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
-        dispose();
-        //Vista
-        DetalleFactura detalle = new DetalleFactura();
-        detalle.setLocationRelativeTo(null);
-        dispose();
-        detalle.setVisible(true);
-
-    }//GEN-LAST:event_btnDetalleFacturaActionPerformed
-
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
+        Factura fact = new Factura();
+        this.dispose();
+        fact.setVisible(true);
+        fact.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnMinimizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizar1ActionPerformed
@@ -718,7 +712,7 @@ public class Factura extends javax.swing.JFrame {
         //subtotal();
         if (txtSubtotal.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese los productos que desea vender");
-
+            
         } else {
             calcularIva();
         }
@@ -738,7 +732,7 @@ public class Factura extends javax.swing.JFrame {
                     listaProductos.add(produc);
                     calcularSubtotal();
                     txtSubtotal.setText(String.valueOf(subtotal));
-
+                    
                     for (Producto listaProducto : listaProductos) {
                         listaProducto.getCodigo();
                         listaProducto.getStock();
@@ -748,14 +742,14 @@ public class Factura extends javax.swing.JFrame {
                     }
                     mostrarTabla();
                     fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Cantidad Incorrecto");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Código del Producto Incorrecto");
             }
-
+            
         }
 
     }//GEN-LAST:event_btnBuscarProducto1ActionPerformed
@@ -776,12 +770,12 @@ public class Factura extends javax.swing.JFrame {
     private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
-
+    
     public boolean camposVacios() {
         if (txtFactura.getText().equals("") || txtCedula.getText().equals("") || txtnombreCliente.getText().equals("")
                 || txtCodigo.getText().equals("") || txtCantidadProducto.getText().equals("")
                 || txtSubtotal.getText().equals("") || txtTotal.getText().equals("")) {
-
+            
             lblAvisoCedula.setVisible(true);
             lblAvisoCliente.setVisible(true);
             lblAvisoCodigo.setVisible(true);
@@ -795,17 +789,17 @@ public class Factura extends javax.swing.JFrame {
         }
     }
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        FacturaDAO fac1 = new FacturaDAO();
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         } else {
             if (controles.Numero(txtFactura.getText())) {
-                FacturaDAO fac1 = new FacturaDAO();
                 Date fecha = new Date();
                 Persona persona = new Persona();
                 persona.setIdPersona(Long.valueOf(txtidPersona.getText()));
                 String nroFactura = txtFactura.getText();
                 Boolean iva = checkBoxIVA.isSelected();
-                String formaPago = txtFormaPago.getText();
+                String formaPago = this.formaPago;
                 String idAci = "";
                 Boolean estado = false;
                 double subtotal = Double.parseDouble(txtSubtotal.getText());
@@ -814,7 +808,7 @@ public class Factura extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Factura agregada");
                 mostrarTabla();
                 limpiar();
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Numero de factura incorrecto");
             }
@@ -887,6 +881,13 @@ public class Factura extends javax.swing.JFrame {
         efectivo = true;
         formaPago = "Efectivo";
     }//GEN-LAST:event_btnEfectivo1ActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        AdministrarPersonas adminPersonas = new AdministrarPersonas();
+        this.dispose();
+        adminPersonas.setVisible(true);
+        adminPersonas.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
     private void calcularIva() {
         double subtotal = Double.parseDouble(txtSubtotal.getText());
         boolean iva = checkBoxIVA.isSelected();
@@ -901,18 +902,18 @@ public class Factura extends javax.swing.JFrame {
             total = subtotal + resta;
             double roundDbl = Math.round(total * 100.0) / 100.0;
             txtTotal.setText(String.valueOf(roundDbl));
-
+            
         } else {
             total = subtotal;
             txtTotal.setText(String.valueOf(total));
         }
     }
-
+    
     public void calcularSubtotal() {
         subtotal += fac.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidadProducto.getText()));
-
+        
     }
-
+    
     private void limpiar() {
         txtFactura.setText("");
         txtCedula.setText("");
@@ -921,7 +922,7 @@ public class Factura extends javax.swing.JFrame {
         txtCantidadProducto.setText("");
         txtSubtotal.setText("");
         txtTotal.setText("");
-
+        
         lblAvisoCedula.setVisible(false);
         lblAvisoCliente.setVisible(false);
         lblAvisoCodigo.setVisible(false);
@@ -985,12 +986,12 @@ public class Factura extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnBuscarCliente2;
     private rojerusan.RSButtonHover btnBuscarProducto1;
     private rojerusan.RSButtonHover btnCalcular;
-    private newscomponents.RSButtonBigIcon_new btnDetalleFactura;
     private rojerusan.RSButtonHover btnEfectivo1;
     private newscomponents.RSButtonBigIcon_new btnFactura;
     private rojerusan.RSButtonHover btnGuardar1;
     private rojerusan.RSButtonHover btnLimpiar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar1;
+    private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir1;
     private rojerusan.RSButtonHover btnTarjeta;

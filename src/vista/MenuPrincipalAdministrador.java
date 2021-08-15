@@ -37,6 +37,8 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         btnProveedor = new newscomponents.RSButtonBigIcon_new();
         btnProducto = new newscomponents.RSButtonBigIcon_new();
         btnCompraProveedor = new newscomponents.RSButtonBigIcon_new();
+        btnRegistrarCuentas = new newscomponents.RSButtonBigIcon_new();
+        btnInventario = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
         btnSalir = new RSMaterialComponent.RSButtonIconDos();
         rSLabelImage2 = new necesario.RSLabelImage();
@@ -82,7 +84,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(110, 20, 140, 120);
+        btnRegistrar.setBounds(20, 20, 120, 110);
 
         btnProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnProveedor.setText("Proveedor");
@@ -95,7 +97,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProveedor);
-        btnProveedor.setBounds(270, 20, 140, 120);
+        btnProveedor.setBounds(150, 20, 120, 110);
 
         btnProducto.setBackground(new java.awt.Color(0, 153, 102));
         btnProducto.setText("Producto");
@@ -108,7 +110,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnProducto);
-        btnProducto.setBounds(590, 20, 150, 120);
+        btnProducto.setBounds(410, 20, 130, 110);
 
         btnCompraProveedor.setBackground(new java.awt.Color(0, 153, 102));
         btnCompraProveedor.setText("Compra ");
@@ -121,7 +123,33 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnCompraProveedor);
-        btnCompraProveedor.setBounds(430, 20, 140, 120);
+        btnCompraProveedor.setBounds(280, 20, 120, 110);
+
+        btnRegistrarCuentas.setBackground(new java.awt.Color(0, 153, 102));
+        btnRegistrarCuentas.setText("Cuenta");
+        btnRegistrarCuentas.setBgHover(new java.awt.Color(102, 102, 102));
+        btnRegistrarCuentas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        btnRegistrarCuentas.setSizeIcon(50.0F);
+        btnRegistrarCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCuentasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRegistrarCuentas);
+        btnRegistrarCuentas.setBounds(550, 20, 130, 110);
+
+        btnInventario.setBackground(new java.awt.Color(0, 153, 102));
+        btnInventario.setText("Inventario");
+        btnInventario.setBgHover(new java.awt.Color(102, 102, 102));
+        btnInventario.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CONTENT_PASTE);
+        btnInventario.setSizeIcon(50.0F);
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnInventario);
+        btnInventario.setBounds(690, 20, 130, 110);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -226,11 +254,11 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
-
+    
     private void txtRucMouseClicked(java.awt.event.MouseEvent evt) {
-
+        
     }
-
+    
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -241,7 +269,7 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         inicioSesion.setVisible(true);
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
-
+    
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         AdministrarPersonas adminPersonas = new AdministrarPersonas();
@@ -272,6 +300,20 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
         cp.setVisible(true);
         cp.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnCompraProveedorActionPerformed
+
+    private void btnRegistrarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCuentasActionPerformed
+        AdministrarCuentas ac = new AdministrarCuentas();
+        this.dispose();
+        ac.setVisible(true);
+        ac.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistrarCuentasActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        Inventario inv = new Inventario();
+        this.dispose();
+        inv.setVisible(true);
+        inv.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnInventarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -565,10 +607,12 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newscomponents.RSButtonBigIcon_new btnCompraProveedor;
+    private newscomponents.RSButtonBigIcon_new btnInventario;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnProducto;
     private newscomponents.RSButtonBigIcon_new btnProveedor;
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
+    private newscomponents.RSButtonBigIcon_new btnRegistrarCuentas;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
     private javax.swing.JLabel jLabel23;
