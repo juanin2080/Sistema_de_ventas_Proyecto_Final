@@ -33,7 +33,6 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         rSLabelImage4 = new necesario.RSLabelImage();
-        btnDetalleFactura = new newscomponents.RSButtonBigIcon_new();
         btnFactura = new newscomponents.RSButtonBigIcon_new();
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
         btnMinimizar = new RSMaterialComponent.RSButtonIconDos();
@@ -44,7 +43,7 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
         rSLabelImage3 = new necesario.RSLabelImage();
-        jLabel1 = new javax.swing.JLabel();
+        txtBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -70,21 +69,8 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         jPanel2.add(rSLabelImage4);
         rSLabelImage4.setBounds(910, 10, 230, 140);
 
-        btnDetalleFactura.setBackground(new java.awt.Color(0, 153, 102));
-        btnDetalleFactura.setText("Detalle Factura");
-        btnDetalleFactura.setBgHover(new java.awt.Color(102, 102, 102));
-        btnDetalleFactura.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.NOTE);
-        btnDetalleFactura.setSizeIcon(75.0F);
-        btnDetalleFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetalleFacturaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnDetalleFactura);
-        btnDetalleFactura.setBounds(400, 20, 160, 120);
-
         btnFactura.setBackground(new java.awt.Color(0, 153, 102));
-        btnFactura.setText("Factura");
+        btnFactura.setText("Venta");
         btnFactura.setBgHover(new java.awt.Color(102, 102, 102));
         btnFactura.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SHOPPING_CART);
         btnFactura.setSizeIcon(75.0F);
@@ -94,7 +80,7 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnFactura);
-        btnFactura.setBounds(650, 20, 160, 120);
+        btnFactura.setBounds(570, 20, 160, 120);
 
         btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistrar.setText("Registrar");
@@ -107,7 +93,7 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegistrar);
-        btnRegistrar.setBounds(170, 20, 150, 120);
+        btnRegistrar.setBounds(330, 20, 150, 120);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 50, 1160, 160);
@@ -175,11 +161,11 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         jPanel1.add(rSLabelImage3);
         rSLabelImage3.setBounds(10, 10, 50, 40);
 
-        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Hola, NombreVendedor escoge una opción de nuestro menú");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 220, 530, 70);
+        txtBienvenida.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        txtBienvenida.setForeground(new java.awt.Color(51, 51, 51));
+        txtBienvenida.setText("Hola, NombreVendedor escoge una opción de nuestro menú");
+        jPanel1.add(txtBienvenida);
+        txtBienvenida.setBounds(10, 220, 530, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,14 +213,6 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         inicioSesion.setVisible(true);
         inicioSesion.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void btnDetalleFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleFacturaActionPerformed
-        DetalleFactura detalleFactura = new DetalleFactura();
-        this.dispose();
-        detalleFactura.setVisible(true);
-        detalleFactura.setLocationRelativeTo(null);
-
-    }//GEN-LAST:event_btnDetalleFacturaActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
         Factura factura = new Factura();
@@ -798,13 +776,11 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonBigIcon_new btnDetalleFactura;
     private newscomponents.RSButtonBigIcon_new btnFactura;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -813,5 +789,6 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
+    private javax.swing.JLabel txtBienvenida;
     // End of variables declaration//GEN-END:variables
 }
