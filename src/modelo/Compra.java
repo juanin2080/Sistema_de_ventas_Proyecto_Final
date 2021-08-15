@@ -37,8 +37,6 @@ public class Compra implements Serializable {
     private double total;
     private String formaPago;
     private Long external_IDProveedor;
-    private String idACI;
-    private Boolean estado;
 
     @OneToMany(mappedBy = "Compra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetalleCompra> listaDCompra = new ArrayList<DetalleCompra>();
@@ -113,22 +111,6 @@ public class Compra implements Serializable {
 
     public void setFormaPago(String formaPago) {
         this.formaPago = formaPago;
-    }
-
-    public String getIdACI() {
-        return idACI;
-    }
-
-    public void setIdACI(String idACI) {
-        this.idACI = idACI;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
     }
 
     @Override

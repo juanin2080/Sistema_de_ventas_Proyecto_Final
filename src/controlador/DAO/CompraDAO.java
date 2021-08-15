@@ -34,7 +34,7 @@ public class CompraDAO {
 
     private String mensaje = "";
 
-    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor, String idAci, Boolean estado) {
+    public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
             compra.setNroCompra(nroCompra);
@@ -44,8 +44,6 @@ public class CompraDAO {
             compra.setSubtotal(subtotal);
             compra.setTotal(total);
             compra.setExternal_IDProveedor(Long.valueOf(idProveedor));
-            compra.setIdACI(idAci);
-            compra.setEstado(estado);
             tjc.create(compra);
             JOptionPane.showMessageDialog(null, "Guardado correctamente");
         } catch (Exception e) {

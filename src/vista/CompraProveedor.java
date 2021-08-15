@@ -806,9 +806,7 @@ public class CompraProveedor extends javax.swing.JFrame {
             String fPago = "Efectivo";
             double subtotal = Double.parseDouble(txtSubtotalCP.getText());
             double total = Double.parseDouble(txtTotalPagarCP.getText());
-            String idAci = "";
-            Boolean estado = false;
-            comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText()), idAci, estado));
+            comDao.setCompra(comDao.insertarCompra(nroCompra, fecha, iva, fPago, subtotal, total, Long.valueOf(txtIdProveedor.getText())));
             for (Producto listaProducto : listaProductos) {
                 detalleCompra.insertarDetalleCompra(listaProducto.getNombre(), listaProducto.getPrecio(), comDao.getCompra(), listaProducto);
             }
