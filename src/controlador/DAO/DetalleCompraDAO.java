@@ -11,7 +11,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleCompra;
 import modelo.Compra;
-import modelo.DetalleFactura;
 import modelo.Producto;
 
 /**
@@ -40,9 +39,9 @@ public class DetalleCompraDAO {
         }
     }
 
-    public void listarPersonas(JTable tabla, Long id) {
+    public void listarCompra(JTable tabla, Long id) {
         DefaultTableModel modelo;
-        String[] titulo = {"IdDetalleFactura", "Nombre producto", "Precio Unitario", "Nro Compra", "idProducto", "Compra"};
+        String[] titulo = {"IdDetalleCompra", "Nombre producto", "Precio Unitario", "Nro Compra", "idProducto", "Compra"};
         modelo = new DefaultTableModel(null, titulo);
         List<DetalleCompra> datos = detalleCom.findDetalleCompraEntities();
         String[] listarDetalle = new String[6];
