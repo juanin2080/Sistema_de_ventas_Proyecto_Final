@@ -36,7 +36,6 @@ public class PersonaDAO {
 
     public void insertarPersona(String nombres, String cedula, String direccion, String telefono, String email, Rol rol) {
         try {
-
             persona.setIdPersona(Long.MIN_VALUE);
             persona.setNombres(nombres);
             persona.setCedula(cedula);

@@ -13,6 +13,7 @@ import controlador.utilidades.Controladores;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 import modelo.Proveedor;
 
@@ -34,6 +35,9 @@ public class CompraProveedor extends javax.swing.JFrame {
     String nombre = "";
     String id = "";
     Producto produc = new Producto();
+    Boolean efectivo = false;
+    Boolean Tarjeta = false;
+    String formaPago = "";
 
     public CompraProveedor() {
         initComponents();
@@ -43,7 +47,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblAvisoProveedor.setVisible(false);
         lblAvisoCodigo.setVisible(false);
         lblAvisoCantidad.setVisible(false);
-        lblAvisoFormaPago.setVisible(false);
         lblAvisoSubtotal.setVisible(false);
         lblAvisoTotal.setVisible(false);
     }
@@ -81,12 +84,9 @@ public class CompraProveedor extends javax.swing.JFrame {
         btnBuscarCodProductoCP = new rojerusan.RSButtonHover();
         txtCedulaCP = new javax.swing.JTextField();
         txtProveedorCP = new javax.swing.JTextField();
-        txtFormaPagoCP = new javax.swing.JTextField();
         lblCedula = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProductoCP = new RSMaterialComponent.RSTableMetro();
         labelIcon5 = new necesario.LabelIcon();
         btnGuardarCP = new rojerusan.RSButtonHover();
         jlblSubtotal = new javax.swing.JLabel();
@@ -114,10 +114,17 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblAvisoCedula = new javax.swing.JLabel();
         lblAvisoProveedor = new javax.swing.JLabel();
         lblAvisoCantidad = new javax.swing.JLabel();
-        lblAvisoFormaPago = new javax.swing.JLabel();
         lblAvisoSubtotal = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         lblAvisoCodigo = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblProductoCP = new RSMaterialComponent.RSTableMetro();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbtDetalleCompra = new RSMaterialComponent.RSTableMetro();
+        btnTarjeta = new rojerusan.RSButtonHover();
+        btnEfectivo1 = new rojerusan.RSButtonHover();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -378,22 +385,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel3.add(txtProveedorCP);
         txtProveedorCP.setBounds(310, 150, 180, 18);
 
-        txtFormaPagoCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtFormaPagoCP.setForeground(new java.awt.Color(102, 102, 102));
-        txtFormaPagoCP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(217, 219, 228)));
-        txtFormaPagoCP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtFormaPagoCPMouseClicked(evt);
-            }
-        });
-        txtFormaPagoCP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFormaPagoCPActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtFormaPagoCP);
-        txtFormaPagoCP.setBounds(210, 440, 130, 18);
-
         lblCedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCedula.setForeground(new java.awt.Color(102, 102, 102));
         lblCedula.setText("Cédula:");
@@ -412,20 +403,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel3.add(lblCodigo);
         lblCodigo.setBounds(190, 190, 80, 20);
 
-        tblProductoCP.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tblProductoCP.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane1.setViewportView(tblProductoCP);
-
-        jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(92, 246, 624, 183);
-
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
         jPanel3.add(labelIcon5);
@@ -440,16 +417,22 @@ public class CompraProveedor extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnGuardarCP);
-        btnGuardarCP.setBounds(280, 500, 130, 30);
+        btnGuardarCP.setBounds(290, 500, 130, 30);
 
+        jlblSubtotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlblSubtotal.setForeground(new java.awt.Color(102, 102, 102));
         jlblSubtotal.setText("Subtotal:");
         jPanel3.add(jlblSubtotal);
-        jlblSubtotal.setBounds(450, 440, 70, 14);
+        jlblSubtotal.setBounds(450, 440, 70, 15);
 
+        jlblIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlblIva.setForeground(new java.awt.Color(102, 102, 102));
         jlblIva.setText("IVA:");
         jPanel3.add(jlblIva);
         jlblIva.setBounds(453, 460, 70, 20);
 
+        jlblTotalPago.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlblTotalPago.setForeground(new java.awt.Color(102, 102, 102));
         jlblTotalPago.setText("Total a pagar:");
         jPanel3.add(jlblTotalPago);
         jlblTotalPago.setBounds(450, 484, 90, 20);
@@ -524,10 +507,14 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel3.add(rSLabelFecha1);
         rSLabelFecha1.setBounds(560, 85, 138, 30);
 
+        lblFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblFormaPago.setForeground(new java.awt.Color(102, 102, 102));
         lblFormaPago.setText("FormaPago:");
         jPanel3.add(lblFormaPago);
-        lblFormaPago.setBounds(140, 440, 80, 20);
+        lblFormaPago.setBounds(20, 430, 100, 30);
 
+        checkBoxIVACP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        checkBoxIVACP.setForeground(new java.awt.Color(102, 102, 102));
         checkBoxIVACP.setText("14%");
         checkBoxIVACP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -632,11 +619,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         jPanel3.add(lblAvisoCantidad);
         lblAvisoCantidad.setBounds(490, 220, 20, 14);
 
-        lblAvisoFormaPago.setForeground(new java.awt.Color(255, 0, 0));
-        lblAvisoFormaPago.setText("*");
-        jPanel3.add(lblAvisoFormaPago);
-        lblAvisoFormaPago.setBounds(340, 440, 20, 14);
-
         lblAvisoSubtotal.setForeground(new java.awt.Color(255, 0, 0));
         lblAvisoSubtotal.setText("*");
         jPanel3.add(lblAvisoSubtotal);
@@ -667,6 +649,75 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblAvisoCodigo.setText("*");
         jPanel3.add(lblAvisoCodigo);
         lblAvisoCodigo.setBounds(490, 190, 20, 14);
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setForeground(new java.awt.Color(102, 102, 102));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        tblProductoCP.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblProductoCP.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane3.setViewportView(tblProductoCP);
+
+        jTabbedPane1.addTab("Factura", jScrollPane3);
+
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        tbtDetalleCompra.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbtDetalleCompra.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane1.setViewportView(tbtDetalleCompra);
+
+        jPanel6.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("Más detalles", jPanel6);
+
+        jPanel3.add(jTabbedPane1);
+        jTabbedPane1.setBounds(60, 250, 680, 170);
+
+        btnTarjeta.setBackground(new java.awt.Color(51, 102, 0));
+        btnTarjeta.setText("T. Débito/Crédito");
+        btnTarjeta.setColorHover(new java.awt.Color(102, 102, 102));
+        btnTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTarjetaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnTarjeta);
+        btnTarjeta.setBounds(270, 430, 160, 30);
+
+        btnEfectivo1.setBackground(new java.awt.Color(102, 0, 51));
+        btnEfectivo1.setText("Efectivo");
+        btnEfectivo1.setColorHover(new java.awt.Color(102, 102, 102));
+        btnEfectivo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEfectivo1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnEfectivo1);
+        btnEfectivo1.setBounds(130, 430, 130, 30);
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(100, 150, 850, 550);
@@ -772,10 +823,6 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtProveedorCPMouseClicked
 
-    private void txtFormaPagoCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFormaPagoCPMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFormaPagoCPMouseClicked
-
     private void btnGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCPActionPerformed
 
         if (camposVacios()) {
@@ -846,10 +893,6 @@ public class CompraProveedor extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void txtFormaPagoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaPagoCPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFormaPagoCPActionPerformed
 
     private void txtProveedorCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProveedorCPActionPerformed
         // TODO add your handling code here:
@@ -925,6 +968,16 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnDetalleCompraActionPerformed
 
+    private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
+        Tarjeta = true;
+        formaPago = "Tarjeta C/D";
+    }//GEN-LAST:event_btnTarjetaActionPerformed
+
+    private void btnEfectivo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectivo1ActionPerformed
+        efectivo = true;
+        formaPago = "Efectivo";
+    }//GEN-LAST:event_btnEfectivo1ActionPerformed
+
     private void calcularIva() {
         double subtotal = Double.parseDouble(txtSubtotalCP.getText());
         boolean iva = checkBoxIVACP.isSelected();
@@ -960,12 +1013,11 @@ public class CompraProveedor extends javax.swing.JFrame {
 
     public void calcularSubtotal() {
         subtotal += cdao.calcularSubtotal(listaProductos, Integer.parseInt(txtCantidad.getText()));
-
     }
 
     public boolean camposVacios() {
         if (txtnroCompraCP.getText().equals("") || txtCedulaCP.getText().equals("") || txtProveedorCP.getText().equals("")
-                || txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("") || txtFormaPagoCP.getText().equals("")
+                || txtCodProductoCP.getText().equals("") || txtCantidad.getText().equals("") || formaPago.equals("")
                 || txtSubtotalCP.getText().equals("") || txtTotalPagarCP.getText().equals("")) {
             txtIdProveedor.setVisible(true);
             lblAvisoCompra.setVisible(true);
@@ -973,7 +1025,6 @@ public class CompraProveedor extends javax.swing.JFrame {
             lblAvisoProveedor.setVisible(true);
             lblAvisoCodigo.setVisible(true);
             lblAvisoCantidad.setVisible(true);
-            lblAvisoFormaPago.setVisible(true);
             lblAvisoSubtotal.setVisible(true);
             lblAvisoTotal.setVisible(true);
             return true;
@@ -990,7 +1041,6 @@ public class CompraProveedor extends javax.swing.JFrame {
         txtProveedorCP.setText("");
         txtCodProductoCP.setText("");
         txtCantidad.setText("");
-        txtFormaPagoCP.setText("");
         txtSubtotalCP.setText("");
         txtTotalPagarCP.setText("");
         txtIdProveedor.setVisible(false);
@@ -999,21 +1049,28 @@ public class CompraProveedor extends javax.swing.JFrame {
         lblAvisoProveedor.setVisible(false);
         lblAvisoCodigo.setVisible(false);
         lblAvisoCantidad.setVisible(false);
-        lblAvisoFormaPago.setVisible(false);
         lblAvisoSubtotal.setVisible(false);
         lblAvisoTotal.setVisible(false);
+        listaProductos.removeAll(listaProductos);
+        tblProductoCP.removeAll();
+        mostrarTabla();
+        limpiaTabla();
     }
 
-//    public void imprimirLista() {
-//        Producto p = new Producto();
-//        for (Producto producto : listaProductos) {
-//            p.setCodigo(producto.getCodigo());
-//            System.out.println(p.getCodigo());
-//            p.setNombre(producto.getNombre());
-//            System.out.println(p.getNombre());
-//
-//        }
-//    }
+    void limpiaTabla() {
+        DefaultTableModel temp;
+        try {
+            temp = (DefaultTableModel) tbtDetalleCompra.getModel();
+            int a = temp.getRowCount();
+            for (int i = 0; i <= a; i++) {
+                temp.removeRow(i);
+                temp.removeRow(i);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1085,6 +1142,8 @@ public class CompraProveedor extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnBuscarCedulaCP1;
     private rojerusan.RSButtonHover btnBuscarCodProductoCP;
     private newscomponents.RSButtonBigIcon_new btnDetalleCompra;
+    private rojerusan.RSButtonHover btnEfectivo1;
+    private rojerusan.RSButtonHover btnGuardar;
     private rojerusan.RSButtonHover btnGuardarCP;
     private rojerusan.RSButtonHover btnLimpiar;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
@@ -1093,6 +1152,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private RSMaterialComponent.RSButtonCustomIcon btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private rojerusan.RSButtonHover btnTarjeta;
     private javax.swing.JCheckBox checkBoxIVACP;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
@@ -1103,7 +1163,10 @@ public class CompraProveedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jlblIva;
     private javax.swing.JLabel jlblSubtotal;
     private javax.swing.JLabel jlblSubtotal1;
@@ -1118,7 +1181,6 @@ public class CompraProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel lblAvisoCedula;
     private javax.swing.JLabel lblAvisoCodigo;
     private javax.swing.JLabel lblAvisoCompra;
-    private javax.swing.JLabel lblAvisoFormaPago;
     private javax.swing.JLabel lblAvisoProveedor;
     private javax.swing.JLabel lblAvisoSubtotal;
     private javax.swing.JLabel lblAvisoTotal;
@@ -1134,10 +1196,10 @@ public class CompraProveedor extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
     private RSMaterialComponent.RSTableMetro tblProductoCP;
+    private RSMaterialComponent.RSTableMetro tbtDetalleCompra;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCedulaCP;
     private javax.swing.JTextField txtCodProductoCP;
-    private javax.swing.JTextField txtFormaPagoCP;
     private javax.swing.JTextField txtIdProveedor;
     private javax.swing.JTextField txtProveedorCP;
     private javax.swing.JTextField txtSubtotalCP;
