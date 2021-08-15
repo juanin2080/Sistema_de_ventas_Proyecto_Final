@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Compra;
+import modelo.DetalleCompra;
 import modelo.Producto;
 import modelo.Proveedor;
 
@@ -34,6 +35,19 @@ public class CompraDAO {
     
     private String mensaje = "";
     
+    /**
+     * Metodo para insertar la Compra 
+     * @param nroCompra
+     * @param fecha
+     * @param iva
+     * @param fPago
+     * @param subtotal
+     * @param total
+     * @param idProveedor
+     * @param idAci
+     * @param estado
+     * @return Este método retorna la compra con todos los parámetros ingresados
+     */
     public Compra insertarCompra(String nroCompra, Date fecha, boolean iva, String fPago, double subtotal, double total, Long idProveedor, String idAci, Boolean estado) {
         try {
             compra.setIdCompra(Long.MIN_VALUE);
@@ -86,7 +100,7 @@ public class CompraDAO {
      * al stock
      * @param listaProductos
      * @param tablaCompra
-     * @return 
+     * @return retorna el stock de los productos agregados en la tablaCompra
      */
     public int calcularStock(ArrayList<Producto> listaProductos, JTable tablaCompra) {
         int calcularStock = 0;
@@ -104,7 +118,8 @@ public class CompraDAO {
     /**
      * Método para buscar un producto en la BD
      * @param codigo
-     * @return 
+     * @return Este método retorna la lista de productos de la bd 
+     * que coincidad con el código escrito
      */
     private List<Producto> buscarProducto(String codigo) {
         Producto pd;
@@ -120,7 +135,8 @@ public class CompraDAO {
      * código y cantidad
      * @param codigo
      * @param cantidad
-     * @return 
+     * @return retorna el producto que se desea comprar, teniendo en cuenta
+     * su código y cantidad
      */
     public Producto buscarProductoCompra(String codigo, int cantidad) {
         List<Producto> datos = controladorProducto.findProductoEntities();
@@ -144,7 +160,7 @@ public class CompraDAO {
     /**
      * Método para agregar productos a la lista llamada datos que es de tipo Producto
      * @param codigo
-     * @return 
+     * @return retorna un producto de la lista productos
      */
     public Producto buscarProductoC(String codigo) {
         List<Producto> datos = controladorProducto.findProductoEntities();
@@ -171,7 +187,7 @@ public class CompraDAO {
      * de los cuales se vaya a realizar la compra
      * @param listaProductos
      * @param cantidad
-     * @return 
+     * @return Este método retorna el subtotal de la lista de todos los productos ingresados.
      */
     public double calcularSubtotal(ArrayList<Producto> listaProductos, int cantidad) {
         double subtotal = 0;
@@ -184,7 +200,7 @@ public class CompraDAO {
     /**
      * Método que permite realizar una búsqueda del producto por ID
      * @param idProducto
-     * @return 
+     * @return retorna el producto
      */
     public Producto buscarProductoID(String idProducto) {
         List<Producto> datos = controladorProducto.findProductoEntities();
@@ -208,7 +224,7 @@ public class CompraDAO {
     /**
      * Método para listar el nombre del proveedor, buscándolo por cédula
      * @param cedula
-     * @return 
+     * @return Retorna el nombre del proveedor que coincida con la cédula ingresada. 
      */
     public String listarProveedor(String cedula) {
         String nombre = "";
@@ -223,7 +239,7 @@ public class CompraDAO {
     /**
      * Método para retornar el Id de la lista de los proveedores
      * @param cedula
-     * @return 
+     * @return retorna el Id de producto para poder guardarlo en la tabla Compra de la bd
      */
     public String retornarId(String cedula) {
         String id = "";
@@ -240,7 +256,7 @@ public class CompraDAO {
     /**
      * Este método nos permite buscar un Proveedor por su cédula 
      * @param cedula
-     * @return 
+     * @return retorna la lista de los proveedores de la bd que coincidan con la cédula ingresada 
      */
     private List<Proveedor> buscarProveedor(String cedula) {
         Proveedor proveedor;
@@ -262,4 +278,11 @@ public class CompraDAO {
         pdao.editar(p.getIdProducto(), p.getCodigo(), p.getNombre(), p.getPrecio(), p.getMarca(), p.getProveedor(), p.getStock());
         
     }
+    
+     
+    
+ 
+            
 }
+    
+

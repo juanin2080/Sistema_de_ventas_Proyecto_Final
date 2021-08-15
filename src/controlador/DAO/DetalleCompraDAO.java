@@ -29,8 +29,9 @@ import modelo.Proveedor;
 public class DetalleCompraDAO {
 
     private DetalleCompraJpaController detalleCom = new DetalleCompraJpaController();
+    private CompraJpaController cjpac = new CompraJpaController();
     private DetalleCompra detalle = new DetalleCompra();
-
+    private Compra compra = new Compra();
     public void insertarDetalleCompra(int cantidad, Double precioTotal, Double precioUnitario, Compra compra, Producto producto) {
         try {
             detalle.setIdDCompra(Long.MIN_VALUE);
@@ -49,5 +50,21 @@ public class DetalleCompraDAO {
             System.out.println(e.getMessage());
         }
     }
-
+       public void listarCompras(JTable tblListaCompras) {
+        DefaultTableModel model;
+        String[] titulo = {"FECHA","NROCOMPRA", "FORMA DE PAGO", "IVA", "TOTAL"};
+        model = new DefaultTableModel(null, titulo);
+        List<Compra> datos = cjpac.findCompraEntities();
+        String[] listarCompra = new String[5];
+        
+        for (Compra dato : datos) {
+            listarCompra[0] = dato.getFecha() + "";
+            listarCompra[1] = dato.getNroCompra();
+            listarCompra[2] = dato.getFormaPago() + "";          
+            listarCompra[3] = dato.isIva() + "";
+            listarCompra[4] = dato.getTotal() + "";
+            model.addRow(listarCompra);
+        }
+        tblListaCompras.setModel(model);
+    }
 }

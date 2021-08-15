@@ -13,6 +13,8 @@ import controlador.utilidades.Controladores;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Compra;
 import modelo.Persona;
 import modelo.Producto;
 import modelo.Proveedor;
@@ -22,7 +24,7 @@ import modelo.Proveedor;
  * @author USUARIO
  */
 public class CompraProveedor extends javax.swing.JFrame {
-
+    
     private CompraDAO cdao = new CompraDAO();
     private ProductoDAO pdao = new ProductoDAO();
     private Producto producto = new Producto();
@@ -30,11 +32,15 @@ public class CompraProveedor extends javax.swing.JFrame {
     Controladores controladores = new Controladores();
     private DetalleCompraDAO detalleCompra = new DetalleCompraDAO();
     ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+    DetalleCompra dc = new DetalleCompra();
+    Compra compra = new Compra();
     Date fecha = new Date();
     Double subtotal = 0.0;
     String nombre = "";
     String id = "";
     Producto produc = new Producto();
+    boolean iva;
+    DefaultTableModel modelo;
 
     public CompraProveedor() {
         initComponents();
@@ -801,6 +807,7 @@ public class CompraProveedor extends javax.swing.JFrame {
 //            } else {
 //                JOptionPane.showMessageDialog(null, "Verifique que los campos nro Compra y forma de pago sean correctos");
 //            }
+            
         }
 
 
@@ -824,7 +831,7 @@ public class CompraProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalPagarCPActionPerformed
 
     private void checkBoxIVACPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxIVACPActionPerformed
-        // TODO add your handling code here:
+               
     }//GEN-LAST:event_checkBoxIVACPActionPerformed
 
     private void btnBuscarCedulaCP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCedulaCP1ActionPerformed
@@ -991,7 +998,18 @@ public class CompraProveedor extends javax.swing.JFrame {
         }
 
     }
-
+    public void guardarDetalle(){
+        Producto codP = cdao.buscarProductoC(nombre);
+      //  int codigoP = Integer.parseInt(codP);
+        for (int i = 0; i < tblProductoCP.getRowCount(); i++) {
+            int cdp = Integer.parseInt(tblProductoCP.getValueAt(i, 0).toString());
+            double pre = Integer.parseInt(tblProductoCP.getValueAt(i, 3).toString());
+            
+            
+        }
+      
+        
+                }
     private void limpiar() {
 
         txtnroCompraCP.setText("");

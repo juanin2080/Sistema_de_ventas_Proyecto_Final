@@ -60,7 +60,7 @@ public class DetalleCompra extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDetalleCompra = new RSMaterialComponent.RSTableMetro();
+        tblListaCompras = new RSMaterialComponent.RSTableMetro();
         btnMostrar = new rojerusan.RSButtonHover();
         rSLabelFecha2 = new rojeru_san.rsdate.RSLabelFecha();
 
@@ -247,7 +247,7 @@ public class DetalleCompra extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tblDetalleCompra.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -255,12 +255,17 @@ public class DetalleCompra extends javax.swing.JFrame {
 
             }
         ));
-        tblDetalleCompra.setBackgoundHead(new java.awt.Color(102, 0, 102));
-        jScrollPane1.setViewportView(tblDetalleCompra);
+        tblListaCompras.setBackgoundHead(new java.awt.Color(102, 0, 102));
+        jScrollPane1.setViewportView(tblListaCompras);
 
         btnMostrar.setBackground(new java.awt.Color(204, 0, 255));
         btnMostrar.setText("Mostrar");
         btnMostrar.setColorHover(new java.awt.Color(102, 102, 102));
+        btnMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMostrarMouseClicked(evt);
+            }
+        });
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
@@ -369,6 +374,12 @@ public class DetalleCompra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnMostrarActionPerformed
 
+    private void btnMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarMouseClicked
+        mostrarTabla();
+    }//GEN-LAST:event_btnMostrarMouseClicked
+    public void mostrarTabla(){
+        cDAO.listarCompras(tblListaCompras);
+    }
     /**
      * @param args the command line arguments
      */
@@ -428,6 +439,6 @@ public class DetalleCompra extends javax.swing.JFrame {
     private rojeru_san.rslabel.RSLabelImage rSLabelImage1;
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage4;
-    private RSMaterialComponent.RSTableMetro tblDetalleCompra;
+    private RSMaterialComponent.RSTableMetro tblListaCompras;
     // End of variables declaration//GEN-END:variables
 }
