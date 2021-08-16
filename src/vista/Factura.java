@@ -191,7 +191,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnFactura);
-        btnFactura.setBounds(370, 0, 120, 80);
+        btnFactura.setBounds(380, 0, 120, 80);
 
         btnRegistrar.setBackground(new java.awt.Color(0, 153, 102));
         btnRegistrar.setText("Registrar");
@@ -204,7 +204,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnRegistrar);
-        btnRegistrar.setBounds(220, 0, 120, 80);
+        btnRegistrar.setBounds(230, 0, 110, 80);
 
         jPanel3.add(jPanel4);
         jPanel4.setBounds(0, 50, 1160, 90);
@@ -682,9 +682,7 @@ public class Factura extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

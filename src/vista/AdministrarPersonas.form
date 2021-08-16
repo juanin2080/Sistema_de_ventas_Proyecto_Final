@@ -357,22 +357,22 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="rojerusan.RSButtonHover" name="btnRegistrarRoles">
+        <Component class="rojerusan.RSButtonHover" name="btnRegistrarCuenta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="cc" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registrar rol"/>
+            <Property name="text" type="java.lang.String" value="Registrar cuenta"/>
             <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarRolesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarCuentaActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="930" y="600" width="130" height="30"/>
+              <AbsoluteConstraints x="930" y="600" width="160" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
