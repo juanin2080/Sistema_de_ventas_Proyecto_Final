@@ -23,7 +23,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Usuario
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 @Entity
 @Table(name = "Producto")

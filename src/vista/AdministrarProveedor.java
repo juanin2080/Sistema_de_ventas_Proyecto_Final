@@ -16,7 +16,7 @@ import modelo.Rol;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class AdministrarProveedor extends javax.swing.JFrame {
 
@@ -58,7 +58,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         rSLabelImage4 = new necesario.RSLabelImage();
         btnRegistrar = new newscomponents.RSButtonBigIcon_new();
@@ -137,17 +136,11 @@ public class AdministrarProveedor extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 204));
         jPanel2.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre Administrador");
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(10, 80, 220, 70);
-
         jLabel2.setFont(new java.awt.Font("Leelawadee UI", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Hola");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(50, 10, 150, 70);
+        jLabel2.setBounds(50, 50, 150, 70);
 
         rSLabelImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logoSistemaFinal.jpg"))); // NOI18N
         jPanel2.add(rSLabelImage4);
@@ -1032,7 +1025,6 @@ public class AdministrarProveedor extends javax.swing.JFrame {
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
     private RSMaterialComponent.RSComboBoxMaterial<Rol> cbxRol;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

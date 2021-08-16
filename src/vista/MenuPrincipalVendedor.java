@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class MenuPrincipalVendedor extends javax.swing.JFrame {
 
@@ -43,7 +43,7 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btnRegresar = new newscomponents.RSButtonIcon_new();
         rSLabelImage3 = new necesario.RSLabelImage();
-        txtBienvenida = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -161,11 +161,10 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
         jPanel1.add(rSLabelImage3);
         rSLabelImage3.setBounds(10, 10, 50, 40);
 
-        txtBienvenida.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        txtBienvenida.setForeground(new java.awt.Color(51, 51, 51));
-        txtBienvenida.setText("Hola, NombreVendedor escoge una opción de nuestro menú");
-        jPanel1.add(txtBienvenida);
-        txtBienvenida.setBounds(10, 220, 530, 70);
+        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel1.setText("Electrocasa le da la bienvenida a nuestra familia.");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(20, 220, 570, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -781,6 +780,7 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
     private newscomponents.RSButtonBigIcon_new btnRegistrar;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -789,6 +789,5 @@ public class MenuPrincipalVendedor extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
-    private javax.swing.JLabel txtBienvenida;
     // End of variables declaration//GEN-END:variables
 }

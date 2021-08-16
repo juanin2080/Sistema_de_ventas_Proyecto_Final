@@ -23,7 +23,7 @@ import modelo.Factura;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class FacturaJpaController implements Serializable {
 

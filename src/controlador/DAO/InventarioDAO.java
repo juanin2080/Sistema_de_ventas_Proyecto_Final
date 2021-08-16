@@ -15,7 +15,7 @@ import modelo.Producto;
  */
 /**
  *
- * @author Usuario
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class InventarioDAO {
 

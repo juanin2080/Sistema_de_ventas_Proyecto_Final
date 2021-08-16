@@ -22,7 +22,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author María Castillo
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 @Entity
 @Table(name = "factura")

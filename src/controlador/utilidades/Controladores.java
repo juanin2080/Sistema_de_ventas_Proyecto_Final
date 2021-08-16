@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author USUARIO
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class Controladores {
 
@@ -50,7 +50,7 @@ public class Controladores {
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
         } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion"+ err.getMessage());
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion" + err.getMessage());
             cedulaCorrecta = false;
         }
         return cedulaCorrecta;
@@ -75,7 +75,7 @@ public class Controladores {
     public static boolean validarNumeroDecimal(String numero) {
         return numero.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
     }
-    
+
     public static boolean Numero(String numero) {
         return numero.matches("^[0-9]{5}+$");
     }

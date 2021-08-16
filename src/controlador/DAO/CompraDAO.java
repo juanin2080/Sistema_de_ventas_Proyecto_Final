@@ -22,7 +22,7 @@ import modelo.Proveedor;
 
 /**
  *
- * @author USUARIO
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class CompraDAO {
 
@@ -33,7 +33,7 @@ public class CompraDAO {
     private ProductoDAO pdao = new ProductoDAO();
 
     private String mensaje = "";
-
+    
     /**
      * Metodo para insertar la Compra 
      * @param nroCompra

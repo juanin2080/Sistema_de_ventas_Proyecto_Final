@@ -23,7 +23,7 @@ import modelo.Producto;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class ProductoJpaController implements Serializable {
 

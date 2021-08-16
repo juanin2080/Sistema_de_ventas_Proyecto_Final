@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */ 
 public class Conexion {
  

@@ -25,7 +25,7 @@ import modelo.Compra;
 
 /**
  *
- * @author juana
+ * @author Juan Armijos, Cristian Capa, Maria Castillo, Kelly Preciado
  */
 public class DetalleCompraJpaController implements Serializable {
 
