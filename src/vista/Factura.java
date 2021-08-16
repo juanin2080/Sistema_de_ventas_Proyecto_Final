@@ -770,14 +770,6 @@ public class Factura extends javax.swing.JFrame {
                         listaProductos.add(produc);
                         calcularSubtotal();
                         txtSubtotal.setText(String.valueOf(subtotal));
-
-                        for (Producto listaProducto : listaProductos) {
-                            listaProducto.getCodigo();
-                            listaProducto.getStock();
-                            System.out.println("id" + listaProducto.getIdProducto());
-                            System.out.println("codigo" + listaProducto.getCodigo());
-                            System.out.println("cod stock" + listaProducto.getStock());
-                        }
                         mostrarTabla();
                         fac.actualizarStockBD(txtCodigo.getText(), Integer.valueOf(txtCantidadProducto.getText()));
 

@@ -43,6 +43,7 @@ public class ProveedorJpaController implements Serializable {
      * Método create Crea un Proveedor en la base de datos
      * @param proveedor 
      */
+    
     public void create(Proveedor proveedor) {
         if (proveedor.getListaFactura() == null) {
             proveedor.setListaFactura(new ArrayList<Factura>());

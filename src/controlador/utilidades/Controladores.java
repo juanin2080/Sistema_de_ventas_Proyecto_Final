@@ -50,12 +50,8 @@ public class Controladores {
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
         } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion"+ err.getMessage());
             cedulaCorrecta = false;
-        }
-
-        if (!cedulaCorrecta) {
-        } else {
         }
         return cedulaCorrecta;
     }
