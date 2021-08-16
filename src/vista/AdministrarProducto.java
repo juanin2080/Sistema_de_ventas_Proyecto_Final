@@ -205,7 +205,7 @@ public class AdministrarProducto extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Nombre:");
+        jLabel6.setText("Producto:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(20, 320, 80, 30);
 

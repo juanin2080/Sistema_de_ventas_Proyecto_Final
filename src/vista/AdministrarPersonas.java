@@ -113,7 +113,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtPersonal = new RSMaterialComponent.RSTableMetro();
-        btnRegistrarRoles = new rojerusan.RSButtonHover();
+        btnRegistrarCuenta = new rojerusan.RSButtonHover();
         labelIcon5 = new necesario.LabelIcon();
         labelIcon6 = new necesario.LabelIcon();
         btnActualizarDatos = new rojerusan.RSButtonHover();
@@ -318,16 +318,16 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(452, 240, 700, 330);
 
-        btnRegistrarRoles.setBackground(new java.awt.Color(0, 204, 51));
-        btnRegistrarRoles.setText("Registrar rol");
-        btnRegistrarRoles.setColorHover(new java.awt.Color(102, 102, 102));
-        btnRegistrarRoles.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarCuenta.setBackground(new java.awt.Color(0, 204, 51));
+        btnRegistrarCuenta.setText("Registrar cuenta");
+        btnRegistrarCuenta.setColorHover(new java.awt.Color(102, 102, 102));
+        btnRegistrarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarRolesActionPerformed(evt);
+                btnRegistrarCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrarRoles);
-        btnRegistrarRoles.setBounds(930, 600, 130, 30);
+        jPanel1.add(btnRegistrarCuenta);
+        btnRegistrarCuenta.setBounds(930, 600, 160, 30);
 
         labelIcon5.setForeground(new java.awt.Color(102, 102, 102));
         labelIcon5.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.SAVE);
@@ -604,12 +604,12 @@ public class AdministrarPersonas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
 
-    private void btnRegistrarRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarRolesActionPerformed
-        AdministrarRoles ar = new AdministrarRoles();
+    private void btnRegistrarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCuentaActionPerformed
+        AdministrarCuentas ac = new AdministrarCuentas();
         this.dispose();
-        ar.setVisible(true);
-        ar.setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnRegistrarRolesActionPerformed
+        ac.setVisible(true);
+        ac.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRegistrarCuentaActionPerformed
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (camposVacios()) {
             JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
@@ -845,7 +845,7 @@ public class AdministrarPersonas extends javax.swing.JFrame {
     private rojerusan.RSButtonHover btnGuardar1;
     private RSMaterialComponent.RSButtonIconDos btnMinimizar;
     private rojerusan.RSButtonHover btnNuevoPersonal;
-    private rojerusan.RSButtonHover btnRegistrarRoles;
+    private rojerusan.RSButtonHover btnRegistrarCuenta;
     private newscomponents.RSButtonIcon_new btnRegresar;
     private RSMaterialComponent.RSButtonIconDos btnSalir;
     private RSMaterialComponent.RSComboBoxMaterial<Rol> cbxRol;
