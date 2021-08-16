@@ -3,41 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/DetalleFacturaDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarPersonas.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/InicioSesion.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/RolJpaController.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/ProveedorDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/RolDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/DetalleFactura.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Cuenta.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/ProductoDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Producto.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/Factura.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Compra.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/CompraProveedor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/Inventario.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarRoles.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/exceptions/IllegalOrphanException.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/exceptions/NonexistentEntityException.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/InventarioDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/Aci_Servicio_Web.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/utilidades/Controladores.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/MenuPrincipalVendedor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/MenuPrincipalAdministrador.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Rol.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/CompraDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Persona.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/DetalleCompra.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarCuentas.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/DetalleCompraDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Proveedor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarProveedor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/CuentaDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/FacturaDAO.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/modelo/Factura.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/vista/AdministrarProducto.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/PersonaDAO.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/PersonaDAO.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/FacturaJpaController.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/CompraJpaController.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/DAO/FacturaDAO.java</file>
+            <file>file:/C:/Users/59398/OneDrive/Documentos/GitHub/Sistema_de_ventas_Proyecto_Final/src/controlador/CuentaJpaController.java</file>
         </group>
     </open-files>
 </project-private>
